@@ -1,0 +1,640 @@
+'use client';
+
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'next/navigation';
+import { Fancybox } from '@fancyapps/ui';
+import '@fancyapps/ui/dist/fancybox/fancybox.css';
+import '@fancyapps/ui/dist/carousel/carousel.css';
+import '@fancyapps/ui/dist/carousel/carousel.thumbs.css';
+import { 
+  Calendar, 
+  Clock, 
+  Eye, 
+  ExternalLink, 
+  Github, 
+  Play, 
+  Pause,
+  Volume2,
+  VolumeX,
+  ChevronLeft,
+  ChevronRight,
+  X
+} from 'lucide-react';
+import Image from 'next/image';
+import './projectdetail.css';
+
+const ProjectDetail = () => {
+  const { slug } = useParams();
+  const [project, setProject] = useState(null);
+  const [relatedProjects, setRelatedProjects] = useState([]);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
+  const [videoStates, setVideoStates] = useState({});
+  const [viewProcessed, setViewProcessed] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [hasLiked, setHasLiked] = useState(false);
+  const [hasViewed, setHasViewed] = useState(false);
+  const [stats, setStats] = useState({ views: 0, likes: 0 });
+  const [statsLoading, setStatsLoading] = useState(true);
+
+  // Initialize Fancybox
+  useEffect(() => {
+    Fancybox.bind('[data-fancybox]', {
+      Thumbs: {
+        type: 'modern',
+      },
+      Toolbar: {
+        display: {
+          middle: ['zoomIn', 'zoomOut', 'toggle1:1'],
+          right: ['slideshow', 'thumbs', 'close'],
+        },
+      },
+      Carousel: {
+        Navigation: true,
+      },
+    });
+
+    return () => Fancybox.destroy();
+  }, [project]);
+
+  // Load project data from JSON
+  useEffect(() => {
+    const loadProjectData = async () => {
+      try {
+        setLoading(true);
+        
+        const response = await fetch('/data/portfoliopost.json');
+        const data = await response.json();
+        const projectData = data.find(p => p.slug === slug);
+        
+        if (projectData) {
+          const transformedProject = {
+            id: projectData.id,
+            slug: projectData.slug,
+            title: projectData.title,
+            subtitle: projectData.abovetitle || 'Modern Web Development Project',
+            description: projectData.projectTexts?.description || projectData.description,
+            category: projectData.category,
+            tags: projectData.tags ? projectData.tags.split(', ') : ['React', 'Next.js'],
+            client: projectData.projectDetails?.client || 'Personal Project',
+            year: projectData.projectDetails?.date?.split('.')[2] || '2024',
+            duration: projectData.projectDetails?.duration || '3 Monate',
+            role: projectData.projectDetails?.role || 'Full-Stack Developer & Designer',
+            status: projectData.projectDetails?.status || 'Live',
+            views: projectData.views || 0,
+            likes: projectData.likes || 0,
+            
+            // Links
+            liveUrl: projectData.projectDetails?.demoUrl,
+            githubUrl: projectData.projectDetails?.githubUrl,
+            
+            // Media
+            heroImage: projectData.backgroundImage,
+            images: projectData.galleryImages ? projectData.galleryImages.map((img, index) => ({
+              url: `/assets/images/portfolio/${img}`,
+              caption: `Project Screenshot ${index + 1}`
+            })) : [],
+            
+            videos: projectData.videos || [],
+
+            // Content sections
+            sections: [
+              {
+                id: 'overview',
+                title: 'Projektübersicht',
+                content: `
+                  <p>${projectData.projectTexts?.heroParagraph || projectData.excerpt}</p>
+                  <p>${projectData.projectTexts?.description || projectData.description}</p>
+                `
+              },
+              {
+                id: 'challenge',
+                title: 'Herausforderung',
+                content: `
+                  <p>${projectData.projectDetails?.challenges || 'Die größte Herausforderung bestand darin, eine Balance zwischen visueller Attraktivität und Performance zu finden.'}</p>
+                `
+              },
+              {
+                id: 'solution',
+                title: 'Lösung',
+                content: `
+                  <p>Durch den Einsatz modernster Technologien konnte eine hochperformante Website realisiert werden:</p>
+                  <h3>Technischer Stack:</h3>
+                  <ul>
+                    <li><strong>Technologien:</strong> ${projectData.projectDetails?.techStack || 'React, Next.js, CSS3'}</li>
+                    <li><strong>Inspiration:</strong> ${projectData.projectDetails?.inspiration || 'Behance, Dribbble'}</li>
+                  </ul>
+                `
+              },
+              {
+                id: 'results',
+                title: 'Ergebnisse & Learnings',
+                content: `
+                  <p>${projectData.projectDetails?.learnings || projectData.projectDetails?.solutions || 'Das Projekt übertraf alle gesetzten Ziele und erhielt positive Resonanz.'}</p>
+                `
+              }
+            ],
+
+            // Technical details
+            techStack: projectData.projectDetails?.techStack ? 
+              projectData.projectDetails.techStack.split(', ').map(tech => ({
+                name: tech,
+                category: 'Technology'
+              })) : [
+                { name: 'React', category: 'Frontend Framework' },
+                { name: 'Next.js', category: 'Full-Stack Framework' }
+              ],
+
+            features: [
+              'Responsive Design für alle Geräte',
+              'Optimierte Performance und SEO',
+              'Moderne UI/UX Patterns',
+              'Cross-Browser Kompatibilität'
+            ]
+          };
+          
+          setProject(transformedProject);
+          setStats({ views: transformedProject.views, likes: transformedProject.likes });
+          
+          // Load related projects
+          const related = data
+            .filter(p => p.slug !== slug)
+            .slice(0, 3)
+            .map(p => ({
+              id: p.id,
+              slug: p.slug,
+              title: p.title,
+              image: p.backgroundImage,
+              category: p.category
+            }));
+          setRelatedProjects(related);
+        }
+        
+      } catch (error) {
+        console.error('Error loading project data:', error);
+      } finally {
+        setLoading(false);
+        setStatsLoading(false);
+      }
+    };
+
+    if (slug) {
+      loadProjectData();
+    }
+  }, [slug]);
+
+  // View tracking logic
+  useEffect(() => {
+    if (!project || statsLoading || viewProcessed) return;
+
+    const sessionKey = `project_viewed_${slug}`;
+    let hasViewedInSession = false;
+
+    try {
+      if (typeof window !== 'undefined' && window.sessionStorage) {
+        hasViewedInSession = sessionStorage.getItem(sessionKey) === 'true';
+      }
+    } catch (error) {
+      console.warn('SessionStorage not available, using in-memory tracking');
+      hasViewedInSession = window.__viewedProjects?.includes(slug) || false;
+    }
+
+    if (!hasViewedInSession) {
+      setViewProcessed(true);
+      
+      const newViews = stats.views + 1;
+      setStats(prev => ({ ...prev, views: newViews }));
+      
+      try {
+        if (typeof window !== 'undefined' && window.sessionStorage) {
+          sessionStorage.setItem(sessionKey, 'true');
+        } else {
+          if (!window.__viewedProjects) window.__viewedProjects = [];
+          window.__viewedProjects.push(slug);
+        }
+      } catch (error) {
+        console.warn('Could not save view state:', error);
+      }
+      
+      setHasViewed(true);
+      console.log('Project view tracked:', project.title);
+    } else {
+      setHasViewed(true);
+      setViewProcessed(true);
+    }
+  }, [project, statsLoading, slug, viewProcessed, stats.views]);
+
+  // Check if already liked
+  useEffect(() => {
+    try {
+      const likedProjects = JSON.parse(
+        localStorage.getItem('likedProjects') || '[]'
+      );
+      setHasLiked(likedProjects.includes(slug));
+    } catch (error) {
+      console.warn('Could not load liked projects from localStorage:', error);
+      setHasLiked(false);
+    }
+  }, [slug]);
+
+  // Like handler
+  const handleLike = async () => {
+    if (hasLiked) return;
+
+    try {
+      const newLikes = stats.likes + 1;
+      setStats(prev => ({ ...prev, likes: newLikes }));
+      setHasLiked(true);
+
+      const likedProjects = JSON.parse(
+        localStorage.getItem('likedProjects') || '[]'
+      );
+      likedProjects.push(slug);
+      localStorage.setItem('likedProjects', JSON.stringify(likedProjects));
+      
+      console.log('Project liked:', project.title);
+    } catch (error) {
+      console.error('Error liking project:', error);
+    }
+  };
+
+  // Helper function for formatted numbers
+  const formatNumber = num => {
+    if (num >= 1000) {
+      return (num / 1000).toFixed(1) + 'k';
+    }
+    return num.toString();
+  };
+
+  // Image navigation
+  const nextImage = () => {
+    if (project?.images) {
+      setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
+    }
+  };
+
+  const prevImage = () => {
+    if (project?.images) {
+      setCurrentImageIndex((prev) => (prev - 1 + project.images.length) % project.images.length);
+    }
+  };
+
+  // Video controls
+  const toggleVideoPlay = (videoId) => {
+    const video = document.getElementById(videoId);
+    if (video) {
+      if (video.paused) {
+        video.play();
+        setVideoStates(prev => ({ ...prev, [videoId]: { playing: true } }));
+      } else {
+        video.pause();
+        setVideoStates(prev => ({ ...prev, [videoId]: { playing: false } }));
+      }
+    }
+  };
+
+  const toggleVideoMute = (videoId) => {
+    const video = document.getElementById(videoId);
+    if (video) {
+      video.muted = !video.muted;
+      setVideoStates(prev => ({ 
+        ...prev, 
+        [videoId]: { ...prev[videoId], muted: video.muted }
+      }));
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="project-loading">
+        <div className="loading-spinner">
+          <div className="spinner"></div>
+          <p>Projekt wird geladen...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!project) {
+    return (
+      <div className="project-not-found">
+        <h1>Projekt nicht gefunden</h1>
+        <p>Das angeforderte Projekt konnte nicht geladen werden.</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="project-detail">
+      {/* Hero Section */}
+      <header className="project-hero">
+        <div className="hero-content">
+          <div className="hero-meta">
+            <span className="category">{project.category}</span>
+            <div className="meta-stats">
+              <div className="meta-item">
+                <Calendar className="icon" />
+                <span>{project.year}</span>
+              </div>
+              <div className="meta-item">
+                <Clock className="icon" />
+                <span>{project.duration}</span>
+              </div>
+              <div className="meta-item">
+                <Eye className="icon" />
+                <span>{formatNumber(stats.views)} Aufrufe</span>
+              </div>
+            </div>
+          </div>
+          
+          <h1 className="hero-title">{project.title}</h1>
+          <p className="hero-subtitle">{project.subtitle}</p>
+          
+          {/* Like / View Buttons */}
+          <div className="counters-wrapper">
+            <div className="counter-item view-counter">
+              <span className="counter-label">Views</span>
+              <button className="btn-view">
+                <div className="counter-info-row">
+                  <Eye className="icon" />
+                  <span className="counter-text">{formatNumber(stats.views)}</span>
+                </div>
+              </button>
+            </div>
+
+            <div className="counter-item like-counter">
+              <span className="counter-label">Likes</span>
+              <button
+                className={`btn-like ${hasLiked ? 'liked' : ''}`}
+                onClick={handleLike}
+                disabled={hasLiked || statsLoading}
+              >
+                <div className="counter-info-row">
+                  <svg
+                    className="icon-like"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill={hasLiked ? 'currentColor' : 'none'}
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                  </svg>
+                  <span className="counter-text">{formatNumber(stats.likes)}</span>
+                </div>
+              </button>
+            </div>
+          </div>
+          
+          {/* Action Buttons */}
+          <div className="hero-actions">
+            {project.liveUrl && (
+              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+                <ExternalLink className="icon" />
+                <span>Live Demo</span>
+              </a>
+            )}
+            {project.githubUrl && (
+              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
+                <Github className="icon" />
+                <span>GitHub Repository</span>
+              </a>
+            )}
+          </div>
+        </div>
+        
+        <div className="hero-image">
+          <Image
+            src={project.heroImage || '/images/placeholder-hero.jpg'}
+            alt={project.title}
+            width={800}
+            height={500}
+            className="main-image"
+            priority
+          />
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="project-main">
+        {/* Project Info Cards */}
+        <section className="project-info">
+          <div className="info-grid">
+            <div className="info-card">
+              <h3>Client</h3>
+              <p>{project.client}</p>
+            </div>
+            <div className="info-card">
+              <h3>Rolle</h3>
+              <p>{project.role}</p>
+            </div>
+            <div className="info-card">
+              <h3>Status</h3>
+              <p className={`status ${project.status.toLowerCase()}`}>{project.status}</p>
+            </div>
+            <div className="info-card">
+              <h3>Dauer</h3>
+              <p>{project.duration}</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Content Sections */}
+        <section className="project-content">
+          {project.sections.map((section) => (
+            <div key={section.id} className="content-section" id={section.id}>
+              <h2>{section.title}</h2>
+              <div 
+                className="section-content"
+                dangerouslySetInnerHTML={{ __html: section.content }}
+              />
+            </div>
+          ))}
+        </section>
+
+        {/* Image Gallery with Fancybox */}
+        {project.images && project.images.length > 0 && (
+          <section className="image-gallery">
+            <h2>Galerie</h2>
+            <div className="gallery-container">
+              <div className="gallery">
+                {project.images.map((image, index) => (
+                  <a
+                    key={`image-${index}`}
+                    data-fancybox="gallery"
+                    href={image.url}
+                    data-caption={image.caption}
+                    className="portfolio-media-thumbnail"
+                  >
+                    <img
+                      src={image.url}
+                      alt={image.caption}
+                      loading="lazy"
+                      className="portfolio-media-image"
+                    />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Video Gallery */}
+        {project.videos && project.videos.length > 0 && (
+          <section className="video-gallery">
+            <h2>Videos</h2>
+            <div className="video-grid">
+              {project.videos.map((video, index) => (
+                <div key={`video-${index}`} className="video-container">
+                  <div className="video-wrapper">
+                    <video
+                      id={`video-${index}`}
+                      className="video-player"
+                      poster={video.thumbnail}
+                      preload="metadata"
+                      onLoadedMetadata={() => {
+                        const videoEl = document.getElementById(`video-${index}`);
+                        if (videoEl) {
+                          setVideoStates(prev => ({
+                            ...prev,
+                            [`video-${index}`]: {
+                              duration: videoEl.duration,
+                              muted: true,
+                              playing: false
+                            }
+                          }));
+                        }
+                      }}
+                    >
+                      <source src={video.url} type="video/mp4" />
+                      Ihr Browser unterstützt das Video-Element nicht.
+                    </video>
+                    
+                    <div className="video-controls">
+                      <button 
+                        className="video-control-btn play-btn"
+                        onClick={() => toggleVideoPlay(`video-${index}`)}
+                      >
+                        {videoStates[`video-${index}`]?.playing ? (
+                          <Pause className="icon" />
+                        ) : (
+                          <Play className="icon" />
+                        )}
+                      </button>
+                      
+                      <button 
+                        className="video-control-btn mute-btn"
+                        onClick={() => toggleVideoMute(`video-${index}`)}
+                      >
+                        {videoStates[`video-${index}`]?.muted ? (
+                          <VolumeX className="icon" />
+                        ) : (
+                          <Volume2 className="icon" />
+                        )}
+                      </button>
+                      
+                      <span className="video-duration">{video.duration}</span>
+                    </div>
+                  </div>
+                  
+                  {video.caption && (
+                    <p className="video-caption">{video.caption}</p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Tech Stack */}
+        <section className="tech-stack">
+          <h2>Technologien</h2>
+          <div className="tech-grid">
+            {project.techStack.map((tech, index) => (
+              <div key={`tech-${index}`} className="tech-item">
+                <h4>{tech.name}</h4>
+                <p>{tech.category}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Features */}
+        <section className="features">
+          <h2>Key Features</h2>
+          <div className="features-grid">
+            {project.features.map((feature, index) => (
+              <div key={`feature-${index}`} className="feature-item">
+                <div className="feature-icon">✓</div>
+                <p>{feature}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </main>
+
+      {/* Related Projects */}
+      {relatedProjects.length > 0 && (
+        <section className="related-projects">
+          <div className="section-header">
+            <h2>Ähnliche Projekte</h2>
+          </div>
+          <div className="projects-grid">
+            {relatedProjects.map((relatedProject) => (
+              <a
+                key={`related-${relatedProject.id}`}
+                href={`/projects/${relatedProject.slug}`}
+                className="related-project-card"
+              >
+                <div className="project-image">
+                  <Image
+                    src={relatedProject.image || '/images/placeholder.jpg'}
+                    alt={relatedProject.title}
+                    width={300}
+                    height={200}
+                    className="card-image"
+                  />
+                </div>
+                <div className="project-info">
+                  <span className="project-category">{relatedProject.category}</span>
+                  <h3>{relatedProject.title}</h3>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Image Modal */}
+      {isImageModalOpen && (
+        <div className="image-modal" onClick={() => setIsImageModalOpen(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setIsImageModalOpen(false)}>
+              <X className="icon" />
+            </button>
+            <Image
+              src={project.images[currentImageIndex]?.url || '/images/placeholder.jpg'}
+              alt={project.images[currentImageIndex]?.caption || project.title}
+              width={1200}
+              height={800}
+              className="modal-image"
+            />
+            {project.images.length > 1 && (
+              <>
+                <button className="modal-nav prev" onClick={prevImage}>
+                  <ChevronLeft className="icon" />
+                </button>
+                <button className="modal-nav next" onClick={nextImage}>
+                  <ChevronRight className="icon" />
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default ProjectDetail;

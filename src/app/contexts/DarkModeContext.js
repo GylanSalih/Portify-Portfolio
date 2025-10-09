@@ -24,10 +24,10 @@ export const DarkModeProvider = ({ children }) => {
       setIsDarkMode(darkMode);
       setIsInitialized(true);
 
-      // Apply dark mode class to the root element
-      if (darkMode) {
+      // Apply dark mode class to the root element (only if not already applied by script)
+      if (darkMode && !document.documentElement.classList.contains('dark-mode')) {
         document.documentElement.classList.add('dark-mode');
-      } else {
+      } else if (!darkMode) {
         document.documentElement.classList.remove('dark-mode');
       }
     }

@@ -1,0 +1,403 @@
+/* =============================== LikeButton Component Module =============================== */
+
+/* Enhanced Like Button with Beautiful Heart Design */
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border: 2px solid hsl(240 3.7% 18%);
+  border-radius: 1rem;
+  background: hsl(240 10% 6%);
+  color: hsl(0 0% 98%);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: visible;
+  box-shadow: 0 4px 12px 0 rgb(0 0 0 / 0.15);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.02), transparent);
+  transition: left 0.5s;
+}
+
+.button:hover {
+  background: hsl(240 10% 8%);
+  border-color: hsl(0 0% 40%);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px 0 rgb(0 0 0 / 0.25);
+}
+
+.button:hover::before {
+  left: 100%;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+}
+
+.button:disabled:hover {
+  transform: none;
+  box-shadow: 0 4px 12px 0 rgb(0 0 0 / 0.15);
+}
+
+.liked {
+  background: linear-gradient(135deg, #ff6b8a 0%, #ff4757 50%, #ff3742 100%);
+  color: white;
+  border-color: #ff4757;
+  box-shadow: 0 8px 25px 0 rgb(255 71 87 / 0.4);
+  animation: likedGlow 0.6s ease-out;
+}
+
+.liked:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 35px 0 rgb(255 71 87 / 0.5);
+  background: linear-gradient(135deg, #ff8da1 0%, #ff6b7a 50%, #ff4757 100%);
+}
+
+@keyframes likedGlow {
+  0% {
+    box-shadow: 0 4px 12px 0 rgb(0 0 0 / 0.15);
+  }
+  50% {
+    box-shadow: 0 8px 25px 0 rgb(255 71 87 / 0.6);
+  }
+  100% {
+    box-shadow: 0 8px 25px 0 rgb(255 71 87 / 0.4);
+  }
+}
+
+/* Beautiful Heart Icon with Fill Effect */
+.heartIcon {
+  width: 24px;
+  height: 24px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 2;
+  stroke-width: 2;
+  fill: none;
+  stroke: currentColor;
+}
+
+.heartIcon.filled {
+  animation: heartFillEffect 1.2s ease-out;
+  fill: white;
+  stroke: white;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+}
+
+/* Heart Fill Animation with Mini Hearts */
+@keyframes heartFillEffect {
+  0% {
+    transform: scale(1);
+    fill: none;
+  }
+  15% {
+    transform: scale(1.3);
+    fill: rgba(255, 255, 255, 0.1);
+  }
+  30% {
+    transform: scale(0.9);
+    fill: rgba(255, 255, 255, 0.5);
+  }
+  45% {
+    transform: scale(1.1);
+    fill: rgba(255, 255, 255, 0.8);
+  }
+  60% {
+    transform: scale(0.95);
+    fill: white;
+  }
+  100% {
+    transform: scale(1);
+    fill: white;
+  }
+}
+
+/* Mini Hearts Burst Effect Container */
+.heartContainer {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.miniHeartsEffect {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.miniHeart {
+  position: absolute;
+  font-size: 12px;
+  color: #ff6b8a;
+  animation: miniHeartFloat 1.5s ease-out forwards;
+  opacity: 0;
+}
+
+.miniHeart:nth-child(1) {
+  animation-delay: 0.1s;
+  transform: translate(-20px, -20px);
+}
+
+.miniHeart:nth-child(2) {
+  animation-delay: 0.2s;
+  transform: translate(20px, -20px);
+}
+
+.miniHeart:nth-child(3) {
+  animation-delay: 0.3s;
+  transform: translate(-25px, 10px);
+}
+
+.miniHeart:nth-child(4) {
+  animation-delay: 0.4s;
+  transform: translate(25px, 10px);
+}
+
+.miniHeart:nth-child(5) {
+  animation-delay: 0.5s;
+  transform: translate(0px, -30px);
+}
+
+.miniHeart:nth-child(6) {
+  animation-delay: 0.6s;
+  transform: translate(-15px, 25px);
+}
+
+.miniHeart:nth-child(7) {
+  animation-delay: 0.7s;
+  transform: translate(15px, 25px);
+}
+
+@keyframes miniHeartFloat {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.3);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(var(--x, 0), var(--y, 0)) scale(1);
+  }
+  80% {
+    opacity: 0.8;
+    transform: translate(var(--x, 0), calc(var(--y, 0) - 20px)) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--x, 0), calc(var(--y, 0) - 40px)) scale(0.5);
+  }
+}
+
+.likeText {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.likeCount {
+  background: hsl(240 4.8% 16%);
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: hsl(0 0% 98%);
+  border: 1px solid hsl(240 3.7% 18%);
+  min-width: 2rem;
+  text-align: center;
+}
+
+/* Focus states for accessibility */
+.button:focus-visible {
+  outline: 3px solid hsl(240 5% 84%);
+  outline-offset: 3px;
+  border-radius: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .button {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.9375rem;
+    gap: 0.875rem;
+  }
+
+  .heartIcon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .miniHeart {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .button {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    gap: 0.75rem;
+    border-radius: 0.875rem;
+  }
+
+  .heartIcon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .likeCount {
+    padding: 0.1875rem 0.625rem;
+    font-size: 0.8125rem;
+  }
+
+  .miniHeart {
+    font-size: 9px;
+  }
+
+  /* Reduziere Mini-Heart Abstände für kleinere Screens */
+  .miniHeart:nth-child(1) {
+    transform: translate(-15px, -15px);
+  }
+
+  .miniHeart:nth-child(2) {
+    transform: translate(15px, -15px);
+  }
+
+  .miniHeart:nth-child(3) {
+    transform: translate(-18px, 8px);
+  }
+
+  .miniHeart:nth-child(4) {
+    transform: translate(18px, 8px);
+  }
+
+  .miniHeart:nth-child(5) {
+    transform: translate(0px, -22px);
+  }
+
+  .miniHeart:nth-child(6) {
+    transform: translate(-12px, 18px);
+  }
+
+  .miniHeart:nth-child(7) {
+    transform: translate(12px, 18px);
+  }
+}
+
+@media (max-width: 360px) {
+  .button {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.8125rem;
+    gap: 0.625rem;
+  }
+
+  .heartIcon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .miniHeart {
+    font-size: 8px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .heartIcon {
+    transition-duration: 0.01ms !important;
+  }
+
+  .heartIcon.filled {
+    animation: none !important;
+  }
+
+  .button::before {
+    display: none;
+  }
+
+  .liked {
+    animation: none !important;
+  }
+
+  .miniHeart {
+    animation: none !important;
+    display: none;
+  }
+
+  .miniHeartsEffect {
+    display: none !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .button {
+    border-width: 3px;
+    background: hsl(0 0% 0%);
+    color: hsl(0 0% 100%);
+    border-color: hsl(0 0% 40%);
+  }
+
+  .liked {
+    background: hsl(0 0% 100%);
+    color: hsl(0 0% 0%);
+    border-color: hsl(0 0% 0%);
+  }
+
+  .likeCount {
+    border-width: 2px;
+    background: hsl(0 0% 20%);
+    color: hsl(0 0% 100%);
+  }
+}
+
+/* Light mode styles */
+@media (prefers-color-scheme: light) {
+  .button {
+    background: hsl(0 0% 98%);
+    color: hsl(0 0% 3.9%);
+    border-color: hsl(0 0% 89%);
+  }
+
+  .button:hover {
+    background: hsl(0 0% 96%);
+    border-color: hsl(0 0% 85%);
+  }
+
+  .liked {
+    background: linear-gradient(135deg, hsl(0 0% 3.9%) 0%, hsl(0 0% 10%) 100%);
+    color: hsl(0 0% 98%);
+    border-color: hsl(0 0% 3.9%);
+  }
+
+  .likeCount {
+    background: hsl(0 0% 96%);
+    color: hsl(0 0% 3.9%);
+    border-color: hsl(0 0% 89%);
+  }
+}
+
+/* Print styles */
+@media print {
+  .button {
+    display: none !important;
+  }
+}

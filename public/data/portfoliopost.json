@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "slug": "oni-girl-coding1",
     "title": "Erstes Projekt",
     "category": "Coding",
@@ -7,20 +8,27 @@
     "heroImage": "/assets/images/landing/OniBoy1.webp",
     "holographicCard": "/assets/images/landing/OniGirl3.jpg",
     "backgroundImage": "/assets/images/landing/OniGirl3.jpg",
+    "views": 1247,
+    "likes": 89,
     "projectDetails": {
       "theme": "Coding",
       "inspiration": "Behance",
-      "tags": "HTML/CSS, JS",
+      "tags": "HTML/CSS, JS, React",
       "date": "31.05.2024",
+      "duration": "3 Monate",
+      "client": "Personal Project",
+      "role": "Full-Stack Developer",
+      "status": "Live",
       "techStack": "React, TailwindCSS, GSAP",
-      "challenges": "Building an interactive gallery with Fancybox",
-      "solutions": "Implemented Fancybox with optimized lazy loading",
-      "liveDemoLink": "https://your-live-demo-link.com",
-      "codeRepositoryLink": "https://github.com/your-repo"
+      "challenges": "Building an interactive gallery with Fancybox and optimizing performance",
+      "solutions": "Implemented Fancybox with optimized lazy loading and code splitting",
+      "learnings": "Learned advanced React patterns and modern CSS techniques",
+      "demoUrl": "https://your-live-demo-link.com",
+      "githubUrl": "https://github.com/your-username/oni-girl-project"
     },
     "projectTexts": {
-      "heroParagraph": "I created this website with great dedication...",
-      "description": "This website is a showcase of my passion for web development... Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur error earum, quod maxime perspiciatis repudiandae nihil vero explicabo officia architecto itaque doloremque ipsam alias porro distinctio doloribus. Dicta, earum dolorem."
+      "heroParagraph": "I created this website with great dedication, focusing on modern web development practices and user experience design.",
+      "description": "This website is a showcase of my passion for web development and design. It features an interactive gallery, smooth animations, and responsive design. The project demonstrates advanced React concepts, modern CSS techniques, and performance optimization strategies. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur error earum, quod maxime perspiciatis repudiandae nihil vero explicabo officia architecto itaque doloremque ipsam alias porro distinctio doloribus. Dicta, earum dolorem."
     },
     "galleryImages": [
       "New1.png",
@@ -33,26 +41,35 @@
     ]
   },
   {
+    "id": 2,
     "slug": "oni-girl-coding2",
-    "title": "My First Project2",
+    "title": "My Second Project",
     "category": "Coding",
-    "year": 2024,
+    "abovetitle": "E-Commerce Platform",
     "heroImage": "/assets/images/landing/OniBoy1.webp",
     "holographicCard": "/assets/images/landing/OniBoy4.webp",
+    "backgroundImage": "/assets/images/landing/OniBoy4.webp",
+    "views": 892,
+    "likes": 156,
     "projectDetails": {
       "theme": "Coding",
-      "inspiration": "Behance",
-      "tags": "HTML/CSS, JS",
-      "date": "31.05.2024",
-      "techStack": "React, TailwindCSS, GSAP",
-      "challenges": "Building an interactive gallery with Fancybox",
-      "solutions": "Implemented Fancybox with optimized lazy loading",
-      "liveDemoLink": "https://your-live-demo-link.com",
-      "codeRepositoryLink": "https://github.com/your-repo"
+      "inspiration": "Behance, Dribbble",
+      "tags": "HTML/CSS, JS, Node.js",
+      "date": "15.08.2024",
+      "duration": "4 Monate",
+      "client": "Startup Client",
+      "role": "Lead Developer",
+      "status": "Live",
+      "techStack": "Node.js, Express, MongoDB, React",
+      "challenges": "Implementing complex e-commerce features and payment integration",
+      "solutions": "Used Stripe API for payments and implemented advanced state management",
+      "learnings": "Gained expertise in full-stack development and payment systems",
+      "demoUrl": "https://second-project-demo.com",
+      "githubUrl": "https://github.com/your-username/second-project"
     },
     "projectTexts": {
-      "heroParagraph": "I created this website with great dedication...",
-      "description": "This website is a showcase of my passion for web development... Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur error earum, quod maxime perspiciatis repudiandae nihil vero explicabo officia architecto itaque doloremque ipsam alias porro distinctio doloribus. Dicta, earum dolorem."
+      "heroParagraph": "A comprehensive e-commerce platform built with modern technologies and best practices.",
+      "description": "This e-commerce platform showcases advanced full-stack development skills. Features include user authentication, product management, shopping cart functionality, and secure payment processing. The application is built with performance and scalability in mind, utilizing modern development practices and tools."
     },
     "galleryImages": [
       "New1.png",
@@ -64,28 +81,81 @@
       "New7.png"
     ]
   },
-
   {
-    "_comment": "ignoriere diesen teil ist nur ein kommentar, dieser abschnitt zeigt wie die blog beiträge sein sollen!",
-    "slug": "projekt-name",
-    "title": "Projekt Titel",
-    "abovetitle": "Web Development",
-    "backgroundImage": "/path/to/image.jpg",
+    "id": 3,
+    "slug": "mobile-app-design",
+    "title": "Mobile App Design",
+    "category": "Design",
+    "abovetitle": "UI/UX Design",
+    "heroImage": "/assets/images/landing/OniBoy1.webp",
+    "holographicCard": "/assets/images/landing/OniGirl3.jpg",
+    "backgroundImage": "/assets/images/landing/OniGirl3.jpg",
+    "views": 543,
+    "likes": 78,
     "projectDetails": {
-      "theme": "Coding",
-      "inspiration": "Behance",
-      "tags": "HTML/CSS, JS",
-      "date": "31.05.2024",
-      "techStack": "React, TailwindCSS, GSAP",
-      "challenges": "Building an interactive gallery with Fancybox",
-      "solutions": "Implemented Fancybox with optimized lazy loading",
-      "demoUrl": "https://example.com",
-      "githubUrl": "https://github.com/username/repo"
+      "theme": "Design",
+      "inspiration": "Material Design, iOS Guidelines",
+      "tags": "UI/UX, Figma, Prototyping",
+      "date": "10.09.2024",
+      "duration": "2 Monate",
+      "client": "Mobile Startup",
+      "role": "UI/UX Designer",
+      "status": "Completed",
+      "techStack": "Figma, Principle, After Effects",
+      "challenges": "Creating intuitive user flows for complex mobile interactions",
+      "solutions": "Conducted user research and iterative testing to optimize UX",
+      "learnings": "Mastered mobile design patterns and user psychology",
+      "demoUrl": "https://figma.com/proto/mobile-app-design",
+      "githubUrl": null
     },
     "projectTexts": {
-      "heroParagraph": "Hero text...",
-      "description": "About the project..."
+      "heroParagraph": "A comprehensive mobile app design focusing on user experience and modern interface patterns.",
+      "description": "This mobile app design project encompasses complete UI/UX design for a social networking application. The design features modern interface elements, intuitive navigation, and accessibility considerations. The project includes wireframes, high-fidelity mockups, interactive prototypes, and a complete design system."
     },
-    "galleryImages": ["image1.jpg", "image2.jpg"]
+    "galleryImages": [
+      "New1.png",
+      "New2.png",
+      "New3.png",
+      "New4.png"
+    ]
+  },
+  {
+    "id": 4,
+    "slug": "portfolio-website",
+    "title": "Portfolio Website",
+    "category": "Web Development",
+    "abovetitle": "Personal Branding",
+    "heroImage": "/assets/images/landing/OniBoy1.webp",
+    "holographicCard": "/assets/images/landing/OniBoy4.webp",
+    "backgroundImage": "/assets/images/landing/OniBoy4.webp",
+    "views": 1889,
+    "likes": 234,
+    "projectDetails": {
+      "theme": "Web Development",
+      "inspiration": "Awwwards, CSS Design Awards",
+      "tags": "Next.js, CSS3, Animation",
+      "date": "25.10.2024",
+      "duration": "5 Monate",
+      "client": "Personal Project",
+      "role": "Full-Stack Developer & Designer",
+      "status": "Live",
+      "techStack": "Next.js, CSS3, GSAP, Framer Motion",
+      "challenges": "Creating smooth animations while maintaining performance",
+      "solutions": "Implemented efficient animation libraries and optimized loading",
+      "learnings": "Advanced animation techniques and performance optimization",
+      "demoUrl": "https://your-portfolio.com",
+      "githubUrl": "https://github.com/your-username/portfolio-website"
+    },
+    "projectTexts": {
+      "heroParagraph": "A modern portfolio website showcasing creative web development and design skills.",
+      "description": "This portfolio website represents the culmination of modern web development techniques. It features smooth animations, responsive design, and interactive elements. The site is built with performance in mind, utilizing code splitting, lazy loading, and optimized assets to ensure fast loading times across all devices."
+    },
+    "galleryImages": [
+      "New1.png",
+      "New2.png",
+      "New3.png",
+      "New4.png",
+      "New5.png"
+    ]
   }
 ]

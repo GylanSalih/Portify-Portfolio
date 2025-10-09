@@ -1,0 +1,549 @@
+/* LandingSlider.module.css */
+
+/* ===================================
+   Main Carousel Container
+   =================================== */
+.carousel {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #000;
+}
+
+/* Background Orbs */
+.bgOrb {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(
+    45deg,
+    rgba(59, 130, 246, 0.15),
+    rgba(139, 92, 246, 0.1)
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bgOrb1 {
+  width: 400px;
+  height: 400px;
+  top: -200px;
+  left: -200px;
+  animation: float 20s ease-in-out infinite;
+}
+
+.bgOrb2 {
+  width: 300px;
+  height: 300px;
+  bottom: -150px;
+  right: -150px;
+  animation: float 25s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+  }
+}
+
+/* ===================================
+   Carousel Container
+   =================================== */
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+}
+
+.container:active {
+  cursor: grabbing;
+}
+
+/* ===================================
+   Slides
+   =================================== */
+.slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 1s ease-in-out,
+    visibility 1s ease-in-out;
+  z-index: 1;
+}
+
+.slideActive {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+}
+
+/* ===================================
+   Media Elements
+   =================================== */
+.media {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.video,
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Media Overlay */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  z-index: 1;
+}
+
+/* ===================================
+   Content
+   =================================== */
+.content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  padding: 3rem;
+  background: transparent;
+}
+
+.text {
+  text-align: center;
+  max-width: 900px;
+  color: white;
+  background: transparent;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 1rem;
+  opacity: 1;
+  transform: translateY(0);
+  font-weight: 500;
+  background-color: transparent;
+}
+
+.title {
+  font-size: 3.75rem;
+  font-weight: 800;
+  line-height: 1.25;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #ffffff 0%, #60a5fa 50%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 1;
+  transform: translateY(0);
+  background-color: transparent;
+}
+
+.description {
+  font-size: 1.25rem;
+  line-height: 1.625;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 3rem;
+  opacity: 1;
+  transform: translateY(0);
+  font-weight: 400;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: transparent;
+}
+
+@keyframes slideInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===================================
+   Premium Glass Button mit Award-Winning Maus-Follower-Effekt
+   =================================== */
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 16px 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideInUp 1s ease-out 1.2s forwards;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.ctaSecondary {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.ctaSecondary:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+/* Hauptglanz-Effekt (Spotlight) */
+.cta::before {
+  content: '';
+  position: absolute;
+  top: var(--mouse-x, -200px);
+  left: var(--mouse-y, -200px);
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.15) 25%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.02) 75%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  pointer-events: none;
+  z-index: 1;
+  filter: blur(2px);
+}
+
+/* Sekundärer Glanz-Ring */
+.cta::after {
+  content: '';
+  position: absolute;
+  top: var(--mouse-x, -200px);
+  left: var(--mouse-y, -200px);
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(
+    circle at center,
+    transparent 0%,
+    rgba(59, 130, 246, 0.1) 40%,
+    rgba(139, 92, 246, 0.08) 60%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(3px);
+}
+
+/* Hover-Zustand */
+.cta:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-4px);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.3),
+    0 8px 32px rgba(59, 130, 246, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+}
+
+.cta:hover::before {
+  opacity: 1;
+}
+
+.cta:hover::after {
+  opacity: 1;
+}
+
+/* Active/Pressed State */
+.cta:active {
+  transform: translateY(-2px);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.25),
+    0 4px 16px rgba(59, 130, 246, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+}
+
+/* Icon Animation */
+.ctaIcon {
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 2;
+  position: relative;
+}
+
+.cta:hover .ctaIcon {
+  transform: translateX(6px) rotate(5deg);
+}
+
+/* Text und Icons über dem Glanz-Effekt */
+.cta > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Zusätzlicher Shimmer-Effekt für Extra-Glamour */
+.ctaShimmer {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  transition: left 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 1;
+}
+
+.cta:hover .ctaShimmer {
+  left: 100%;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .cta {
+    padding: 14px 20px;
+    font-size: 0.875rem;
+    border-radius: 12px;
+  }
+
+  .cta::before {
+    width: 120px;
+    height: 120px;
+  }
+
+  .cta::after {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .cta {
+    transition: none;
+  }
+
+  .cta::before,
+  .cta::after {
+    transition: opacity 0.2s ease;
+  }
+
+  .cta:hover .ctaIcon {
+    transform: translateX(4px);
+  }
+}
+
+/* ===================================
+   Navigation
+   =================================== */
+.nav {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  z-index: 10;
+}
+
+.navDots {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navDot {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.navDot:hover {
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(1.2);
+}
+
+.navDotActive {
+  width: 80px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+.navProgress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(60, 162, 250, 0.9),
+    rgba(167, 139, 250, 0.9)
+  );
+  border-radius: inherit;
+  transition: width 0.1s ease-out;
+}
+
+/* Counter */
+.counter {
+  display: flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+}
+
+.counterCurrent {
+  color: white;
+}
+
+.counterSeparator {
+  margin: 0 6px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+
+/* ===================================
+   Responsive Design
+   =================================== */
+@media (max-width: 1024px) {
+  .nav {
+    bottom: 2rem;
+    gap: 1.5rem;
+  }
+
+  .navDotActive {
+    width: 60px;
+  }
+
+  .cta {
+    padding: 1rem 2rem;
+    font-size: 0.875rem;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 3rem;
+  }
+
+  .description {
+    font-size: 1.125rem;
+  }
+
+  .content {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2.25rem;
+  }
+
+  .subtitle {
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .description {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .content {
+    padding: 1rem;
+  }
+
+  .nav {
+    bottom: 1rem;
+    gap: 1rem;
+  }
+
+  .navDots {
+    gap: 0.5rem;
+  }
+
+  .navDot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .navDotActive {
+    width: 50px;
+  }
+}

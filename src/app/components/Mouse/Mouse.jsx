@@ -22,24 +22,39 @@ const Mouse = () => {
       animationFrameId = requestAnimationFrame(updateCursorPosition);
     };
 
+    // Starte die Cursor-Bewegung
+    animationFrameId = requestAnimationFrame(updateCursorPosition);
+
+    // MEMORY LEAK FIX - Cleanup animation frame
+    return () => {
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
+  }, [mousePosition]);
+
+  // SEPARATE useEffect for event listeners - MEMORY LEAK FIX
+  useEffect(() => {
     // Mausbewegungs-Event-Listener
     const updateMousePosition = e => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
-    window.addEventListener('mousemove', updateMousePosition);
-    window.addEventListener('mousedown', () => setIsMouseDown(true));
-    window.addEventListener('mouseup', () => setIsMouseDown(false));
+    // Mouse down/up handlers
+    const handleMouseDown = () => setIsMouseDown(true);
+    const handleMouseUp = () => setIsMouseDown(false);
 
-    // Starte die Cursor-Bewegung
-    animationFrameId = requestAnimationFrame(updateCursorPosition);
+    window.addEventListener('mousemove', updateMousePosition, { passive: true });
+    window.addEventListener('mousedown', handleMouseDown);
+    window.addEventListener('mouseup', handleMouseUp);
 
-    // Aufräumen beim Verlassen des Effekts
+    // Cleanup event listeners - runs only once
     return () => {
-      cancelAnimationFrame(animationFrameId);
       window.removeEventListener('mousemove', updateMousePosition);
+      window.removeEventListener('mousedown', handleMouseDown);
+      window.removeEventListener('mouseup', handleMouseUp);
     };
-  }, [mousePosition]);
+  }, []); // Empty dependency array - only run once!
 
   return (
     <>

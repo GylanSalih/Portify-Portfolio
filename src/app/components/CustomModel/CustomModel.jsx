@@ -34,7 +34,7 @@ export default function CustomModel() {
           toneMapping: THREE.NoToneMapping,
         }}
         onCreated={({ gl, scene }) => {
-          gl.outputEncoding = THREE.LinearEncoding;
+          gl.outputEncoding = THREE.LinearSRGBColorSpace;
           gl.shadowMap.enabled = true;
           gl.shadowMap.type = THREE.PCFSoftShadowMap;
           gl.physicallyCorrectLights = true;

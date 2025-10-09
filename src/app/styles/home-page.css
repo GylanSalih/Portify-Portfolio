@@ -1,9 +1,16 @@
-/* Home Page Styles in Verbindung mit page.jsx direkt außen im Ordner also keine unter oOdner */
+/* Home Page Styles - Performance Optimized */
 .page.home-page {
   width: 100vw; /* Stellt sicher, dass die Seite die volle Bildschirmbreite einnimmt */
   max-width: none; /* Hebt mögliche Einschränkungen auf */
   margin: 0 auto;
   background-color: var(--dark-mode);
+  contain: layout style paint; /* CSS Containment für bessere Performance */
+}
+
+/* Loader Animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /* Home Page Styles */

@@ -1,8 +1,8 @@
 'use client';
 import React, { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
-import Filter from '../../components/Filter/Filter';
-import HolographicCard from '../../components/HolographicCard/HolographicCard';
+import Filter from './Filter/Filter';
+import HolographicCard from './HolographicCard/HolographicCard';
 import './PortfolioGrid.css';
 
 const Portfolio = () => {

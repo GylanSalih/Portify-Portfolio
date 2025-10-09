@@ -1,0 +1,85 @@
+/*------------------------------------------------------------*/
+/* Custom Fancybox Styles - Diese überschreiben die Standard-Styles */
+/* Erst diese datei laden nachdem du die normale fancybox default css geladen hast um die zu überschreiben! */
+/*------------------------------------------------------------*/
+
+/* Fancybox Backdrop */
+.fancybox__backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  background: #000;
+  opacity: 1;
+  will-change: opacity;
+}
+
+/* Fancybox Image Style */
+.fancybox-image {
+  margin: auto;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: contain;
+  user-select: none;
+  filter: blur(0px);
+  border-radius: 14px;
+}
+
+/* Fancybox Thumbs Styles */
+.fancybox__thumbs.is-modern {
+  --f-thumb-gap: 3px !important;
+  --f-thumb-extra-gap: 0px !important;
+  --f-thumb-clip-width: 46px !important;
+  --f-thumb-opacity: 1;
+  --f-thumb-hover-opacity: 1;
+}
+
+.fancybox__thumbs {
+  --f-thumb-width: 96px;
+  --f-thumb-height: 72px;
+  --f-thumb-border-radius: 14px !important;
+  --f-thumb-outline: 2px;
+  --f-thumb-outline-color: #ededed;
+}
+
+/* Fancybox Container Background */
+.fancybox__container {
+  --fancybox-bg: rgb(255, 255, 255);
+}
+
+.dark-mode .fancybox__container {
+  --fancybox-bg: rgb(0, 0, 0);
+}
+
+/* Dark Mode Toolbar */
+.dark-mode .fancybox__toolbar {
+  color: #ffffff;
+  text-shadow: var(
+    --fancybox-toolbar-text-shadow,
+    1px 1px 1px rgba(255, 255, 255, 0.192)
+  );
+  pointer-events: none;
+}
+
+/* Hide navigation buttons on horizontal layouts */
+.is-horizontal .f-carousel__nav .f-button.is-prev,
+.is-horizontal .f-carousel__nav .f-button.is-next,
+.is-horizontal .fancybox__nav .f-button.is-prev,
+.is-horizontal .fancybox__nav .f-button.is-next {
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
+}
+
+/* Hide captions */
+.fancybox__caption {
+  display: none;
+}
+
+/*------------------------------------------------------------*/
+/* Custom Fancybox Styles - END                                */
+/*------------------------------------------------------------*/

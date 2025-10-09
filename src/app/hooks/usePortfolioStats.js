@@ -1,234 +1,117 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { supabase } from '../lib/supabaseClient';
+import { useState, useEffect, useCallback } from 'react';
 
 export const usePortfolioStats = slug => {
   const [stats, setStats] = useState({ views: 0, likes: 0 });
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [hasLiked, setHasLiked] = useState(false);
 
-  // Lade Stats beim ersten Render
+  // Lade Statistiken aus localStorage
   useEffect(() => {
-    if (slug) {
-      loadStats();
+    if (!slug) return;
+
+    const savedStats = localStorage.getItem(`portfolio_stats_${slug}`);
+    if (savedStats) {
+      try {
+        const parsedStats = JSON.parse(savedStats);
+        setStats(parsedStats);
+      } catch (error) {
+        console.error('Fehler beim Laden der Portfolio-Statistiken:', error);
+      }
     }
   }, [slug]);
 
-  const loadStats = async () => {
-    try {
-      const { data: initialData, error: initialError } = await supabase
-        .from('portfolio_stats')
-        .select('views, likes')
-        .eq('slug', slug)
-        .single();
+  // Funktion zum Erhöhen der Views
+  const incrementViews = useCallback(() => {
+    if (!slug) return Promise.resolve();
 
-      if (initialError && initialError.code === 'PGRST116') {
-        // Post existiert noch nicht, erstelle ihn mit 0 Werten
-        const { data: newData, error: insertError } = await supabase
-          .from('portfolio_stats')
-          .insert([
-            {
-              slug,
-              views: 0,
-              likes: 0,
-              created_at: new Date().toISOString(),
-              updated_at: new Date().toISOString(),
-            },
-          ])
-          .select('views, likes')
-          .single();
+    setStats(prev => {
+      const newStats = { ...prev, views: (prev.views || 0) + 1 };
+      localStorage.setItem(`portfolio_stats_${slug}`, JSON.stringify(newStats));
+      return newStats;
+    });
+    
+    return Promise.resolve();
+  }, [slug]);
 
-        if (insertError) {
-          console.error('Error creating portfolio stats:', insertError);
-          setStats({ views: 0, likes: 0 });
-          setLoading(false);
-          return;
-        }
-        setStats(newData || { views: 0, likes: 0 });
-      } else if (initialError) {
-        console.error('Error loading portfolio stats:', initialError);
-        setStats({ views: 0, likes: 0 });
-        setLoading(false);
-        return;
-      } else {
-        setStats(initialData || { views: 0, likes: 0 });
-      }
-    } catch (error) {
-      console.error('Error in loadStats:', error);
-      setStats({ views: 0, likes: 0 });
-    } finally {
-      setLoading(false);
-    }
-  };
+  // Funktion zum Erhöhen der Likes
+  const incrementLikes = useCallback(() => {
+    if (!slug) return Promise.resolve();
 
-  const incrementViews = async () => {
-    try {
-      console.log('Incrementing views for portfolio slug:', slug);
+    setStats(prev => {
+      const newStats = { ...prev, likes: (prev.likes || 0) + 1 };
+      localStorage.setItem(`portfolio_stats_${slug}`, JSON.stringify(newStats));
+      return newStats;
+    });
+    setHasLiked(true);
+    
+    return Promise.resolve();
+  }, [slug]);
 
-      // Verwende direkte Upsert-Methode statt RPC für bessere Zuverlässigkeit
-      const { data: currentData, error: selectError } = await supabase
-        .from('portfolio_stats')
-        .select('views, likes')
-        .eq('slug', slug)
-        .single();
-
-      let newViews = 1;
-      let currentLikes = 0;
-
-      if (!selectError && currentData) {
-        newViews = (currentData.views || 0) + 1;
-        currentLikes = currentData.likes || 0;
-      }
-
-      // Upsert: Update wenn existiert, Insert wenn nicht
-      const { data: upsertData, error: upsertError } = await supabase
-        .from('portfolio_stats')
-        .upsert(
-          {
-            slug: slug,
-            views: newViews,
-            likes: currentLikes,
-            updated_at: new Date().toISOString(),
-          },
-          {
-            onConflict: 'slug',
-            ignoreDuplicates: false,
-          }
-        )
-        .select('views, likes')
-        .single();
-
-      if (upsertError) {
-        console.error('Error upserting portfolio views:', upsertError);
-        return await incrementViewsRPC();
-      }
-
-      console.log('Portfolio views incremented successfully:', upsertData);
-      setStats(upsertData);
-    } catch (error) {
-      console.error('Error in incrementViews:', error);
-      await incrementViewsRPC();
-    }
-  };
-
-  // Fallback RPC-Methode
-  const incrementViewsRPC = async () => {
-    try {
-      const { data, error } = await supabase.rpc('increment_portfolio_views', {
-        post_slug: slug,
-      });
-
-      if (error) {
-        console.error('RPC Error incrementing portfolio views:', error);
-        await loadStats();
-        return;
-      }
-
-      if (data && Array.isArray(data) && data.length > 0) {
-        setStats({
-          views: data[0].views,
-          likes: data[0].likes,
-        });
-      } else if (data && !Array.isArray(data)) {
-        setStats({
-          views: data.views,
-          likes: data.likes,
-        });
-      } else {
-        await loadStats();
-      }
-    } catch (error) {
-      console.error('Error in RPC fallback:', error);
-      await loadStats();
-    }
-  };
-
-  const incrementLikes = async () => {
-    try {
-      console.log('Incrementing likes for portfolio slug:', slug);
-
-      // Verwende direkte Upsert-Methode
-      const { data: currentData, error: selectError } = await supabase
-        .from('portfolio_stats')
-        .select('views, likes')
-        .eq('slug', slug)
-        .single();
-
-      let currentViews = 0;
-      let newLikes = 1;
-
-      if (!selectError && currentData) {
-        currentViews = currentData.views || 0;
-        newLikes = (currentData.likes || 0) + 1;
-      }
-
-      const { data: upsertData, error: upsertError } = await supabase
-        .from('portfolio_stats')
-        .upsert(
-          {
-            slug: slug,
-            views: currentViews,
-            likes: newLikes,
-            updated_at: new Date().toISOString(),
-          },
-          {
-            onConflict: 'slug',
-            ignoreDuplicates: false,
-          }
-        )
-        .select('views, likes')
-        .single();
-
-      if (upsertError) {
-        console.error('Error upserting portfolio likes:', upsertError);
-        return await incrementLikesRPC();
-      }
-
-      console.log('Portfolio likes incremented successfully:', upsertData);
-      setStats(upsertData);
-    } catch (error) {
-      console.error('Error in incrementLikes:', error);
-      await incrementLikesRPC();
-    }
-  };
-
-  // Fallback RPC-Methode für Likes
-  const incrementLikesRPC = async () => {
-    try {
-      const { data, error } = await supabase.rpc('increment_portfolio_likes', {
-        post_slug: slug,
-      });
-
-      if (error) {
-        console.error('RPC Error incrementing portfolio likes:', error);
-        await loadStats();
-        return;
-      }
-
-      if (data && Array.isArray(data) && data.length > 0) {
-        setStats({
-          views: data[0].views,
-          likes: data[0].likes,
-        });
-      } else if (data && !Array.isArray(data)) {
-        setStats({
-          views: data.views,
-          likes: data.likes,
-        });
-      } else {
-        await loadStats();
-      }
-    } catch (error) {
-      console.error('Error in RPC fallback:', error);
-      await loadStats();
-    }
-  };
+  // Alias-Funktionen für Kompatibilität
+  const incrementViewsRPC = incrementViews;
+  const incrementLikesRPC = incrementLikes;
+  const incrementViewsSimple = incrementViews;
 
   return {
     stats,
     loading,
+    hasLiked,
     incrementViews,
     incrementLikes,
-    refreshStats: loadStats,
+    incrementViewsRPC,
+    incrementLikesRPC,
+    incrementViewsSimple
+  };
+};
+
+// Hook für das Laden aller Portfolio Stats
+export const useAllPortfolioStats = () => {
+  const [allStats, setAllStats] = useState({});
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    loadAllStats();
+  }, []);
+
+  const loadAllStats = () => {
+    try {
+      if (typeof window === 'undefined') {
+        setAllStats({});
+        setLoading(false);
+        return;
+      }
+
+      const statsMap = {};
+      // Durchsuche localStorage nach portfolio_stats_ Einträgen
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key && key.startsWith('portfolio_stats_')) {
+          const slug = key.replace('portfolio_stats_', '');
+          try {
+            const stats = JSON.parse(localStorage.getItem(key) || '{}');
+            statsMap[slug] = {
+              views: stats.views || 0,
+              likes: stats.likes || 0,
+            };
+          } catch (error) {
+            console.warn(`Error parsing localStorage stats for ${slug}:`, error);
+          }
+        }
+      }
+
+      setAllStats(statsMap);
+    } catch (error) {
+      console.warn('Error loading all localStorage stats:', error);
+      setAllStats({});
+    }
+    setLoading(false);
+  };
+
+  return {
+    allStats,
+    loading,
+    refreshAllStats: loadAllStats
   };
 };

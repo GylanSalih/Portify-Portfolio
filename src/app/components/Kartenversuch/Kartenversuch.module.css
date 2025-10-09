@@ -1,0 +1,151 @@
+/* Wrapper */
+.kartenversuchWrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  margin-top: 100px;
+  color: #e8e8f0;
+}
+
+.stage {
+  perspective: 900px;
+  padding: 24px;
+  gap: 24px;
+  display: grid;
+}
+
+.row {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.caption {
+  opacity: .7;
+  text-align: center;
+  font-size: 12px;
+}
+
+/* Karte (nur die „klassischen“ Ebenen) */
+.card {
+  width: var(--card-w, 285px);
+  height: var(--card-h, 400px);
+  border-radius: var(--radius, 18px);
+  position: relative;
+  box-shadow: var(--shadow, 0 12px 30px rgba(0,0,0,.25));
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+  transition: transform .12s ease-out;
+  overflow: hidden;
+  isolation: isolate;
+  cursor: pointer;
+
+  /* Tuning-Variablen */
+  --foil-opacity: 0.65;
+  --foil-contrast: 1.1;
+  --foil-brightness: 1.1;
+  --foil-saturate: 2.1;
+  --foil-scale: 1.02;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.base img,
+.text img,
+.foil img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: inherit;
+}
+
+/* Foil: einfache Papiertextur + Maske + Hue-Follow */
+.foil {
+  mix-blend-mode: multiply; /* alternativ: overlay, screen (Look ändert sich) */
+  opacity: var(--foil-opacity);
+  filter: saturate(var(--foil-saturate, 2.1));
+  -webkit-mask-image: var(--foil-mask);
+  mask-image: var(--foil-mask);
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.foil img {
+  transform:
+    translate3d(var(--tx, 0px), var(--ty, 0px), 0)
+    scale(var(--foil-scale));
+  filter:
+    hue-rotate(var(--hue, 0deg))
+    contrast(var(--foil-contrast))
+    brightness(var(--foil-brightness));
+  will-change: transform, filter;
+  transition: filter .1s linear, transform .15s ease-out;
+}
+
+.text { mix-blend-mode: normal; }
+
+/* Softes Hotspot-Glow, folgt dem Pointer */
+.glow {
+  background: radial-gradient(
+    circle at var(--gx, 50%) var(--gy, 50%),
+    rgba(255,255,255, var(--glow, 0.35)),
+    rgba(0,0,0,0) 45%
+  );
+  opacity: .9;
+}
+
+/* Idle: absolut ruhig (kein Karussell, kein Hue-Shift) */
+.card[idle] .foil img { animation: none; }
+
+/* Mobile etwas ruhiger */
+@media (hover: none) {
+  .card { --foil-scale: 1.01; }
+}
+
+/* Glitzer-Animationen für Card C */
+@keyframes sparkle {
+  0% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 0.8;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes glow {
+  0% {
+    text-shadow: 
+      0 0 10px rgba(255, 255, 255, 0.8),
+      0 0 20px rgba(255, 255, 255, 0.6),
+      0 0 30px rgba(255, 255, 255, 0.4),
+      0 2px 8px rgba(0, 0, 0, 0.8);
+  }
+  100% {
+    text-shadow: 
+      0 0 20px rgba(255, 255, 255, 1),
+      0 0 40px rgba(255, 255, 255, 0.8),
+      0 0 60px rgba(255, 255, 255, 0.6),
+      0 2px 8px rgba(0, 0, 0, 0.8);
+  }
+}

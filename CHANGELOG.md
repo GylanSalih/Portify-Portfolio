@@ -29,7 +29,22 @@ Note and Todos for myself:
 Lookbook:
 Updates / Fixes:
 
-0.0.24 - Newest Updates
+0.0.25 - Newest Updates
+• portfoliopost in einzelne componente getrennt
+• navbar folder richtig sortiert alle zusammengehörigen componenten in navbar eingefügt
+• navbar style angepasst
+• 360 dynamisches carousel eingebaut und testing page ausgebessert
+• bloggrid angepasst und verbessert mit neuen funktionen kleine stats anzeige bessere tags und bessere suchen
+• blog singlepage angepasst ausgebssert table of contents gelöscht noch im ausbaue
+• progress page eingebaut noch im aufbau
+• about skills compontente instant laden der bilder bug gefixed das bild erst beim tab wechsel lädt
+• home page bugs gefixt falsche farben von titeln 
+• fancybox bug erst default css laden dann custom.css in styles folder seperat
+• viele ordner gelöscht component order bereinigt und sauber gemacht 
+• statt css wird jetzt module benutzt bis ich irgendwann das ganze projekt zu scss umwandel
+• 
+
+0.0.24 - Previous Updates
 • Added Progress Page
 • Completely redesigned BlogPost layout with clean shadcn UI styling - removed Table of Contents feature, centered content layout with perfect spacing from header
 • Added 3 comprehensive new blog posts: "JavaScript ES2025 Features Guide" (Pipeline Operator, Records/Tuples), "CSS Grid and Flexbox Mastery" (Modern layout techniques), and "Building Scalable Node.js Applications" (Architecture patterns, performance optimization)

@@ -1,0 +1,98 @@
+.content {
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.section {
+  margin-bottom: 3rem;
+  background: rgba(15, 15, 15, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 2.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.section:last-child {
+  margin-bottom: 0;
+}
+
+.section:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(20, 20, 20, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 1.5rem 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.title::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  border-radius: 1px;
+}
+
+.text {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.8;
+  font-size: 1.125rem;
+}
+
+.text p {
+  margin: 0 0 1rem 0;
+}
+
+.text h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 1.5rem 0 1rem 0;
+  position: relative;
+}
+
+
+
+.text ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.text li {
+  margin: 0.5rem 0;
+  position: relative;
+}
+
+
+
+.text strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.75rem;
+  }
+  
+  .text {
+    font-size: 1rem;
+  }
+  
+  .section {
+    padding: 2rem;
+  }
+}

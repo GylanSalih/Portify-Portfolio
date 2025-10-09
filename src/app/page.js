@@ -1,26 +1,53 @@
-// src/Pages/Home/Home.jsx
-import React from 'react';
-import PortfolioCarousel from './components/PortfolioCarousel/PortfolioCarousel';
-import Skills from './components/Skills/Skills';
-import CallToAction from './components/CallToAction/CallToAction';
-import AboutMe from './components/AboutMe/AboutMe';
-import Features from './components/Features/Features';
-import CompanyCarousel from './components/CompanyCarousel/CompanyCarousel.jsx';
-import TextCarousel from './components/TextCarousel/TextCarousel';
-// import CustomModel from "./components/CustomModel/CustomModel";
+// src/app/page.js
+import React, { Suspense, lazy } from 'react';
+import LandingSlider from './components/HomeComponents/LandingSlider/LandingSlider';
 import './styles/home-page.css'; // nur für home
-import FeaturesInteractive from './components/FeatureInteractive/FeaturesInteractive';
-import TestimonialsGrid from './components/TestimonialsGrid/TestimonialsGrid';
+
+// Lazy Loading für schwere Komponenten
+const Features = lazy(() => import('./components/HomeComponents/Features/Features'));
+const TestimonialsGrid = lazy(() => import('./components/HomeComponents/TestimonialsGrid/TestimonialsGrid'));
+const CallToAction = lazy(() => import('./components/HomeComponents/CallToAction/CallToAction'));
+
+// Loading Komponente
+const ComponentLoader = () => (
+  <div style={{ 
+    height: '200px', 
+    display: 'flex', 
+    alignItems: 'center', 
+    justifyContent: 'center',
+    color: '#666'
+  }}>
+    <div style={{ textAlign: 'center' }}>
+      <div style={{ 
+        width: '40px', 
+        height: '40px', 
+        border: '3px solid #f3f3f3',
+        borderTop: '3px solid #3b82f6',
+        borderRadius: '50%',
+        animation: 'spin 1s linear infinite',
+        margin: '0 auto 10px'
+      }}></div>
+      Loading...
+    </div>
+  </div>
+);
 
 const Home = () => {
   return (
     <div className="page home-page">
-      <PortfolioCarousel />
-      <Features />
-      {/* <CompanyCarousel /> */}
-      <FeaturesInteractive />
-      <TestimonialsGrid />
-      <CallToAction />
+      <LandingSlider />
+      
+      <Suspense fallback={<ComponentLoader />}>
+        <Features />
+      </Suspense>
+      
+      <Suspense fallback={<ComponentLoader />}>
+        <TestimonialsGrid />
+      </Suspense>
+      
+      <Suspense fallback={<ComponentLoader />}>
+        <CallToAction />
+      </Suspense>
     </div>
   );
 };

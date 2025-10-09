@@ -6,9 +6,9 @@ import { useDarkMode } from '../../contexts/DarkModeContext';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import DarkModeToggle from '../DarkModeToggle/DarkModeToggle';
-import AudioIndicator from '../AudioIndicator/AudioIndicator';
-import HamburgerMenu from '../HamburgerMenu/HamburgerMenu';
+import DarkModeToggle from './DarkModeToggle/DarkModeToggle';
+import AudioIndicator from './AudioIndicator/AudioIndicator';
+import HamburgerMenu from './HamburgerMenu/HamburgerMenu';
 import styles from './Navbar.module.scss';
 
 const Navbar = () => {
@@ -42,11 +42,10 @@ const Navbar = () => {
     { href: '/', label: 'Home' },
     { href: '/blog', label: 'Blog' },
     { href: '/portfolio', label: 'Portfolio' },
-    { href: '/progress', label: 'Progress' },
     { href: '/guestbook', label: 'Guestbook' },
     { href: '/about', label: 'About' },
-    { href: '/testing', label: 'Testing' },
-    { href: '/testing2', label: 'Testing2' },
+    // { href: '/testing', label: 'Testing' }, // Deaktiviert
+    // { href: '/testing4', label: 'Page4' }, // Deaktiviert
   ];
 
   const navbarVariants = {

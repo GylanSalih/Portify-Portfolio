@@ -1,5 +1,5 @@
 // app/portfolio/[slug]/page.js
-import posts from '../../../../public/data/portfoliopost.json'; // lade die portfolio json details
+import posts from '/public/data/portfoliopost.json'; // lade die portfolio json details
 import PortfolioPost from '../../components/PortfolioPost/PortfolioPost'; // lade die portfolio single page componente, die aufgerufen wird bei der weiterleitung
 
 // Statische Generierung: alle Slugs aus der JSON
