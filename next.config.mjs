@@ -1,4 +1,10 @@
 /** @type {import('next').NextConfig} */
+import bundleAnalyzer from '@next/bundle-analyzer';
+
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+});
+
 const nextConfig = {
   // Performance optimizations
   images: {
@@ -11,7 +17,7 @@ const nextConfig = {
         // Optimize bundle
         experimental: {
           // optimizeCss: true, // Deaktiviert - verursacht critters Fehler
-          optimizePackageImports: ['lucide-react', 'framer-motion'],
+          optimizePackageImports: ['lucide-react'],
         },
   // Webpack optimizations
   webpack: (config, { isServer }) => {
@@ -26,24 +32,6 @@ const nextConfig = {
     config.optimization.splitChunks = {
       chunks: 'all',
       cacheGroups: {
-        gsap: {
-          test: /[\\/]node_modules[\\/]gsap[\\/]/,
-          name: 'gsap',
-          chunks: 'all',
-          priority: 20,
-        },
-        three: {
-          test: /[\\/]node_modules[\\/](three|@react-three)[\\/]/,
-          name: 'three',
-          chunks: 'all',
-          priority: 20,
-        },
-        framer: {
-          test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
-          name: 'framer',
-          chunks: 'all',
-          priority: 20,
-        },
         vendor: {
           test: /[\\/]node_modules[\\/]/,
           name: 'vendors',
@@ -57,4 +45,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default withBundleAnalyzer(nextConfig);

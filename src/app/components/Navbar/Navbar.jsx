@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { useDarkMode } from '../../contexts/DarkModeContext';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
@@ -12,7 +11,7 @@ import HamburgerMenu from './HamburgerMenu/HamburgerMenu';
 import styles from './Navbar.module.scss';
 
 const Navbar = () => {
-  const { isDarkMode, toggleDarkMode } = useDarkMode();
+  const { isDarkMode } = useDarkMode();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
@@ -42,34 +41,17 @@ const Navbar = () => {
     { href: '/', label: 'Home' },
     { href: '/blog', label: 'Blog' },
     { href: '/portfolio', label: 'Portfolio' },
+    { href: '/testing-grid', label: 'Testing' },
     { href: '/guestbook', label: 'Guestbook' },
     { href: '/about', label: 'About' },
-    // { href: '/testing', label: 'Testing' }, // Deaktiviert
-    // { href: '/testing4', label: 'Page4' }, // Deaktiviert
   ];
-
-  const navbarVariants = {
-    hidden: { y: -100, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: 'spring',
-        stiffness: 100,
-        damping: 20,
-      },
-    },
-  };
 
   return (
     <>
       {/* Desktop Navbar */}
-      <motion.header
+      <header
         ref={navbarRef}
         className={`${styles.navbar} ${styles['lg-block']}`}
-        variants={navbarVariants}
-        initial="hidden"
-        animate="visible"
       >
         <div className={styles.container}>
           <div
@@ -78,11 +60,7 @@ const Navbar = () => {
             }`}
           >
             {/* Logo */}
-            <motion.div
-              className={styles.logo}
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-            >
+            <div className={styles.logo}>
               <Link href="/" className={styles.logoLink}>
                 <Image
                   src={
@@ -91,20 +69,20 @@ const Navbar = () => {
                       : '/assets/images/logo_black.png'
                   }
                   alt="Portify Logo"
-                  width={isScrolled ? 48 : 48}
-                  height={isScrolled ? 48 : 48}
+                  width={48}
+                  height={48}
                   className={styles.logoImage}
                   priority
                 />
               </Link>
-            </motion.div>
+            </div>
 
-            {/* Desktop Navigation */}
+            {/* Desktop Navigation Links */}
             <nav className={styles.desktopNav}>
               {navItems.map(item => (
                 <div key={item.href} className={styles.navItem}>
-                  <Link
-                    href={item.href}
+                  <Link 
+                    href={item.href} 
                     className={`${styles.navLink} ${
                       isDarkMode ? styles.navLinkDark : styles.navLinkLight
                     }`}
@@ -117,100 +95,62 @@ const Navbar = () => {
 
             {/* Right Side Controls */}
             <div className={styles.rightControls}>
+              <DarkModeToggle />
               <AudioIndicator
-                isAudioPlaying={isAudioPlaying}
-                toggleAudioIndicator={toggleAudioIndicator}
-              />
-              <DarkModeToggle
-                toggleDarkMode={toggleDarkMode}
-                isDarkMode={isDarkMode}
+                isPlaying={isAudioPlaying}
+                onClick={toggleAudioIndicator}
               />
             </div>
           </div>
         </div>
-      </motion.header>
+      </header>
 
       {/* Mobile Navbar */}
-      <motion.header
-        className={`${styles.navbar} ${styles.mobileNavbar} ${styles['lg-hidden']}`}
-        variants={navbarVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <div className={styles.mobileContainer}>
-          <div className={styles.mobileContent}>
-            {/* Mobile Logo */}
-            <motion.div
-              className={styles.mobileLogo}
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-            >
-              <Link href="/" className={styles.logoLink}>
-                <Image
-                  src={
-                    isDarkMode
-                      ? '/assets/images/logo_white.png'
-                      : '/assets/images/logo_black.png'
-                  }
-                  alt="Portify Logo"
-                  width={62}
-                  height={62}
-                  priority
-                />
-              </Link>
-            </motion.div>
+      <header className={`${styles.navbar} ${styles['lg-hidden']}`}>
+        <div className={styles.mobileNavbar}>
+          <div className={styles.mobileContainer}>
+            <div className={styles.mobileContent}>
+              {/* Mobile Logo */}
+              <div className={styles.mobileLogo}>
+                <Link href="/" className={styles.logoLink}>
+                  <Image
+                    src={
+                      isDarkMode
+                        ? '/assets/images/logo_white.png'
+                        : '/assets/images/logo_black.png'
+                    }
+                    alt="Portify Logo"
+                    width={40}
+                    height={40}
+                    className={styles.logoImage}
+                    priority
+                  />
+                </Link>
+              </div>
 
-            {/* Mobile Controls */}
-            <div className={styles.mobileControls}>
-              <AudioIndicator
-                isAudioPlaying={isAudioPlaying}
-                toggleAudioIndicator={toggleAudioIndicator}
-              />
-              <DarkModeToggle
-                toggleDarkMode={toggleDarkMode}
-                isDarkMode={isDarkMode}
-              />
-              <motion.button
-                className={`${styles.mobileMenuButton} ${
-                  isDarkMode
-                    ? styles.mobileMenuButtonDark
-                    : styles.mobileMenuButtonLight
-                }`}
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                whileTap={{ scale: 0.95 }}
-              >
-                <AnimatePresence mode="wait">
-                  {isMobileMenuOpen ? (
-                    <motion.div
-                      key="close"
-                      className={`${styles.menuIcon} ${styles.close}`}
-                      initial={{ rotate: -90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: 90, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <X size={20} />
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key="menu"
-                      className={`${styles.menuIcon} ${styles.menu}`}
-                      initial={{ rotate: 90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: -90, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <Menu size={20} />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.button>
+              {/* Mobile Controls */}
+              <div className={styles.mobileControls}>
+                <DarkModeToggle />
+                <AudioIndicator
+                  isPlaying={isAudioPlaying}
+                  onClick={toggleAudioIndicator}
+                />
+                <button
+                  className={`${styles.mobileMenuButton} ${
+                    isDarkMode ? styles.mobileMenuButtonDark : styles.mobileMenuButtonLight
+                  }`}
+                  onClick={() => setIsMobileMenuOpen(true)}
+                  aria-label="Open menu"
+                >
+                  <Menu size={24} />
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </motion.header>
+      </header>
 
-      {/* Hamburger Menu */}
+      {/* Mobile Menu */}
       <HamburgerMenu
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}

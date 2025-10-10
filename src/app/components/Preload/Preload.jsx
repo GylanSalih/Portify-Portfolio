@@ -43,9 +43,6 @@ const Preload = ({ onLoaded }) => {
     // Videos (wenn vorhanden)
     { type: 'video', path: '/assets/videos/drift.mp4' },
     { type: 'video', path: '/assets/videos/Kenshin.mp4' },
-    
-    // 3D Modelle (als Komponenten)
-    { type: 'component', path: () => import('../CustomModel/CustomModel') },
   ];
 
   const kanjiData = [

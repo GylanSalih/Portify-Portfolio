@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { useDarkMode } from '../../../contexts/DarkModeContext';
 import {
   Home,
@@ -45,23 +44,17 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
       description: 'Explore my work',
     },
     {
+      href: '/testing-grid',
+      label: 'Testing',
+      icon: TestTube,
+      description: 'Modern grid layout test',
+    },
+    {
       href: '/blog',
       label: 'Blog',
       icon: PenTool,
       description: 'Thoughts & insights',
     },
-    // {
-    //   href: '/testing3',
-    //   label: 'Testing3',
-    //   icon: TestTube,
-    //   description: 'Holographic cards showcase',
-    // }, // Deaktiviert
-    // {
-    //   href: '/testing4',
-    //   label: 'Page4',
-    //   icon: TestTube,
-    //   description: 'Kartenversuch grid 4x4',
-    // }, // Deaktiviert
     {
       href: '/guestbook',
       label: 'Guestbook',
@@ -104,97 +97,26 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
     onClose();
   };
 
-  const menuVariants = {
-    closed: {
-      x: '100%',
-      transition: {
-        type: 'spring',
-        stiffness: 300,
-        damping: 30,
-      },
-    },
-    open: {
-      x: 0,
-      transition: {
-        type: 'spring',
-        stiffness: 300,
-        damping: 30,
-      },
-    },
-  };
-
-  const overlayVariants = {
-    closed: {
-      opacity: 0,
-      transition: {
-        duration: 0.3,
-      },
-    },
-    open: {
-      opacity: 1,
-      transition: {
-        duration: 0.3,
-      },
-    },
-  };
-
-  const itemVariants = {
-    closed: { opacity: 0, x: 20 },
-    open: i => ({
-      opacity: 1,
-      x: 0,
-      transition: {
-        delay: i * 0.1,
-        duration: 0.3,
-        ease: 'easeOut',
-      },
-    }),
-  };
-
   return (
-    <AnimatePresence>
+    <>
       {isOpen && (
         <>
           {/* Backdrop Overlay */}
-          <motion.div
+          <div
             ref={overlayRef}
-            className="hamburger-overlay"
-            variants={overlayVariants}
-            initial="closed"
-            animate="open"
-            exit="closed"
+            className={`hamburger-overlay ${isOpen ? 'open' : ''}`}
             onClick={onClose}
           />
 
           {/* Mobile Menu Panel */}
-          <motion.div
+          <div
             ref={menuRef}
-            className={`hamburger-menu-panel ${isDarkMode ? 'dark' : 'light'}`}
-            variants={menuVariants}
-            initial="closed"
-            animate="open"
-            exit="closed"
+            className={`hamburger-menu-panel ${isDarkMode ? 'dark' : 'light'} ${isOpen ? 'open' : ''}`}
           >
             {/* Menu Header */}
             <div className="menu-header">
-              <motion.h2
-                className="menu-title"
-                custom={0}
-                variants={itemVariants}
-                initial="closed"
-                animate="open"
-              >
-                Navigation
-              </motion.h2>
-              <motion.p
-                className="menu-subtitle"
-                custom={1}
-                variants={itemVariants}
-                initial="closed"
-                animate="open"
-              >
-                Explore my digital world
-              </motion.p>
+              <h2 className="menu-title">Navigation</h2>
+              <p className="menu-subtitle">Explore my digital world</p>
             </div>
 
             {/* Navigation Links */}
@@ -203,13 +125,10 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
                 {menuItems.map((item, index) => {
                   const IconComponent = item.icon;
                   return (
-                    <motion.li
+                    <li
                       key={item.href}
                       className="menu-item"
-                      custom={index + 2}
-                      variants={itemVariants}
-                      initial="closed"
-                      animate="open"
+                      style={{ animationDelay: `${(index + 2) * 0.1}s` }}
                     >
                       <Link
                         href={item.href}
@@ -230,7 +149,7 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
                           </div>
                         </div>
                       </Link>
-                    </motion.li>
+                    </li>
                   );
                 })}
               </ul>
@@ -238,57 +157,38 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
 
             {/* Social Links */}
             <div className="menu-social">
-              <motion.h3
-                className="menu-social-title"
-                custom={7}
-                variants={itemVariants}
-                initial="closed"
-                animate="open"
-              >
-                Connect
-              </motion.h3>
+              <h3 className="menu-social-title">Connect</h3>
               <div className="menu-social-links">
                 {socialLinks.map((social, index) => {
                   const IconComponent = social.icon;
                   return (
-                    <motion.a
+                    <a
                       key={social.href}
                       href={social.href}
                       className="menu-social-link"
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={handleLinkClick}
-                      custom={index + 8}
-                      variants={itemVariants}
-                      initial="closed"
-                      animate="open"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
+                      style={{ animationDelay: `${(index + 8) * 0.1}s` }}
                     >
                       <IconComponent size={20} />
-                    </motion.a>
+                    </a>
                   );
                 })}
               </div>
             </div>
 
             {/* Close Button */}
-            <motion.button
+            <button
               className="menu-close-btn"
               onClick={onClose}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              custom={10}
-              variants={itemVariants}
-              initial="closed"
-              animate="open"
             >
               <X size={24} />
-            </motion.button>
-          </motion.div>
+            </button>
+          </div>
         </>
       )}
-    </AnimatePresence>
+    </>
   );
 };
 

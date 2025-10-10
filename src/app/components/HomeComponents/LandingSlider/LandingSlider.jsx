@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState, useEffect, useRef, useCallback, memo } from 'react';
+import React, { useState, useEffect, useRef, useCallback, memo, useMemo } from 'react';
+import Image from 'next/image';
 import {
   ArrowRight,
   Github,
@@ -10,47 +11,22 @@ import styles from './LandingSlider.module.css';
 
 const LandingSlider = memo(() => {
   const [activeSlide, setActiveSlide] = useState(0);
-  const autoplayTimer = useRef(null);
-  const progressTimer = useRef(null);
   const [progress, setProgress] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-
   const [isClient, setIsClient] = useState(false);
+  const [touchStart, setTouchStart] = useState({ x: 0, y: 0 });
+
+  // Refs für Timer und Cleanup
+  const progressTimer = useRef(null);
+  const pendingTimeouts = useRef(new Set());
+  const videoRefs = useRef({});
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  // Optimierte Mouse-Tracking Callbacks
-  const handleCTAMouseMove = useCallback((e) => {
-    const button = e.currentTarget;
-    const rect = button.getBoundingClientRect();
-
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    button.style.setProperty('--mouse-x', `${x}px`);
-    button.style.setProperty('--mouse-y', `${y}px`);
-  }, []);
-
-  const handleCTAMouseEnter = useCallback((e) => {
-    const button = e.currentTarget;
-    const rect = button.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    button.style.setProperty('--mouse-x', `${x}px`);
-    button.style.setProperty('--mouse-y', `${y}px`);
-  }, []);
-
-  const handleCTAMouseLeave = useCallback((e) => {
-    const button = e.currentTarget;
-    button.style.setProperty('--mouse-x', '-100px');
-    button.style.setProperty('--mouse-y', '-100px');
-  }, []);
-
-  // Professional Portfolio Slides
-  const slides = [
+  // ✅ MEMORY LEAK FIX: Slides als useMemo um Re-renders zu vermeiden
+  const slides = useMemo(() => [
     {
       id: 1,
       type: 'video',
@@ -104,35 +80,98 @@ const LandingSlider = memo(() => {
         secondary: false,
       },
     },
-  ];
+  ], []);
 
   const AUTOPLAY_INTERVAL = 6000;
-  const PROGRESS_INTERVAL = 100; // Reduziert von 50ms auf 100ms für bessere Performance
+  const PROGRESS_INTERVAL = 150; // Optimiert für bessere Performance
 
-  // Auto-play functionality
-  const startAutoplay = useCallback(() => {
-    if (!isAutoPlaying) return;
+  // ✅ MEMORY LEAK FIX: Cleanup für alle Timeouts
+  const addTimeout = useCallback((timeoutId) => {
+    pendingTimeouts.current.add(timeoutId);
+  }, []);
 
-    // WICHTIG: Vorher stoppen
-    clearInterval(progressTimer.current);
+  const clearAllTimeouts = useCallback(() => {
+    pendingTimeouts.current.forEach(id => clearTimeout(id));
+    pendingTimeouts.current.clear();
+  }, []);
 
-    let currentProgress = 0;
-    setProgress(0);
+  // ✅ PERFORMANCE FIX: Optimierte Mouse-Tracking mit Throttling
+  const handleCTAMouseMove = useCallback((e) => {
+    if (!e.currentTarget) return;
+    
+    requestAnimationFrame(() => {
+      const button = e.currentTarget;
+      if (!button) return;
+      
+      const rect = button.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
 
-    progressTimer.current = setInterval(() => {
-      currentProgress += (PROGRESS_INTERVAL / AUTOPLAY_INTERVAL) * 100;
-      setProgress(currentProgress);
+      button.style.setProperty('--mouse-x', `${x}px`);
+      button.style.setProperty('--mouse-y', `${y}px`);
+    });
+  }, []);
 
-      if (currentProgress >= 100) {
-        clearInterval(progressTimer.current);
-        nextSlide();
+  const handleCTAMouseEnter = useCallback((e) => {
+    if (!e.currentTarget) return;
+    
+    const button = e.currentTarget;
+    const rect = button.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    button.style.setProperty('--mouse-x', `${x}px`);
+    button.style.setProperty('--mouse-y', `${y}px`);
+  }, []);
+
+  const handleCTAMouseLeave = useCallback((e) => {
+    if (!e.currentTarget) return;
+    
+    const button = e.currentTarget;
+    button.style.setProperty('--mouse-x', '-100px');
+    button.style.setProperty('--mouse-y', '-100px');
+  }, []);
+
+  // ✅ MEMORY LEAK FIX: Saubere Video-Verwaltung mit Error-Handling
+  const pauseAllVideos = useCallback(() => {
+    Object.values(videoRefs.current).forEach(video => {
+      if (video && video.parentNode && typeof video.pause === 'function') {
+        try {
+          video.pause();
+        } catch (error) {
+          // Video wurde bereits entfernt oder ist nicht mehr verfügbar
+          console.warn('Video pause failed:', error);
+        }
       }
-    }, PROGRESS_INTERVAL);
-  }, [isAutoPlaying]);
+    });
+  }, []);
 
+  const playActiveVideo = useCallback(() => {
+    const activeVideo = videoRefs.current[activeSlide];
+    if (activeVideo && activeVideo.parentNode && typeof activeVideo.play === 'function') {
+      activeVideo.play().catch(error => {
+        // Video play failed - ignore silently
+        console.warn('Video play failed:', error);
+      });
+    }
+  }, [activeSlide]);
+
+  // ✅ MEMORY LEAK FIX: Video Ref Cleanup
+  const setVideoRef = useCallback((el, index) => {
+    if (el) {
+      videoRefs.current[index] = el;
+    } else {
+      // Cleanup when element is removed
+      delete videoRefs.current[index];
+    }
+  }, []);
+
+  // ✅ MEMORY LEAK FIX: Sauberer Progress Timer
   const stopAutoplay = useCallback(() => {
-    clearInterval(autoplayTimer.current);
-    clearInterval(progressTimer.current);
+    if (progressTimer.current) {
+      clearInterval(progressTimer.current);
+      progressTimer.current = null;
+    }
     setProgress(0);
   }, []);
 
@@ -140,29 +179,54 @@ const LandingSlider = memo(() => {
     setActiveSlide(prev => (prev + 1) % slides.length);
   }, [slides.length]);
 
+  const startAutoplay = useCallback(() => {
+    if (!isAutoPlaying) return;
+
+    stopAutoplay(); // Cleanup vorherige Timer
+
+    let currentProgress = 0;
+    setProgress(0);
+
+    progressTimer.current = setInterval(() => {
+      currentProgress += (PROGRESS_INTERVAL / AUTOPLAY_INTERVAL) * 100;
+      
+      // ✅ PERFORMANCE FIX: Batch state updates
+      if (currentProgress >= 100) {
+        clearInterval(progressTimer.current);
+        progressTimer.current = null;
+        nextSlide();
+        setProgress(0);
+      } else {
+        setProgress(currentProgress);
+      }
+    }, PROGRESS_INTERVAL);
+  }, [isAutoPlaying, stopAutoplay, nextSlide]);
+
+  // ✅ MEMORY LEAK FIX: Saubere goToSlide Funktion
   const goToSlide = useCallback((index) => {
     setActiveSlide(index);
     stopAutoplay();
-    // MEMORY LEAK FIX: Store timeout ID for cleanup
-    const timeoutId = setTimeout(startAutoplay, 100);
     
-    // Return cleanup function if component unmounts during timeout
-    return () => clearTimeout(timeoutId);
-  }, [stopAutoplay, startAutoplay]);
+    const timeoutId = setTimeout(() => {
+      if (isAutoPlaying) {
+        startAutoplay();
+      }
+      pendingTimeouts.current.delete(timeoutId);
+    }, 100);
+    
+    addTimeout(timeoutId);
+  }, [stopAutoplay, startAutoplay, isAutoPlaying, addTimeout]);
 
-  // Touch/Swipe handling
-  const [touchStart, setTouchStart] = useState({ x: 0, y: 0 });
-
-  const handleTouchStart = e => {
+  // ✅ MEMORY LEAK FIX: Saubere Touch-Handler
+  const handleTouchStart = useCallback((e) => {
     const touch = e.touches ? e.touches[0] : e;
     setTouchStart({ x: touch.clientX, y: touch.clientY });
     setIsAutoPlaying(false);
     stopAutoplay();
-  };
+  }, [stopAutoplay]);
 
-  const handleTouchEnd = e => {
+  const handleTouchEnd = useCallback((e) => {
     const touch = e.changedTouches ? e.changedTouches[0] : e;
-
     const deltaX = touchStart.x - touch.clientX;
     const deltaY = Math.abs(touchStart.y - touch.clientY);
 
@@ -174,46 +238,58 @@ const LandingSlider = memo(() => {
       }
     }
 
-    // MEMORY LEAK FIX: Track timeout for cleanup
     const timeoutId = setTimeout(() => {
       setIsAutoPlaying(true);
-      startAutoplay();
+      pendingTimeouts.current.delete(timeoutId);
     }, 100);
     
-    // Store timeout ID for potential cleanup
-    handleTouchEnd.timeoutId = timeoutId;
-  };
+    addTimeout(timeoutId);
+  }, [touchStart, nextSlide, slides.length, addTimeout]);
 
-  // Initialize autoplay - MEMORY LEAK FIX
+  // ✅ PERFORMANCE FIX: Video Management
+  useEffect(() => {
+    pauseAllVideos();
+    playActiveVideo();
+  }, [activeSlide, pauseAllVideos, playActiveVideo]);
+
+  // ✅ MEMORY LEAK FIX: Autoplay Management
   useEffect(() => {
     if (isAutoPlaying) {
       startAutoplay();
+    } else {
+      stopAutoplay();
     }
-    
-    // CRITICAL: Always cleanup on unmount regardless of isAutoPlaying state
-    return () => {
-      clearInterval(autoplayTimer.current);
-      clearInterval(progressTimer.current);
-      setProgress(0);
-    };
-  }, [isAutoPlaying]); // startAutoplay ist stabil, da es keine Dependencies hat
 
-  // Pause on visibility change
+    return () => {
+      stopAutoplay();
+    };
+  }, [isAutoPlaying, startAutoplay, stopAutoplay]);
+
+  // ✅ MEMORY LEAK FIX: Visibility Change Handler
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.hidden) {
         setIsAutoPlaying(false);
-        stopAutoplay();
+        pauseAllVideos();
       } else {
         setIsAutoPlaying(true);
-        startAutoplay();
       }
     };
 
     document.addEventListener('visibilitychange', handleVisibilityChange);
-    return () =>
+    return () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
-  }, []); // startAutoplay und stopAutoplay sind stabil
+    };
+  }, [pauseAllVideos]);
+
+  // ✅ CRITICAL: Cleanup alles beim Unmount
+  useEffect(() => {
+    return () => {
+      stopAutoplay();
+      clearAllTimeouts();
+      pauseAllVideos();
+    };
+  }, [stopAutoplay, clearAllTimeouts, pauseAllVideos]);
 
   return (
     <>
@@ -241,27 +317,35 @@ const LandingSlider = memo(() => {
               >
                 {/* Media Content */}
                 <div className={styles.media}>
-                  {slide.type === 'video' && isClient && index === activeSlide ? (
+                  {slide.type === 'video' && isClient ? (
                     <video
+                      ref={el => setVideoRef(el, index)}
                       className={styles.video}
-                      autoPlay
                       loop
                       muted
                       playsInline
-                      preload={index === activeSlide ? 'auto' : 'none'}
+                      preload={index === activeSlide ? 'auto' : 'metadata'}
+                      style={{ 
+                        opacity: index === activeSlide ? 1 : 0,
+                        pointerEvents: index === activeSlide ? 'auto' : 'none'
+                      }}
                     >
                       <source src={slide.src} type="video/mp4" />
                     </video>
                   ) : slide.type === 'image' ? (
-                    <img
+                    <Image
                       className={styles.image}
                       src={slide.src}
                       alt={slide.title}
-                      loading={index === activeSlide ? 'eager' : 'lazy'}
+                      fill
+                      priority={index === activeSlide}
+                      sizes="100vw"
+                      style={{ 
+                        opacity: index === activeSlide ? 1 : 0,
+                        transition: 'opacity 0.3s ease-in-out',
+                        objectFit: 'cover'
+                      }}
                     />
-                  ) : slide.type === 'video' ? (
-                    // Video Placeholder für nicht-aktive Slides
-                    <div className={`${styles.video} ${styles.videoPlaceholder}`} />
                   ) : null}
 
                   {/* Overlay Gradient */}

@@ -367,7 +367,7 @@
   background-clip: text;
 }
 
-/* Blog Grid - Performance optimized */
+/* ✅ PERFORMANCE OPTIMIZED Blog Grid */
 .blog-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(380px, 420px));
@@ -376,30 +376,33 @@
   opacity: 1;
   visibility: visible;
   justify-content: start;
-  /* Performance optimizations */
-  contain: layout style paint;
+  /* ✅ GPU Acceleration */
   will-change: contents;
+  transform: translateZ(0);
+  contain: layout style;
 }
 
-/* Blog Post Cards - Performance optimized */
+/* ✅ PERFORMANCE OPTIMIZED Blog Post Cards */
 .blog-post-card {
   background: rgba(15, 15, 15, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
   overflow: hidden;
-  /* Removed heavy transitions and backdrop-filter */
-  opacity: 1;
-  transform: translateY(0);
-  visibility: visible;
   display: flex;
   flex-direction: column;
   height: 100%;
   position: relative;
   z-index: 1;
-  will-change: transform; /* Optimize for animations */
+  /* ✅ GPU Acceleration */
+  will-change: transform, border-color;
+  transform: translateZ(0);
+  /* ✅ Simplified transitions - only essential properties */
+  transition: 
+    border-color 0.2s ease,
+    background-color 0.2s ease;
 }
 
-/* Simplified hover effect for better performance */
+/* ✅ LIGHTWEIGHT hover effect - no heavy transforms or shadows */
 .blog-post-card:hover {
   border-color: rgba(255, 255, 255, 0.15);
   background: rgba(20, 20, 20, 0.9);
@@ -413,76 +416,94 @@
   height: 100%;
 }
 
-/* Image Container */
+/* ✅ OPTIMIZED Image Container */
 .blog-post-image-container {
   position: relative;
   height: 220px;
   overflow: hidden;
   flex-shrink: 0;
+  /* ✅ GPU Acceleration */
+  will-change: transform;
+  transform: translateZ(0);
 }
 
+/* ✅ OPTIMIZED Image with lightweight scaling */
 .blog-post-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
+  /* ✅ Reduced transition duration for snappier feel */
+  transition: transform 0.2s ease-out;
+  /* ✅ GPU Acceleration */
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .blog-post-card:hover .blog-post-image {
-  transform: scale(1.02);
+  transform: scale(1.01) translateZ(0); /* Reduced scale for better performance */
 }
 
+/* ✅ OPTIMIZED Overlay - reduced complexity */
 .blog-post-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to bottom,
-    transparent 0%,
-    rgba(0, 0, 0, 0.2) 50%,
-    rgba(0, 0, 0, 0.6) 100%
+    transparent 60%,
+    rgba(0, 0, 0, 0.4) 80%,
+    rgba(0, 0, 0, 0.7) 100%
   );
   display: flex;
   align-items: flex-end;
   justify-content: center;
   padding: 1.5rem;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  /* ✅ Fast transition */
+  transition: opacity 0.15s ease-out;
+  /* ✅ GPU Acceleration */
+  will-change: opacity;
+  transform: translateZ(0);
 }
 
 .blog-post-card:hover .blog-post-overlay {
   opacity: 1;
 }
 
+/* ✅ OPTIMIZED Read Indicator */
 .blog-read-indicator {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
   border-radius: 8px;
   padding: 0.75rem 1.25rem;
   color: #000000;
   font-weight: 500;
   font-size: 0.875rem;
-  transform: translateY(8px);
-  transition: all 0.3s ease;
+  /* ✅ Simplified animation - only translate */
+  transform: translateY(8px) translateZ(0);
+  transition: transform 0.15s ease-out;
   border: 1px solid rgba(255, 255, 255, 0.2);
+  /* ✅ GPU Acceleration */
+  will-change: transform;
 }
 
 .blog-post-card:hover .blog-read-indicator {
-  transform: translateY(0);
-  background: rgba(255, 255, 255, 1);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transform: translateY(0) translateZ(0);
 }
 
+/* ✅ OPTIMIZED Arrow Icon */
 .blog-arrow-icon {
   font-size: 1rem;
-  transition: transform 0.3s ease;
+  transition: transform 0.15s ease-out;
   color: #000000;
+  /* ✅ GPU Acceleration */
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .blog-post-card:hover .blog-arrow-icon {
-  transform: translateX(3px);
+  transform: translateX(3px) translateZ(0);
 }
 
 /* Content Area */

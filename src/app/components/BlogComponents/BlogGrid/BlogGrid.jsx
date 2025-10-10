@@ -19,7 +19,7 @@ const BlogGrid = () => {
   const [uniqueTags, setUniqueTags] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 4; // Reduced from 6 to 4 for better performance
+  const postsPerPage = 6; // Increased back to 6 for better UX
 
   const sectionRef = useRef(null);
   const filterRef = useRef(null);

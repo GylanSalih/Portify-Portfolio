@@ -1,4 +1,4 @@
-/* Elegant Hamburger Menu - Shadcn/Award-Winning Style */
+/* Elegant Hamburger Menu - CSS Animationen statt Framer Motion */
 
 /* Overlay */
 .hamburger-overlay {
@@ -12,7 +12,14 @@
   -webkit-backdrop-filter: blur(8px);
   z-index: 999;
   cursor: pointer;
-  transition: opacity 0.2s ease;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hamburger-overlay.open {
+  opacity: 1;
+  visibility: visible;
 }
 
 /* Menu Panel */
@@ -31,10 +38,16 @@
   overflow-y: auto;
   padding: 1.5rem;
   box-sizing: border-box;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
   justify-content: center;
+  /* ✅ CSS Animation statt Framer Motion */
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hamburger-menu-panel.open {
+  transform: translateX(0);
 }
 
 .hamburger-menu-panel.dark {

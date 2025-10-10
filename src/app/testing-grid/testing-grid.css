@@ -1,0 +1,63 @@
+/* Testing Grid Page Styles */
+.testing-grid-page {
+  min-height: 100vh;
+  padding-top: 80px; /* Platz für die Navbar */
+  background: #ffffff;
+}
+
+html.dark-mode .testing-grid-page {
+  background: #0a0a0a;
+}
+
+.testing-header {
+  text-align: center;
+  padding: 2rem 1rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.testing-header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #1a1a1a;
+  font-family: 'BlenderProBold', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+html.dark-mode .testing-header h1 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.testing-header p {
+  font-size: 1.2rem;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+html.dark-mode .testing-header p {
+  color: #aaa;
+}
+
+/* Mobile Anpassungen */
+@media (max-width: 768px) {
+  .testing-header h1 {
+    font-size: 2.2rem;
+  }
+  
+  .testing-header p {
+    font-size: 1rem;
+  }
+  
+  .testing-header {
+    padding: 1.5rem 1rem 0.5rem;
+  }
+}

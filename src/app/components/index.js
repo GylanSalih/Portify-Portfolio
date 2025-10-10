@@ -7,7 +7,6 @@ export { default as BlogPost } from './BlogComponents/BlogPost/BlogPost';
 export { default as LikeButton } from './BlogComponents/LikeButton';
 export { default as CallToAction } from './HomeComponents/CallToAction/CallToAction';
 export { default as CompanyCarousel } from './CompanyCarousel/CompanyCarousel';
-export { default as CustomModel } from './CustomModel/CustomModel';
 export { default as DarkModeToggle } from './Navbar/DarkModeToggle/DarkModeToggle';
 export { default as ErrorBoundary } from './ErrorBoundary/ErrorBoundary';
 export { default as FeatureInteractive } from './HomeComponents/FeatureInteractive/FeaturesInteractive';

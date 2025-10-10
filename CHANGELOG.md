@@ -29,7 +29,14 @@ Note and Todos for myself:
 Lookbook:
 Updates / Fixes:
 
-0.0.25 - Newest Updates
+0.0.26 - Newest Updates
+• Memory leaks behoben alles war extrem langsam 
+• redesign simpler cleaner smoother moderner in planung 
+• viele sachen gelöscht holo effect usw da redesign in planung ist und diese spielerein zwar schön sind aber nicht
+effektiv und viele resourcen klauen und user experience zerstören
+• 
+
+0.0.25 - Previous Updates
 • portfoliopost in einzelne componente getrennt
 • navbar folder richtig sortiert alle zusammengehörigen componenten in navbar eingefügt
 • navbar style angepasst

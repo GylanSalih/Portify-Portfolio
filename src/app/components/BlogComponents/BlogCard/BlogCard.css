@@ -1,27 +1,26 @@
-/* BlogCard Component - Gemeinsame Basis-Styles */
+/* ✅ PERFORMANCE OPTIMIZED BlogCard Component */
 
 .blog-card {
   background: rgba(15, 15, 15, 0.8);
-  backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
   overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 1;
-  transform: translateY(0);
-  visibility: visible;
   display: flex;
   flex-direction: column;
   height: 100%;
   position: relative;
   z-index: 1;
+  /* ✅ GPU Acceleration */
+  will-change: transform, border-color;
+  transform: translateZ(0);
+  /* ✅ Lightweight transitions - removed heavy effects */
+  transition: 
+    border-color 0.2s ease,
+    background-color 0.2s ease;
 }
 
+/* ✅ OPTIMIZED hover - no heavy transforms or shadows */
 .blog-card:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
   border-color: rgba(255, 255, 255, 0.15);
   background: rgba(20, 20, 20, 0.9);
 }
@@ -36,45 +35,57 @@
   height: 100%;
 }
 
-/* Image Container */
+/* ✅ OPTIMIZED Image Container */
 .blog-post-image-container,
 .related-post-image-container {
   position: relative;
   height: 220px;
   overflow: hidden;
   flex-shrink: 0;
+  /* ✅ GPU Acceleration */
+  will-change: transform;
+  transform: translateZ(0);
 }
 
+/* ✅ OPTIMIZED Images */
 .blog-post-image,
 .related-post-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
+  /* ✅ Faster, lighter transition */
+  transition: transform 0.2s ease-out;
+  /* ✅ GPU Acceleration */
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .blog-card:hover .blog-post-image,
 .blog-card:hover .related-post-image {
-  transform: scale(1.02);
+  transform: scale(1.01) translateZ(0); /* Reduced scale */
 }
 
-/* Overlay */
+/* ✅ OPTIMIZED Overlay */
 .blog-post-overlay,
 .related-post-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to bottom,
-    transparent 0%,
-    rgba(0, 0, 0, 0.2) 50%,
-    rgba(0, 0, 0, 0.6) 100%
+    transparent 60%,
+    rgba(0, 0, 0, 0.4) 80%,
+    rgba(0, 0, 0, 0.7) 100%
   );
   display: flex;
   align-items: flex-end;
   justify-content: center;
   padding: 1.5rem;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  /* ✅ Fast transition */
+  transition: opacity 0.15s ease-out;
+  /* ✅ GPU Acceleration */
+  will-change: opacity;
+  transform: translateZ(0);
 }
 
 .blog-card:hover .blog-post-overlay,

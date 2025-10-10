@@ -1,4 +1,4 @@
-/* Navbar SCSS Module - Exakt wie Tailwind aber als SCSS */
+/* Navbar SCSS Module - Optimiert ohne Framer Motion */
 
 .navbar {
   position: fixed;
@@ -8,14 +8,16 @@
   z-index: 50;
   transition: all 0.5s ease-out;
   padding: 1.5rem 0;
+  /* ✅ CSS Animation statt Framer Motion */
+  animation: slideInFromTop 0.6s ease-out;
 
   &.hidden {
     display: none;
   }
 
   &.lg-block {
-    @media (min-width: 1024px) {
-      display: block;
+    @media (max-width: 1023px) {
+      display: none;
     }
   }
 
@@ -23,6 +25,18 @@
     @media (min-width: 1024px) {
       display: none;
     }
+  }
+}
+
+/* ✅ CSS Keyframe Animation statt Framer Motion */
+@keyframes slideInFromTop {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 
@@ -39,11 +53,7 @@
   justify-content: space-between;
   border-radius: 1rem;
   padding: 1rem 2rem;
-
-  /* Desktop-Navbar auf Mobile verstecken */
-  @media (max-width: 1023px) {
-    display: none;
-  }
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   &.scrolled {
     background: rgba(0, 0, 0, 0.9);
@@ -52,7 +62,7 @@
       0 10px 15px -3px rgba(0, 0, 0, 0.1),
       0 4px 6px -2px rgba(0, 0, 0, 0.05);
     border-radius: 1rem;
-    padding: 1rem 2rem;
+    padding: 0.75rem 2rem;
 
     :global(.dark) & {
       background: rgba(0, 0, 0, 0.9);
@@ -63,7 +73,7 @@
   }
 
   &.notScrolled {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(24px);
     box-shadow:
       0 4px 6px -1px rgba(0, 0, 0, 0.1),
@@ -82,7 +92,7 @@
 
 .logo {
   flex-shrink: 0;
-  transition: all 0.3s;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
     transform: scale(1.02);
@@ -94,17 +104,13 @@
 }
 
 .logoImage {
-  transition: all 0.3s;
+  transition: all 0.3s ease;
 }
 
 .desktopNav {
-  display: none;
+  display: flex;
   align-items: center;
   gap: 0.25rem;
-
-  @media (min-width: 1024px) {
-    display: flex;
-  }
 }
 
 .navItem {
@@ -116,7 +122,7 @@
   padding: 0.5rem 1.25rem;
   font-size: 0.875rem;
   font-weight: 500;
-  transition: all 0.3s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 0.75rem;
   text-decoration: none;
 
@@ -124,8 +130,9 @@
     color: rgb(55, 65, 81);
 
     &:hover {
-      background: rgb(243, 244, 246);
+      background: rgba(243, 244, 246, 0.8);
       color: rgb(17, 24, 39);
+      transform: translateY(-1px);
     }
   }
 
@@ -133,8 +140,9 @@
     color: rgba(255, 255, 255, 0.9);
 
     &:hover {
-      background: rgb(31, 41, 55);
+      background: rgba(31, 41, 55, 0.8);
       color: rgb(255, 255, 255);
+      transform: translateY(-1px);
     }
   }
 }
@@ -145,9 +153,12 @@
   gap: 0.75rem;
 }
 
+/* Mobile Navbar Styles */
 .mobileNavbar {
   backdrop-filter: blur(24px);
   padding: 1rem 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
   :global(.dark) & {
     background: rgba(0, 0, 0, 0.9);
@@ -168,6 +179,8 @@
 }
 
 .mobileLogo {
+  transition: transform 0.3s ease;
+
   &:hover {
     transform: scale(1.02);
   }
@@ -182,25 +195,27 @@
 .mobileMenuButton {
   padding: 0.5rem;
   border-radius: 0.75rem;
-  transition: all 0.3s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: none;
   cursor: pointer;
 
   &.mobileMenuButtonLight {
-    background: rgb(243, 244, 246);
+    background: rgba(243, 244, 246, 0.8);
     color: rgb(55, 65, 81);
 
     &:hover {
-      background: rgb(229, 231, 235);
+      background: rgba(229, 231, 235, 0.9);
+      transform: scale(1.05);
     }
   }
 
   &.mobileMenuButtonDark {
-    background: rgb(31, 41, 55);
+    background: rgba(31, 41, 55, 0.8);
     color: rgb(255, 255, 255);
 
     &:hover {
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.1);
+      transform: scale(1.05);
     }
   }
 
@@ -209,53 +224,25 @@
   }
 }
 
-/* Animation variants for framer-motion */
-.navbarVariants {
-  &.hidden {
-    transform: translateY(-100%);
+/* ✅ Improved animations */
+@keyframes fadeInUp {
+  from {
     opacity: 0;
+    transform: translateY(10px);
   }
-
-  &.visible {
+  to {
+    opacity: 1;
     transform: translateY(0);
-    opacity: 1;
-    transition: {
-      type: 'spring';
-      stiffness: 100;
-      damping: 20;
-    }
   }
 }
 
-/* Mobile menu icon animations */
-.menuIcon {
-  &.close {
-    animation: rotateIn 0.2s ease-out;
-  }
-
-  &.menu {
-    animation: rotateIn 0.2s ease-out;
-  }
+.navItem {
+  animation: fadeInUp 0.5s ease-out;
+  animation-fill-mode: both;
 }
 
-@keyframes rotateIn {
-  from {
-    transform: rotate(-90deg);
-    opacity: 0;
-  }
-  to {
-    transform: rotate(0deg);
-    opacity: 1;
-  }
-}
-
-@keyframes rotateOut {
-  from {
-    transform: rotate(0deg);
-    opacity: 1;
-  }
-  to {
-    transform: rotate(90deg);
-    opacity: 0;
-  }
-}
+.navItem:nth-child(1) { animation-delay: 0.1s; }
+.navItem:nth-child(2) { animation-delay: 0.2s; }
+.navItem:nth-child(3) { animation-delay: 0.3s; }
+.navItem:nth-child(4) { animation-delay: 0.4s; }
+.navItem:nth-child(5) { animation-delay: 0.5s; }

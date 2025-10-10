@@ -9,9 +9,12 @@
   height: 100vh;
   overflow: hidden;
   background: #000;
+  /* ✅ PERFORMANCE: GPU-Beschleunigung */
+  will-change: transform;
+  transform: translateZ(0);
 }
 
-/* Background Orbs */
+/* ✅ PERFORMANCE: Optimierte Background Orbs */
 .bgOrb {
   position: absolute;
   border-radius: 50%;
@@ -22,6 +25,9 @@
   );
   pointer-events: none;
   z-index: 0;
+  /* ✅ PERFORMANCE: GPU-Beschleunigung für Animationen */
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .bgOrb1 {
@@ -40,13 +46,14 @@
   animation: float 25s ease-in-out infinite reverse;
 }
 
+/* ✅ PERFORMANCE: Optimierte Float-Animation */
 @keyframes float {
   0%,
   100% {
-    transform: translateY(0px) rotate(0deg);
+    transform: translate3d(0, 0px, 0) rotate(0deg);
   }
   50% {
-    transform: translateY(-20px) rotate(180deg);
+    transform: translate3d(0, -20px, 0) rotate(180deg);
   }
 }
 
@@ -58,6 +65,9 @@
   width: 100%;
   height: 100%;
   cursor: grab;
+  /* ✅ PERFORMANCE: GPU-Beschleunigung */
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .container:active {
@@ -81,10 +91,14 @@
   height: 100%;
   opacity: 0;
   visibility: hidden;
+  /* ✅ PERFORMANCE: Optimierte Transitions */
   transition:
-    opacity 1s ease-in-out,
-    visibility 1s ease-in-out;
+    opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1;
+  /* ✅ PERFORMANCE: GPU-Beschleunigung */
+  will-change: opacity, visibility;
+  transform: translateZ(0);
 }
 
 .slideActive {
@@ -101,6 +115,9 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
+  /* ✅ PERFORMANCE: GPU-Beschleunigung */
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .video,
@@ -111,6 +128,16 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* ✅ PERFORMANCE: GPU-Beschleunigung für Videos/Bilder */
+  will-change: opacity;
+  transform: translateZ(0);
+}
+
+/* ✅ PERFORMANCE: Video-spezifische Optimierungen */
+.video {
+  /* Hardware-Dekodierung aktivieren */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 /* Media Overlay */
@@ -201,7 +228,7 @@
 }
 
 /* ===================================
-   Premium Glass Button mit Award-Winning Maus-Follower-Effekt
+   ✅ PERFORMANCE: Optimierter Glass Button
    =================================== */
 
 .cta {
@@ -217,7 +244,7 @@
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   opacity: 0;
@@ -229,6 +256,9 @@
     0 8px 32px rgba(0, 0, 0, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.1),
     inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  /* ✅ PERFORMANCE: GPU-Beschleunigung */
+  will-change: transform, opacity, background-color;
+  transform: translateZ(0);
 }
 
 .ctaSecondary {
@@ -243,12 +273,12 @@
   color: white;
 }
 
-/* Hauptglanz-Effekt (Spotlight) */
+/* ✅ PERFORMANCE: Optimierter Spotlight-Effekt */
 .cta::before {
   content: '';
   position: absolute;
-  top: var(--mouse-x, -200px);
-  left: var(--mouse-y, -200px);
+  top: var(--mouse-y, -200px);
+  left: var(--mouse-x, -200px);
   width: 160px;
   height: 160px;
   background: radial-gradient(
@@ -262,18 +292,20 @@
   border-radius: 50%;
   transform: translate(-50%, -50%);
   opacity: 0;
-  transition: opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
   z-index: 1;
-  filter: blur(2px);
+  /* ✅ PERFORMANCE: Reduzierter Blur für bessere Performance */
+  filter: blur(1px);
+  will-change: opacity, transform;
 }
 
-/* Sekundärer Glanz-Ring */
+/* ✅ PERFORMANCE: Optimierter Sekundärer Glanz-Ring */
 .cta::after {
   content: '';
   position: absolute;
-  top: var(--mouse-x, -200px);
-  left: var(--mouse-y, -200px);
+  top: var(--mouse-y, -200px);
+  left: var(--mouse-x, -200px);
   width: 240px;
   height: 240px;
   background: radial-gradient(
@@ -286,17 +318,19 @@
   border-radius: 50%;
   transform: translate(-50%, -50%);
   opacity: 0;
-  transition: opacity 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
   z-index: 0;
-  filter: blur(3px);
+  /* ✅ PERFORMANCE: Reduzierter Blur für bessere Performance */
+  filter: blur(2px);
+  will-change: opacity, transform;
 }
 
 /* Hover-Zustand */
 .cta:hover {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-4px);
+  transform: translateY(-4px) translateZ(0);
   box-shadow:
     0 20px 60px rgba(0, 0, 0, 0.3),
     0 8px 32px rgba(59, 130, 246, 0.2),
@@ -316,7 +350,7 @@
 
 /* Active/Pressed State */
 .cta:active {
-  transform: translateY(-2px);
+  transform: translateY(-2px) translateZ(0);
   box-shadow:
     0 12px 40px rgba(0, 0, 0, 0.25),
     0 4px 16px rgba(59, 130, 246, 0.15),
@@ -326,9 +360,10 @@
 
 /* Icon Animation */
 .ctaIcon {
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 2;
   position: relative;
+  will-change: transform;
 }
 
 .cta:hover .ctaIcon {
@@ -339,63 +374,6 @@
 .cta > * {
   position: relative;
   z-index: 2;
-}
-
-/* Zusätzlicher Shimmer-Effekt für Extra-Glamour */
-.ctaShimmer {
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.1) 50%,
-    transparent 100%
-  );
-  transform: skewX(-20deg);
-  transition: left 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-  z-index: 1;
-}
-
-.cta:hover .ctaShimmer {
-  left: 100%;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .cta {
-    padding: 14px 20px;
-    font-size: 0.875rem;
-    border-radius: 12px;
-  }
-
-  .cta::before {
-    width: 120px;
-    height: 120px;
-  }
-
-  .cta::after {
-    width: 180px;
-    height: 180px;
-  }
-}
-
-/* Accessibility - Reduced Motion */
-@media (prefers-reduced-motion: reduce) {
-  .cta {
-    transition: none;
-  }
-
-  .cta::before,
-  .cta::after {
-    transition: opacity 0.2s ease;
-  }
-
-  .cta:hover .ctaIcon {
-    transform: translateX(4px);
-  }
 }
 
 /* ===================================
@@ -426,13 +404,16 @@
   background: rgba(255, 255, 255, 0.3);
   border: 2px solid rgba(255, 255, 255, 0.5);
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
+  /* ✅ PERFORMANCE: GPU-Beschleunigung */
+  will-change: transform, background-color;
+  transform: translateZ(0);
 }
 
 .navDot:hover {
   background: rgba(255, 255, 255, 0.5);
-  transform: scale(1.2);
+  transform: scale(1.2) translateZ(0);
 }
 
 .navDotActive {
@@ -454,6 +435,9 @@
   );
   border-radius: inherit;
   transition: width 0.1s ease-out;
+  /* ✅ PERFORMANCE: GPU-Beschleunigung */
+  will-change: width;
+  transform: translateZ(0);
 }
 
 /* Counter */
@@ -493,7 +477,99 @@
     padding: 1rem 2rem;
     font-size: 0.875rem;
   }
+}
 
+@media (max-width: 768px) {
+  .title {
+    font-size: 3rem;
+  }
+
+  .description {
+    font-size: 1.125rem;
+  }
+
+  .content {
+    padding: 2rem;
+  }
+
+  .cta {
+    padding: 14px 20px;
+    font-size: 0.875rem;
+    border-radius: 12px;
+  }
+
+  .cta::before {
+    width: 120px;
+    height: 120px;
+  }
+
+  .cta::after {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2.25rem;
+  }
+
+  .subtitle {
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .description {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .content {
+    padding: 1rem;
+  }
+
+  .nav {
+    bottom: 1rem;
+    gap: 1rem;
+  }
+
+  .navDots {
+    gap: 0.5rem;
+  }
+
+  .navDot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .navDotActive {
+    width: 50px;
+  }
+}
+
+/* ✅ PERFORMANCE: Reduced Motion für Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .bgOrb1,
+  .bgOrb2 {
+    animation: none;
+  }
+
+  .cta {
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .cta::before,
+  .cta::after {
+    transition: opacity 0.2s ease;
+  }
+
+  .cta:hover .ctaIcon {
+    transform: translateX(4px);
+  }
+
+  .slide {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
 }
 
 @media (max-width: 768px) {
