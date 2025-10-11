@@ -16,7 +16,7 @@ import {
   Twitter,
 } from 'lucide-react';
 import Link from 'next/link';
-import './HamburgerMenu.css';
+import styles from './styles.module.scss';
 
 const HamburgerMenu = ({ isOpen, onClose }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
@@ -97,46 +97,46 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
           {/* Backdrop Overlay */}
           <div
             ref={overlayRef}
-            className={`hamburger-overlay ${isOpen ? 'open' : ''}`}
+            className={`${styles.hamburgerOverlay} ${isOpen ? styles.open : ''}`}
             onClick={onClose}
           />
 
           {/* Mobile Menu Panel */}
           <div
             ref={menuRef}
-            className={`hamburger-menu-panel ${isDarkMode ? 'dark' : 'light'} ${isOpen ? 'open' : ''}`}
+            className={`${styles.hamburgerMenuPanel} ${isDarkMode ? styles.dark : styles.light} ${isOpen ? styles.open : ''}`}
           >
             {/* Menu Header */}
-            <div className="menu-header">
-              <h2 className="menu-title">Navigation</h2>
-              <p className="menu-subtitle">Explore my digital world</p>
+            <div className={styles.menuHeader}>
+              <h2 className={styles.menuTitle}>Navigation</h2>
+              <p className={styles.menuSubtitle}>Explore my digital world</p>
             </div>
 
             {/* Navigation Links */}
-            <nav className="menu-nav">
-              <ul className="menu-list">
+            <nav className={styles.menuNav}>
+              <ul className={styles.menuList}>
                 {menuItems.map((item, index) => {
                   const IconComponent = item.icon;
                   return (
                     <li
                       key={item.href}
-                      className="menu-item"
+                      className={styles.menuItem}
                       style={{ animationDelay: '0s' }}
                     >
                       <Link
                         href={item.href}
-                        className="menu-link"
+                        className={styles.menuLink}
                         onClick={handleLinkClick}
                       >
-                        <div className="menu-link-content">
-                          <div className="menu-link-icon">
+                        <div className={styles.menuLinkContent}>
+                          <div className={styles.menuLinkIcon}>
                             <IconComponent size={24} />
                           </div>
-                          <div className="menu-link-text">
-                            <span className="menu-link-label">
+                          <div className={styles.menuLinkText}>
+                            <span className={styles.menuLinkLabel}>
                               {item.label}
                             </span>
-                            <span className="menu-link-description">
+                            <span className={styles.menuLinkDescription}>
                               {item.description}
                             </span>
                           </div>
@@ -149,16 +149,16 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
             </nav>
 
             {/* Social Links */}
-            <div className="menu-social">
-              <h3 className="menu-social-title">Connect</h3>
-              <div className="menu-social-links">
+            <div className={styles.menuSocial}>
+              <h3 className={styles.menuSocialTitle}>Connect</h3>
+              <div className={styles.menuSocialLinks}>
                 {socialLinks.map((social, index) => {
                   const IconComponent = social.icon;
                   return (
                     <a
                       key={social.href}
                       href={social.href}
-                      className="menu-social-link"
+                      className={styles.menuSocialLink}
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={handleLinkClick}
@@ -173,7 +173,7 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
 
             {/* Close Button */}
             <button
-              className="menu-close-btn"
+              className={styles.menuCloseBtn}
               onClick={onClose}
             >
               <X size={24} />

@@ -1,9 +1,0 @@
-.aboutcssPage {
-  background-color: var(--dark-mode);
-  padding-top: 150px;
-}
-
-.dark-mode .aboutcssPage {
-  background-color: var(--light-mode);
-  padding-top: 150px;
-}

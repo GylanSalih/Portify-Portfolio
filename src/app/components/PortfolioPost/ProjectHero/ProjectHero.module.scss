@@ -1,0 +1,489 @@
+.hero {
+  margin-bottom: 0;
+  margin-top: 8rem;
+  position: relative;
+  background: transparent;
+  border-radius: 20px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  min-height: 500px;
+  max-height: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 20px;
+
+  /* Positionierte Elemente */
+  .topLeft {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    z-index: 3;
+  }
+
+  .topRight {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    z-index: 3;
+  }
+
+  .bottomLeft {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    z-index: 3;
+  }
+
+  .bottomRight {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 3;
+  }
+
+  .centerContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 3;
+    max-width: 80%;
+  }
+
+  /* Overlay für bessere Lesbarkeit */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.3) 0%,
+      rgba(0, 0, 0, 0.1) 50%,
+      rgba(0, 0, 0, 0.4) 100%
+    );
+    z-index: 1;
+    border-radius: 20px;
+  }
+}
+
+.heroMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.category {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+  font-family: 'RedHat', sans-serif;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(59, 130, 246, 0.3);
+    transform: translateY(-1px);
+  }
+}
+
+.metaStats {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.8rem;
+  font-family: 'RedHat', sans-serif;
+
+  :global(.icon) {
+    width: 0.9rem;
+    height: 0.9rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #fff;
+  margin: 0;
+  font-family: 'BlenderProBold', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin: 0;
+  font-family: 'RedHat', sans-serif;
+  font-weight: 400;
+}
+
+.techTags {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.techTag {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(59, 130, 246, 0.3);
+    transform: translateY(-1px);
+  }
+
+  :global(.icon) {
+    width: 0.875rem;
+    height: 0.875rem;
+    color: rgba(59, 130, 246, 0.8);
+  }
+}
+
+.countersWrapper {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.counterItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.counterLabel {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.btnView,
+.btnLike {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 80px;
+  backdrop-filter: blur(10px);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #3b82f6;
+    transform: translateY(-2px);
+  }
+}
+
+.btnLike.liked {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+.counterInfoRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  :global(.icon),
+  :global(.iconLike) {
+    width: 1rem;
+    height: 1rem;
+    color: white;
+  }
+}
+
+.counterText {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: white;
+}
+
+.heroActions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+  justify-content: center;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-family: 'RedHat', sans-serif;
+
+  :global(.icon) {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+}
+
+.btnPrimary {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(59, 130, 246, 0.3);
+    transform: translateY(-1px);
+  }
+}
+
+.btnSecondary {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-1px);
+  }
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  border-radius: 20px;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .hero {
+    margin-top: 6rem;
+  }
+  
+  .imageContainer {
+    height: 60vh;
+    min-height: 400px;
+
+    .centerContent {
+      max-width: 90%;
+    }
+    
+    .topLeft {
+      top: 1.5rem;
+      left: 1.5rem;
+    }
+    
+    .topRight {
+      top: 1.5rem;
+      right: 1.5rem;
+    }
+    
+    .bottomLeft {
+      bottom: 1.5rem;
+      left: 1.5rem;
+    }
+    
+    .bottomRight {
+      bottom: 1.5rem;
+      right: 1.5rem;
+    }
+  }
+  
+  .title {
+    font-size: 2.75rem;
+  }
+  
+  .techTags {
+    gap: 0.75rem;
+  }
+  
+  .techTag {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+  
+  .category {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    margin-top: 5rem;
+  }
+  
+  .imageContainer {
+    height: 50vh;
+    min-height: 350px;
+
+    .centerContent {
+      max-width: 95%;
+    }
+    
+    .topLeft {
+      top: 1rem;
+      left: 1rem;
+    }
+    
+    .topRight {
+      top: 1rem;
+      right: 1rem;
+    }
+    
+    .bottomLeft {
+      bottom: 1rem;
+      left: 1rem;
+    }
+    
+    .bottomRight {
+      bottom: 1rem;
+      right: 1rem;
+    }
+  }
+  
+  .title {
+    font-size: 2.25rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  .metaStats {
+    gap: 1.5rem;
+  }
+  
+  .techTags {
+    gap: 0.5rem;
+  }
+  
+  .techTag {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.7rem;
+  }
+  
+  .category {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    margin-top: 4rem;
+  }
+  
+  .imageContainer {
+    height: 45vh;
+    min-height: 300px;
+
+    .centerContent {
+      max-width: 98%;
+    }
+    
+    .topLeft {
+      top: 0.75rem;
+      left: 0.75rem;
+    }
+    
+    .topRight {
+      top: 0.75rem;
+      right: 0.75rem;
+    }
+    
+    .bottomLeft {
+      bottom: 0.75rem;
+      left: 0.75rem;
+    }
+    
+    .bottomRight {
+      bottom: 0.75rem;
+      right: 0.75rem;
+    }
+  }
+  
+  .title {
+    font-size: 1.875rem;
+  }
+  
+  .techTags {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .techTag {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.6rem;
+  }
+  
+  .category {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.6rem;
+  }
+  
+  .btn {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.8rem;
+  }
+}
+

@@ -1,0 +1,240 @@
+/* Testimonials Section - Neues einfaches Design */
+.section {
+  position: relative;
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 4rem 1rem;
+  background: #0a0a0a;
+  min-height: 100vh;
+
+  /* Dark mode support */
+  :global(html:not(.dark-mode)) & {
+    background: #f8f8f8;
+  }
+
+  :global(html.dark-mode) & {
+    background: #0a0a0a;
+  }
+}
+
+.container {
+  position: relative;
+  z-index: 10;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1rem;
+
+  /* Dark mode support */
+  :global(html:not(.dark-mode)) & {
+    color: #0a0a0a;
+  }
+
+  :global(html.dark-mode) & {
+    color: #ffffff;
+  }
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 600px;
+  margin: 0 auto;
+
+  /* Dark mode support */
+  :global(html:not(.dark-mode)) & {
+    color: rgba(10, 10, 10, 0.7);
+  }
+
+  :global(html.dark-mode) & {
+    color: rgba(255, 255, 255, 0.7);
+  }
+}
+
+/* Filter Navigation */
+.filters {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.filterWrapper {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border-radius: 12px;
+  padding: 8px;
+  gap: 8px;
+}
+
+.filterBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  &.active {
+    background: rgba(255, 255, 255, 0.95);
+    color: #0a0a0a;
+  }
+}
+
+.filterIcon {
+  transition: transform 0.3s ease;
+}
+
+.filterText {
+  font-weight: 500;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  padding: 0 1rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Card - MIT WORKING TRANSITIONS */
+.card {
+  background: transparent;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Logo */
+.logoWrapper {
+  height: 40px;
+  margin-bottom: 1.5rem;
+}
+
+.logo {
+  height: 100%;
+  width: auto;
+  max-width: 120px;
+  object-fit: contain;
+  opacity: 0.8;
+  transition: opacity 0.3s ease-in-out;
+
+  .card:hover & {
+    opacity: 1;
+  }
+}
+
+/* Content */
+.content {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 2rem;
+  flex-grow: 1;
+}
+
+/* Author */
+.author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.2s ease-in-out;
+
+  .card:hover & {
+    transform: scale(1.1);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+.authorInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.role {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.company {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover {
+    color: #ffffff;
+    text-decoration: underline;
+  }
+}
+
+/* Counter */
+.counter {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.counterText {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.5);
+}

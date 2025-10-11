@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
-import styles from './VideoGallery.module.css';
+import styles from './VideoGallery.module.scss';
 
 const VideoGallery = ({ videos }) => {
   const [videoStates, setVideoStates] = useState({});

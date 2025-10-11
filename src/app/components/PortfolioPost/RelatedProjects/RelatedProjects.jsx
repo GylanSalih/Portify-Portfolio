@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
-import styles from './RelatedProjects.module.css';
+import styles from './RelatedProjects.module.scss';
 
 const RelatedProjects = ({ relatedProjects }) => {
   if (!relatedProjects || relatedProjects.length === 0) {
@@ -18,27 +18,27 @@ const RelatedProjects = ({ relatedProjects }) => {
       </div>
       <ul className={styles.grid}>
         {relatedProjects.map((relatedProject) => (
-          <li key={`related-${relatedProject.slug}`} className={styles.gridItem}>
-            <div className={styles.cardCourse}>
-              <figure className={styles.cardFigure}>
+          <li key={`related-${relatedProject.slug}`} className={styles.item}>
+            <div className={styles.card}>
+              <figure className={styles.figure}>
                 <Link href={`/portfolio/${relatedProject.slug}`}>
                   <Image
                     src={relatedProject.image || '/images/placeholder.jpg'}
                     alt={relatedProject.title}
                     width={550}
                     height={400}
-                    className={styles.cardImage}
+                    className={styles.image}
                   />
-                  <div className={styles.cardOverlay}>
+                  <div className={styles.overlay}>
                     <div>
                       <h3>{relatedProject.title}</h3>
                       <p>{relatedProject.category}</p>
-                      <div className={styles.cardTags}>
-                        <span className={styles.cardTag}>Portfolio</span>
-                        <span className={styles.cardTag}>Design</span>
+                      <div className={styles.tags}>
+                        <span className={styles.tag}>Portfolio</span>
+                        <span className={styles.tag}>Design</span>
                       </div>
                     </div>
-                    <div className={styles.cardLinkIcon}>
+                    <div className={styles.linkIcon}>
                       <ArrowUpRight size={20} />
                     </div>
                   </div>

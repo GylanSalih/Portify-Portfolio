@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react';
-import './Pagination.css';
+import styles from './Pagination.module.scss';
 
 const Pagination = ({
   currentPage = 1,
@@ -12,6 +12,7 @@ const Pagination = ({
   onItemsPerPageChange,
   showItemsPerPage = true,
   showPageInfo = true,
+  itemType = 'projects', // 'projects' or 'articles'
 }) => {
   const [localItemsPerPage, setLocalItemsPerPage] = useState(itemsPerPage);
   const [isItemsPerPageOpen, setIsItemsPerPageOpen] = useState(false);
@@ -101,23 +102,23 @@ const Pagination = ({
   }
 
   return (
-    <section className="pagination-section">
-      <div className="pagination-container">
+    <section className={styles.section}>
+      <div className={styles.container}>
         {/* Page Info */}
         {showPageInfo && (
-          <div className="pagination-info">
-            <span className="pagination-text">
-              Showing {startItem}-{endItem} of {totalItems} projects
+          <div className={styles.info}>
+            <span className={styles.text}>
+              Showing {startItem}-{endItem} of {totalItems} {itemType}
             </span>
           </div>
         )}
 
         {/* Pagination Controls */}
-        <div className="pagination-controls">
+        <div className={styles.controls}>
           {/* First Page */}
           <button
             type="button"
-            className="pagination-btn pagination-btn--first"
+            className={`${styles.btn} ${styles.btnFirst}`}
             onClick={() => handlePageChange(1)}
             disabled={currentPage === 1}
             title="First page"
@@ -128,7 +129,7 @@ const Pagination = ({
           {/* Previous Page */}
           <button
             type="button"
-            className="pagination-btn pagination-btn--prev"
+            className={`${styles.btn} ${styles.btnPrev}`}
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
             title="Previous page"
@@ -137,14 +138,14 @@ const Pagination = ({
           </button>
 
           {/* Page Numbers */}
-          <div className="pagination-numbers">
+          <div className={styles.numbers}>
             {getPageNumbers().map((page, index) => (
               <button
                 key={index}
                 type="button"
-                className={`pagination-btn pagination-btn--number ${
-                  page === currentPage ? 'active' : ''
-                } ${page === '...' ? 'disabled' : ''}`}
+                className={`${styles.btn} ${styles.btnNumber} ${
+                  page === currentPage ? styles.active : ''
+                } ${page === '...' ? styles.disabled : ''}`}
                 onClick={() => typeof page === 'number' && handlePageChange(page)}
                 disabled={page === '...'}
                 title={typeof page === 'number' ? `Page ${page}` : ''}
@@ -157,7 +158,7 @@ const Pagination = ({
           {/* Next Page */}
           <button
             type="button"
-            className="pagination-btn pagination-btn--next"
+            className={`${styles.btn} ${styles.btnNext}`}
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
             title="Next page"
@@ -168,7 +169,7 @@ const Pagination = ({
           {/* Last Page */}
           <button
             type="button"
-            className="pagination-btn pagination-btn--last"
+            className={`${styles.btn} ${styles.btnLast}`}
             onClick={() => handlePageChange(totalPages)}
             disabled={currentPage === totalPages}
             title="Last page"
@@ -179,31 +180,31 @@ const Pagination = ({
 
         {/* Items Per Page */}
         {showItemsPerPage && (
-          <div className="pagination-group items-per-page-group">
-            <label className="pagination-label">Items per page:</label>
-            <div className="items-per-page-dropdown">
+          <div className={styles.group}>
+            <label className={styles.label}>Items per page:</label>
+            <div className={styles.dropdown}>
               <button
                 type="button"
-                className={`items-per-page-trigger ${isItemsPerPageOpen ? 'open' : ''}`}
+                className={`${styles.trigger} ${isItemsPerPageOpen ? styles.open : ''}`}
                 onClick={() => setIsItemsPerPageOpen(!isItemsPerPageOpen)}
               >
-                <span className="items-per-page-selected">
+                <span className={styles.selected}>
                   {localItemsPerPage}
                 </span>
                 <ChevronRight
                   size={14}
-                  className={`chevron ${isItemsPerPageOpen ? 'rotated' : ''}`}
+                  className={`${styles.chevron} ${isItemsPerPageOpen ? styles.rotated : ''}`}
                 />
               </button>
 
               {isItemsPerPageOpen && (
-                <div className="items-per-page-dropdown-menu">
+                <div className={styles.menu}>
                   {itemsPerPageOptions.map(option => (
                     <button
                       key={option}
                       type="button"
-                      className={`items-per-page-option ${
-                        localItemsPerPage === option ? 'selected' : ''
+                      className={`${styles.option} ${
+                        localItemsPerPage === option ? styles.selected : ''
                       }`}
                       onClick={() => handleItemsPerPageChange(option)}
                     >

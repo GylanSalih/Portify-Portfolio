@@ -10,7 +10,8 @@ import {
   extractUniqueTags,
 } from '../../../lib/blogUtils';
 import BlogCard from '../BlogCard/BlogCard';
-import './bloggrid.css';
+import Pagination from '../../PortfolioGrid/Pagination/Pagination';
+import styles from './BlogGrid.module.scss';
 
 const BlogGrid = () => {
   const [blogPosts, setBlogPosts] = useState([]);
@@ -21,7 +22,7 @@ const BlogGrid = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false);
-  const postsPerPage = 6; // Increased back to 6 for better UX
+  const [itemsPerPage, setItemsPerPage] = useState(6);
 
   const sectionRef = useRef(null);
   const filterRef = useRef(null);
@@ -83,9 +84,9 @@ const BlogGrid = () => {
   // Memoize pagination logic
   const paginationData = useMemo(() => {
     const totalPosts = filteredPosts.length;
-    const totalPages = Math.ceil(totalPosts / postsPerPage);
-    const indexOfLastPost = currentPage * postsPerPage;
-    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const totalPages = Math.ceil(totalPosts / itemsPerPage);
+    const indexOfLastPost = currentPage * itemsPerPage;
+    const indexOfFirstPost = indexOfLastPost - itemsPerPage;
     const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
 
     return {
@@ -93,7 +94,7 @@ const BlogGrid = () => {
       totalPages,
       currentPosts,
     };
-  }, [filteredPosts, currentPage, postsPerPage]);
+  }, [filteredPosts, currentPage, itemsPerPage]);
 
   // Reset currentPage when filters change
   useEffect(() => {
@@ -103,7 +104,8 @@ const BlogGrid = () => {
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (!event.target.closest('.blog-sort-dropdown')) {
+      const dropdownElement = event.target.closest('[data-dropdown="sort"]');
+      if (!dropdownElement) {
         setIsSortDropdownOpen(false);
       }
     };
@@ -133,22 +135,13 @@ const BlogGrid = () => {
   const handlePageChange = useCallback((pageNumber) => {
     setCurrentPage(pageNumber);
     // Scroll to top of blog grid
-    if (sectionRef.current) {
-      sectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  const handlePrevPage = useCallback(() => {
-    if (currentPage > 1) {
-      handlePageChange(currentPage - 1);
-    }
-  }, [currentPage, handlePageChange]);
-
-  const handleNextPage = useCallback(() => {
-    if (currentPage < paginationData.totalPages) {
-      handlePageChange(currentPage + 1);
-    }
-  }, [currentPage, paginationData.totalPages, handlePageChange]);
+  const handleItemsPerPageChange = useCallback((newItemsPerPage) => {
+    setItemsPerPage(newItemsPerPage);
+    setCurrentPage(1);
+  }, []);
 
   // Memoize blog statistics for better performance
   const realBlogStats = useMemo(() => {
@@ -177,81 +170,81 @@ const BlogGrid = () => {
   return (
     <div
       ref={sectionRef}
-      className={`blog-wrapper ${isVisible ? 'visible' : ''}`}
+      className={`${styles.wrapper} ${isVisible ? styles.visible : ''}`}
     >
       {/* Background Elements - Reduced for performance */}
-      <div className="blog-background-grid"></div>
+      <div className={styles.backgroundGrid}></div>
 
       {/* Hero Header */}
-      <div className="blog-hero-section">
-        <div className="blog-hero-content">
+      <div className={styles.heroSection}>
+        <div className={styles.heroContent}>
           <span>Latest Articles</span>
 
-          <h1 className="blog-hero-title">
-            <span className="blog-title-line">Knowledge</span>
-            <span className="blog-title-line gradient">Sharing Hub</span>
+          <h1 className={styles.heroTitle}>
+            <span className={styles.titleLine}>Knowledge</span>
+            <span className={`${styles.titleLine} ${styles.gradient}`}>Sharing Hub</span>
           </h1>
 
-          <p className="blog-hero-description">
+          <p className={styles.heroDescription}>
             Discover insights, tutorials, and thoughts on modern development,
             design patterns, and cutting-edge technologies.
           </p>
         </div>
       </div>
 
-      <div className="blog-container">
+      <div className={styles.container}>
         {/* Enhanced Filter Section */}
         <div
           ref={filterRef}
-          className="blog-filters-card"
+          className={styles.filtersCard}
         >
           {/* Removed glow div for better performance */}
 
-          <div className="blog-filters-header">
-            <h3 className="blog-filters-title">Find Your Content</h3>
-            <p className="blog-filters-subtitle">
+          <div className={styles.filtersHeader}>
+            <h3 className={styles.filtersTitle}>Find Your Content</h3>
+            <p className={styles.filtersSubtitle}>
               Filter and search through our articles
             </p>
           </div>
 
-          <div className="blog-filters-top-row">
-            <div className="blog-input-group">
+          <div className={styles.filtersTopRow}>
+            <div className={styles.inputGroup}>
               <input
                 type="text"
                 placeholder="Search articles, topics, or keywords..."
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
-                className="blog-search-input"
+                className={styles.searchInput}
               />
               {isSearching && (
-                <div className="blog-search-loading">
-                  <div className="blog-loading-spinner"></div>
+                <div className={styles.searchLoading}>
+                  <div className={styles.loadingSpinner}></div>
                 </div>
               )}
             </div>
-            <div className="blog-select-group">
-              <div className="blog-sort-dropdown">
+            <div className={styles.selectGroup}>
+              <div className={styles.sortDropdown} data-dropdown="sort">
                 <button
                   type="button"
-                  className={`blog-sort-trigger ${isSortDropdownOpen ? 'open' : ''}`}
+                  className={`${styles.sortTrigger} ${isSortDropdownOpen ? styles.open : ''}`}
                   onClick={() => setIsSortDropdownOpen(!isSortDropdownOpen)}
                 >
-                  <span className="blog-sort-selected">
+                  <span className={styles.sortSelected}>
                     {getSelectedSort().label}
                   </span>
                   <ChevronDown
                     size={14}
-                    className={`blog-chevron ${isSortDropdownOpen ? 'rotated' : ''}`}
+                    className={`${styles.chevron} ${isSortDropdownOpen ? styles.rotated : ''}`}
                   />
                 </button>
 
                 {isSortDropdownOpen && (
-                  <div className="blog-sort-dropdown-menu">
+                  <div className={styles.sortDropdownMenu}>
                     {sortOptions.map(sort => (
                       <button
                         key={sort.value}
                         type="button"
-                        className={`blog-sort-option ${sortOrder === sort.value ? 'selected' : ''}`}
+                        className={`${styles.sortOption} ${sortOrder === sort.value ? styles.selected : ''}`}
                         onClick={() => handleSortSelect(sort)}
                       >
                         {sort.label}
@@ -263,25 +256,25 @@ const BlogGrid = () => {
             </div>
           </div>
 
-          <div className="blog-tag-section">
-            <div className="blog-tag-header">
-              <span className="blog-tag-label">Filter by topic:</span>
+          <div className={styles.tagSection}>
+            <div className={styles.tagHeader}>
+              <span className={styles.tagLabel}>Filter by topic:</span>
               {selectedTag && (
                 <button
                   onClick={() => setSelectedTag('')}
-                  className="blog-clear-filter"
+                  className={styles.clearFilter}
                 >
                   Clear Filter ✕
                 </button>
               )}
             </div>
 
-            <div className="blog-tag-filter">
+            <div className={styles.tagFilter}>
               {uniqueTags.map(tag => (
                 <button
                   key={tag}
                   onClick={() => setSelectedTag(tag)}
-                  className={`blog-tag-button ${selectedTag.toLowerCase() === tag.toLowerCase() ? 'active' : ''}`}
+                  className={`${styles.tagButton} ${selectedTag.toLowerCase() === tag.toLowerCase() ? styles.active : ''}`}
                 >
                   {tag}
                 </button>
@@ -292,43 +285,43 @@ const BlogGrid = () => {
 
         {/* Blog Statistics */}
         {!isLoading && (
-          <div className="blog-stats-overview">
-            <div className="blog-stat-item">
-              <span className="blog-stat-label">Total Posts</span>
-              <span className="blog-stat-value">
+          <div className={styles.statsOverview}>
+            <div className={styles.statItem}>
+              <span className={styles.statLabel}>Total Posts</span>
+              <span className={styles.statValue}>
                 {realBlogStats.totalPosts}
               </span>
             </div>
-            <div className="blog-stat-item">
-              <span className="blog-stat-label">Total Views</span>
-              <span className="blog-stat-value">
+            <div className={styles.statItem}>
+              <span className={styles.statLabel}>Total Views</span>
+              <span className={styles.statValue}>
                 {formatNumber(realBlogStats.totalViews)}
               </span>
             </div>
-            <div className="blog-stat-item">
-              <span className="blog-stat-label">Total Likes</span>
-              <span className="blog-stat-value">
+            <div className={styles.statItem}>
+              <span className={styles.statLabel}>Total Likes</span>
+              <span className={styles.statValue}>
                 {formatNumber(realBlogStats.totalLikes)}
               </span>
             </div>
-            <div className="blog-stat-item">
-              <span className="blog-stat-label">Coming Soon</span>
-              <span className="blog-stat-value">✨</span>
+            <div className={styles.statItem}>
+              <span className={styles.statLabel}>Coming Soon</span>
+              <span className={styles.statValue}>✨</span>
             </div>
           </div>
         )}
 
         {/* Blog Grid */}
-        <div className="blog-grid">
+        <div className={styles.grid}>
           {isLoading
             ? Array.from({ length: 4 }).map((_, index) => (
-                <div key={index} className="blog-post-card skeleton">
-                  <div className="blog-skeleton-image"></div>
-                  <div className="blog-skeleton-content">
-                    <div className="blog-skeleton-title"></div>
-                    <div className="blog-skeleton-text"></div>
-                    <div className="blog-skeleton-text short"></div>
-                    <div className="blog-skeleton-footer"></div>
+                <div key={index} className={styles.skeletonCard}>
+                  <div className={styles.skeletonImage}></div>
+                  <div className={styles.skeletonContent}>
+                    <div className={styles.skeletonTitle}></div>
+                    <div className={styles.skeletonText}></div>
+                    <div className={`${styles.skeletonText} ${styles.short}`}></div>
+                    <div className={styles.skeletonFooter}></div>
                   </div>
                 </div>
               ))
@@ -362,95 +355,27 @@ const BlogGrid = () => {
               })}
         </div>
 
-        {/* Results Counter */}
-        <div className="blog-results-info">
-          <span className="blog-results-count">
-            {isLoading
-              ? 'Loading...'
-              : `${paginationData.totalPosts} article${paginationData.totalPosts !== 1 ? 's' : ''} found`}
-            {!isLoading && paginationData.totalPages > 1 && (
-              <span className="blog-page-info">
-                {' '}
-                • Page {currentPage} of {paginationData.totalPages}
-              </span>
-            )}
-          </span>
-          {selectedTag && (
-            <span className="blog-active-filter">
-              Filtered by: <strong>{selectedTag}</strong>
-            </span>
-          )}
-        </div>
-
-        {/* Pagination */}
-        {!isLoading && paginationData.totalPages > 1 && paginationData.totalPosts > 0 && (
-          <div className="blog-pagination">
-            <button
-              onClick={handlePrevPage}
-              disabled={currentPage === 1}
-              className="blog-pagination-btn blog-pagination-prev"
-              aria-label="Previous page"
-            >
-              ← Previous
-            </button>
-
-            <div className="blog-pagination-numbers">
-              {Array.from({ length: paginationData.totalPages }, (_, i) => i + 1).map(
-                pageNumber => {
-                  // Show first page, last page, current page, and pages around current
-                  if (
-                    pageNumber === 1 ||
-                    pageNumber === paginationData.totalPages ||
-                    (pageNumber >= currentPage - 1 &&
-                      pageNumber <= currentPage + 1)
-                  ) {
-                    return (
-                      <button
-                        key={pageNumber}
-                        onClick={() => handlePageChange(pageNumber)}
-                        className={`blog-pagination-btn blog-pagination-number ${
-                          currentPage === pageNumber ? 'active' : ''
-                        }`}
-                        aria-label={`Go to page ${pageNumber}`}
-                      >
-                        {pageNumber}
-                      </button>
-                    );
-                  } else if (
-                    pageNumber === currentPage - 2 ||
-                    pageNumber === currentPage + 2
-                  ) {
-                    return (
-                      <span
-                        key={pageNumber}
-                        className="blog-pagination-ellipsis"
-                      >
-                        ...
-                      </span>
-                    );
-                  }
-                  return null;
-                }
-              )}
-            </div>
-
-            <button
-              onClick={handleNextPage}
-              disabled={currentPage === paginationData.totalPages}
-              className="blog-pagination-btn blog-pagination-next"
-              aria-label="Next page"
-            >
-              Next →
-            </button>
-          </div>
+        {/* Portfolio-Style Pagination */}
+        {!isLoading && paginationData.totalPages > 0 && (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={paginationData.totalPages}
+            onPageChange={handlePageChange}
+            itemsPerPage={itemsPerPage}
+            totalItems={paginationData.totalPosts}
+            onItemsPerPageChange={handleItemsPerPageChange}
+            showItemsPerPage={true}
+            showPageInfo={true}
+            itemType="articles"
+          />
         )}
 
         {/* No Results State */}
         {!isLoading && paginationData.totalPosts === 0 && (
-          <div className="blog-no-results">
-            <div className="blog-no-results-icon">📝</div>
-            <h3 className="blog-no-results-title">No articles found</h3>
-            <p className="blog-no-results-text">
+          <div className={styles.noResults}>
+            <div className={styles.noResultsIcon}>📝</div>
+            <h3 className={styles.noResultsTitle}>No articles found</h3>
+            <p className={styles.noResultsText}>
               Try adjusting your search terms or removing filters to see more
               results.
             </p>
@@ -459,7 +384,7 @@ const BlogGrid = () => {
                 setSearchQuery('');
                 setSelectedTag('');
               }}
-              className="blog-reset-filters"
+              className={styles.resetFilters}
             >
               Reset All Filters
             </button>

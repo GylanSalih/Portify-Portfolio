@@ -1,0 +1,272 @@
+/* Modern Audio Indicator Styles - Seriöser Look */
+
+.audioIndicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.audioBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: inherit;
+  overflow: hidden;
+  position: relative;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+/* Dark mode styles */
+.audioBtn.darkMode,
+[data-theme='dark'] .audioBtn {
+  background: rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.1);
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+}
+
+/* Audio Icon */
+.audioIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+
+  svg {
+    filter: none;
+  }
+}
+
+/* Icon Colors - Seriöser */
+.audioIcon .textGray600 {
+  color: #d1d5db;
+}
+
+.audioIcon .textGray300 {
+  color: #d1d5db;
+}
+
+/* Audio Wave */
+.audioWave {
+  position: absolute;
+  bottom: 0.375rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: flex-end;
+  gap: 0.125rem;
+  height: 1.25rem;
+  z-index: 1;
+}
+
+.waveBar {
+  width: 0.2rem;
+  background: #6b7280;
+  border-radius: 0.1rem;
+  min-height: 0.2rem;
+}
+
+/* Hidden Audio Element */
+.audioBtn .hidden {
+  display: none;
+}
+
+/* Focus States */
+.audioBtn:focus {
+  outline: 2px solid #6b7280;
+  outline-offset: 2px;
+}
+
+.audioBtn:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .audioBtn {
+    border: 2px solid currentColor;
+
+    &:hover {
+      border-color: #6b7280;
+    }
+  }
+
+  .waveBar {
+    background: currentColor;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .audioBtn,
+  .audioIcon,
+  .audioWave {
+    transition: none;
+  }
+
+  .audioBtn:hover {
+    transform: none;
+  }
+
+  .waveBar {
+    animation: none;
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .audioBtn {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .audioWave {
+    bottom: 0.25rem;
+    height: 1rem;
+  }
+
+  .waveBar {
+    width: 0.175rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .audioBtn {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .audioWave {
+    bottom: 0.125rem;
+    height: 0.875rem;
+  }
+
+  .waveBar {
+    width: 0.15rem;
+  }
+}
+
+/* Animation States */
+.audioBtn.animating {
+  pointer-events: none;
+}
+
+/* Glassmorphism Effect - Seriöser */
+.audioBtn.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* Neumorphism Effect - Seriöser */
+.audioBtn.neumorphism {
+  background: linear-gradient(145deg, #f8fafc, #e2e8f0);
+  border: none;
+  box-shadow:
+    2px 2px 4px #cbd5e1,
+    -2px -2px 4px #ffffff;
+
+  &:hover {
+    box-shadow:
+      3px 3px 6px #cbd5e1,
+      -3px -3px 6px #ffffff;
+  }
+}
+
+[data-theme='dark'] .audioBtn.neumorphism {
+  background: linear-gradient(145deg, #1e293b, #0f172a);
+  box-shadow:
+    2px 2px 4px #0f172a,
+    -2px -2px 4px #334155;
+
+  &:hover {
+    box-shadow:
+      3px 3px 6px #0f172a,
+      -3px -3px 6px #334155;
+  }
+}
+
+/* Sound waves for playing state */
+.soundWaves {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.125rem;
+  position: absolute;
+  bottom: 0.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.wave {
+  width: 0.15rem;
+  background: currentColor;
+  border-radius: 0.125rem;
+  animation: waveAnimation 0.8s ease-in-out infinite;
+
+  &.wave1 {
+    height: 0.5rem;
+    animation-delay: 0s;
+  }
+
+  &.wave2 {
+    height: 0.75rem;
+    animation-delay: 0.2s;
+  }
+
+  &.wave3 {
+    height: 0.5rem;
+    animation-delay: 0.4s;
+  }
+}
+
+@keyframes waveAnimation {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.5);
+  }
+}
+
+.icon {
+  transition: transform 0.3s ease;
+}
+
+.volumeOn,
+.volumeOff {
+  display: block;
+}
+

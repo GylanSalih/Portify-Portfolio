@@ -1,0 +1,775 @@
+/* src/app/components/AboutMe/AboutMe.module.scss */
+
+/* -----------------------------------------------------------
+Blog Retro Tags
+---------------------------------------------------------- */
+
+/* You might also like Section */
+.relatedPosts {
+  margin: 80px 0;
+  padding: 0 20px;
+}
+
+.relatedHeading {
+  font-size: 2.5rem;
+  font-family: 'RedHat', sans-serif;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+}
+
+:global(.dark-mode) .relatedHeading {
+  color: #ffffff;
+}
+
+.relatedDescription {
+  color: #666;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 500px;
+}
+
+:global(.dark-mode) .relatedDescription {
+  color: #aaa;
+}
+
+.relatedGrid {
+  width: 65%;
+  gap: 25px;
+  display: grid;
+  max-width: 700px;
+}
+
+.relatedCard {
+  background: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+:global(.dark-mode) .relatedCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.relatedCard:hover {
+  transform: translateY(-5px);
+  border-color: #333;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+:global(.dark-mode) .relatedCard:hover {
+  border-color: #666;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+.relatedContent {
+  padding: 25px;
+}
+
+.relatedMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.postCardStats {
+  display: flex;
+  gap: 15px;
+}
+
+.postCardStat {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+:global(.dark-mode) .postCardStat {
+  color: #999;
+}
+
+.relatedTitle {
+  color: #1a1a1a;
+  font-family: 'RedHat', sans-serif;
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+}
+
+:global(.dark-mode) .relatedTitle {
+  color: #fff;
+}
+
+.relatedExcerpt {
+  color: #666;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+:global(.dark-mode) .relatedExcerpt {
+  color: #aaa;
+}
+
+/* Tags */
+.relatedTags {
+  display: flex;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.relatedTag {
+  background: #e0e0e0;
+  color: #333;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+:global(.dark-mode) .relatedTag {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ccc;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .content {
+    flex-direction: column;
+  }
+
+  .textContainer,
+  .relatedGrid {
+    width: 100%;
+  }
+
+  .relatedHeading {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .relatedGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .relatedCard {
+    margin-bottom: 15px;
+  }
+}
+
+/* =========================== */
+
+.content {
+  width: 100%;
+  justify-content: center;
+}
+
+/* =========================== */
+/* =========================== */
+
+/* -----------------------------------------------------------
+Profile-Information-(Steckbrief)
+---------------------------------------------------------- */
+
+/* Existing Container */
+.profileInformations {
+  margin-top: 25px;
+  padding: 25px;
+  border-radius: 16px;
+  background: #f5f5f5;
+  border: 1px solid #e0e0e0;
+}
+
+:global(.dark-mode) .profileInformations {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profileInformations h3 {
+  color: #333;
+  font-size: 1.5rem;
+  font-family: 'RedHat', sans-serif;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+:global(.dark-mode) .profileInformations h3 {
+  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profileInformations ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Styling of list items */
+.profileInformations :global(li.profile-item) {
+  position: relative;
+  font-size: 0.95rem;
+  font-family: 'RedHat', sans-serif;
+  line-height: 1.6;
+  padding: 20px 15px 12px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #333;
+}
+
+:global(.dark-mode) .profileInformations :global(li.profile-item) {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: #ccc;
+}
+
+/* Hover Effect */
+.profileInformations :global(li.profile-item:hover) {
+  border-color: #333;
+  background: #fafafa;
+  transform: translateY(-3px);
+}
+
+:global(.dark-mode) .profileInformations :global(li.profile-item:hover) {
+  border-color: #666;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Floating Label - aligned left */
+.profileInformations :global(li.profile-item .profile-label) {
+  position: absolute;
+  top: -12px;
+  left: 20px;
+  background: #f5f5f5;
+  padding: 0 10px;
+  color: #666;
+  font-family: 'RedHat', sans-serif;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+:global(.dark-mode) .profileInformations :global(li.profile-item .profile-label) {
+  background: rgba(255, 255, 255, 0.03);
+  color: #999;
+}
+
+/* The actual content */
+.profileInformations :global(li.profile-item .profile-content) {
+  display: block;
+}
+
+/* -----------------------------------------------------------
+About Me socials Styles
+---------------------------------------------------------- */
+
+/* Social Icons Anpassungen */
+.socials {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.socials a {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.socials a:hover {
+  border-color: #333;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+:global(.dark-mode) .socials a:hover {
+  border-color: #666;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  color: #666;
+  transition: all 0.3s ease;
+}
+
+:global(.dark-mode) .icon {
+  color: #aaa;
+}
+
+.socials a:hover .icon {
+  color: #000;
+}
+
+:global(.dark-mode) .socials a:hover .icon {
+  color: #fff;
+}
+
+/* Responsive Anpassungen */
+@media (max-width: 768px) {
+  .profileInformations {
+    margin-top: 30px;
+    padding: 20px;
+  }
+
+  .profileInformations h3 {
+    font-size: 1.3rem;
+  }
+
+  .profileInformations :global(li) {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .profileInformations :global(li strong) {
+    min-width: 100px;
+    display: block;
+    margin-bottom: 5px;
+  }
+}
+
+/* =========================== */
+
+/* Base Styles */
+.section {
+  position: relative;
+  padding: 0 0;
+  color: #1a1a1a;
+}
+
+:global(.dark-mode) .section {
+  position: relative;
+  padding: 0 0;
+  background-color: #0a0a0a;
+  color: #ffffff;
+}
+
+
+
+/* Header Section */
+.headerWrapper {
+  margin-bottom: 80px;
+  max-width: 800px;
+  margin: 0 auto 80px;
+  text-align: center;
+}
+
+.preheading {
+  font-size: 14px;
+  font-family: 'RedHat', sans-serif;
+  color: #666;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+:global(.dark-mode) .preheading {
+  color: #aaa;
+}
+
+.heading {
+  font-size: 55px;
+  font-family: 'RedHat', sans-serif;
+  line-height: 1.2;
+  margin: 0;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+:global(.dark-mode) .heading {
+  color: #ffffff;
+}
+
+.gradient {
+  color: inherit;
+}
+
+/* Content Grid */
+.contentGrid {
+  display: grid;
+  gap: 60px;
+}
+
+@media (min-width: 1024px) {
+  .contentGrid {
+    grid-template-columns: 1fr 1.5fr;
+  }
+}
+
+/* Profile Column */
+.profileColumn {
+  top: 100px;
+}
+
+.imageWrapper {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+}
+
+:global(.dark-mode) .imageWrapper {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profileImage {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+}
+
+/* Social Links */
+.socialLinks {
+  padding-bottom: 30px;
+  display: flex;
+  gap: 12px;
+}
+
+.socialLink {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-radius: 12px;
+  background-color: #f5f5f5;
+  transition: background-color 0.3s ease;
+  color: inherit;
+  text-decoration: none;
+}
+
+:global(.dark-mode) .socialLink {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.socialLink:hover {
+  background-color: #e0e0e0;
+}
+
+:global(.dark-mode) .socialLink:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Content Column */
+.contentColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.intro {
+  font-size: 18px;
+  font-family: 'RedHat', sans-serif;
+  line-height: 1.7;
+  color: #666;
+  margin: 0;
+}
+
+:global(.dark-mode) .intro {
+  color: #aaa;
+}
+
+/* Content Column Headings */
+.contentColumn h5 {
+  font-size: 1.5rem;
+  font-family: 'RedHat', sans-serif;
+  color: #1a1a1a;
+  margin: 2rem 0 1.5rem 0;
+  font-weight: 600;
+  text-align: left;
+}
+
+:global(.dark-mode) .contentColumn h5 {
+  color: #ffffff;
+}
+
+/* Tech Stack */
+.techstack {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  align-items: flex-start;
+}
+
+.techItem {
+  font-size: 18px;
+  font-family: 'RedHat', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 12px;
+  background-color: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+  justify-content: flex-start;
+  padding: 10px;
+  max-height: 55px;
+}
+
+:global(.dark-mode) .techItem {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.techItem:hover {
+  border-color: #333;
+  background: #e0e0e0;
+  transform: translateY(-3px);
+}
+
+:global(.dark-mode) .techItem:hover {
+  border-color: #666;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.techIcon {
+  width: 35px;
+  height: 35px;
+  display: block;
+  margin-left: 0;
+  margin-right: 10px;
+  filter: brightness(0) saturate(100%) invert(27%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(95%) contrast(92%);
+}
+
+:global(.dark-mode) .techIcon {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7500%) hue-rotate(360deg) brightness(100%) contrast(100%);
+}
+
+.techText {
+  text-align: center;
+  flex: 1;
+  font-size: 16px;
+}
+
+/* -----------------------------------------------------------
+Timeline // Work, Achievements
+---------------------------------------------------------- */
+
+/* Improved Timeline */
+.timeline {
+  display: grid;
+  gap: 30px;
+  position: relative;
+}
+
+.timeline h5 {
+  font-size: 1.5rem;
+  font-family: 'RedHat', sans-serif;
+  color: #1a1a1a;
+  margin: 0 0 1.5rem 0;
+  font-weight: 600;
+  text-align: left;
+}
+
+:global(.dark-mode) .timeline h5 {
+  color: #ffffff;
+}
+
+.timelineItem {
+  position: relative;
+  padding-left: 30px;
+}
+
+.timelineItem:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 24px;
+  width: 12px;
+  height: 12px;
+  background: #333;
+  border-radius: 50%;
+}
+
+:global(.dark-mode) .timelineItem:before {
+  background: #fff;
+}
+
+.timelineItem:after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 36px;
+  bottom: -30px;
+  width: 2px;
+  background: #e0e0e0;
+}
+
+:global(.dark-mode) .timelineItem:after {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.timelineItem:last-child:after {
+  display: none;
+}
+
+.timelineCard {
+  background: #f5f5f5;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+}
+
+:global(.dark-mode) .timelineCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.timelineHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.timelineYear {
+  font-family: monospace;
+  color: #666;
+  font-size: 14px;
+  font-family: 'RedHat', sans-serif;
+}
+
+:global(.dark-mode) .timelineYear {
+  color: #999;
+}
+
+.timelineCompany {
+  color: #666;
+  font-size: 14px;
+  font-family: 'RedHat', sans-serif;
+}
+
+:global(.dark-mode) .timelineCompany {
+  color: #aaa;
+}
+
+.timelineTitle {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-family: 'RedHat', sans-serif;
+  color: #1a1a1a;
+}
+
+:global(.dark-mode) .timelineTitle {
+  color: #fff;
+}
+
+.timelineDescription {
+  margin: 0;
+  color: #666;
+  line-height: 1.6;
+}
+
+:global(.dark-mode) .timelineDescription {
+  color: #aaa;
+}
+
+/* -----------------------------------------------------------
+Open Source Section 
+---------------------------------------------------------- */
+
+.opensource {
+  background: #f5f5f5;
+  border-radius: 16px;
+  padding: 30px;
+  border: 1px solid #e0e0e0;
+  backdrop-filter: blur(10px);
+}
+
+:global(.dark-mode) .opensource {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.opensourceBadge {
+  display: inline-block;
+  padding: 6px 12px;
+  background: #e0e0e0;
+  color: #666;
+  /* border-radius: 20px; */
+  font-size: 12px;
+  margin-bottom: 16px;
+  font-weight: bold;
+  position: absolute;
+  top: -12px;
+  left: 20px;
+  padding: 0 10px;
+  font-family: 'RedHat', sans-serif;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+:global(.dark-mode) .opensourceBadge {
+  background: rgba(255, 255, 255, 0.03);
+  color: #999;
+}
+
+.opensourceTitle {
+  margin: 0 0 16px;
+  font-size: 18px;
+  color: #1a1a1a;
+}
+
+:global(.dark-mode) .opensourceTitle {
+  color: #ffffff;
+}
+
+.opensourceText {
+  margin: 0;
+  color: #666;
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+:global(.dark-mode) .opensourceText {
+  color: #aaa;
+}
+
+.opensourceWrapper {
+  padding-top: 35px;
+}
+
+/* -----------------------------------------------------------
+Responsive Styles
+---------------------------------------------------------- */
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .heading {
+    font-size: 36px;
+  }
+
+  .timelineItem {
+    padding-left: 20px;
+  }
+
+  .timelineItem:before {
+    width: 8px;
+    height: 8px;
+    top: 20px;
+  }
+}
+

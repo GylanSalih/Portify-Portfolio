@@ -3,61 +3,61 @@
 import React, { useState, useEffect } from 'react';
 import { Github, Linkedin, Dribbble, Mail } from 'lucide-react';
 import Link from 'next/link';
-import './AboutMe.css';
+import styles from './AboutMe.module.scss';
 
 const AboutMe = () => {
   return (
-    <section className="about-me-section" id="about">
-      <div className="about-me-container">
-        <div className="about-me-header-wrapper">
-          <h2 className="about-me-preheading">About Me</h2>
-          <h1 className="about-me-heading">
+    <section className={styles.section} id="about">
+      <div className={styles.container}>
+        <div className={styles.headerWrapper}>
+          <h2 className={styles.preheading}>About Me</h2>
+          <h1 className={styles.heading}>
             Chasing progress, knowing that every step brings me{' '}
-            <span className="about-me-gradient">closer and closer</span>
+            <span className={styles.gradient}>closer and closer</span>
           </h1>
         </div>
 
-        <div className="about-me-social-links">
-          <div className="about-me-socials">
+        <div className={styles.socialLinks}>
+          <div className={styles.socials}>
             <a
               href="https://github.com/GylanSalih/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Github className="about-me-icon" />
+              <Github className={styles.icon} />
             </a>
             <a
               href="https://linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Linkedin className="about-me-icon" />
+              <Linkedin className={styles.icon} />
             </a>
             <a
               href="https://dribbble.com"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Dribbble className="about-me-icon" />
+              <Dribbble className={styles.icon} />
             </a>
             <a href="mailto:hello@portfolio.com">
-              <Mail className="about-me-icon" />
+              <Mail className={styles.icon} />
             </a>
           </div>
         </div>
 
-        <div className="about-me-content-grid">
-          <div className="about-me-profile-column">
-            <div className="about-me-image-wrapper">
+        <div className={styles.contentGrid}>
+          <div className={styles.profileColumn}>
+            <div className={styles.imageWrapper}>
               <img
                 src="/assets/images/about/aboutme.jpg"
                 alt="Profile"
-                className="about-me-profile-image"
+                className={styles.profileImage}
               />
-              <div className="about-me-image-overlay"></div>
+              <div className={styles.imageOverlay}></div>
             </div>
 
-            <div className="about-me-profile-informations">
+            <div className={styles.profileInformations}>
               <h3>About Me</h3>
               <ul>
                 <li className="profile-item">
@@ -91,15 +91,15 @@ const AboutMe = () => {
               </ul>
             </div>
 
-            <div className="opensource-wrapper">
-              <div className="about-me-opensource">
+            <div className={styles.opensourceWrapper}>
+              <div className={styles.opensource}>
                 <div className="about-me-opensource-header">
-                  <span className="about-me-opensource-badge">Open Source</span>
-                  <h3 className="about-me-opensource-title">
+                  <span className={styles.opensourceBadge}>Open Source</span>
+                  <h3 className={styles.opensourceTitle}>
                     Contributions to the Open Source Community
                   </h3>
                 </div>
-                <p className="about-me-opensource-text">
+                <p className={styles.opensourceText}>
                   80+ stars on GitHub, daily updates, and improved posts and
                   repositories - completely free for the community. Glad to
                   assist newbie developers, designers, and creators in achieving
@@ -109,9 +109,9 @@ const AboutMe = () => {
             </div>
           </div>
 
-          <div className="about-me-content-column">
+          <div className={styles.contentColumn}>
             <h5>More Than Code</h5>
-            <p className="about-me-intro">
+            <p className={styles.intro}>
               Hello! You can call me Gylan Salih. I&#39;ve always had a passion
               for development, but due to life circumstances, I never had the
               chance to fully dive into it. Now, I finally have the security and
@@ -124,63 +124,63 @@ const AboutMe = () => {
             </p>
 
             <h5>My Personality</h5>
-            <div className="about-me-techstack">
-              <div className="about-me-tech-item">
+            <div className={styles.techstack}>
+              <div className={styles.techItem}>
                 <img
-                  className="about-me-tech-icon"
+                  className={styles.techIcon}
                   src="/assets/images/about/team.svg"
                   alt="Teamwork"
                 />
-                <span className="about-me-tech-text">
+                <span className={styles.techText}>
                   Collaborative Team Player
                 </span>
               </div>
-              <div className="about-me-tech-item">
+              <div className={styles.techItem}>
                 <img
-                  className="about-me-tech-icon"
+                  className={styles.techIcon}
                   src="/assets/images/about/fire.svg"
                   alt="Problem Solving"
                 />
-                <span className="about-me-tech-text">
+                <span className={styles.techText}>
                   Analytical & Solution-Oriented
                 </span>
               </div>
-              <div className="about-me-tech-item">
+              <div className={styles.techItem}>
                 <img
-                  className="about-me-tech-icon"
+                  className={styles.techIcon}
                   src="/assets/images/about/code.svg"
                   alt="Passion"
                 />
-                <span className="about-me-tech-text">Driven & Passionate</span>
+                <span className={styles.techText}>Driven & Passionate</span>
               </div>
-              <div className="about-me-tech-item">
+              <div className={styles.techItem}>
                 <img
-                  className="about-me-tech-icon"
+                  className={styles.techIcon}
                   src="/assets/images/about/chat.svg"
                   alt="Communication"
                 />
-                <span className="about-me-tech-text">
+                <span className={styles.techText}>
                   Friendly & Strong Communicator
                 </span>
               </div>
             </div>
 
-            <div className="about-me-timeline">
+            <div className={styles.timeline}>
               <h5>Achievements</h5>
 
-              <div className="about-me-timeline-item">
-                <div className="about-me-timeline-card">
-                  <div className="about-me-timeline-header">
-                    <div className="about-me-timeline-year">05.2025 - Now</div>
-                    <div className="about-me-timeline-company">
+              <div className={styles.timelineItem}>
+                <div className={styles.timelineCard}>
+                  <div className={styles.timelineHeader}>
+                    <div className={styles.timelineYear}>05.2025 - Now</div>
+                    <div className={styles.timelineCompany}>
                       Voluntary Work
                     </div>
                   </div>
-                  <h3 className="about-me-timeline-title">
+                  <h3 className={styles.timelineTitle}>
                     Voluntary Work for Students and Children with Migration
                     Background
                   </h3>
-                  <p className="about-me-timeline-description">
+                  <p className={styles.timelineDescription}>
                     I am currently involved in voluntary work, supporting
                     students and children with migration backgrounds. It is a
                     meaningful step in my life, as I help foster integration and
@@ -191,18 +191,18 @@ const AboutMe = () => {
                 </div>
               </div>
 
-              <div className="about-me-timeline-item">
-                <div className="about-me-timeline-card">
-                  <div className="about-me-timeline-header">
-                    <div className="about-me-timeline-year">2023 - 2025</div>
-                    <div className="about-me-timeline-company">
+              <div className={styles.timelineItem}>
+                <div className={styles.timelineCard}>
+                  <div className={styles.timelineHeader}>
+                    <div className={styles.timelineYear}>2023 - 2025</div>
+                    <div className={styles.timelineCompany}>
                       Higher Education
                     </div>
                   </div>
-                  <h3 className="about-me-timeline-title">
+                  <h3 className={styles.timelineTitle}>
                     Advanced Secondary Education (Fachabitur)
                   </h3>
-                  <p className="about-me-timeline-description">
+                  <p className={styles.timelineDescription}>
                     I am currently working towards my Fachabitur - a huge step
                     in my life. Finally, I am making progress, finally, I have
                     security, finally, a step towards change.
@@ -210,20 +210,20 @@ const AboutMe = () => {
                 </div>
               </div>
 
-              <div className="about-me-timeline-item">
-                <div className="about-me-timeline-card">
-                  <div className="about-me-timeline-header">
-                    <div className="about-me-timeline-year">
+              <div className={styles.timelineItem}>
+                <div className={styles.timelineCard}>
+                  <div className={styles.timelineHeader}>
+                    <div className={styles.timelineYear}>
                       02.2019 - 08.2023
                     </div>
-                    <div className="about-me-timeline-company">
+                    <div className={styles.timelineCompany}>
                       Higher Education
                     </div>
                   </div>
-                  <h3 className="about-me-timeline-title">
+                  <h3 className={styles.timelineTitle}>
                     Secondary School Certificate (FORQ)
                   </h3>
-                  <p className="about-me-timeline-description">
+                  <p className={styles.timelineDescription}>
                     I spent many years working towards this due to life
                     circumstances. But hey, if I made it, then you certainly can
                     too. Just don&#39;t give up—trust me!
@@ -231,20 +231,20 @@ const AboutMe = () => {
                 </div>
               </div>
 
-              <div className="about-me-timeline-item">
-                <div className="about-me-timeline-card">
-                  <div className="about-me-timeline-header">
-                    <div className="about-me-timeline-year">
+              <div className={styles.timelineItem}>
+                <div className={styles.timelineCard}>
+                  <div className={styles.timelineHeader}>
+                    <div className={styles.timelineYear}>
                       08.2018 - 02.2019
                     </div>
-                    <div className="about-me-timeline-company">
+                    <div className={styles.timelineCompany}>
                       Higher Education
                     </div>
                   </div>
-                  <h3 className="about-me-timeline-title">
+                  <h3 className={styles.timelineTitle}>
                     Extended General School Certificate
                   </h3>
-                  <p className="about-me-timeline-description">
+                  <p className={styles.timelineDescription}>
                     I started with the preparatory course, then completed grade
                     9, and reaching grade 10 was my first real milestone.
                   </p>

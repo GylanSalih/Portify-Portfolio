@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback, memo, useMemo } from 'react';
 import Image from 'next/image';
-import styles from './LandingSlider.module.css';
+import styles from './LandingSlider.module.scss';
 
 const LandingSlider = memo(() => {
   const [activeSlide, setActiveSlide] = useState(0);

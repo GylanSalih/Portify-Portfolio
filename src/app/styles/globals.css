@@ -11,6 +11,25 @@
   --foreground: #0a0a0a;
   --dark-mode: #f8f8f8;
   --light-mode: #0a0a0a;
+  
+  /* ContentSlider variables */
+  --color-background: #f8f8f8;
+  --color-foreground: #0a0a0a;
+  --color-muted-foreground: rgba(10, 10, 10, 0.6);
+  --color-card: rgba(10, 10, 10, 0.05);
+  --color-border: rgba(10, 10, 10, 0.1);
+}
+
+html.dark-mode {
+  --dark-mode: #0a0a0a;
+  --light-mode: #f8f8f8;
+  
+  /* ContentSlider variables for dark mode */
+  --color-background: #0a0a0a;
+  --color-foreground: #f8f8f8;
+  --color-muted-foreground: rgba(248, 248, 248, 0.6);
+  --color-card: rgba(248, 248, 248, 0.05);
+  --color-border: rgba(248, 248, 248, 0.1);
 }
 
 /* h1 {

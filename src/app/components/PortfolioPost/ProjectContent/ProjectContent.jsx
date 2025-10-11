@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import styles from './ProjectContent.module.css';
+import styles from './ProjectContent.module.scss';
 
 const ProjectContent = ({ sections }) => {
   return (

@@ -1,0 +1,133 @@
+/* ===================================
+   RELATED ARTICLES SECTION
+   ================================= */
+
+/* Main Related Articles Wrapper */
+.section {
+  position: relative;
+  min-height: 50vh;
+  background: #0a0a0a;
+  overflow: hidden;
+  padding: 4rem 0;
+
+  /* Dark mode support */
+  :global(html:not(.dark-mode)) & {
+    background: #f8f8f8;
+  }
+
+  :global(html.dark-mode) & {
+    background: #0a0a0a;
+  }
+}
+
+/* Background Elements */
+.backgroundGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Hero Section */
+.heroSection {
+  position: relative;
+  padding: 2rem 2rem 3rem;
+  text-align: center;
+  z-index: 10;
+}
+
+.heroContent {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.heroTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+
+  /* Dark mode support */
+  :global(html:not(.dark-mode)) & {
+    color: #0a0a0a;
+  }
+
+  :global(html.dark-mode) & {
+    color: #ffffff;
+  }
+}
+
+/* Container */
+.container {
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem 2rem;
+  z-index: 10;
+}
+
+/* Related Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 420px));
+  gap: 2rem;
+  opacity: 1;
+  visibility: visible;
+  justify-content: start;
+  /* GPU Acceleration */
+  will-change: contents;
+  transform: translateZ(0);
+  contain: layout style;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 3rem 0;
+  }
+
+  .heroSection {
+    padding: 1.5rem 1rem 2rem;
+  }
+
+  .heroTitle {
+    font-size: 2rem;
+  }
+
+  .container {
+    padding: 0 1rem 1.5rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 1.75rem;
+  }
+
+  .container {
+    padding: 0 1rem 1rem;
+  }
+
+  .grid {
+    gap: 1rem;
+  }
+}
+

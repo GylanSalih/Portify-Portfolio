@@ -64,8 +64,8 @@ const Navbar = () => {
                 <Image
                   src={
                     isDarkMode
-                      ? '/assets/images/logo_white.png'
-                      : '/assets/images/logo_black.png'
+                      ? '/assets/images/logo/logo_white.png'
+                      : '/assets/images/logo/logo_black.png'
                   }
                   alt="Portify Logo"
                   width={48}
@@ -115,8 +115,8 @@ const Navbar = () => {
                   <Image
                     src={
                       isDarkMode
-                        ? '/assets/images/logo_white.png'
-                        : '/assets/images/logo_black.png'
+                        ? '/assets/images/logo/logo_white.png'
+                        : '/assets/images/logo/logo_black.png'
                     }
                     alt="Portify Logo"
                     width={40}

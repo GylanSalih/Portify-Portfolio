@@ -3,7 +3,7 @@
 import React from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
-import styles from './ImageModal.module.css';
+import styles from './ImageModal.module.scss';
 
 const ImageModal = ({ 
   isOpen, 

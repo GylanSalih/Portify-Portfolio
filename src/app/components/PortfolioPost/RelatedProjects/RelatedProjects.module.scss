@@ -1,0 +1,291 @@
+.related {
+  margin-bottom: 4rem;
+  margin-top: 6rem;
+  padding: 0;
+  background: transparent;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 4rem;
+  position: relative;
+
+  @media (max-width: 768px) {
+    margin-top: 4rem;
+    padding-top: 3rem;
+  }
+
+  @media (max-width: 480px) {
+    margin-top: 3rem;
+    padding-top: 2rem;
+  }
+}
+
+.header {
+  text-align: left;
+  margin-bottom: 3rem;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 480px) {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  text-align: left;
+  font-family: 'BlenderProBold', sans-serif;
+  line-height: 1.1;
+
+  :global(html.dark-mode) & {
+    color: #fff;
+  }
+
+  @media (max-width: 1024px) {
+    font-size: 2.5rem;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.75rem;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 550px);
+  gap: 30px;
+  justify-content: center;
+  list-style: none;
+  width: 100%;
+  box-sizing: border-box;
+
+  @media (max-width: 1800px) {
+    grid-template-columns: repeat(3, minmax(450px, 550px));
+    gap: 25px;
+  }
+
+  @media (max-width: 1550px) {
+    grid-template-columns: repeat(2, minmax(400px, 550px));
+    gap: 20px;
+  }
+
+  @media (max-width: 1250px) {
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 20px;
+  }
+}
+
+.item {
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.card {
+  width: 550px;
+  height: 400px;
+  background: transparent;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  position: relative;
+
+  &:hover {
+    .image {
+      transform: scale(1.02);
+    }
+
+    .figure::after {
+      opacity: 1;
+    }
+
+    .overlay {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 1024px) {
+    width: 100%;
+    height: 320px;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 550px;
+    height: auto;
+    min-height: 300px;
+  }
+
+  @media (max-width: 480px) {
+    min-height: 260px;
+  }
+}
+
+.figure {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  margin: 0;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.75) 0%,
+      rgba(0, 0, 0, 0.35) 40%,
+      rgba(0, 0, 0, 0.05) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    will-change: opacity;
+  }
+
+  @media (max-width: 768px) {
+    aspect-ratio: 550/400;
+  }
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition:
+    transform 0.4s ease,
+    opacity 0.4s ease;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  color: #fff;
+  opacity: 0;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  transform: translateY(15px);
+  z-index: 2;
+  will-change: transform, opacity;
+
+  > div:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    margin: 0;
+    font-family: 'BlenderProBold', sans-serif;
+
+    @media (max-width: 768px) {
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1rem;
+    }
+  }
+
+  p {
+    font-size: 1rem;
+    margin: 0.25rem 0 0 0;
+    font-weight: 400;
+    opacity: 0.9;
+
+    @media (max-width: 768px) {
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.875rem;
+  }
+}
+
+.linkIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  opacity: 0.8;
+  will-change: transform, opacity;
+
+  &:hover {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+.tags {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    margin-top: 0.4rem;
+  }
+}
+
+.tag {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  font-weight: 500;
+  backdrop-filter: blur(5px);
+
+  @media (max-width: 768px) {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

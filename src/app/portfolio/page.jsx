@@ -6,7 +6,7 @@ import PortfolioHero from '../components/PortfolioGrid/PortfolioHero/PortfolioHe
 import ModernGrid from '../components/PortfolioGrid/ModernGrid/ModernGrid';
 import Filter from '../components/PortfolioGrid/Filter/Filter';
 import Pagination from '../components/PortfolioGrid/Pagination/Pagination';
-import './portfolio.css';
+import styles from './portfolio.module.scss';
 
 export default function PortfolioPage() {
   const [layoutMode, setLayoutMode] = useState(1);
@@ -91,7 +91,7 @@ export default function PortfolioPage() {
   }
 
   return (
-    <div className="portfolio-page">
+    <div className={styles.page}>
       <PortfolioHero />
       <Filter 
         key="portfolio-filter"

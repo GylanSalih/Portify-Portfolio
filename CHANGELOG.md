@@ -23,19 +23,27 @@ Note and Todos for myself:
 [X] Check out HeroUI maybe useful ?
 [X] Improve Mobile Menu and Header alignment
 [X] SSR Component pieces
-
+[X] darkmode / lightmode switch titles dont switch correctly
+[X] 
+[X] 
 ---
 
 Lookbook:
 Updates / Fixes:
 
 0.0.26 – Newest Updates
-• Fixed memory leaks that made everything extremely slow
-• Redesign in planning – simpler, cleaner, smoother, and more modern
-• Removed many features (like the holo effect) since the redesign is planned and such visual effects, while nice, are not efficient and hurt performance and user experience
-• Completely new design for the blog – still a work in progress, but I’m motivated
-• Many updates overall – I’ll update the changelog tomorrow, but here’s a small note in case I forget
-• Home, blog, and portfolio have all been changed and improved
+• Fixed memory leaks that were causing severe slowdowns
+• Redesign in progress – aiming for a simpler, cleaner, smoother, and more modern look
+• Removed several features (such as the holo effect) since the redesign is planned; these visual effects, while nice, negatively impacted performance and user experience
+• Completely new design for the blog – still a work in progress, but I’m feeling motivated
+• Many overall updates – I’ll update the changelog tomorrow, but here’s a quick note in case I forget
+• Home, blog, and portfolio pages have all been improved and updated
+• Merged CSS into SCSS using styles.module.scss for simpler and cleaner class names
+• Improved the single blog card component, which is used in both “You Might Also Like” and the blog grid
+• Removed content from the slider – the slider is currently being reworked
+• All styles moved to style.module.scss for cleaner class names across all projects (className={styles.name})
+• Removed overly colorful elements from components – the goal is a more cohesive visual harmony with the portfolio page
+• Added CardContentSlider as a new component and updated all related components accordingly
 
 0.0.25 – Previous Updates
 • Split portfolio posts into individual components

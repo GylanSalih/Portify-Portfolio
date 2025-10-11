@@ -13,7 +13,7 @@ import BlogMightLike from '../BlogMightLike/blogmightlike';
 import LikeButton from '../LikeButton';
 import { Clock, Eye } from 'lucide-react';
 import Image from 'next/image';
-import './blogpost.css';
+import styles from './BlogPost.module.scss';
 
 const BlogPost = () => {
   const { slug } = useParams();
@@ -185,56 +185,56 @@ const BlogPost = () => {
 
   if (!post)
     return (
-      <div className="loading-container">
-        <div className="loading-spinner">Lade...</div>
+      <div className={styles.loadingContainer}>
+        <div className={styles.loadingSpinner}>Lade...</div>
       </div>
     );
 
   return (
-    <div className="blog-post-clean">
+    <div className={styles.container}>
       {/* Hero Section */}
-      <header className="blog-hero">
-        <div className="hero-container">
-          <div className="hero-meta">
-            <div className="meta-item">
-              <Clock className="meta-icon" />
+      <header className={styles.hero}>
+        <div className={styles.heroContainer}>
+          <div className={styles.heroMeta}>
+            <div className={styles.metaItem}>
+              <Clock className={styles.metaIcon} />
               <span>{post.readTime}</span>
             </div>
-            <div className="meta-item">
-              <Eye className="meta-icon" />
+            <div className={styles.metaItem}>
+              <Eye className={styles.metaIcon} />
               <span>
                 {statsLoading ? '0' : formatNumber(stats.views)} Aufrufe
               </span>
             </div>
-            <div className="meta-item">
+            <div className={styles.metaItem}>
               <span>❤️</span>
               <span>
                 {statsLoading ? '0' : formatNumber(stats.likes)} Likes
               </span>
             </div>
           </div>
-          <h1 className="hero-title">{post.title}</h1>
-          {post.excerpt && <p className="hero-subtitle">{post.excerpt}</p>}
+          <h1 className={styles.heroTitle}>{post.title}</h1>
+          {post.excerpt && <p className={styles.heroSubtitle}>{post.excerpt}</p>}
         </div>
       </header>
 
       {/* Main Content */}
-      <div className="blog-content">
-        <main className="article-main">
-          <article className="article-content">
+      <div className={styles.content}>
+        <main className={styles.articleMain}>
+          <article className={styles.articleContent}>
             {post.content.map((section, index) => (
               <div
                 key={section.sectionId || index}
-                className="content-section"
+                className={styles.contentSection}
                 dangerouslySetInnerHTML={{ __html: section.content }}
               />
             ))}
           </article>
 
           {/* Article Footer */}
-          <footer className="article-footer">
+          <footer className={styles.articleFooter}>
             {/* Like Section */}
-            <div className="like-section">
+            <div className={styles.likeSection}>
               <LikeButton
                 slug={slug}
                 stats={stats}
@@ -245,13 +245,13 @@ const BlogPost = () => {
 
             {/* Tags Section */}
             {post.tags && post.tags.length > 0 && (
-              <div className="tags-section">
-                <div className="tags-header">
+              <div className={styles.tagsSection}>
+                <div className={styles.tagsHeader}>
                   <h3>Tags</h3>
                 </div>
-                <div className="tags-list">
+                <div className={styles.tagsList}>
                   {post.tags.map((tag, index) => (
-                    <span key={index} className="tag">
+                    <span key={index} className={styles.tag}>
                       {tag}
                     </span>
                   ))}
@@ -260,19 +260,19 @@ const BlogPost = () => {
             )}
 
             {/* Author Card */}
-            <div className="author-card">
-              <div className="author-avatar">
+            <div className={styles.authorCard}>
+              <div className={styles.authorAvatar}>
                 <Image
                   src={post.authorImage || '/assets/images/blog/author.webp'}
                   alt={post.author}
                   width={64}
                   height={64}
-                  className="author-image"
+                  className={styles.authorImage}
                 />
               </div>
-              <div className="author-info">
-                <h4 className="author-name">{post.author}</h4>
-                <p className="author-bio">
+              <div className={styles.authorInfo}>
+                <h4 className={styles.authorName}>{post.author}</h4>
+                <p className={styles.authorBio}>
                   Full-Stack Developer und UI/UX Designer mit Leidenschaft für
                   schöne, funktionale digitale Erlebnisse mit modernen
                   Web-Technologien.

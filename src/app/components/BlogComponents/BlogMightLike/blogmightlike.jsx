@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import BlogCard from '../BlogCard/BlogCard';
-import '../BlogCard/BlogCard.css';
-import '../BlogGrid/bloggrid.css';
+import styles from './BlogMightLike.module.scss';
 import { useAllBlogStats } from '../../../hooks/useBlogStats'; // bloggrid hook fetch
 import { calculateReadTime, processExcerpt } from '../../../lib/utils';
 
@@ -137,25 +136,22 @@ const BlogMightLike = ({
   const shownPosts = filteredPosts.slice(0, maxPosts);
 
   return (
-    <div className="blog-wrapper">
-      {/* Background Elements - genau wie BlogGrid */}
-      <div className="blog-background-grid"></div>
-      <div className="blog-floating-orb blog-orb-1"></div>
-      <div className="blog-floating-orb blog-orb-2"></div>
-      <div className="blog-floating-orb blog-orb-3"></div>
+    <div className={styles.section}>
+      {/* Background Elements */}
+      <div className={styles.backgroundGrid}></div>
 
-      {/* Hero Header - genau wie BlogGrid */}
-      <div className="blog-hero-section">
-        <div className="blog-hero-content">
-          <h1 className="blog-hero-title">
+      {/* Hero Header */}
+      <div className={styles.heroSection}>
+        <div className={styles.heroContent}>
+          <h1 className={styles.heroTitle}>
             Related Articles
           </h1>
         </div>
       </div>
 
-      <div className="blog-container">
-        {/* Blog Grid - genau wie BlogGrid */}
-        <div className="blog-grid">
+      <div className={styles.container}>
+        {/* Related Grid */}
+        <div className={styles.grid}>
           {shownPosts.map((related, index) => {
             const currentStats = allStats[related.slug] || {
               views: 0,
@@ -175,10 +171,10 @@ const BlogMightLike = ({
                 key={related.id}
                 post={postData}
                 index={index}
-                variant="default"
-                showRelevanceScore={false}
-                truncateTitle={true}
-                truncateExcerpt={true}
+                variant="related"
+                showRelevanceScore={true}
+                truncateTitle={false}
+                truncateExcerpt={false}
                 formatNumbers={true}
               />
             );

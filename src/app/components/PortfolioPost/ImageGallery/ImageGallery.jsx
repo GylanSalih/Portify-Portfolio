@@ -6,7 +6,7 @@ import '@fancyapps/ui/dist/fancybox/fancybox.css';
 import '@fancyapps/ui/dist/carousel/carousel.css';
 import '@fancyapps/ui/dist/carousel/carousel.thumbs.css';
 import '../../../styles/fancybox-custom.css'; // import erst nach default -> von fancybox custom css um default zu überschreiben
-import styles from './ImageGallery.module.css';
+import styles from './ImageGallery.module.scss';
 
 const ImageGallery = ({ images }) => {
   // Initialize Fancybox for this gallery

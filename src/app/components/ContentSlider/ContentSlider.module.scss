@@ -1,0 +1,329 @@
+.contentSlider {
+  padding: 5rem 0;
+  background: var(--color-background);
+  overflow: visible;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+
+  @media (max-width: 768px) {
+    padding: 3rem 0;
+  }
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+
+  @media (max-width: 640px) {
+    padding: 0 1rem;
+  }
+}
+
+.header {
+  text-align: left;
+  margin-bottom: 0;
+  position: relative;
+  z-index: 1;
+  margin-left: 64px; /* Align with first card position */
+
+  @media (max-width: 768px) {
+    margin-bottom: 0;
+    margin-left: 48px;
+  }
+
+  @media (max-width: 480px) {
+    margin-left: 0;
+  }
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-foreground);
+  margin-bottom: 0.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.25rem;
+  }
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: var(--color-muted-foreground);
+  max-width: 500px;
+  margin: 0;
+  line-height: 1.5;
+
+  @media (max-width: 768px) {
+    font-size: 0.875rem;
+  }
+}
+
+.sliderContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem 0 0rem 0;
+  overflow: visible;
+
+  @media (max-width: 768px) {
+    gap: 0.5rem;
+    padding: 0.75rem 0 3rem 0;
+  }
+}
+
+.navButton {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-foreground);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
+  flex-shrink: 0;
+  position: relative;
+  cursor: pointer;
+
+  svg {
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+  &:hover:not(:disabled) {
+    background: var(--color-foreground);
+    color: var(--color-background);
+    border-color: var(--color-foreground);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  @media (max-width: 768px) {
+    width: 40px;
+    height: 40px;
+    
+    svg {
+      width: 20px;
+      height: 20px;
+      display: block;
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+.prevButton {
+  margin-right: 0.5rem;
+}
+
+.nextButton {
+  margin-left: 0.5rem;
+}
+
+.sliderWrapper {
+  flex: 1;
+  overflow: visible;
+  border-radius: 1rem;
+  padding: 0;
+}
+
+.sliderTrack {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 1.5rem;
+  overflow: visible;
+  padding: 2rem 0 3rem 0;
+
+  @media (max-width: 768px) {
+    gap: 1rem;
+    padding: 1.5rem 0 2.5rem 0;
+  }
+}
+
+.sliderItem {
+  flex: 0 0 calc(16.666% - 1.25rem);
+  min-width: 0;
+
+  @media (max-width: 1400px) {
+    flex: 0 0 calc(20% - 1rem);
+  }
+
+  @media (max-width: 1200px) {
+    flex: 0 0 calc(25% - 1rem);
+  }
+
+  @media (max-width: 1024px) {
+    flex: 0 0 calc(33.333% - 1rem);
+  }
+
+  @media (max-width: 768px) {
+    flex: 0 0 calc(50% - 0.75rem);
+  }
+
+  @media (max-width: 480px) {
+    flex: 0 0 calc(100% - 0.5rem);
+  }
+}
+
+.itemCard {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    border-color: var(--color-muted-foreground);
+  }
+}
+
+.itemImage {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  &:hover img {
+    transform: scale(1.02);
+  }
+
+  @media (max-width: 768px) {
+    height: 160px;
+  }
+}
+
+.categoryBadge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.75rem;
+  color: white;
+  font-size: 0.625rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  opacity: 0.9;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.itemContent {
+  padding: 1.25rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+}
+
+.itemTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-foreground);
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+}
+
+.itemDescription {
+  color: var(--color-muted-foreground);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  flex: 1;
+  font-size: 0.9rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+
+  @media (max-width: 768px) {
+    font-size: 0.85rem;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+}
+
+.indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2px;
+
+  @media (max-width: 768px) {
+    margin-top: 1px;
+  }
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-border);
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: var(--color-muted-foreground);
+    transform: scale(1.1);
+  }
+
+  &.active {
+    background: var(--color-foreground);
+    transform: scale(1.2);
+  }
+
+  @media (max-width: 768px) {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+// Dark mode adjustments
+.dark {
+  .itemCard {
+    background: var(--color-card);
+    border-color: var(--color-border);
+    
+    &:hover {
+      box-shadow: 0 10px 25px rgba(255, 255, 255, 0.05);
+    }
+  }
+}

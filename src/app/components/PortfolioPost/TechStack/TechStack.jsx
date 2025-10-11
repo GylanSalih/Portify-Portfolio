@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import styles from './TechStack.module.css';
+import styles from './TechStack.module.scss';
 
 const TechStack = ({ techStack }) => {
   if (!techStack || techStack.length === 0) {

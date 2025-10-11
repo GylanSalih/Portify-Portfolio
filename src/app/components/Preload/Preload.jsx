@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import './Preload.css';
+import styles from './Preload.module.scss';
 
 const Preload = ({ onLoaded }) => {
   const [progress, setProgress] = useState(0);
@@ -11,9 +11,9 @@ const Preload = ({ onLoaded }) => {
   // Asset-Liste direkt in der Komponente definiert
   const assetsToPreload = [
     // Wichtige Bilder
-    { type: 'image', path: '/assets/images/logo_white.png' },
-    { type: 'image', path: '/assets/images/logo_black.png' },
-    { type: 'image', path: '/assets/images/logo.png' },
+    { type: 'image', path: '/assets/images/logo/logo_white.png' },
+    { type: 'image', path: '/assets/images/logo/logo_black.png' },
+    { type: 'image', path: '/assets/images/logo/logo.png' },
     
     // Landing Page Bilder
     { type: 'image', path: '/assets/images/landing/OniBoy1.webp' },
@@ -113,18 +113,18 @@ const Preload = ({ onLoaded }) => {
   if (!isVisible) return null;
 
   return (
-    <div className={`preloader ${!isVisible ? 'loaded' : ''}`}>
-      <div className="kanji-background">
+    <div className={`${styles.preloader} ${!isVisible ? styles.loaded : ''}`}>
+      <div className={styles.kanjiBackground}>
         {kanjiData.map((kanji, index) => (
           <div
             key={index}
-            className={`kanji-bg-text ${hoveredKanjiIndex === index ? 'hovered-kanji' : ''}`}
+            className={`${styles.kanjiBgText} ${hoveredKanjiIndex === index ? styles.hoveredKanji : ''}`}
             onMouseEnter={() => setHoveredKanjiIndex(index)}
             onMouseLeave={() => setHoveredKanjiIndex(-1)}
           >
             {kanji.bg}
             <div
-              className={`kanji-tooltip ${hoveredKanjiIndex === index ? 'visible' : ''}`}
+              className={`${styles.kanjiTooltip} ${hoveredKanjiIndex === index ? styles.visible : ''}`}
             >
               {kanji.explanation}
             </div>
@@ -132,38 +132,38 @@ const Preload = ({ onLoaded }) => {
         ))}
       </div>
 
-      <div className="progress-percent">{Math.round(progress)}%</div>
+      <div className={styles.progressPercent}>{Math.round(progress)}%</div>
 
-      <div className="loader-core">
-        <div className="glow-effect" />
+      <div className={styles.loaderCore}>
+        <div className={styles.glowEffect} />
 
-        <div className="quantum-ring">
+        <div className={styles.quantumRing}>
           {kanjiData.slice(0, 3).map((kanji, index) => (
             <div
               key={index}
-              className={`kanji-inner-circle-rotator ${hoveredKanjiIndex === index ? 'active-inner-kanji' : ''}`}
+              className={`${styles.kanjiInnerCircleRotator} ${hoveredKanjiIndex === index ? styles.activeInnerKanji : ''}`}
             >
               {kanji.inner}
             </div>
           ))}
         </div>
 
-        <div className="quantum-ring" style={{ animationDelay: '-4s' }}>
+        <div className={styles.quantumRing} style={{ animationDelay: '-4s' }}>
           {kanjiData.slice(3, 6).map((kanji, index) => (
             <div
               key={index + 3}
-              className={`kanji-inner-circle-rotator ${hoveredKanjiIndex === index + 3 ? 'active-inner-kanji' : ''}`}
+              className={`${styles.kanjiInnerCircleRotator} ${hoveredKanjiIndex === index + 3 ? styles.activeInnerKanji : ''}`}
             >
               {kanji.inner}
             </div>
           ))}
         </div>
 
-        <div className="progress-hud">
-          <div className="gif-container">
+        <div className={styles.progressHud}>
+          <div className={styles.gifContainer}>
             <img
-              src="/assets/images/logo_white.png"
-              className="hologram-gif"
+              src="/assets/images/logo/logo_white.png"
+              className={styles.hologramGif}
               alt="loading"
             />
           </div>
@@ -171,7 +171,7 @@ const Preload = ({ onLoaded }) => {
       </div>
 
       <button
-        className={`enter-portal ${isLoaded ? 'visible' : ''}`}
+        className={`${styles.enterPortal} ${isLoaded ? styles.visible : ''}`}
         onClick={handleEnter}
         disabled={!isLoaded}
       >

@@ -1,0 +1,446 @@
+/* Main Carousel Container */
+.carousel {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #000;
+  will-change: transform;
+  transform: translateZ(0);
+
+  /* Dark mode support */
+  :global(html:not(.dark-mode)) & {
+    background: #f8f8f8;
+  }
+
+  :global(html.dark-mode) & {
+    background: #000;
+  }
+}
+
+/* Modern clean background - no colorful orbs */
+.bgOrb,
+.bgOrb1,
+.bgOrb2 {
+  display: none;
+}
+
+/* Optimierte Float-Animation */
+@keyframes float {
+  0%,
+  100% {
+    transform: translate3d(0, 0px, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(0, -20px, 0) rotate(180deg);
+  }
+}
+
+/* Carousel Container */
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  will-change: transform;
+  transform: translateZ(0);
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+/* Slides */
+.slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    visibility 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: scale(1.05) translateZ(0);
+  z-index: 1;
+  will-change: opacity, visibility, transform;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+}
+
+.slideActive {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1) translateZ(0);
+  z-index: 2;
+}
+
+/* Media Elements */
+.media {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.video,
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 
+    opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: opacity, transform;
+  transform: translateZ(0);
+}
+
+.video {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Media Overlay */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 1;
+}
+
+/* Content */
+.content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  padding: 3rem;
+  background: transparent;
+
+  @media (max-width: 768px) {
+    padding: 2rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1rem;
+  }
+}
+
+.text {
+  text-align: center;
+  max-width: 900px;
+  color: white;
+  background: transparent;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 1rem;
+  opacity: 1;
+  transform: translateY(0);
+  font-weight: 500;
+  background-color: transparent;
+
+  @media (max-width: 480px) {
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.title {
+  font-size: 3.75rem;
+  font-weight: 800;
+  line-height: 1.25;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+  opacity: 1;
+  transform: translateY(0);
+  background-color: transparent;
+
+  @media (max-width: 768px) {
+    font-size: 3rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 2.25rem;
+  }
+}
+
+.description {
+  font-size: 1.25rem;
+  line-height: 1.625;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 3rem;
+  opacity: 1;
+  transform: translateY(0);
+  font-weight: 400;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: transparent;
+
+  @media (max-width: 768px) {
+    font-size: 1.125rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}
+
+@keyframes slideInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Modern shadcn UI Style Button */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 12px 24px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  color: #0f172a;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideInUp 1s ease-out 1.2s forwards;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  will-change: transform, opacity, background-color;
+  transform: translateZ(0);
+
+  /* Remove complex spotlight effects for clean design */
+  &::before,
+  &::after {
+    display: none;
+  }
+
+  &:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    transform: translateY(-2px) translateZ(0);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+    .ctaIcon {
+      transform: translateX(4px);
+    }
+  }
+
+  &:active {
+    transform: translateY(0) translateZ(0);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  @media (max-width: 1024px) {
+    padding: 1rem 2rem;
+    font-size: 0.875rem;
+  }
+
+  @media (max-width: 768px) {
+    padding: 14px 20px;
+    font-size: 0.875rem;
+    border-radius: 12px;
+
+    &::before {
+      width: 120px;
+      height: 120px;
+    }
+
+    &::after {
+      width: 180px;
+      height: 180px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+
+    &::before,
+    &::after {
+      transition: opacity 0.2s ease;
+    }
+
+    &:hover .ctaIcon {
+      transform: translateX(4px);
+    }
+  }
+}
+
+.ctaSecondary {
+  background: transparent;
+  border-color: #e2e8f0;
+  color: #ffffff;
+
+  &:hover {
+    background: #ffffff;
+    border-color: #e2e8f0;
+    color: #0f172a;
+  }
+}
+
+/* Icon Animation */
+.ctaIcon {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+  position: relative;
+  will-change: transform;
+}
+
+/* Navigation */
+.nav {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  z-index: 10;
+
+  @media (max-width: 1024px) {
+    bottom: 2rem;
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    bottom: 1rem;
+    gap: 1rem;
+  }
+}
+
+.navDots {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  @media (max-width: 480px) {
+    gap: 0.5rem;
+  }
+}
+
+.navDot {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow: hidden;
+  will-change: transform, background-color, width;
+  transform: translateZ(0);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(1.2) translateZ(0);
+  }
+
+  @media (max-width: 480px) {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+.navDotActive {
+  width: 80px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.8);
+
+  @media (max-width: 1024px) {
+    width: 60px;
+  }
+
+  @media (max-width: 480px) {
+    width: 50px;
+  }
+}
+
+.navProgress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: #ffffff;
+  border-radius: inherit;
+  transition: width 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: width;
+  transform: translateZ(0);
+}
+
+/* Counter */
+.counter {
+  display: flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+}
+
+.counterCurrent {
+  color: white;
+}
+
+.counterSeparator {
+  margin: 0 6px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Reduced Motion für Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .bgOrb1,
+  .bgOrb2 {
+    animation: none;
+  }
+}
+

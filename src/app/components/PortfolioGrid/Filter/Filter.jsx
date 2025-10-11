@@ -10,7 +10,7 @@ import {
   Code,
   TrendingUp,
 } from 'lucide-react';
-import './Filter.css';
+import styles from './Filter.module.scss';
 
 const Filter = ({
   onCategoryChange,
@@ -126,19 +126,19 @@ const Filter = ({
 
 
   const NoContentSection = () => (
-    <div className="no-content-section">
-      <div className="no-content-container">
-        <div className="no-content-icon">
+    <div className={styles.noContentSection}>
+      <div className={styles.noContentContainer}>
+        <div className={styles.noContentIcon}>
           <TrendingUp size={48} />
         </div>
-        <h3 className="no-content-title">No {selectedCategory} Projects Yet</h3>
-        <p className="no-content-description">
+        <h3 className={styles.noContentTitle}>No {selectedCategory} Projects Yet</h3>
+        <p className={styles.noContentDescription}>
           We&apos;re currently working on some amazing{' '}
           {selectedCategory.toLowerCase()} projects. Check back soon to see our
           latest work!
         </p>
         <button
-          className="no-content-button"
+          className={styles.noContentButton}
           onClick={() => setSelectedCategory('all')}
         >
           View All Projects
@@ -149,15 +149,15 @@ const Filter = ({
 
   const LoadMoreSection = () =>
     showLoadMore && (
-      <div className="load-more-section">
+      <div className={styles.loadMoreSection}>
         <button
-          className="load-more-button"
+          className={styles.loadMoreButton}
           onClick={onLoadMore}
           disabled={isLoading}
         >
           {isLoading ? (
             <>
-              <div className="loading-spinner"></div>
+              <div className={styles.loadingSpinner}></div>
               Loading...
             </>
           ) : (
@@ -172,49 +172,49 @@ const Filter = ({
 
   return (
     <>
-      <section className="filter-section">
-        <div className="filter-container">
+      <section className={styles.section}>
+        <div className={styles.container}>
           {/* Mobile Filter Toggle */}
-          <div className="mobile-filter-toggle">
+          <div className={styles.mobileToggle}>
             <button
-              className="mobile-filter-button"
+              className={styles.mobileButton}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               <FilterIcon size={20} />
               <span>Filters</span>
               <ChevronDown
                 size={16}
-                className={`mobile-chevron ${isMobileMenuOpen ? 'rotated' : ''}`}
+                className={`${styles.mobileChevron} ${isMobileMenuOpen ? styles.rotated : ''}`}
               />
             </button>
           </div>
 
           {/* Desktop Filter */}
           <div
-            className={`filter-content ${isMobileMenuOpen ? 'mobile-open' : ''}`}
+            className={`${styles.content} ${isMobileMenuOpen ? styles.mobileOpen : ''}`}
           >
             {/* All Filters in One Row */}
-            <div className="filter-row">
+            <div className={styles.row}>
               {/* Left Group: Categories + Layout */}
-              <div className="left-group">
+              <div className={styles.leftGroup}>
                 {/* Categories */}
-                <div className="filter-group">
-                  <label className="filter-label">Categories</label>
-                  <div className="category-grid">
+                <div className={styles.group}>
+                  <label className={styles.label}>Categories</label>
+                  <div className={styles.categoryGrid}>
                     {categories.map(category => {
                       const IconComponent = category.icon;
                       return (
                         <button
                           key={category.value}
                           type="button"
-                          className={`category-card ${selectedCategory === category.value ? 'active' : ''}`}
+                          className={`${styles.categoryCard} ${selectedCategory === category.value ? styles.active : ''}`}
                           onClick={() => setSelectedCategory(category.value)}
                         >
-                          <div className="category-icon">
+                          <div className={styles.categoryIcon}>
                             <IconComponent size={18} />
                           </div>
-                          <div className="category-content">
-                            <span className="category-name">
+                          <div className={styles.categoryContent}>
+                            <span className={styles.categoryName}>
                               {category.label}
                             </span>
                           </div>
@@ -225,16 +225,16 @@ const Filter = ({
                 </div>
 
                 {/* Layout Options */}
-                <div className="filter-group">
-                  <label className="filter-label">Layout</label>
-                  <div className="layout-options">
+                <div className={styles.group}>
+                  <label className={styles.label}>Layout</label>
+                  <div className={styles.layoutOptions}>
                     {layoutOptions.map(layout => {
                       const IconComponent = layout.icon;
                       return (
                         <button
                           key={layout.id}
                           type="button"
-                          className={`layout-option ${activeLayout === layout.id ? 'active' : ''}`}
+                          className={`${styles.layoutOption} ${activeLayout === layout.id ? styles.active : ''}`}
                           onClick={() => setActiveLayout(layout.id)}
                         >
                           <IconComponent size={18} />
@@ -247,35 +247,35 @@ const Filter = ({
               </div>
 
               {/* Right Group: Tags + Sort */}
-              <div className="right-group">
+              <div className={styles.rightGroup}>
                 {/* Tags Dropdown */}
-                <div className="filter-group tags-group">
-                  <label className="filter-label">Filter by Tags:</label>
-                  <div className="tags-dropdown">
+                <div className={styles.group}>
+                  <label className={styles.label}>Filter by Tags:</label>
+                  <div className={styles.tagsDropdown}>
                     <button
                       type="button"
-                      className={`tags-trigger ${isTagsDropdownOpen ? 'open' : ''}`}
+                      className={`${styles.tagsTrigger} ${isTagsDropdownOpen ? styles.open : ''}`}
                       onClick={() => setIsTagsDropdownOpen(!isTagsDropdownOpen)}
                     >
-                      <span className="tags-selected">
+                      <span className={styles.tagsSelected}>
                         {selectedTags.length === 0 
                           ? 'All Tags' 
                           : `${selectedTags.length} selected`}
                       </span>
                       <ChevronDown
                         size={14}
-                        className={`chevron ${isTagsDropdownOpen ? 'rotated' : ''}`}
+                        className={`${styles.chevron} ${isTagsDropdownOpen ? styles.rotated : ''}`}
                       />
                     </button>
 
                     {isTagsDropdownOpen && (
-                      <div className="tags-dropdown-menu">
-                        <div className="tags-grid">
+                      <div className={styles.tagsMenu}>
+                        <div className={styles.tagsGrid}>
                           {availableTags.map(tag => (
                             <button
                               key={tag}
                               type="button"
-                              className={`tag-option ${selectedTags.includes(tag) ? 'selected' : ''}`}
+                              className={`${styles.tagOption} ${selectedTags.includes(tag) ? styles.selected : ''}`}
                               onClick={() => toggleTag(tag)}
                             >
                               {tag}
@@ -285,7 +285,7 @@ const Filter = ({
                         {selectedTags.length > 0 && (
                           <button
                             type="button"
-                            className="clear-tags-btn"
+                            className={styles.clearTags}
                             onClick={() => setSelectedTags([])}
                           >
                             Clear all tags
@@ -297,30 +297,30 @@ const Filter = ({
                 </div>
 
                 {/* Sort Dropdown */}
-                <div className="filter-group sort-group">
-                  <label className="filter-label">Sort by:</label>
-                  <div className="sort-dropdown">
+                <div className={styles.group}>
+                  <label className={styles.label}>Sort by:</label>
+                  <div className={styles.sortDropdown}>
                     <button
                       type="button"
-                      className={`sort-trigger ${isSortDropdownOpen ? 'open' : ''}`}
+                      className={`${styles.sortTrigger} ${isSortDropdownOpen ? styles.open : ''}`}
                       onClick={() => setIsSortDropdownOpen(!isSortDropdownOpen)}
                     >
-                      <span className="sort-selected">
+                      <span className={styles.sortSelected}>
                         {getSelectedSort().label}
                       </span>
                       <ChevronDown
                         size={14}
-                        className={`chevron ${isSortDropdownOpen ? 'rotated' : ''}`}
+                        className={`${styles.chevron} ${isSortDropdownOpen ? styles.rotated : ''}`}
                       />
                     </button>
 
                     {isSortDropdownOpen && (
-                      <div className="sort-dropdown-menu">
+                      <div className={styles.sortMenu}>
                         {sortOptions.map(sort => (
                           <button
                             key={sort.value}
                             type="button"
-                            className={`sort-option ${sortBy === sort.value ? 'selected' : ''}`}
+                            className={`${styles.sortOption} ${sortBy === sort.value ? styles.selected : ''}`}
                             onClick={() => handleSortSelect(sort)}
                           >
                             {sort.label}

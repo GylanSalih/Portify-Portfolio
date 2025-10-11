@@ -1,15 +1,15 @@
 import React from 'react';
 import { Github, Linkedin, Dribbble, Mail } from 'lucide-react';
-import './Footer.css';
+import styles from './Footer.module.scss';
 
 const Footer = () => {
   return (
-    <footer className="footer">
-      <div className="footer-content">
-        <div className="footer-bottom">
-          <div className="footer-left">
-            <span className="footer-copyright">© Gylan Salih</span>
-            <span className="footer-legal">
+    <footer className={styles.footer}>
+      <div className={styles.content}>
+        <div className={styles.bottom}>
+          <div className={styles.left}>
+            <span className={styles.copyright}>© Gylan Salih</span>
+            <span className={styles.legal}>
               <a
                 href="https://github.com/GylanSalih/NextJS-Portify/tree/main"
                 target="_blank"
@@ -21,30 +21,30 @@ const Footer = () => {
             </span>
           </div>
 
-          <div className="footer-socials">
+          <div className={styles.socials}>
             <a
               href="https://github.com/GylanSalih/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Github className="footer-icon" />
+              <Github className={styles.icon} />
             </a>
             <a
               href="https://linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Linkedin className="footer-icon" />
+              <Linkedin className={styles.icon} />
             </a>
             <a
               href="https://dribbble.com"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Dribbble className="footer-icon" />
+              <Dribbble className={styles.icon} />
             </a>
             <a href="mailto:hello@portfolio.com">
-              <Mail className="footer-icon" />
+              <Mail className={styles.icon} />
             </a>
           </div>
         </div>

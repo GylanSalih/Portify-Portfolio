@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import './skill.css';
+import styles from './Skills.module.scss';
 
 const skillsData = {
   coding: [
@@ -67,15 +67,15 @@ const Skills = () => {
   }, []);
 
   return (
-    <section className="skills-section">
-      <div className="skills-container">
-        <h2 className="skills-title">My Skills</h2>
+    <section className={styles.section}>
+      <div className={styles.container}>
+        <h2 className={styles.title}>My Skills</h2>
 
-        <div className="category-tabs">
+        <div className={styles.tabs}>
           {Object.keys(skillsData).map(category => (
             <button
               key={category}
-              className={`tab-button ${activeTab === category ? 'active' : ''}`}
+              className={`${styles.tabButton} ${activeTab === category ? styles.active : ''}`}
               onClick={() => setActiveTab(category)}
             >
               {category.charAt(0).toUpperCase() + category.slice(1)}
@@ -83,11 +83,11 @@ const Skills = () => {
           ))}
         </div>
 
-        <div className="skills-grid">
+        <div className={styles.grid}>
           {!imagesLoaded ? (
             // Loading-Zustand
-            <div className="skills-loading">
-              <div className="loading-spinner"></div>
+            <div className={styles.loading}>
+              <div className={styles.spinner}></div>
               <p>Loading skills...</p>
             </div>
           ) : (
@@ -95,17 +95,17 @@ const Skills = () => {
             skillsData[activeTab].map((skill, index) => (
               <div
                 key={index}
-                className="skill-item"
+                className={styles.item}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(-1)}
               >
                 {/* Füge diesen Div hinzu */}
-                <div className="gradient-border"></div>
+                <div className={styles.gradientBorder}></div>
 
                 <img
                   src={skill.icon}
                   alt={skill.title}
-                  className="skill-icon"
+                  className={styles.icon}
                   style={{
                     transform:
                       hoveredIndex === index
@@ -114,7 +114,7 @@ const Skills = () => {
                   }}
                   loading="eager" // Wichtig: Sofort laden
                 />
-                <p className="skill-title">{skill.title}</p>
+                <p className={styles.itemTitle}>{skill.title}</p>
               </div>
             ))
           )}

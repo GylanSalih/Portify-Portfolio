@@ -1,7 +1,7 @@
 'use client'; // Direktive, um diese Datei nur auf der Client-Seite auszuführen
 
 import React, { useEffect, useState } from 'react';
-import './Mouse.css';
+import styles from './Mouse.module.scss';
 
 const Mouse = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -59,14 +59,14 @@ const Mouse = () => {
   return (
     <>
       <div
-        className={`cursor ${isMouseDown ? 'active' : ''}`}
+        className={`${styles.cursor} ${isMouseDown ? styles.active : ''}`}
         style={{
           left: `${mousePosition.x}px`,
           top: `${mousePosition.y}px`,
         }}
       ></div>
       <div
-        className={`cursor-follower ${isMouseDown ? 'active' : ''}`}
+        className={`${styles.follower} ${isMouseDown ? styles.active : ''}`}
         style={{
           left: `${followerPosition.x}px`,
           top: `${followerPosition.y}px`,

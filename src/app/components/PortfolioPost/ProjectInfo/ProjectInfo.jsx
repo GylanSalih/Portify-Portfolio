@@ -1,25 +1,25 @@
 'use client';
 
 import React from 'react';
-import styles from './ProjectInfo.module.css';
+import styles from './ProjectInfo.module.scss';
 
 const ProjectInfo = ({ project }) => {
   return (
-    <section className={styles.projectInfo}>
-      <div className={styles.infoGrid}>
-        <div className={styles.infoCard}>
+    <section className={styles.info}>
+      <div className={styles.grid}>
+        <div className={styles.card}>
           <h3>Client</h3>
           <p>{project.client}</p>
         </div>
-        <div className={styles.infoCard}>
+        <div className={styles.card}>
           <h3>Rolle</h3>
           <p>{project.role}</p>
         </div>
-        <div className={styles.infoCard}>
+        <div className={styles.card}>
           <h3>Status</h3>
           <p className={`${styles.status} ${styles[project.status.toLowerCase()]}`}>{project.status}</p>
         </div>
-        <div className={styles.infoCard}>
+        <div className={styles.card}>
           <h3>Dauer</h3>
           <p>{project.duration}</p>
         </div>

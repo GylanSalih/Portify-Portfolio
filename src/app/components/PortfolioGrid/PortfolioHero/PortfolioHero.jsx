@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
-import styles from './PortfolioHero.module.css';
+import styles from './PortfolioHero.module.scss';
 
 const PortfolioHero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -60,12 +60,12 @@ const PortfolioHero = () => {
   };
 
   return (
-    <section className={styles.portfolioHero}>
-      <div className={styles.heroContainer}>
+    <section className={styles.hero}>
+      <div className={styles.container}>
         <div className={styles.sliderContainer}>
-          <div className={styles.sliderWrapper}>
+          <div className={styles.wrapper}>
             <div 
-              className={styles.slidesContainer}
+              className={styles.slides}
               style={{ transform: `translateX(-${currentSlide * 100}%)` }}
             >
               {slides.map((slide) => (

@@ -1,0 +1,279 @@
+/* Loading Spinner für Skills */
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  grid-column: 1 / -1;
+  padding: 4rem;
+  color: #666;
+}
+
+:global(.dark-mode) .loading {
+  color: #aaa;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-top: 3px solid #333;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+:global(.dark-mode) .spinner {
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top: 3px solid #fff;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*------------------------------------------------------------*/
+/* Skills CSS                                                */
+/*----------------------------------------------------------*/
+
+.section {
+  padding: 6rem 0;
+  width: 100%;
+}
+
+:global(.dark-mode) .section {
+  padding: 6rem 0;
+  background: #0a0a0a;
+}
+
+
+.title {
+  font-size: 2.5rem;
+  text-align: center;
+  color: #1a1a1a;
+  margin-bottom: 4rem;
+}
+
+:global(.dark-mode) .title {
+  color: #ffffff;
+}
+
+/* 4 Icons in a row */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  position: relative;
+}
+
+.item {
+  background: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+:global(.dark-mode) .item {
+  background: #1a1a1a;
+  border: 1px solid #2d2d2d;
+}
+
+.item .gradientBorder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: #333;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+:global(.dark-mode) .item .gradientBorder {
+  background: #666;
+}
+
+.item:hover .gradientBorder {
+  opacity: 1;
+}
+
+.item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+:global(.dark-mode) .item:hover {
+  box-shadow:
+    0 12px 24px rgba(0, 0, 0, 0.3),
+    0 0 40px rgba(255, 255, 255, 0.05);
+}
+
+.icon {
+  height: 90px;
+  width: 90px;
+  margin-bottom: 1.5rem;
+  object-fit: contain;
+  filter: grayscale(100%);
+  transition: all 0.4s ease;
+}
+
+.item:hover .icon {
+  filter: grayscale(0%);
+  transform: scale(1.15) rotateZ(5deg);
+}
+
+.itemTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+:global(.dark-mode) .itemTitle {
+  color: #fff;
+}
+
+.item:hover .itemTitle {
+  color: #000;
+}
+
+:global(.dark-mode) .item:hover .itemTitle {
+  color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 1280px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .item {
+    padding: 1.5rem;
+  }
+
+  .icon {
+    height: 70px;
+    width: 70px;
+  }
+}
+
+/*------------------------------------------------------------*/
+/* Tabs for the Skills Section                               */
+/*----------------------------------------------------------*/
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.tabButton {
+  padding: 0.8rem 2rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #f5f5f5;
+  color: #333;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    transform 0.15s ease,
+    box-shadow 0.3s ease;
+  position: relative;
+}
+
+:global(.dark-mode) .tabButton {
+  background: #1a1a1a;
+  color: #fff;
+  border: 1px solid #2d2d2d;
+}
+
+.tabButton:hover {
+  background: #e0e0e0;
+  transform: translateY(-2px) scale(1.05);
+}
+
+:global(.dark-mode) .tabButton:hover {
+  background: #252525;
+}
+
+.tabButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+:global(.dark-mode) .tabButton:focus {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+.tabButton.active {
+  background: #333;
+  color: #ffffff;
+  border-color: #333;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+  padding: 0.9rem 2.1rem;
+}
+
+:global(.dark-mode) .tabButton.active {
+  background: #fff;
+  color: #0a0a0a;
+  border-color: #fff;
+}
+
+.tabButton.active::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  padding: 2px;
+  background: #333;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: exclude;
+  mask-composite: exclude;
+}
+
+:global(.dark-mode) .tabButton.active::before {
+  background: #fff;
+}
+

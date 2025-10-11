@@ -3,7 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
-import './ModernGrid.css';
+import styles from './ModernGrid.module.scss';
 
 const ModernGrid = ({ 
   layoutMode = 1, 
@@ -20,47 +20,47 @@ const ModernGrid = ({
   const getLayoutClass = () => {
     switch(layoutMode) {
       case 1:
-        return 'modern-grid'; // Original Grid (3 columns)
+        return styles.grid; // Original Grid (3 columns)
       case 2:
-        return 'modern-grid modern-grid--cards'; // Cards (4 columns)
+        return `${styles.grid} ${styles.cardsLayout}`; // Cards (4 columns)
       case 3:
-        return 'modern-grid modern-grid--list'; // List view
+        return `${styles.grid} ${styles.listLayout}`; // List view
       default:
-        return 'modern-grid';
+        return styles.grid;
     }
   };
 
   return (
-    <div className="modern-grid-container">
-      <div className="modern-grid-header">
-        <span className="modern-grid-subtitle">Made with love</span>
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <span className={styles.subtitle}>Made with love</span>
         <h2>Have a look at my work</h2>
       </div>
 
       <ul className={getLayoutClass()}>
         {paginatedItems.map((item) => (
-          <li key={item.slug} className="modern-grid-item">
-            <div className="card-course">
-              <figure className="card-course__figure">
+          <li key={item.slug} className={styles.item}>
+            <div className={styles.card}>
+              <figure className={styles.figure}>
                 <Link href={`/portfolio/${item.slug}`}>
                   <Image
                     src={item.imgSrc}
                     alt={item.title}
                     width={550}
                     height={400}
-                    className="card-course__img"
+                    className={styles.image}
                   />
-                  <div className="card-overlay">
+                  <div className={styles.overlay}>
                     <div>
                       <h3>{item.title}</h3>
                       <p>{item.category}</p>
-                      <div className="card-tags">
+                      <div className={styles.tags}>
                         {item.tags.slice(0, 2).map((tag, idx) => (
-                          <span key={idx} className="card-tag">{tag}</span>
+                          <span key={idx} className={styles.tag}>{tag}</span>
                         ))}
                       </div>
                     </div>
-                    <div className="card-link-icon">
+                    <div className={styles.linkIcon}>
                       <ArrowUpRight size={20} />
                     </div>
                   </div>
@@ -72,13 +72,13 @@ const ModernGrid = ({
       </ul>
 
       {filteredItems.length === 0 && (
-        <div className="no-results">
+        <div className={styles.noResults}>
           <p>No projects found matching your criteria.</p>
         </div>
       )}
 
       {filteredItems.length > 0 && paginatedItems.length === 0 && (
-        <div className="no-results">
+        <div className={styles.noResults}>
           <p>No projects found on this page. Try adjusting your filters or go to the previous page.</p>
         </div>
       )}

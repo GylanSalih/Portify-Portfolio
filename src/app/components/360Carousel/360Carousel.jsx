@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
-import './360Carousel.css';
+import styles from './Carousel.module.scss';
 
 const Carousel360 = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -233,10 +233,10 @@ const Carousel360 = () => {
   }, [handleMouseMove]);
 
   return (
-    <div className="main-container">
+    <div className={styles.mainContainer}>
       {/* Left Side - Scroll Menu */}
       <div
-        className="scroll-container"
+        className={styles.scrollContainer}
         ref={containerRef}
         onMouseDown={startDragging}
         onMouseMove={handleDragging}
@@ -247,15 +247,15 @@ const Carousel360 = () => {
           <section
             key={index}
             ref={el => (itemsRef.current[index] = el)}
-            className={`scroll-item ${index === activeIndex ? 'active' : ''}`}
+            className={`${styles.scrollItem} ${index === activeIndex ? styles.active : ''}`}
             onClick={() => scrollToProduct(index)}
           >
-            <div className="content-wrapper">
-              <div className="index">0{product.number}</div>
-              <div className="text-container">
-                <span className="category">{product.tag}</span>
-                <h2 className="product-title">
-                  <span className="title-deco"></span>
+            <div className={styles.contentWrapper}>
+              <div className={styles.index}>0{product.number}</div>
+              <div className={styles.textContainer}>
+                <span className={styles.category}>{product.tag}</span>
+                <h2 className={styles.productTitle}>
+                  <span className={styles.titleDeco}></span>
                   {product.name}
                 </h2>
               </div>
@@ -264,7 +264,7 @@ const Carousel360 = () => {
         ))}
 
         <div
-          className="scroll-indicator bottom"
+          className={`${styles.scrollIndicator} ${styles.bottom}`}
           data-visible={showBottomIndicator}
         >
           <div className="chevron"></div>
@@ -273,12 +273,12 @@ const Carousel360 = () => {
 
       {/* Right Side - CSS 3D Cards */}
       <div 
-        className="css3d-container" 
+        className={styles.css3dContainer} 
         ref={css3dContainerRef}
       >
-        <div className="css3d-scene">
+        <div className={styles.css3dScene}>
           <div 
-            className="cards-orbit" 
+            className={styles.cardsOrbit} 
             style={{ 
               '--active-index': activeIndex,
               '--smooth-progress': smoothProgress,
@@ -290,7 +290,7 @@ const Carousel360 = () => {
             {products.map((product, index) => (
               <div
                 key={index}
-                className={`product-card ${index === activeIndex ? 'active' : ''}`}
+                className={`${styles.productCard} ${index === activeIndex ? styles.active : ''}`}
                 style={{
                   '--index': index,
                   '--total': products.length,
@@ -300,10 +300,10 @@ const Carousel360 = () => {
                 onClick={() => scrollToProduct(index)}
               >
                 {/* Zentry-Style Frame System */}
-                <div className="card-frame">
-                  <div className="frame-border"></div>
-                  <div className="frame-cover">
-                    <div className="card-image">
+                <div className={styles.cardFrame}>
+                  <div className={styles.frameBorder}></div>
+                  <div className={styles.frameCover}>
+                    <div className={styles.cardImage}>
                       <Image 
                         src={product.image} 
                         alt={product.name}

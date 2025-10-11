@@ -27,7 +27,7 @@ export { default as PortfolioGrid } from './PortfolioGrid/PortfolioGrid';
 export { default as PortfolioPost } from './PortfolioPost/PortfolioPost';
 export { default as Preload } from './Preload/Preload';
 export { default as Skills } from './AboutMeComponents/Skills/Skills';
-export { default as TestimonialsGrid } from './HomeComponents/TestimonialsGrid/TestimonialsGrid';
+export { default as Testimonials } from './HomeComponents/Testimonials/Testimonials';
 
 // Client Components
 export { default as ClientLayout } from './ClientLayout/ClientLayout';

@@ -15,7 +15,7 @@ import Features from './Features/Features';
 import RelatedProjects from './RelatedProjects/RelatedProjects';
 import ImageModal from './ImageModal/ImageModal';
 
-import styles from './PortfolioPost.module.css';
+import styles from './PortfolioPost.module.scss';
 
 const ProjectDetail = () => {
   const { slug } = useParams();
@@ -167,7 +167,7 @@ const ProjectDetail = () => {
 
   if (loading) {
     return (
-      <div className={styles.projectLoading}>
+      <div className={styles.loading}>
         <div className={styles.loadingSpinner}>
           <div className={styles.spinner}></div>
           <p>Projekt wird geladen...</p>
@@ -178,7 +178,7 @@ const ProjectDetail = () => {
 
   if (!project) {
     return (
-      <div className={styles.projectNotFound}>
+      <div className={styles.notFound}>
         <h1>Projekt nicht gefunden</h1>
         <p>Das angeforderte Projekt konnte nicht geladen werden.</p>
       </div>
@@ -186,15 +186,15 @@ const ProjectDetail = () => {
   }
 
   return (
-    <div className={styles.projectDetail}>
-      <div className={styles.projectWrapper}>
+    <div className={styles.detail}>
+      <div className={styles.wrapper}>
         {/* Hero Section */}
         <ProjectHero 
           project={project}
         />
 
         {/* Main Content */}
-        <main className={styles.projectMain}>
+        <main className={styles.main}>
           {/* Project Info Cards */}
           <ProjectInfo project={project} />
 

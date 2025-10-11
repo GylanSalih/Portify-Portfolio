@@ -13,10 +13,6 @@
   100% { transform: rotate(360deg); }
 }
 
-/* Home Page Styles */
-.dark-mode .page.home-page {
-  background-color: var(--light-mode);
-}
 .home-header {
   text-align: center;
   margin-bottom: 40px;

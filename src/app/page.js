@@ -2,16 +2,19 @@
 import React from 'react';
 import LandingSlider from './components/HomeComponents/LandingSlider/LandingSlider';
 import Features from './components/HomeComponents/Features/Features';
-import TestimonialsGrid from './components/HomeComponents/TestimonialsGrid/TestimonialsGrid';
+import Testimonials from './components/HomeComponents/Testimonials/Testimonials';
 import CallToAction from './components/HomeComponents/CallToAction/CallToAction';
+import ContentSlider from './components/HomeComponents/ContentSlider/ContentSlider';
+
 import './styles/home-page.css'; // nur für home
 
 const Home = () => {
   return (
     <div className="page home-page">
       <LandingSlider />
+      <Testimonials />
       <Features />
-      <TestimonialsGrid />
+      <ContentSlider />
       <CallToAction />
     </div>
   );

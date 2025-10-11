@@ -3,19 +3,19 @@
 import React from 'react';
 import { Calendar, Clock, ExternalLink, Tag } from 'lucide-react';
 import Image from 'next/image';
-import styles from './ProjectHero.module.css';
+import styles from './ProjectHero.module.scss';
 
 const ProjectHero = ({ project }) => {
 
   return (
-    <header className={styles.projectHero}>
-      <div className={styles.heroImageContainer}>
+    <header className={styles.hero}>
+      <div className={styles.imageContainer}>
         <Image
           src={project.heroImage || '/images/placeholder-hero.jpg'}
           alt={project.title}
           width={1200}
           height={600}
-          className={styles.mainImage}
+          className={styles.image}
           priority
         />
         
@@ -64,8 +64,8 @@ const ProjectHero = ({ project }) => {
         
         {/* Zentriert: Titel und Untertitel - direkt im Image-Container */}
         <div className={styles.centerContent}>
-          <h1 className={styles.heroTitle}>{project.title}</h1>
-          <p className={styles.heroSubtitle}>{project.subtitle}</p>
+          <h1 className={styles.title}>{project.title}</h1>
+          <p className={styles.subtitle}>{project.subtitle}</p>
         </div>
       </div>
     </header>
