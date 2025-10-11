@@ -1,82 +1,87 @@
 'use client';
 import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { ArrowUpRight } from 'lucide-react';
 import './ModernGrid.css';
 
-const ModernGrid = () => {
-  const gridItems = [
-    {
-      id: 1,
-      title: "Silver Pinewood Residences",
-      instructor: "Vide Infra",
-      image: "/assets/images/portfolio/New1.png",
-      link: "/portfolio/silver-pinewood"
-    },
-    {
-      id: 2,
-      title: "Mammoth Murals",
-      instructor: "Huy Nguyen",
-      image: "/assets/images/portfolio/New2.png",
-      link: "/portfolio/mammoth-murals"
-    },
-    {
-      id: 3,
-      title: "CHANEL - Les 4 Ombres Boutons",
-      instructor: "60fps",
-      image: "/assets/images/portfolio/New3.png",
-      link: "/portfolio/chanel-boutons"
-    },
-    {
-      id: 4,
-      title: "David Alaba Performance",
-      instructor: "HOLOGRAPHIK",
-      image: "/assets/images/portfolio/New4.png",
-      link: "/portfolio/david-alaba"
-    },
-    {
-      id: 5,
-      title: "Eddie Assistant Platform",
-      instructor: "Mambo Mambo",
-      image: "/assets/images/portfolio/New5.png",
-      link: "/portfolio/eddie-assistant"
-    },
-    {
-      id: 6,
-      title: "Example Agency Portfolio",
-      instructor: "Somefolk",
-      image: "/assets/images/portfolio/New6.png",
-      link: "/portfolio/example-agency"
+const ModernGrid = ({ 
+  layoutMode = 1, 
+  currentPage = 1,
+  itemsPerPage = 9,
+  filteredItems = []
+}) => {
+  // Pagination-Logik
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedItems = filteredItems.slice(startIndex, endIndex);
+
+  // Determine which layout class to use
+  const getLayoutClass = () => {
+    switch(layoutMode) {
+      case 1:
+        return 'modern-grid'; // Original Grid (3 columns)
+      case 2:
+        return 'modern-grid modern-grid--cards'; // Cards (4 columns)
+      case 3:
+        return 'modern-grid modern-grid--list'; // List view
+      default:
+        return 'modern-grid';
     }
-  ];
+  };
 
   return (
     <div className="modern-grid-container">
       <div className="modern-grid-header">
-        <h2>Modern Portfolio Grid</h2>
-        <p>Entdecke unsere neuesten Projekte in einem modernen, awwwards-inspirierten Layout</p>
+        <span className="modern-grid-subtitle">Made with love</span>
+        <h2>Have a look at my work</h2>
       </div>
 
-      <ul className="modern-grid">
-        {gridItems.map((item) => (
-          <li key={item.id} className="modern-grid-item">
+      <ul className={getLayoutClass()}>
+        {paginatedItems.map((item) => (
+          <li key={item.slug} className="modern-grid-item">
             <div className="card-course">
               <figure className="card-course__figure">
-                <a href={item.link}>
-                  <img
-                    src={item.image}
+                <Link href={`/portfolio/${item.slug}`}>
+                  <Image
+                    src={item.imgSrc}
                     alt={item.title}
-                    loading="lazy"
+                    width={550}
+                    height={400}
                     className="card-course__img"
                   />
                   <div className="card-overlay">
-                    <h3>{item.title}</h3>
-                    <p>{item.instructor}</p>
+                    <div>
+                      <h3>{item.title}</h3>
+                      <p>{item.category}</p>
+                      <div className="card-tags">
+                        {item.tags.slice(0, 2).map((tag, idx) => (
+                          <span key={idx} className="card-tag">{tag}</span>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="card-link-icon">
+                      <ArrowUpRight size={20} />
+                    </div>
                   </div>
-                </a>
+                </Link>
               </figure>
             </div>
           </li>
         ))}
       </ul>
+
+      {filteredItems.length === 0 && (
+        <div className="no-results">
+          <p>No projects found matching your criteria.</p>
+        </div>
+      )}
+
+      {filteredItems.length > 0 && paginatedItems.length === 0 && (
+        <div className="no-results">
+          <p>No projects found on this page. Try adjusting your filters or go to the previous page.</p>
+        </div>
+      )}
     </div>
   );
 };

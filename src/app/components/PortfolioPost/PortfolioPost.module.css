@@ -1,11 +1,21 @@
 .projectDetail {
-  max-width: 1200px;
+  inline-size: min(100% - 52px * 2, var(--1816px));
+  margin-inline: auto;
+  padding: 0;
+  background: transparent;
+}
+
+.projectWrapper {
+  max-width: 1650px; /* 3 * 550px = 1650px für RelatedProjects Breite */
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 2rem;
+  background: transparent;
 }
 
 .projectMain {
-  margin-bottom: 4rem;
+  margin-bottom: 8rem;
+  margin-top: 2rem;
+  background: transparent;
 }
 
 /* Loading States */
@@ -60,13 +70,61 @@
 }
 
 /* Responsive Design */
+@media (max-width: 1800px) {
+  .projectDetail {
+    inline-size: calc(100% - 60px);
+  }
+  
+  .projectWrapper {
+    max-width: 1400px; /* 2 * 550px + gap = ~1400px */
+    padding: 0 1.5rem;
+  }
+}
+
+@media (max-width: 1550px) {
+  .projectDetail {
+    inline-size: calc(100% - 60px);
+  }
+  
+  .projectWrapper {
+    max-width: 1200px; /* 2 * 550px + gap = ~1200px */
+    padding: 0 1.5rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .projectDetail {
+    inline-size: calc(100% - 40px);
+  }
+  
+  .projectWrapper {
+    max-width: 100%; /* Volle Breite für mobile Geräte */
+    padding: 0 1.25rem;
+  }
+}
+
 @media (max-width: 768px) {
   .projectDetail {
-    padding: 0 0.5rem;
+    inline-size: calc(100% - 30px);
+  }
+  
+  .projectWrapper {
+    max-width: 100%;
+    padding: 0 1rem;
   }
   
   .projectNotFound h1 {
     font-size: 2rem;
+  }
+  
+  .projectMain {
+    margin-bottom: 4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .projectWrapper {
+    padding: 0 0.75rem;
   }
 }
 

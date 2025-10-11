@@ -14,36 +14,14 @@
   transform: translateZ(0);
 }
 
-/* ✅ PERFORMANCE: Optimierte Background Orbs */
+/* Modern clean background - no colorful orbs */
 .bgOrb {
-  position: absolute;
-  border-radius: 50%;
-  background: linear-gradient(
-    45deg,
-    rgba(59, 130, 246, 0.15),
-    rgba(139, 92, 246, 0.1)
-  );
-  pointer-events: none;
-  z-index: 0;
-  /* ✅ PERFORMANCE: GPU-Beschleunigung für Animationen */
-  will-change: transform;
-  transform: translateZ(0);
+  display: none; /* Remove purple orbs completely */
 }
 
-.bgOrb1 {
-  width: 400px;
-  height: 400px;
-  top: -200px;
-  left: -200px;
-  animation: float 20s ease-in-out infinite;
-}
-
+.bgOrb1,
 .bgOrb2 {
-  width: 300px;
-  height: 300px;
-  bottom: -150px;
-  right: -150px;
-  animation: float 25s ease-in-out infinite reverse;
+  display: none;
 }
 
 /* ✅ PERFORMANCE: Optimierte Float-Animation */
@@ -91,19 +69,21 @@
   height: 100%;
   opacity: 0;
   visibility: hidden;
-  /* ✅ PERFORMANCE: Optimierte Transitions */
+  /* Professional smooth transitions with scale and fade */
   transition:
-    opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-    visibility 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    visibility 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: scale(1.05) translateZ(0);
   z-index: 1;
   /* ✅ PERFORMANCE: GPU-Beschleunigung */
-  will-change: opacity, visibility;
-  transform: translateZ(0);
+  will-change: opacity, visibility, transform;
 }
 
 .slideActive {
   opacity: 1;
   visibility: visible;
+  transform: scale(1) translateZ(0);
   z-index: 2;
 }
 
@@ -128,8 +108,12 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Professional media transitions */
+  transition: 
+    opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   /* ✅ PERFORMANCE: GPU-Beschleunigung für Videos/Bilder */
-  will-change: opacity;
+  will-change: opacity, transform;
   transform: translateZ(0);
 }
 
@@ -153,6 +137,7 @@
     rgba(0, 0, 0, 0.4) 50%,
     rgba(0, 0, 0, 0.8) 100%
   );
+  transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   z-index: 1;
 }
 
@@ -197,13 +182,11 @@
   font-weight: 800;
   line-height: 1.25;
   margin-bottom: 1.5rem;
-  background: linear-gradient(135deg, #ffffff 0%, #60a5fa 50%, #a78bfa 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #ffffff;
   opacity: 1;
   transform: translateY(0);
   background-color: transparent;
+  /* Modern clean white text - no gradient */
 }
 
 .description {
@@ -228,134 +211,64 @@
 }
 
 /* ===================================
-   ✅ PERFORMANCE: Optimierter Glass Button
+   Modern shadcn UI Style Button
    =================================== */
 
 .cta {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 16px 24px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  color: white;
-  font-size: 1rem;
-  font-weight: 600;
+  padding: 12px 24px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  color: #0f172a;
+  font-size: 0.875rem;
+  font-weight: 500;
   text-decoration: none;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0;
   transform: translateY(20px);
   animation: slideInUp 1s ease-out 1.2s forwards;
   position: relative;
   overflow: hidden;
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   /* ✅ PERFORMANCE: GPU-Beschleunigung */
   will-change: transform, opacity, background-color;
   transform: translateZ(0);
 }
 
 .ctaSecondary {
-  background: rgba(255, 255, 255, 0.02);
-  border-color: rgba(255, 255, 255, 0.05);
-  color: rgba(255, 255, 255, 0.8);
+  background: transparent;
+  border-color: #e2e8f0;
+  color: #ffffff;
 }
 
 .ctaSecondary:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.15);
-  color: white;
+  background: #ffffff;
+  border-color: #e2e8f0;
+  color: #0f172a;
 }
 
-/* ✅ PERFORMANCE: Optimierter Spotlight-Effekt */
-.cta::before {
-  content: '';
-  position: absolute;
-  top: var(--mouse-y, -200px);
-  left: var(--mouse-x, -200px);
-  width: 160px;
-  height: 160px;
-  background: radial-gradient(
-    circle at center,
-    rgba(255, 255, 255, 0.25) 0%,
-    rgba(255, 255, 255, 0.15) 25%,
-    rgba(255, 255, 255, 0.08) 50%,
-    rgba(255, 255, 255, 0.02) 75%,
-    transparent 100%
-  );
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  pointer-events: none;
-  z-index: 1;
-  /* ✅ PERFORMANCE: Reduzierter Blur für bessere Performance */
-  filter: blur(1px);
-  will-change: opacity, transform;
-}
-
-/* ✅ PERFORMANCE: Optimierter Sekundärer Glanz-Ring */
+/* Remove complex spotlight effects for clean design */
+.cta::before,
 .cta::after {
-  content: '';
-  position: absolute;
-  top: var(--mouse-y, -200px);
-  left: var(--mouse-x, -200px);
-  width: 240px;
-  height: 240px;
-  background: radial-gradient(
-    circle at center,
-    transparent 0%,
-    rgba(59, 130, 246, 0.1) 40%,
-    rgba(139, 92, 246, 0.08) 60%,
-    transparent 100%
-  );
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  pointer-events: none;
-  z-index: 0;
-  /* ✅ PERFORMANCE: Reduzierter Blur für bessere Performance */
-  filter: blur(2px);
-  will-change: opacity, transform;
+  display: none;
 }
 
-/* Hover-Zustand */
+/* Modern hover state */
 .cta:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-4px) translateZ(0);
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.3),
-    0 8px 32px rgba(59, 130, 246, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
-}
-
-.cta:hover::before {
-  opacity: 1;
-}
-
-.cta:hover::after {
-  opacity: 1;
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  transform: translateY(-2px) translateZ(0);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 /* Active/Pressed State */
 .cta:active {
-  transform: translateY(-2px) translateZ(0);
-  box-shadow:
-    0 12px 40px rgba(0, 0, 0, 0.25),
-    0 4px 16px rgba(59, 130, 246, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  transform: translateY(0) translateZ(0);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
 /* Icon Animation */
@@ -367,7 +280,7 @@
 }
 
 .cta:hover .ctaIcon {
-  transform: translateX(6px) rotate(5deg);
+  transform: translateX(4px);
 }
 
 /* Text und Icons über dem Glanz-Effekt */
@@ -404,10 +317,10 @@
   background: rgba(255, 255, 255, 0.3);
   border: 2px solid rgba(255, 255, 255, 0.5);
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   overflow: hidden;
   /* ✅ PERFORMANCE: GPU-Beschleunigung */
-  will-change: transform, background-color;
+  will-change: transform, background-color, width;
   transform: translateZ(0);
 }
 
@@ -428,13 +341,9 @@
   top: 0;
   left: 0;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    rgba(60, 162, 250, 0.9),
-    rgba(167, 139, 250, 0.9)
-  );
+  background: #ffffff;
   border-radius: inherit;
-  transition: width 0.1s ease-out;
+  transition: width 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   /* ✅ PERFORMANCE: GPU-Beschleunigung */
   will-change: width;
   transform: translateZ(0);

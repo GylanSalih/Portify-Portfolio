@@ -14,7 +14,6 @@ import {
   Github,
   Linkedin,
   Twitter,
-  TestTube,
 } from 'lucide-react';
 import Link from 'next/link';
 import './HamburgerMenu.css';
@@ -42,12 +41,6 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
       label: 'Portfolio',
       icon: Briefcase,
       description: 'Explore my work',
-    },
-    {
-      href: '/testing-grid',
-      label: 'Testing',
-      icon: TestTube,
-      description: 'Modern grid layout test',
     },
     {
       href: '/blog',
@@ -128,7 +121,7 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
                     <li
                       key={item.href}
                       className="menu-item"
-                      style={{ animationDelay: `${(index + 2) * 0.1}s` }}
+                      style={{ animationDelay: '0s' }}
                     >
                       <Link
                         href={item.href}
@@ -169,7 +162,7 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={handleLinkClick}
-                      style={{ animationDelay: `${(index + 8) * 0.1}s` }}
+                      style={{ animationDelay: '0s' }}
                     >
                       <IconComponent size={20} />
                     </a>

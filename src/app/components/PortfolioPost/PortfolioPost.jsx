@@ -23,12 +23,7 @@ const ProjectDetail = () => {
   const [relatedProjects, setRelatedProjects] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
-  const [viewProcessed, setViewProcessed] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [hasLiked, setHasLiked] = useState(false);
-  const [hasViewed, setHasViewed] = useState(false);
-  const [stats, setStats] = useState({ views: 0, likes: 0 });
-  const [statsLoading, setStatsLoading] = useState(true);
 
   // Fancybox is now initialized in ImageGallery component
 
@@ -44,20 +39,21 @@ const ProjectDetail = () => {
         
         if (projectData) {
           const transformedProject = {
-            id: projectData.id,
             slug: projectData.slug,
             title: projectData.title,
             subtitle: projectData.abovetitle || 'Modern Web Development Project',
             description: projectData.projectTexts?.description || projectData.description,
             category: projectData.category,
-            tags: projectData.tags ? projectData.tags.split(', ') : ['React', 'Next.js'],
+            tags: projectData.projectDetails?.tags ? 
+              (typeof projectData.projectDetails.tags === 'string' ? 
+                projectData.projectDetails.tags.split(', ') : 
+                projectData.projectDetails.tags.split(', ')) : 
+              ['React', 'Next.js'],
             client: projectData.projectDetails?.client || 'Personal Project',
             year: projectData.projectDetails?.date?.split('.')[2] || '2024',
             duration: projectData.projectDetails?.duration || '3 Monate',
             role: projectData.projectDetails?.role || 'Full-Stack Developer & Designer',
             status: projectData.projectDetails?.status || 'Live',
-            views: projectData.views || 0,
-            likes: projectData.likes || 0,
             
             // Links
             liveUrl: projectData.projectDetails?.demoUrl,
@@ -129,14 +125,12 @@ const ProjectDetail = () => {
           };
           
           setProject(transformedProject);
-          setStats({ views: transformedProject.views, likes: transformedProject.likes });
           
           // Load related projects
           const related = data
             .filter(p => p.slug !== slug)
             .slice(0, 3)
             .map(p => ({
-              id: p.id,
               slug: p.slug,
               title: p.title,
               image: p.backgroundImage,
@@ -149,7 +143,6 @@ const ProjectDetail = () => {
         console.error('Error loading project data:', error);
       } finally {
         setLoading(false);
-        setStatsLoading(false);
       }
     };
 
@@ -158,80 +151,6 @@ const ProjectDetail = () => {
     }
   }, [slug]);
 
-  // View tracking logic
-  useEffect(() => {
-    if (!project || statsLoading || viewProcessed) return;
-
-    const sessionKey = `project_viewed_${slug}`;
-    let hasViewedInSession = false;
-
-    try {
-      if (typeof window !== 'undefined' && window.sessionStorage) {
-        hasViewedInSession = window.sessionStorage.getItem(sessionKey) === 'true';
-      }
-    } catch (error) {
-      console.warn('SessionStorage not available, using in-memory tracking');
-      hasViewedInSession = window.__viewedProjects?.includes(slug) || false;
-    }
-
-    if (!hasViewedInSession) {
-      setViewProcessed(true);
-      
-      const newViews = stats.views + 1;
-      setStats(prev => ({ ...prev, views: newViews }));
-      
-      try {
-        if (typeof window !== 'undefined' && window.sessionStorage) {
-          sessionStorage.setItem(sessionKey, 'true');
-        } else {
-          if (!window.__viewedProjects) window.__viewedProjects = [];
-          window.__viewedProjects.push(slug);
-        }
-      } catch (error) {
-        console.warn('Could not save view state:', error);
-      }
-      
-      setHasViewed(true);
-      console.log('Project view tracked:', project.title);
-    } else {
-      setHasViewed(true);
-      setViewProcessed(true);
-    }
-  }, [project, statsLoading, slug, viewProcessed, stats.views]);
-
-  // Check if already liked
-  useEffect(() => {
-    try {
-      const likedProjects = JSON.parse(
-        localStorage.getItem('likedProjects') || '[]'
-      );
-      setHasLiked(likedProjects.includes(slug));
-    } catch (error) {
-      console.warn('Could not load liked projects from localStorage:', error);
-      setHasLiked(false);
-    }
-  }, [slug]);
-
-  // Like handler
-  const handleLike = async () => {
-    if (hasLiked) return;
-
-    try {
-      const newLikes = stats.likes + 1;
-      setStats(prev => ({ ...prev, likes: newLikes }));
-      setHasLiked(true);
-
-      const likedProjects = JSON.parse(
-        localStorage.getItem('likedProjects') || '[]'
-      );
-      likedProjects.push(slug);
-      localStorage.setItem('likedProjects', JSON.stringify(likedProjects));
-      
-      console.log('Project liked:', project.title);
-    } catch (error) {
-      console.error('Error liking project:', error);
-    }
-  };
 
   // Image navigation
   const nextImage = () => {
@@ -268,38 +187,36 @@ const ProjectDetail = () => {
 
   return (
     <div className={styles.projectDetail}>
-      {/* Hero Section */}
-      <ProjectHero 
-        project={project}
-        stats={stats}
-        hasLiked={hasLiked}
-        onLike={handleLike}
-        statsLoading={statsLoading}
-      />
+      <div className={styles.projectWrapper}>
+        {/* Hero Section */}
+        <ProjectHero 
+          project={project}
+        />
 
-      {/* Main Content */}
-      <main className={styles.projectMain}>
-        {/* Project Info Cards */}
-        <ProjectInfo project={project} />
+        {/* Main Content */}
+        <main className={styles.projectMain}>
+          {/* Project Info Cards */}
+          <ProjectInfo project={project} />
 
-        {/* Content Sections */}
-        <ProjectContent sections={project.sections} />
+          {/* Content Sections */}
+          <ProjectContent sections={project.sections} />
 
-        {/* Image Gallery with Fancybox */}
-        <ImageGallery images={project.images} />
+          {/* Image Gallery with Fancybox */}
+          <ImageGallery images={project.images} />
 
-        {/* Video Gallery */}
-        <VideoGallery videos={project.videos} />
+          {/* Video Gallery */}
+          <VideoGallery videos={project.videos} />
 
-        {/* Tech Stack */}
-        <TechStack techStack={project.techStack} />
+          {/* Tech Stack */}
+          <TechStack techStack={project.techStack} />
 
-        {/* Features */}
-        <Features features={project.features} />
-      </main>
+          {/* Features */}
+          <Features features={project.features} />
+        </main>
 
-      {/* Related Projects */}
-      <RelatedProjects relatedProjects={relatedProjects} />
+        {/* Related Projects */}
+        <RelatedProjects relatedProjects={relatedProjects} />
+      </div>
 
       {/* Image Modal */}
       <ImageModal 

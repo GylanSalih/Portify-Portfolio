@@ -7,68 +7,32 @@
   font-size: 2rem;
   font-weight: 700;
   color: #ffffff;
-  margin: 0 0 2rem 0;
-  padding-bottom: 0.75rem;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  margin: 0 0 1.5rem 0;
+  padding-bottom: 0;
+  border-bottom: none;
   position: relative;
-}
-
-.title::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 60px;
-  height: 2px;
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-  border-radius: 1px;
+  font-family: 'BlenderProBold', sans-serif;
+  letter-spacing: -0.01em;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 1.25rem;
 }
 
 .container {
-  background: rgba(15, 15, 15, 0.8);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
   overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
   position: relative;
 }
 
-.container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(
-    600px circle at var(--mouse-x) var(--mouse-y),
-    rgba(59, 130, 246, 0.08),
-    transparent 40%
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.container:hover::before {
-  opacity: 1;
-}
-
 .container:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  border-color: rgba(255, 255, 255, 0.15);
-  background: rgba(20, 20, 20, 0.9);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
 .wrapper {
@@ -136,24 +100,26 @@
 }
 
 .caption {
-  padding: 1.5rem;
+  padding: 1rem 1.25rem;
   margin: 0;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8125rem;
   text-align: center;
-  background: rgba(15, 15, 15, 0.5);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background: transparent;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  font-family: 'RedHat', sans-serif;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .title {
-    font-size: 1.75rem;
+    font-size: 1.625rem;
+    margin-bottom: 1.25rem;
   }
   
   .grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1rem;
   }
   
   .player {
@@ -168,5 +134,10 @@
   .button {
     width: 35px;
     height: 35px;
+  }
+  
+  .caption {
+    padding: 0.875rem 1rem;
+    font-size: 0.75rem;
   }
 }

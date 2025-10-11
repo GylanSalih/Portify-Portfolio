@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState, useRef, useMemo, useCallback } from 'react';
+import { ChevronDown } from 'lucide-react';
 import { useAllBlogStats, useBlogSearch } from '../../../hooks/useBlogStats';
 import {
   formatNumber,
@@ -19,6 +20,7 @@ const BlogGrid = () => {
   const [uniqueTags, setUniqueTags] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false);
   const postsPerPage = 6; // Increased back to 6 for better UX
 
   const sectionRef = useRef(null);
@@ -97,6 +99,35 @@ const BlogGrid = () => {
   useEffect(() => {
     setCurrentPage(1);
   }, [selectedTag, searchQuery]);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.target.closest('.blog-sort-dropdown')) {
+        setIsSortDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  // Sort options
+  const sortOptions = [
+    { value: 'latest', label: 'Newest First' },
+    { value: 'oldest', label: 'Oldest First' },
+  ];
+
+  const getSelectedSort = () => {
+    return sortOptions.find(s => s.value === sortOrder) || sortOptions[0];
+  };
+
+  const handleSortSelect = (sort) => {
+    setSortOrder(sort.value);
+    setIsSortDropdownOpen(false);
+  };
 
   // Pagination handlers with useCallback for performance
   const handlePageChange = useCallback((pageNumber) => {
@@ -185,9 +216,6 @@ const BlogGrid = () => {
 
           <div className="blog-filters-top-row">
             <div className="blog-input-group">
-              <div className="blog-search-icon">
-                {isSearching ? '⏳' : '🔍'}
-              </div>
               <input
                 type="text"
                 placeholder="Search articles, topics, or keywords..."
@@ -202,14 +230,36 @@ const BlogGrid = () => {
               )}
             </div>
             <div className="blog-select-group">
-              <select
-                onChange={e => setSortOrder(e.target.value)}
-                value={sortOrder}
-                className="blog-sort-select"
-              >
-                <option value="latest">Newest First</option>
-                <option value="oldest">Oldest First</option>
-              </select>
+              <div className="blog-sort-dropdown">
+                <button
+                  type="button"
+                  className={`blog-sort-trigger ${isSortDropdownOpen ? 'open' : ''}`}
+                  onClick={() => setIsSortDropdownOpen(!isSortDropdownOpen)}
+                >
+                  <span className="blog-sort-selected">
+                    {getSelectedSort().label}
+                  </span>
+                  <ChevronDown
+                    size={14}
+                    className={`blog-chevron ${isSortDropdownOpen ? 'rotated' : ''}`}
+                  />
+                </button>
+
+                {isSortDropdownOpen && (
+                  <div className="blog-sort-dropdown-menu">
+                    {sortOptions.map(sort => (
+                      <button
+                        key={sort.value}
+                        type="button"
+                        className={`blog-sort-option ${sortOrder === sort.value ? 'selected' : ''}`}
+                        onClick={() => handleSortSelect(sort)}
+                      >
+                        {sort.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 
@@ -238,26 +288,6 @@ const BlogGrid = () => {
               ))}
             </div>
           </div>
-        </div>
-
-        {/* Results Counter */}
-        <div className="blog-results-info">
-          <span className="blog-results-count">
-            {isLoading
-              ? 'Loading...'
-              : `${paginationData.totalPosts} article${paginationData.totalPosts !== 1 ? 's' : ''} found`}
-            {!isLoading && paginationData.totalPages > 1 && (
-              <span className="blog-page-info">
-                {' '}
-                • Page {currentPage} of {paginationData.totalPages}
-              </span>
-            )}
-          </span>
-          {selectedTag && (
-            <span className="blog-active-filter">
-              Filtered by: <strong>{selectedTag}</strong>
-            </span>
-          )}
         </div>
 
         {/* Blog Statistics */}
@@ -330,6 +360,26 @@ const BlogGrid = () => {
                   />
                 );
               })}
+        </div>
+
+        {/* Results Counter */}
+        <div className="blog-results-info">
+          <span className="blog-results-count">
+            {isLoading
+              ? 'Loading...'
+              : `${paginationData.totalPosts} article${paginationData.totalPosts !== 1 ? 's' : ''} found`}
+            {!isLoading && paginationData.totalPages > 1 && (
+              <span className="blog-page-info">
+                {' '}
+                • Page {currentPage} of {paginationData.totalPages}
+              </span>
+            )}
+          </span>
+          {selectedTag && (
+            <span className="blog-active-filter">
+              Filtered by: <strong>{selectedTag}</strong>
+            </span>
+          )}
         </div>
 
         {/* Pagination */}

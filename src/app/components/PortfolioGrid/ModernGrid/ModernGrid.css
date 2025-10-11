@@ -1,184 +1,537 @@
 .modern-grid-container {
-    width: 100%;
-    max-width: 1550px;
-    margin: 0 auto;
-    padding: 6rem 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-sizing: border-box;
-  }
-  
-  .modern-grid-header {
-    text-align: center;
-    margin-bottom: 5rem;
-  }
-  
-  .modern-grid-header h2 {
-    font-size: 3rem;
-    font-weight: 700;
-    color: #111;
-    margin-bottom: 1rem;
-    font-family: 'BlenderProBold', sans-serif;
-  }
-  
-  html.dark-mode .modern-grid-header h2 {
-    color: #fff;
-  }
-  
-  .modern-grid-header p {
-    font-size: 1.2rem;
-    color: #666;
-    max-width: 700px;
-    margin: 0 auto;
-    line-height: 1.7;
-  }
-  
-  html.dark-mode .modern-grid-header p {
-    color: #aaa;
-  }
-  
-  /* --- GRID --- */
+  inline-size: min(100% - 52px * 2, var(--1816px));
+  margin-inline: auto;
+  padding: 0rem 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.modern-grid-header {
+  text-align: left;
+  margin-bottom: 5rem;
+  width: 100%;
+}
+
+.modern-grid-subtitle {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #666;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-family: 'RedHat', sans-serif;
+}
+
+.modern-grid-header h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #111;
+  margin: 0;
+  text-align: left;
+  font-family: 'BlenderProBold', sans-serif;
+  line-height: 1.1;
+}
+
+html.dark-mode .modern-grid-subtitle {
+  color: #aaa;
+}
+
+html.dark-mode .modern-grid-header h2 {
+  color: #fff;
+}
+
+/* --- GRID --- */
+.modern-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 550px);
+  gap: 30px;
+  justify-content: center;
+  list-style: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* --- CARDS LAYOUT (4 columns) --- */
+.modern-grid--cards {
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 100%;
+  gap: 24px;
+}
+
+.modern-grid--cards .card-course {
+  width: 100%;
+  height: 300px;
+}
+
+.modern-grid--cards .card-overlay h3 {
+  font-size: 1rem;
+}
+
+.modern-grid--cards .card-overlay p {
+  font-size: 0.875rem;
+}
+
+/* --- LIST LAYOUT --- */
+.modern-grid--list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  grid-template-columns: none;
+}
+
+.modern-grid--list .modern-grid-item {
+  width: 100%;
+}
+
+.modern-grid--list .card-course {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.modern-grid--list .card-course__figure {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+}
+
+.modern-grid--list .card-course__figure a {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.modern-grid--list .card-course__img {
+  width: 350px;
+  height: 100%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.modern-grid--list .card-overlay {
+  position: relative;
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 1;
+  transform: translateY(0);
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.75) 50%,
+    rgba(0, 0, 0, 0.65) 100%
+  );
+}
+
+.modern-grid--list .card-course:hover .card-overlay {
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.8) 50%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+}
+
+.modern-grid--list .card-overlay h3 {
+  font-size: 1.5rem;
+}
+
+.modern-grid--list .card-overlay p {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.modern-grid--list .card-course__figure::after {
+  display: none;
+}
+
+.modern-grid-item {
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* --- CARD --- */
+.card-course {
+  width: 550px;
+  height: 400px;
+  background: transparent;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.card-course__figure {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.card-course__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition:
+    transform 0.4s ease,
+    opacity 0.4s ease;
+}
+
+/* --- HOVER EFFECT --- */
+.card-course:hover .card-course__img {
+  transform: scale(1.02);
+}
+
+.card-course__figure::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.35) 40%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+.card-course:hover .card-course__figure::after {
+  opacity: 1;
+}
+
+/* --- TEXT OVERLAY --- */
+.card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  color: #fff;
+  opacity: 0;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  transform: translateY(15px);
+  z-index: 2;
+  will-change: transform, opacity;
+}
+
+.card-overlay > div:first-child {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.card-link-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  opacity: 0.8;
+  will-change: transform, opacity;
+}
+
+.card-link-icon:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.card-course:hover .card-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-overlay h3 {
+  font-size: 1.2rem;
+  margin: 0;
+  font-family: 'BlenderProBold', sans-serif;
+}
+
+.card-overlay p {
+  font-size: 1rem;
+  margin: 0;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+/* Tags */
+.card-tags {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.card-tag {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  font-weight: 500;
+  backdrop-filter: blur(5px);
+}
+
+/* No Results */
+.no-results {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #666;
+  font-size: 1.125rem;
+}
+
+/* --- RESPONSIVE --- */
+
+/* Large Desktop */
+@media (max-width: 1800px) {
   .modern-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 550px);
-    gap: 30px;
-    justify-content: center;
-    list-style: none;
-    width: 100%;
-    box-sizing: border-box;
+    grid-template-columns: repeat(3, minmax(450px, 550px));
+    gap: 25px;
+  }
+}
+
+/* Desktop/Tablet Landscape */
+@media (max-width: 1550px) {
+  .modern-grid {
+    grid-template-columns: repeat(2, minmax(400px, 550px));
+    gap: 20px;
   }
   
-  .modern-grid-item {
-    animation: fadeInUp 0.6s ease forwards;
-    opacity: 0;
-    transform: translateY(30px);
+  .modern-grid--cards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .modern-grid-container {
+    padding: 4rem 30px;
+  }
+}
+
+/* Tablet */
+@media (max-width: 1250px) {
+  .modern-grid {
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+    gap: 20px;
   }
   
-  /* --- CARD --- */
+  .modern-grid--cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  .modern-grid--cards .card-course {
+    height: 280px;
+  }
+  
+  .modern-grid--list .card-course__img {
+    width: 280px;
+  }
+
+  .modern-grid-container {
+    padding: 3rem 25px;
+  }
+}
+
+/* Tablet Portrait */
+@media (max-width: 1024px) {
+  .modern-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
   .card-course {
-    width: 550px;
-    height: 400px;
-    background: transparent;
-    border-radius: 20px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    position: relative;
+    width: 100%;
+    height: 320px;
   }
-  
+
+  .modern-grid--cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .modern-grid--cards .card-course {
+    height: 260px;
+  }
+
+  .modern-grid-header h2 {
+    font-size: 2.5rem;
+  }
+}
+
+/* Mobile Landscape / Small Tablet */
+@media (max-width: 768px) {
+  .modern-grid-container {
+    padding: 3rem 20px;
+  }
+
+  .modern-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 20px;
+  }
+
+  .card-course {
+    width: 100%;
+    max-width: 550px;
+    height: auto;
+    min-height: 300px;
+  }
+
   .card-course__figure {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    overflow: hidden;
-    border-radius: 20px;
+    aspect-ratio: 550/400;
   }
-  
-  .card-course__img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.4s ease, opacity 0.4s ease;
-  }
-  
-  /* --- HOVER EFFECT --- */
-  .card-course:hover .card-course__img {
-    transform: scale(1.02);
-  }
-  
-  .card-course__figure::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0.75) 0%,
-      rgba(0, 0, 0, 0.35) 40%,
-      rgba(0, 0, 0, 0.05) 100%
-    );
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
-  }
-  
-  .card-course:hover .card-course__figure::after {
-    opacity: 1;
-  }
-  
-  /* --- TEXT OVERLAY --- */
+
   .card-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 1.5rem 1.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    color: #fff;
-    opacity: 0;
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    transform: translateY(20px);
-    z-index: 2;
+    padding: 1rem;
+  }
+
+  .card-overlay h3 {
+    font-size: 1.1rem;
+  }
+
+  .card-overlay p {
+    font-size: 0.9rem;
   }
   
-  .card-course:hover .card-overlay {
+  .modern-grid--cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .modern-grid--cards .card-course {
+    height: auto;
+    min-height: 280px;
+  }
+  
+  /* List view auf mobile wird zu einer Spalte */
+  .modern-grid--list .card-course {
+    flex-direction: column;
+    height: auto;
+    min-height: auto;
+  }
+  
+  .modern-grid--list .card-course__figure {
+    flex-direction: column;
+  }
+  
+  .modern-grid--list .card-course__figure a {
+    flex-direction: column;
+  }
+  
+  .modern-grid--list .card-course__img {
+    width: 100%;
+    height: 250px;
+  }
+  
+  .modern-grid--list .card-overlay {
+    position: relative;
+    padding: 1.5rem;
+  }
+  
+  .modern-grid--list .card-overlay h3 {
+    font-size: 1.2rem;
+  }
+  
+  .modern-grid--list .card-overlay p {
+    font-size: 0.9rem;
+  }
+
+  .modern-grid-header h2 {
+    font-size: 2rem;
+  }
+
+  .modern-grid-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .card-tags {
+    margin-top: 0.4rem;
+  }
+
+  .card-tag {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+  }
+}
+
+/* Mobile Portrait */
+@media (max-width: 480px) {
+  .modern-grid-container {
+    padding: 2rem 15px;
+  }
+
+  .modern-grid-header {
+    margin-bottom: 3rem;
+  }
+
+  .modern-grid-header h2 {
+    font-size: 1.75rem;
+  }
+
+  .card-course {
+    min-height: 260px;
+  }
+
+  .modern-grid--cards .card-course {
+    min-height: 240px;
+  }
+
+  .card-overlay {
+    padding: 0.875rem;
+  }
+
+  .card-overlay h3 {
+    font-size: 1rem;
+  }
+
+  .card-overlay p {
+    font-size: 0.85rem;
+  }
+
+  .card-tags {
+    gap: 0.3rem;
+  }
+
+  .card-tag {
+    font-size: 0.65rem;
+  }
+
+  .modern-grid--list .card-course__img {
+    height: 200px;
+  }
+
+  .modern-grid--list .card-overlay {
+    padding: 1.25rem;
+  }
+
+  .modern-grid--list .card-overlay h3 {
+    font-size: 1.1rem;
+  }
+
+  .no-results {
+    padding: 3rem 1rem;
+    font-size: 1rem;
+  }
+}
+
+@keyframes fadeInUp {
+  to {
     opacity: 1;
     transform: translateY(0);
   }
-  
-  .card-overlay h3 {
-    font-size: 1.2rem;
-    margin: 0;
-    font-family: 'BlenderProBold', sans-serif;
-  }
-  
-  .card-overlay p {
-    font-size: 1rem;
-    margin: 0;
-    font-weight: 400;
-    opacity: 0.9;
-  }
-  
-  /* --- RESPONSIVE --- */
-  @media (max-width: 1550px) {
-    .modern-grid {
-      grid-template-columns: repeat(2, 550px);
-    }
-  }
-  
-  @media (max-width: 1250px) {
-    .modern-grid {
-      grid-template-columns: 1fr;
-      justify-items: center;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .modern-grid-container {
-      padding: 4rem 30px;
-    }
-  
-    .card-course {
-      width: 100%;
-      max-width: 550px;
-      height: auto;
-    }
-  
-    .card-course__figure {
-      aspect-ratio: 550/400;
-    }
-  
-    .card-overlay {
-      padding: 1rem;
-    }
-  }
-  
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
+}

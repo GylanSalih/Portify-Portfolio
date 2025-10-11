@@ -271,20 +271,9 @@ html {
   font-size: 2.5rem;
   font-weight: 800;
   margin: 3.5rem 0 2rem;
-  border-bottom: 2px solid var(--border);
   padding-bottom: 1rem;
   letter-spacing: -0.035em;
   position: relative;
-}
-
-.content-section h1::before {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 3rem;
-  height: 2px;
-  background: var(--foreground);
 }
 
 .content-section h2 {
@@ -293,19 +282,6 @@ html {
   margin: 3rem 0 1.5rem;
   letter-spacing: -0.03em;
   position: relative;
-}
-
-.content-section h2::before {
-  content: '';
-  position: absolute;
-  left: -1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 0.25rem;
-  height: 1.5rem;
-  background: var(--muted-foreground);
-  border-radius: 0.125rem;
-  opacity: 0.6;
 }
 
 .content-section h3 {
@@ -489,7 +465,6 @@ html {
 
 /* Enhanced Blockquotes */
 .content-section blockquote {
-  border-left: 3px solid var(--foreground);
   padding: 1.5rem 0 1.5rem 2rem;
   margin: 2.5rem 0;
   font-style: italic;
@@ -899,12 +874,6 @@ html {
     margin: 2rem 0 1rem;
   }
 
-  .content-section h2::before {
-    left: -0.75rem;
-    width: 0.1875rem;
-    height: 1.25rem;
-  }
-
   .content-section h3 {
     font-size: 1.25rem;
     margin: 1.75rem 0 0.875rem;
@@ -1167,7 +1136,6 @@ html {
 
   .content-section blockquote {
     background: #f9f9f9 !important;
-    border-left: 3px solid #000 !important;
     color: black !important;
     break-inside: avoid;
   }

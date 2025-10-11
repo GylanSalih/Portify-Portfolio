@@ -2,7 +2,6 @@ import { DarkModeProvider } from './contexts/DarkModeContext';
 import ClientLayout from './components/ClientLayout/ClientLayout';
 import Footer from './components/Footer/Footer';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
-import MemoryDebugPanel from './components/MemoryDebugPanel/MemoryDebugPanel';
 import './fonts/fonts.css';
 import './styles/globals.css';
 
@@ -94,7 +93,6 @@ export default function RootLayout({ children }) {
           <ErrorBoundary>
             <ClientLayout>{children}</ClientLayout>
           </ErrorBoundary>
-          <MemoryDebugPanel />
         </DarkModeProvider>
         <Footer />
       </body>

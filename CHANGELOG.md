@@ -29,27 +29,28 @@ Note and Todos for myself:
 Lookbook:
 Updates / Fixes:
 
-0.0.26 - Newest Updates
-• Memory leaks behoben alles war extrem langsam 
-• redesign simpler cleaner smoother moderner in planung 
-• viele sachen gelöscht holo effect usw da redesign in planung ist und diese spielerein zwar schön sind aber nicht
-effektiv und viele resourcen klauen und user experience zerstören
-• 
+0.0.26 – Newest Updates
+• Fixed memory leaks that made everything extremely slow
+• Redesign in planning – simpler, cleaner, smoother, and more modern
+• Removed many features (like the holo effect) since the redesign is planned and such visual effects, while nice, are not efficient and hurt performance and user experience
+• Completely new design for the blog – still a work in progress, but I’m motivated
+• Many updates overall – I’ll update the changelog tomorrow, but here’s a small note in case I forget
+• Home, blog, and portfolio have all been changed and improved
 
-0.0.25 - Previous Updates
-• portfoliopost in einzelne componente getrennt
-• navbar folder richtig sortiert alle zusammengehörigen componenten in navbar eingefügt
-• navbar style angepasst
-• 360 dynamisches carousel eingebaut und testing page ausgebessert
-• bloggrid angepasst und verbessert mit neuen funktionen kleine stats anzeige bessere tags und bessere suchen
-• blog singlepage angepasst ausgebssert table of contents gelöscht noch im ausbaue
-• progress page eingebaut noch im aufbau
-• about skills compontente instant laden der bilder bug gefixed das bild erst beim tab wechsel lädt
-• home page bugs gefixt falsche farben von titeln 
-• fancybox bug erst default css laden dann custom.css in styles folder seperat
-• viele ordner gelöscht component order bereinigt und sauber gemacht 
-• statt css wird jetzt module benutzt bis ich irgendwann das ganze projekt zu scss umwandel
-• 
+0.0.25 – Previous Updates
+• Split portfolio posts into individual components
+• Properly organized the navbar folder, grouping related components together
+• Updated navbar styling
+• Added a 360° dynamic carousel and improved the testing page
+• Improved the blog grid with new features such as small stats display, better tags, and improved search
+• Updated and refined the blog single page, removed the table of contents (still in development)
+• Added a progress page (still in progress)
+• Fixed a bug with the about/skills component where images only loaded when switching tabs
+• Fixed home page bugs with incorrect title colors
+• Fixed Fancybox bug – now default CSS loads before custom.css (in the styles folder separately)
+• Deleted many unused folders and cleaned up the component structure
+• Switched from plain CSS to CSS modules, with plans to eventually migrate the entire project to SCSS
+
 
 0.0.24 - Previous Updates
 • Added Progress Page

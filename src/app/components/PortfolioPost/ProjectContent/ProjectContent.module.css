@@ -1,54 +1,48 @@
 .content {
   margin-bottom: 4rem;
   position: relative;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .section {
-  margin-bottom: 3rem;
-  background: rgba(15, 15, 15, 0.5);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 2.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 16px;
-  padding: 2.5rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 2rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.section:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateY(-2px);
 }
 
 .section:last-child {
   margin-bottom: 0;
 }
 
-.section:hover {
-  border-color: rgba(255, 255, 255, 0.1);
-  background: rgba(20, 20, 20, 0.6);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
 .title {
   font-size: 2rem;
   font-weight: 700;
   color: #ffffff;
-  margin: 0 0 1.5rem 0;
-  padding-bottom: 0.75rem;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  margin: 0 0 1.25rem 0;
+  padding-bottom: 0;
+  border-bottom: none;
   position: relative;
-}
-
-.title::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 60px;
-  height: 2px;
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-  border-radius: 1px;
+  font-family: 'BlenderProBold', sans-serif;
+  letter-spacing: -0.01em;
 }
 
 .text {
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.8;
-  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.7;
+  font-size: 1rem;
+  font-family: 'RedHat', sans-serif;
 }
 
 .text p {
@@ -56,43 +50,54 @@
 }
 
 .text h3 {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 600;
-  color: #ffffff;
-  margin: 1.5rem 0 1rem 0;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 1.5rem 0 0.875rem 0;
   position: relative;
+  font-family: 'BlenderProBold', sans-serif;
 }
 
-
-
 .text ul {
-  margin: 1rem 0;
+  margin: 0.875rem 0;
   padding-left: 1.5rem;
+  list-style: none;
 }
 
 .text li {
   margin: 0.5rem 0;
   position: relative;
+  padding-left: 0.5rem;
 }
 
-
+.text li::before {
+  content: '•';
+  position: absolute;
+  left: -1rem;
+  color: rgba(59, 130, 246, 0.6);
+}
 
 .text strong {
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.9);
   font-weight: 600;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .title {
-    font-size: 1.75rem;
+    font-size: 1.625rem;
+    margin-bottom: 1rem;
   }
   
   .text {
-    font-size: 1rem;
+    font-size: 0.9375rem;
+  }
+  
+  .text h3 {
+    font-size: 1.125rem;
   }
   
   .section {
-    padding: 2rem;
+    margin-bottom: 2.5rem;
   }
 }

@@ -7,9 +7,9 @@
 @tailwind utilities;
 
 :root {
-  --background: #f1f1f1;
+  --background: #f8f8f8;
   --foreground: #0a0a0a;
-  --dark-mode: #f1f1f1;
+  --dark-mode: #f8f8f8;
   --light-mode: #0a0a0a;
 }
 
@@ -26,11 +26,17 @@
   scrollbar-color: #333 #222; /* Farbe für den Thumb und Track in Firefox */
 }
 
+/* Verhindert horizontales Scrollen global */
+* {
+  max-width: 100%;
+}
+
 html {
   min-width: 320px;
   scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: hsla(218, 9%, 59%, 0.1) transparent;
+  overflow-x: hidden; /* Verhindert horizontales Scrollen */
 }
 
 ::-webkit-scrollbar {
@@ -64,9 +70,8 @@ body {
   overflow-x: hidden; /* Verhindert horizontales Scrollen */
   width: 100%;
   height: 100%;
-  background-color: #f1f1f1;
+  background-color: #f8f8f8;
   color: #0a0a0a;
-  cursor: none;
   min-width: 320px; /* Minimale Breite für den Body */
   min-height: 480px; /* Minimale Höhe für den Body */
   transition:
@@ -77,18 +82,18 @@ body {
 /* Dark Mode */
 html.dark-mode {
   background-color: #0a0a0a; /* Hintergrund für Dark Mode */
-  color: #f1f1f1; /* Textfarbe für Dark Mode */
+  color: #f8f8f8; /* Textfarbe für Dark Mode */
 }
 
 html.dark-mode body {
   background-color: #0a0a0a; /* Hintergrund für Dark Mode */
-  color: #f1f1f1; /* Textfarbe für Dark Mode */
+  color: #f8f8f8; /* Textfarbe für Dark Mode */
 }
 
 /* Fallback für body.dark-mode (falls noch irgendwo verwendet) */
 body.dark-mode {
   background-color: #0a0a0a; /* Hintergrund für Dark Mode */
-  color: #f1f1f1; /* Textfarbe für Dark Mode */
+  color: #f8f8f8; /* Textfarbe für Dark Mode */
 }
 
 /* Hauptinhalt */
@@ -138,7 +143,7 @@ h1 {
 h2 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  color: #f5f5f5;
+  color: #f8f8f8;
   padding-bottom: 0.5rem;
   font-family: 'RedHat', sans-serif;
   text-align: center;

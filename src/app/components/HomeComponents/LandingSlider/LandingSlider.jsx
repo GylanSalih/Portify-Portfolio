@@ -2,11 +2,6 @@
 
 import React, { useState, useEffect, useRef, useCallback, memo, useMemo } from 'react';
 import Image from 'next/image';
-import {
-  ArrowRight,
-  Github,
-  Mail,
-} from 'lucide-react';
 import styles from './LandingSlider.module.css';
 
 const LandingSlider = memo(() => {
@@ -30,60 +25,34 @@ const LandingSlider = memo(() => {
     {
       id: 1,
       type: 'video',
-      src: '/assets/videos/sea.mp4',
-      title: 'Welcome to My Corner',
-      subtitle: 'Tips, Tricks & Real Talk',
-      description:
-        'No fluff, just useful insights and honest advice to help you level up your skills and projects.',
-      cta: {
-        text: 'Dive Into the Blog',
-        action: () =>
-          document
-            .getElementById('blog')
-            ?.scrollIntoView({ behavior: 'smooth' }),
-        secondary: false,
-      },
+      src: '/assets/videos/Kenshin.mp4',
+      title: '',
+      subtitle: '',
+      description: '',
+      cta: null,
     },
     {
       id: 2,
-      type: 'image',
-      src: '/assets/images/landing/OniBoy1.webp',
-      title: 'Projects That Speak',
-      subtitle: "What I've Built, What I've Learned",
-      description:
-        'A collection of real work, experiments, and passion projects — each with a story behind it.',
-      cta: {
-        text: 'Check Them Out',
-        icon: Mail,
-        action: () =>
-          document
-            .getElementById('projects')
-            ?.scrollIntoView({ behavior: 'smooth' }),
-        secondary: true,
-      },
+      type: 'video',
+      src: '/assets/videos/sea.mp4',
+      title: '',
+      subtitle: '',
+      description: '',
+      cta: null,
     },
     {
       id: 3,
-      type: 'video',
-      src: '/assets/videos/tech.mp4',
-      title: 'Looking for the Next Challenge',
-      subtitle: "Let's Create Something Together",
-      description:
-        "If you're looking for someone who cares as much as you do, let's chat and see how we can collaborate.",
-      cta: {
-        text: 'Get in Touch',
-        icon: Github,
-        action: () =>
-          document
-            .getElementById('contact')
-            ?.scrollIntoView({ behavior: 'smooth' }),
-        secondary: false,
-      },
+      type: 'image',
+      src: '/assets/images/landing/OniGirl13.webp',
+      title: '',
+      subtitle: '',
+      description: '',
+      cta: null,
     },
   ], []);
 
-  const AUTOPLAY_INTERVAL = 6000;
-  const PROGRESS_INTERVAL = 150; // Optimiert für bessere Performance
+  const AUTOPLAY_INTERVAL = 8000; // Longer interval for better viewing experience
+  const PROGRESS_INTERVAL = 120; // Smoother progress animation
 
   // ✅ MEMORY LEAK FIX: Cleanup für alle Timeouts
   const addTimeout = useCallback((timeoutId) => {
@@ -93,43 +62,6 @@ const LandingSlider = memo(() => {
   const clearAllTimeouts = useCallback(() => {
     pendingTimeouts.current.forEach(id => clearTimeout(id));
     pendingTimeouts.current.clear();
-  }, []);
-
-  // ✅ PERFORMANCE FIX: Optimierte Mouse-Tracking mit Throttling
-  const handleCTAMouseMove = useCallback((e) => {
-    if (!e.currentTarget) return;
-    
-    requestAnimationFrame(() => {
-      const button = e.currentTarget;
-      if (!button) return;
-      
-      const rect = button.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      button.style.setProperty('--mouse-x', `${x}px`);
-      button.style.setProperty('--mouse-y', `${y}px`);
-    });
-  }, []);
-
-  const handleCTAMouseEnter = useCallback((e) => {
-    if (!e.currentTarget) return;
-    
-    const button = e.currentTarget;
-    const rect = button.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    button.style.setProperty('--mouse-x', `${x}px`);
-    button.style.setProperty('--mouse-y', `${y}px`);
-  }, []);
-
-  const handleCTAMouseLeave = useCallback((e) => {
-    if (!e.currentTarget) return;
-    
-    const button = e.currentTarget;
-    button.style.setProperty('--mouse-x', '-100px');
-    button.style.setProperty('--mouse-y', '-100px');
   }, []);
 
   // ✅ MEMORY LEAK FIX: Saubere Video-Verwaltung mit Error-Handling
@@ -149,10 +81,23 @@ const LandingSlider = memo(() => {
   const playActiveVideo = useCallback(() => {
     const activeVideo = videoRefs.current[activeSlide];
     if (activeVideo && activeVideo.parentNode && typeof activeVideo.play === 'function') {
-      activeVideo.play().catch(error => {
-        // Video play failed - ignore silently
-        console.warn('Video play failed:', error);
-      });
+      // Ensure video is ready to play
+      if (activeVideo.readyState >= 2) { // HAVE_CURRENT_DATA
+        activeVideo.currentTime = 0; // Reset to beginning for better UX
+        activeVideo.play().catch(error => {
+          console.warn('Video play failed:', error);
+        });
+      } else {
+        // Wait for video to be ready
+        const handleCanPlay = () => {
+          activeVideo.currentTime = 0;
+          activeVideo.play().catch(error => {
+            console.warn('Video play failed:', error);
+          });
+          activeVideo.removeEventListener('canplay', handleCanPlay);
+        };
+        activeVideo.addEventListener('canplay', handleCanPlay);
+      }
     }
   }, [activeSlide]);
 
@@ -246,11 +191,18 @@ const LandingSlider = memo(() => {
     addTimeout(timeoutId);
   }, [touchStart, nextSlide, slides.length, addTimeout]);
 
-  // ✅ PERFORMANCE FIX: Video Management
+  // ✅ PERFORMANCE FIX: Video Management with smooth transitions
   useEffect(() => {
     pauseAllVideos();
-    playActiveVideo();
-  }, [activeSlide, pauseAllVideos, playActiveVideo]);
+    // Small delay to ensure smooth transition before playing new video
+    const timeoutId = setTimeout(() => {
+      playActiveVideo();
+    }, 100);
+    
+    addTimeout(timeoutId);
+    
+    return () => clearTimeout(timeoutId);
+  }, [activeSlide, pauseAllVideos, playActiveVideo, addTimeout]);
 
   // ✅ MEMORY LEAK FIX: Autoplay Management
   useEffect(() => {
@@ -294,10 +246,6 @@ const LandingSlider = memo(() => {
   return (
     <>
       <section className={styles.carousel}>
-        {/* Background Elements - reduzierte Animation */}
-        <div className={`${styles.bgOrb} ${styles.bgOrb1}`}></div>
-        <div className={`${styles.bgOrb} ${styles.bgOrb2}`}></div>
-
         {/* Main Carousel Container */}
         <div
           className={styles.container}
@@ -321,16 +269,21 @@ const LandingSlider = memo(() => {
                     <video
                       ref={el => setVideoRef(el, index)}
                       className={styles.video}
+                      autoPlay
                       loop
                       muted
                       playsInline
                       preload={index === activeSlide ? 'auto' : 'metadata'}
                       style={{ 
                         opacity: index === activeSlide ? 1 : 0,
+                        transform: index === activeSlide ? 'scale(1)' : 'scale(1.02)',
+                        transition: 'opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                         pointerEvents: index === activeSlide ? 'auto' : 'none'
                       }}
                     >
-                      <source src={slide.src} type="video/mp4" />
+                      <source src={slide.src} type={slide.src.endsWith('.mp4') ? 'video/mp4' : 'video/webm'} />
+                      {/* Fallback for older browsers */}
+                      Your browser does not support the video tag.
                     </video>
                   ) : slide.type === 'image' ? (
                     <Image
@@ -342,7 +295,8 @@ const LandingSlider = memo(() => {
                       sizes="100vw"
                       style={{ 
                         opacity: index === activeSlide ? 1 : 0,
-                        transition: 'opacity 0.3s ease-in-out',
+                        transform: index === activeSlide ? 'scale(1)' : 'scale(1.02)',
+                        transition: 'opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                         objectFit: 'cover'
                       }}
                     />
@@ -355,33 +309,7 @@ const LandingSlider = memo(() => {
                 {/* Content */}
                 <div className={styles.content}>
                   <div className={styles.text}>
-                    <p className={styles.subtitle}>
-                      {slide.subtitle}
-                    </p>
-                    <h1 className={styles.title}>{slide.title}</h1>
-                    <p className={styles.description}>
-                      {slide.description}
-                    </p>
-
-                    {/* Call to Action button */}
-                    <button
-                      className={`${styles.cta} ${
-                        slide.cta.secondary
-                          ? styles.ctaSecondary
-                          : ''
-                      }`}
-                      onClick={slide.cta.action}
-                      onMouseMove={handleCTAMouseMove}
-                      onMouseEnter={handleCTAMouseEnter}
-                      onMouseLeave={handleCTAMouseLeave}
-                    >
-                      {slide.cta.icon && <slide.cta.icon size={20} />}
-                      <span>{slide.cta.text}</span>
-                      <ArrowRight
-                        className={styles.ctaIcon}
-                        size={16}
-                      />
-                    </button>
+                    {/* Content removed - clean minimal slider */}
                   </div>
                 </div>
               </div>

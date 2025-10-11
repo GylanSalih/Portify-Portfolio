@@ -9,14 +9,12 @@ import {
   Sparkles,
   Code,
   TrendingUp,
-  X,
-  Settings,
 } from 'lucide-react';
 import './Filter.css';
 
 const Filter = ({
   onCategoryChange,
-  onCardTypeChange,
+  onTagsChange,
   onLayoutChange,
   hasContent = true,
   isLoading = false,
@@ -24,11 +22,12 @@ const Filter = ({
   showLoadMore = false,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedRarity, setSelectedRarity] = useState('normal');
+  const [selectedTags, setSelectedTags] = useState([]);
   const [activeLayout, setActiveLayout] = useState(1);
-  const [isRarityDropdownOpen, setIsRarityDropdownOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState('categories');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [sortBy, setSortBy] = useState('newest');
+  const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false);
+  const [isTagsDropdownOpen, setIsTagsDropdownOpen] = useState(false);
 
   useEffect(() => {
     onCategoryChange(selectedCategory);
@@ -39,14 +38,18 @@ const Filter = ({
   }, [activeLayout, onLayoutChange]);
 
   useEffect(() => {
-    onCardTypeChange(selectedRarity);
-  }, [selectedRarity, onCardTypeChange]);
+    if (onTagsChange) {
+      onTagsChange(selectedTags);
+    }
+  }, [selectedTags, onTagsChange]);
 
   // Close dropdown when clicking outside
   useEffect(() => {
-    const handleClickOutside = event => {
-      if (!event.target.closest('.rarity-dropdown')) {
-        setIsRarityDropdownOpen(false);
+    const handleClickOutside = (event) => {
+      if (!event.target.closest('.sort-dropdown') && 
+          !event.target.closest('.tags-dropdown')) {
+        setIsSortDropdownOpen(false);
+        setIsTagsDropdownOpen(false);
       }
     };
 
@@ -56,56 +59,47 @@ const Filter = ({
     };
   }, []);
 
-  const rarities = [
-    { value: 'normal', label: 'Standard', description: 'Regular projects' },
-    { value: 'ShineBlitz', label: 'Spotlight', description: 'Featured work' },
-    {
-      value: 'ShineBlitz2',
-      label: 'Spotlight Pro',
-      description: 'Premium featured',
-    },
-    { value: 'radiant', label: 'Radiant', description: 'Glowing effects' },
-    {
-      value: 'rare holo vmax',
-      label: 'Holo Max',
-      description: 'Maximum impact',
-    },
-    { value: 'rare rainbow', label: 'Rainbow', description: 'Colorful design' },
-    { value: 'rare secret', label: 'Secret', description: 'Hidden gems' },
-    { value: 'rare holo v1', label: 'Holo V1', description: 'Version 1.0' },
-    {
-      value: 'rare holo vstar',
-      label: 'Holo Star',
-      description: 'Star quality',
-    },
-  ];
-
   const categories = [
     {
       value: 'all',
       label: 'All Projects',
       icon: LayoutGrid,
-      description: 'View everything',
     },
     {
       value: 'Design',
       label: 'Design',
       icon: Sparkles,
-      description: 'UI/UX & Visual',
     },
     {
       value: 'Coding',
       label: 'Development',
       icon: Code,
-      description: 'Web & Mobile Apps',
     },
     {
       value: 'Marketing',
       label: 'Marketing',
       icon: TrendingUp,
-      description: 'Campaigns & Strategy',
     },
   ];
+
+  // Available tags
+  const availableTags = [
+    'React', 'Node.js', 'MongoDB', 'Figma', 'UI/UX', 'Branding',
+    'Social Media', 'Content', 'Analytics', 'Next.js', 'CSS3',
+    'Animation', 'Mobile', 'Prototyping', 'SEO', 'Strategy',
+    'GSAP', 'Three.js', 'Dashboard', 'Data Viz', 'TypeScript', 'API',
+    'Email', 'Automation', 'Campaign'
+  ];
+
+  const toggleTag = (tag) => {
+    setSelectedTags(prev => {
+      if (prev.includes(tag)) {
+        return prev.filter(t => t !== tag);
+      } else {
+        return [...prev, tag];
+      }
+    });
+  };
 
   const layoutOptions = [
     { id: 1, icon: LayoutGrid, label: 'Grid' },
@@ -113,14 +107,23 @@ const Filter = ({
     { id: 3, icon: Grid3X3, label: 'List' },
   ];
 
-  const getSelectedRarity = () => {
-    return rarities.find(r => r.value === selectedRarity) || rarities[0];
+  const sortOptions = [
+    { value: 'newest', label: 'Newest First' },
+    { value: 'oldest', label: 'Oldest First' },
+    { value: 'name-asc', label: 'Name A-Z' },
+    { value: 'name-desc', label: 'Name Z-A' },
+    { value: 'popular', label: 'Most Popular' },
+  ];
+
+  const getSelectedSort = () => {
+    return sortOptions.find(s => s.value === sortBy) || sortOptions[0];
   };
 
-  const handleRaritySelect = rarity => {
-    setSelectedRarity(rarity.value);
-    setIsRarityDropdownOpen(false);
+  const handleSortSelect = (sort) => {
+    setSortBy(sort.value);
+    setIsSortDropdownOpen(false);
   };
+
 
   const NoContentSection = () => (
     <div className="no-content-section">
@@ -190,144 +193,144 @@ const Filter = ({
           <div
             className={`filter-content ${isMobileMenuOpen ? 'mobile-open' : ''}`}
           >
-            {/* Filter Tabs */}
-            <div className="filter-tabs">
-              <button
-                className={`filter-tab ${activeTab === 'categories' ? 'active' : ''}`}
-                onClick={() => setActiveTab('categories')}
-              >
-                <LayoutGrid size={18} />
-                Categories
-              </button>
-              <button
-                className={`filter-tab ${activeTab === 'layout' ? 'active' : ''}`}
-                onClick={() => setActiveTab('layout')}
-              >
-                <Grid3X3 size={18} />
-                Layout
-              </button>
-              <button
-                className={`filter-tab ${activeTab === 'style' ? 'active' : ''}`}
-                onClick={() => setActiveTab('style')}
-              >
-                <Sparkles size={18} />
-                Style
-              </button>
-            </div>
-
-            {/* Tab Content */}
-            <div className="tab-content">
-              {/* Categories Tab */}
-              {activeTab === 'categories' && (
-                <div className="tab-panel">
-                  <div className="filter-group">
-                    <label className="filter-label">Project Categories</label>
-                    <div className="category-grid">
-                      {categories.map(category => {
-                        const IconComponent = category.icon;
-                        return (
-                          <button
-                            key={category.value}
-                            type="button"
-                            className={`category-card ${selectedCategory === category.value ? 'active' : ''}`}
-                            onClick={() => setSelectedCategory(category.value)}
-                          >
-                            <div className="category-icon">
-                              <IconComponent size={20} />
-                            </div>
-                            <div className="category-content">
-                              <span className="category-name">
-                                {category.label}
-                              </span>
-                              <span className="category-description">
-                                {category.description}
-                              </span>
-                            </div>
-                          </button>
-                        );
-                      })}
-                    </div>
+            {/* All Filters in One Row */}
+            <div className="filter-row">
+              {/* Left Group: Categories + Layout */}
+              <div className="left-group">
+                {/* Categories */}
+                <div className="filter-group">
+                  <label className="filter-label">Categories</label>
+                  <div className="category-grid">
+                    {categories.map(category => {
+                      const IconComponent = category.icon;
+                      return (
+                        <button
+                          key={category.value}
+                          type="button"
+                          className={`category-card ${selectedCategory === category.value ? 'active' : ''}`}
+                          onClick={() => setSelectedCategory(category.value)}
+                        >
+                          <div className="category-icon">
+                            <IconComponent size={18} />
+                          </div>
+                          <div className="category-content">
+                            <span className="category-name">
+                              {category.label}
+                            </span>
+                          </div>
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
-              )}
 
-              {/* Layout Tab */}
-              {activeTab === 'layout' && (
-                <div className="tab-panel">
-                  <div className="filter-group">
-                    <label className="filter-label">Display Layout</label>
-                    <div className="layout-options">
-                      {layoutOptions.map(layout => {
-                        const IconComponent = layout.icon;
-                        return (
-                          <button
-                            key={layout.id}
-                            type="button"
-                            className={`layout-option ${activeLayout === layout.id ? 'active' : ''}`}
-                            onClick={() => setActiveLayout(layout.id)}
-                          >
-                            <IconComponent size={20} />
-                            <span>{layout.label}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
+                {/* Layout Options */}
+                <div className="filter-group">
+                  <label className="filter-label">Layout</label>
+                  <div className="layout-options">
+                    {layoutOptions.map(layout => {
+                      const IconComponent = layout.icon;
+                      return (
+                        <button
+                          key={layout.id}
+                          type="button"
+                          className={`layout-option ${activeLayout === layout.id ? 'active' : ''}`}
+                          onClick={() => setActiveLayout(layout.id)}
+                        >
+                          <IconComponent size={18} />
+                          <span>{layout.label}</span>
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
-              )}
+              </div>
 
-              {/* Style Tab */}
-              {activeTab === 'style' && (
-                <div className="tab-panel">
-                  <div className="filter-group">
-                    <label className="filter-label">Style Variant</label>
-                    <div className="rarity-dropdown">
-                      <button
-                        type="button"
-                        className={`rarity-trigger ${isRarityDropdownOpen ? 'open' : ''}`}
-                        onClick={() =>
-                          setIsRarityDropdownOpen(!isRarityDropdownOpen)
-                        }
-                      >
-                        <div className="rarity-selected">
-                          <span className="rarity-label">
-                            {getSelectedRarity().label}
-                          </span>
-                          <span className="rarity-subtitle">
-                            {getSelectedRarity().description}
-                          </span>
-                        </div>
-                        <ChevronDown
-                          size={16}
-                          className={`chevron ${isRarityDropdownOpen ? 'rotated' : ''}`}
-                        />
-                      </button>
+              {/* Right Group: Tags + Sort */}
+              <div className="right-group">
+                {/* Tags Dropdown */}
+                <div className="filter-group tags-group">
+                  <label className="filter-label">Filter by Tags:</label>
+                  <div className="tags-dropdown">
+                    <button
+                      type="button"
+                      className={`tags-trigger ${isTagsDropdownOpen ? 'open' : ''}`}
+                      onClick={() => setIsTagsDropdownOpen(!isTagsDropdownOpen)}
+                    >
+                      <span className="tags-selected">
+                        {selectedTags.length === 0 
+                          ? 'All Tags' 
+                          : `${selectedTags.length} selected`}
+                      </span>
+                      <ChevronDown
+                        size={14}
+                        className={`chevron ${isTagsDropdownOpen ? 'rotated' : ''}`}
+                      />
+                    </button>
 
-                      {isRarityDropdownOpen && (
-                        <div className="rarity-dropdown-menu">
-                          {rarities.map(rarity => (
+                    {isTagsDropdownOpen && (
+                      <div className="tags-dropdown-menu">
+                        <div className="tags-grid">
+                          {availableTags.map(tag => (
                             <button
-                              key={rarity.value}
+                              key={tag}
                               type="button"
-                              className={`rarity-option ${selectedRarity === rarity.value ? 'selected' : ''}`}
-                              onClick={() => handleRaritySelect(rarity)}
+                              className={`tag-option ${selectedTags.includes(tag) ? 'selected' : ''}`}
+                              onClick={() => toggleTag(tag)}
                             >
-                              <div className="rarity-info">
-                                <span className="rarity-name">
-                                  {rarity.label}
-                                </span>
-                                <span className="rarity-description">
-                                  {rarity.description}
-                                </span>
-                              </div>
+                              {tag}
                             </button>
                           ))}
                         </div>
-                      )}
-                    </div>
+                        {selectedTags.length > 0 && (
+                          <button
+                            type="button"
+                            className="clear-tags-btn"
+                            onClick={() => setSelectedTags([])}
+                          >
+                            Clear all tags
+                          </button>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
-              )}
+
+                {/* Sort Dropdown */}
+                <div className="filter-group sort-group">
+                  <label className="filter-label">Sort by:</label>
+                  <div className="sort-dropdown">
+                    <button
+                      type="button"
+                      className={`sort-trigger ${isSortDropdownOpen ? 'open' : ''}`}
+                      onClick={() => setIsSortDropdownOpen(!isSortDropdownOpen)}
+                    >
+                      <span className="sort-selected">
+                        {getSelectedSort().label}
+                      </span>
+                      <ChevronDown
+                        size={14}
+                        className={`chevron ${isSortDropdownOpen ? 'rotated' : ''}`}
+                      />
+                    </button>
+
+                    {isSortDropdownOpen && (
+                      <div className="sort-dropdown-menu">
+                        {sortOptions.map(sort => (
+                          <button
+                            key={sort.value}
+                            type="button"
+                            className={`sort-option ${sortBy === sort.value ? 'selected' : ''}`}
+                            onClick={() => handleSortSelect(sort)}
+                          >
+                            {sort.label}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

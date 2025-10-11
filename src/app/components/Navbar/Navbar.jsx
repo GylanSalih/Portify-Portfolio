@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useDarkMode } from '../../contexts/DarkModeContext';
-import { Menu, X } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import DarkModeToggle from './DarkModeToggle/DarkModeToggle';
@@ -41,7 +41,6 @@ const Navbar = () => {
     { href: '/', label: 'Home' },
     { href: '/blog', label: 'Blog' },
     { href: '/portfolio', label: 'Portfolio' },
-    { href: '/testing-grid', label: 'Testing' },
     { href: '/guestbook', label: 'Guestbook' },
     { href: '/about', label: 'About' },
   ];
@@ -54,11 +53,11 @@ const Navbar = () => {
         className={`${styles.navbar} ${styles['lg-block']}`}
       >
         <div className={styles.container}>
-          <div
-            className={`${styles.navbarContent} ${
-              isScrolled ? styles.scrolled : styles.notScrolled
-            }`}
-          >
+            <div
+              className={`${styles.navbarContent} ${
+                isScrolled ? styles.scrolled : styles.notScrolled
+              } ${isDarkMode ? styles.darkMode : ''}`}
+            >
             {/* Logo */}
             <div className={styles.logo}>
               <Link href="/" className={styles.logoLink}>

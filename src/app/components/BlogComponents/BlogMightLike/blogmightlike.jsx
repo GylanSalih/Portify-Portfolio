@@ -147,17 +147,9 @@ const BlogMightLike = ({
       {/* Hero Header - genau wie BlogGrid */}
       <div className="blog-hero-section">
         <div className="blog-hero-content">
-          <span>Related Articles</span>
-
           <h1 className="blog-hero-title">
-            <span className="blog-title-line">You might</span>
-            <span className="blog-title-line gradient">also like</span>
+            Related Articles
           </h1>
-
-          <p className="blog-hero-description">
-            Discover more articles that might interest you based on your current
-            reading.
-          </p>
         </div>
       </div>
 

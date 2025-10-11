@@ -19,17 +19,14 @@ export default function ClientLayout({ children, enablePreloader = false }) {
     }
   }, [enablePreloader]);
 
-  // Don't render until dark mode is initialized to prevent hydration mismatch
-  if (!isInitialized) {
-    return null;
-  }
+  // Render immediately, dark mode styles will be applied via CSS
 
   return (
     <>
       {/* Show preloader if enabled and app is not loaded */}
       {enablePreloader && <Preload enablePreloader={enablePreloader} />}
       <Navbar toggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode} />
-      <Mouse />
+      {/* <Mouse /> */}
       <main>{children}</main>
     </>
   );

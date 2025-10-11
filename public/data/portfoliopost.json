@@ -1,6 +1,5 @@
 [
   {
-    "id": 1,
     "slug": "oni-girl-coding1",
     "title": "Erstes Projekt",
     "category": "Coding",
@@ -8,8 +7,6 @@
     "heroImage": "/assets/images/landing/OniBoy1.webp",
     "holographicCard": "/assets/images/landing/OniGirl3.jpg",
     "backgroundImage": "/assets/images/landing/OniGirl3.jpg",
-    "views": 1247,
-    "likes": 89,
     "projectDetails": {
       "theme": "Coding",
       "inspiration": "Behance",
@@ -41,7 +38,6 @@
     ]
   },
   {
-    "id": 2,
     "slug": "oni-girl-coding2",
     "title": "My Second Project",
     "category": "Coding",
@@ -49,8 +45,6 @@
     "heroImage": "/assets/images/landing/OniBoy1.webp",
     "holographicCard": "/assets/images/landing/OniBoy4.webp",
     "backgroundImage": "/assets/images/landing/OniBoy4.webp",
-    "views": 892,
-    "likes": 156,
     "projectDetails": {
       "theme": "Coding",
       "inspiration": "Behance, Dribbble",
@@ -82,7 +76,6 @@
     ]
   },
   {
-    "id": 3,
     "slug": "mobile-app-design",
     "title": "Mobile App Design",
     "category": "Design",
@@ -90,8 +83,6 @@
     "heroImage": "/assets/images/landing/OniBoy1.webp",
     "holographicCard": "/assets/images/landing/OniGirl3.jpg",
     "backgroundImage": "/assets/images/landing/OniGirl3.jpg",
-    "views": 543,
-    "likes": 78,
     "projectDetails": {
       "theme": "Design",
       "inspiration": "Material Design, iOS Guidelines",
@@ -120,26 +111,23 @@
     ]
   },
   {
-    "id": 4,
     "slug": "portfolio-website",
     "title": "Portfolio Website",
-    "category": "Web Development",
+    "category": "Coding",
     "abovetitle": "Personal Branding",
-    "heroImage": "/assets/images/landing/OniBoy1.webp",
-    "holographicCard": "/assets/images/landing/OniBoy4.webp",
-    "backgroundImage": "/assets/images/landing/OniBoy4.webp",
-    "views": 1889,
-    "likes": 234,
+    "heroImage": "/assets/images/portfolio/New7.png",
+    "holographicCard": "/assets/images/portfolio/New7.png",
+    "backgroundImage": "/assets/images/portfolio/New7.png",
     "projectDetails": {
-      "theme": "Web Development",
+      "theme": "Coding",
       "inspiration": "Awwwards, CSS Design Awards",
-      "tags": "Next.js, CSS3, Animation",
+      "tags": "Next.js, GSAP, Three.js",
       "date": "25.10.2024",
       "duration": "5 Monate",
       "client": "Personal Project",
       "role": "Full-Stack Developer & Designer",
       "status": "Live",
-      "techStack": "Next.js, CSS3, GSAP, Framer Motion",
+      "techStack": "Next.js, CSS3, GSAP, Three.js",
       "challenges": "Creating smooth animations while maintaining performance",
       "solutions": "Implemented efficient animation libraries and optimized loading",
       "learnings": "Advanced animation techniques and performance optimization",
@@ -156,6 +144,244 @@
       "New3.png",
       "New4.png",
       "New5.png"
+    ]
+  },
+  {
+    "slug": "oni-girl-coding3",
+    "title": "Social Media Campaign",
+    "category": "Marketing",
+    "abovetitle": "Digital Marketing",
+    "heroImage": "/assets/images/portfolio/New3.png",
+    "holographicCard": "/assets/images/portfolio/New3.png",
+    "backgroundImage": "/assets/images/portfolio/New3.png",
+    "projectDetails": {
+      "theme": "Marketing",
+      "inspiration": "Social Media Trends",
+      "tags": "Social Media, Content, Analytics",
+      "date": "15.09.2024",
+      "duration": "3 Monate",
+      "client": "Fashion Brand",
+      "role": "Social Media Manager",
+      "status": "Completed",
+      "techStack": "Instagram, Facebook, TikTok, Analytics Tools",
+      "challenges": "Increasing engagement and reach organically",
+      "solutions": "Created viral content strategy and community management",
+      "learnings": "Social media algorithms and content creation strategies",
+      "demoUrl": null,
+      "githubUrl": null
+    },
+    "projectTexts": {
+      "heroParagraph": "A successful social media campaign that increased brand awareness by 300%.",
+      "description": "This comprehensive social media campaign was designed to boost brand visibility and engagement across multiple platforms. Through strategic content creation, community management, and data-driven optimization, we achieved remarkable results in follower growth and engagement rates."
+    },
+    "galleryImages": [
+      "New3.png",
+      "New4.png",
+      "New5.png"
+    ]
+  },
+  {
+    "slug": "oni-girl-coding4",
+    "title": "Portfolio Website",
+    "category": "Coding",
+    "abovetitle": "Web Development",
+    "heroImage": "/assets/images/portfolio/New4.png",
+    "holographicCard": "/assets/images/portfolio/New4.png",
+    "backgroundImage": "/assets/images/portfolio/New4.png",
+    "projectDetails": {
+      "theme": "Coding",
+      "inspiration": "Modern Web Design",
+      "tags": "Next.js, CSS3, Animation",
+      "date": "01.11.2024",
+      "duration": "4 Monate",
+      "client": "Personal Project",
+      "role": "Full-Stack Developer",
+      "status": "Live",
+      "techStack": "Next.js, TailwindCSS, Framer Motion",
+      "challenges": "Creating unique animations and interactions",
+      "solutions": "Custom animation library and performance optimization",
+      "learnings": "Advanced CSS animations and Next.js optimization",
+      "demoUrl": "https://portfolio-example.com",
+      "githubUrl": "https://github.com/your-username/portfolio"
+    },
+    "projectTexts": {
+      "heroParagraph": "An interactive portfolio website with stunning animations and smooth transitions.",
+      "description": "This portfolio showcases modern web development techniques with a focus on user experience and visual appeal. The site features custom animations, smooth page transitions, and an intuitive navigation system that makes browsing enjoyable."
+    },
+    "galleryImages": [
+      "New4.png",
+      "New5.png",
+      "New6.png"
+    ]
+  },
+  {
+    "slug": "oni-girl-coding5",
+    "title": "Mobile App Design",
+    "category": "Design",
+    "abovetitle": "UI/UX Design",
+    "heroImage": "/assets/images/portfolio/New5.png",
+    "holographicCard": "/assets/images/portfolio/New5.png",
+    "backgroundImage": "/assets/images/portfolio/New5.png",
+    "projectDetails": {
+      "theme": "Design",
+      "inspiration": "Material Design, iOS Guidelines",
+      "tags": "Figma, Mobile, Prototyping",
+      "date": "20.08.2024",
+      "duration": "2 Monate",
+      "client": "Tech Startup",
+      "role": "UI/UX Designer",
+      "status": "Completed",
+      "techStack": "Figma, Principle, ProtoPie",
+      "challenges": "Designing for both iOS and Android platforms",
+      "solutions": "Created adaptive design system with platform-specific components",
+      "learnings": "Mobile design patterns and cross-platform considerations",
+      "demoUrl": "https://figma.com/proto/mobile-app",
+      "githubUrl": null
+    },
+    "projectTexts": {
+      "heroParagraph": "A comprehensive mobile app design focusing on usability and aesthetics.",
+      "description": "This mobile app design project features a complete UI/UX solution for a fitness tracking application. The design includes wireframes, high-fidelity mockups, interactive prototypes, and a comprehensive design system that ensures consistency across all screens."
+    },
+    "galleryImages": [
+      "New5.png",
+      "New6.png",
+      "New7.png"
+    ]
+  },
+  {
+    "slug": "oni-girl-coding6",
+    "title": "SEO Optimization",
+    "category": "Marketing",
+    "abovetitle": "Search Engine Optimization",
+    "heroImage": "/assets/images/portfolio/New6.png",
+    "holographicCard": "/assets/images/portfolio/New6.png",
+    "backgroundImage": "/assets/images/portfolio/New6.png",
+    "projectDetails": {
+      "theme": "Marketing",
+      "inspiration": "SEO Best Practices",
+      "tags": "SEO, Analytics, Strategy",
+      "date": "10.07.2024",
+      "duration": "6 Monate",
+      "client": "E-Commerce Company",
+      "role": "SEO Specialist",
+      "status": "Ongoing",
+      "techStack": "Google Analytics, SEMrush, Ahrefs",
+      "challenges": "Improving organic traffic in competitive market",
+      "solutions": "Comprehensive SEO strategy including technical SEO and content optimization",
+      "learnings": "Advanced SEO techniques and content strategy",
+      "demoUrl": null,
+      "githubUrl": null
+    },
+    "projectTexts": {
+      "heroParagraph": "An SEO optimization project that increased organic traffic by 250%.",
+      "description": "This comprehensive SEO project focused on improving organic search visibility for an e-commerce website. Through technical SEO improvements, content optimization, and strategic link building, we achieved significant growth in organic traffic and keyword rankings."
+    },
+    "galleryImages": [
+      "New6.png",
+      "New7.png",
+      "New8.png"
+    ]
+  },
+  {
+    "slug": "oni-girl-coding7",
+    "title": "Email Marketing",
+    "category": "Marketing",
+    "abovetitle": "Email Campaigns",
+    "heroImage": "/assets/images/portfolio/New9.png",
+    "holographicCard": "/assets/images/portfolio/New9.png",
+    "backgroundImage": "/assets/images/portfolio/New9.png",
+    "projectDetails": {
+      "theme": "Marketing",
+      "inspiration": "Email Marketing Best Practices",
+      "tags": "Email, Automation, Campaign",
+      "date": "05.06.2024",
+      "duration": "4 Monate",
+      "client": "SaaS Company",
+      "role": "Email Marketing Specialist",
+      "status": "Completed",
+      "techStack": "Mailchimp, HubSpot, HTML/CSS",
+      "challenges": "Improving open rates and conversions",
+      "solutions": "A/B testing, segmentation, and personalization strategies",
+      "learnings": "Email automation and data-driven marketing",
+      "demoUrl": null,
+      "githubUrl": null
+    },
+    "projectTexts": {
+      "heroParagraph": "An email marketing campaign that achieved 45% open rate and 15% conversion rate.",
+      "description": "This email marketing project involved creating and executing a comprehensive email campaign strategy. Through careful segmentation, personalization, and A/B testing, we achieved exceptional open and conversion rates that exceeded industry benchmarks."
+    },
+    "galleryImages": [
+      "New9.png",
+      "New10.png",
+      "New11.png"
+    ]
+  },
+  {
+    "slug": "oni-girl-coding8",
+    "title": "Dashboard Design",
+    "category": "Design",
+    "abovetitle": "Data Visualization",
+    "heroImage": "/assets/images/portfolio/New10.png",
+    "holographicCard": "/assets/images/portfolio/New10.png",
+    "backgroundImage": "/assets/images/portfolio/New10.png",
+    "projectDetails": {
+      "theme": "Design",
+      "inspiration": "Data Visualization Best Practices",
+      "tags": "Dashboard, Data Viz, UI/UX",
+      "date": "18.05.2024",
+      "duration": "3 Monate",
+      "client": "Analytics Platform",
+      "role": "UI/UX Designer",
+      "status": "Live",
+      "techStack": "Figma, D3.js, React",
+      "challenges": "Making complex data easy to understand",
+      "solutions": "Intuitive data visualization and interactive components",
+      "learnings": "Data visualization principles and dashboard UX",
+      "demoUrl": "https://dashboard-demo.com",
+      "githubUrl": null
+    },
+    "projectTexts": {
+      "heroParagraph": "A dashboard design that makes complex data accessible and actionable.",
+      "description": "This dashboard design project focused on creating an intuitive interface for complex data analysis. The design features custom visualizations, interactive components, and a clean layout that makes data exploration effortless."
+    },
+    "galleryImages": [
+      "New10.png",
+      "New11.png",
+      "New1.png"
+    ]
+  },
+  {
+    "slug": "oni-girl-coding9",
+    "title": "Web App Development",
+    "category": "Coding",
+    "abovetitle": "Full-Stack Development",
+    "heroImage": "/assets/images/portfolio/New11.png",
+    "holographicCard": "/assets/images/portfolio/New11.png",
+    "backgroundImage": "/assets/images/portfolio/New11.png",
+    "projectDetails": {
+      "theme": "Coding",
+      "inspiration": "Modern Web Apps",
+      "tags": "React, TypeScript, API",
+      "date": "30.04.2024",
+      "duration": "6 Monate",
+      "client": "Enterprise Client",
+      "role": "Lead Developer",
+      "status": "Live",
+      "techStack": "React, TypeScript, Node.js, PostgreSQL",
+      "challenges": "Building scalable architecture for enterprise needs",
+      "solutions": "Microservices architecture and efficient state management",
+      "learnings": "Enterprise software development and system design",
+      "demoUrl": "https://webapp-demo.com",
+      "githubUrl": "https://github.com/your-username/web-app"
+    },
+    "projectTexts": {
+      "heroParagraph": "A robust web application built for enterprise-level performance and scalability.",
+      "description": "This full-stack web application was built to handle complex business logic and high user loads. The application features a modern React frontend with TypeScript, a robust Node.js backend, and a PostgreSQL database, all designed with scalability and maintainability in mind."
+    },
+    "galleryImages": [
+      "New11.png",
+      "New1.png",
+      "New2.png"
     ]
   }
 ]
