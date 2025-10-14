@@ -1,37 +1,10 @@
-/* guestbook.module.scss */
-
-/* Container für das Guestbook */
 .container {
-  padding: 2rem;
-  padding-top: 120px;
-  width: 60%;
-  z-index: 1;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  overflow: hidden;
+  background: #000;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
-/* Stile für die Überschrift */
-.title {
-  font-size: 65px;
-  font-weight: bold;
-  color: var(--light-mode);
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-/* Stile für den Text */
-.description {
-  font-size: 24px;
-  color: var(--light-mode);
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-
-/* Stile für die Überschrift */
-:global(html.dark-mode) .title {
-  color: var(--dark-mode);
-}
-
-/* Stile für den Text */
-:global(html.dark-mode) .description {
-  color: var(--dark-mode);
-}
-

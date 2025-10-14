@@ -22,6 +22,8 @@
   }
 
   &.lg-hidden {
+    padding: 0;
+    
     @media (min-width: 1024px) {
       display: none;
     }
@@ -172,13 +174,29 @@
 /* Mobile Navbar Styles */
 .mobileNavbar {
   backdrop-filter: blur(24px);
-  padding: 1rem 0;
-  background: rgba(255, 255, 255, 0.1);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0.75rem 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
-  :global(.dark) & {
-    background: rgba(0, 0, 0, 0.9);
-    border-bottom: 1px solid rgb(31, 41, 55);
+  &.scrolled {
+    background: rgba(248, 248, 248, 0.95);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  &.notScrolled {
+    background: transparent;
+    border-bottom: 1px solid transparent;
+  }
+
+  &.darkMode {
+    &.scrolled {
+      background: rgba(0, 0, 0, 0.95);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    &.notScrolled {
+      background: transparent;
+      border-bottom: 1px solid transparent;
+    }
   }
 }
 

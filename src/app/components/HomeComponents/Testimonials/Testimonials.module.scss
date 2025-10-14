@@ -124,6 +124,10 @@
   @media (min-width: 1024px) {
     grid-template-columns: repeat(3, 1fr);
   }
+
+  @media (max-width: 768px) {
+    padding: 0;
+  }
 }
 
 /* Card - MIT WORKING TRANSITIONS */

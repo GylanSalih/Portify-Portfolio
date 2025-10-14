@@ -23,8 +23,16 @@ export const processBlogPostData = async (post, fullContentData = null) => {
 
     // Wenn kein fullContentData übergeben wurde, lade es
     if (!fullContentData) {
-      const fullContentResponse = await fetch('/data/blogpost.json');
-      fullContentData = await fullContentResponse.json();
+      const fullContentResponse = await fetch('/data/BlogData.json');
+      const blogData = await fullContentResponse.json();
+      // Transformiere BlogData zu dem erwarteten Format
+      fullContentData = blogData.map(item => ({
+        slug: item.slug,
+        title: item.title,
+        tags: item.tags,
+        content: item.postData.content,
+        ...item.postData
+      }));
     }
 
     // Finde den vollständigen Content für diesen Post
@@ -63,8 +71,16 @@ export const processMultipleBlogPosts = async (
   try {
     // Wenn kein fullContentData übergeben wurde, lade es einmal
     if (!fullContentData) {
-      const fullContentResponse = await fetch('/data/blogpost.json');
-      fullContentData = await fullContentResponse.json();
+      const fullContentResponse = await fetch('/data/BlogData.json');
+      const blogData = await fullContentResponse.json();
+      // Transformiere BlogData zu dem erwarteten Format
+      fullContentData = blogData.map(item => ({
+        slug: item.slug,
+        title: item.title,
+        tags: item.tags,
+        content: item.postData.content,
+        ...item.postData
+      }));
     }
 
     // Verarbeite alle Posts parallel

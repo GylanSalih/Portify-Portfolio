@@ -24,7 +24,7 @@ export default function PortfolioPage() {
   useEffect(() => {
     const loadPortfolio = async () => {
       try {
-        const response = await fetch('/data/portfoliogrid.json');
+        const response = await fetch('/data/PortfolioData.json');
         const data = await response.json();
         setAllItems(data);
       } catch (error) {

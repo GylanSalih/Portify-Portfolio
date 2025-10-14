@@ -4,6 +4,10 @@ import React from 'react';
 import styles from './ProjectContent.module.scss';
 
 const ProjectContent = ({ sections }) => {
+  if (!sections || sections.length === 0) {
+    return null;
+  }
+
   return (
     <section className={styles.content}>
       {sections.map((section) => (

@@ -106,7 +106,9 @@ const Navbar = () => {
 
       {/* Mobile Navbar */}
       <header className={`${styles.navbar} ${styles['lg-hidden']}`}>
-        <div className={styles.mobileNavbar}>
+        <div className={`${styles.mobileNavbar} ${
+          isScrolled ? styles.scrolled : styles.notScrolled
+        } ${isDarkMode ? styles.darkMode : ''}`}>
           <div className={styles.mobileContainer}>
             <div className={styles.mobileContent}>
               {/* Mobile Logo */}

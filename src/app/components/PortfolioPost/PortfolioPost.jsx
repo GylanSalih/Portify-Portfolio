@@ -33,40 +33,38 @@ const ProjectDetail = () => {
       try {
         setLoading(true);
         
-        const response = await fetch('/data/portfoliopost.json');
+        const response = await fetch('/data/PortfolioData.json');
         const data = await response.json();
         const projectData = data.find(p => p.slug === slug);
         
         if (projectData) {
+          const postData = projectData.postData;
+          
           const transformedProject = {
             slug: projectData.slug,
             title: projectData.title,
-            subtitle: projectData.abovetitle || 'Modern Web Development Project',
-            description: projectData.projectTexts?.description || projectData.description,
+            subtitle: postData.abovetitle || 'Modern Web Development Project',
+            description: postData.projectTexts?.description || '',
             category: projectData.category,
-            tags: projectData.projectDetails?.tags ? 
-              (typeof projectData.projectDetails.tags === 'string' ? 
-                projectData.projectDetails.tags.split(', ') : 
-                projectData.projectDetails.tags.split(', ')) : 
-              ['React', 'Next.js'],
-            client: projectData.projectDetails?.client || 'Personal Project',
-            year: projectData.projectDetails?.date?.split('.')[2] || '2024',
-            duration: projectData.projectDetails?.duration || '3 Monate',
-            role: projectData.projectDetails?.role || 'Full-Stack Developer & Designer',
-            status: projectData.projectDetails?.status || 'Live',
+            tags: projectData.tags || [],
+            client: postData.projectDetails?.client || 'Personal Project',
+            year: postData.projectDetails?.date?.split('.')[2] || '2024',
+            duration: postData.projectDetails?.duration || '3 Monate',
+            role: postData.projectDetails?.role || 'Full-Stack Developer & Designer',
+            status: postData.projectDetails?.status || 'Live',
             
             // Links
-            liveUrl: projectData.projectDetails?.demoUrl,
-            githubUrl: projectData.projectDetails?.githubUrl,
+            liveUrl: postData.projectDetails?.demoUrl,
+            githubUrl: postData.projectDetails?.githubUrl,
             
             // Media
-            heroImage: projectData.backgroundImage,
-            images: projectData.galleryImages ? projectData.galleryImages.map((img, index) => ({
+            backgroundImage: postData.backgroundImage,
+            images: postData.galleryImages ? postData.galleryImages.map((img, index) => ({
               url: `/assets/images/portfolio/${img}`,
               caption: `Project Screenshot ${index + 1}`
             })) : [],
             
-            videos: projectData.videos || [],
+            videos: postData.videos || [],
 
             // Content sections
             sections: [
@@ -74,15 +72,15 @@ const ProjectDetail = () => {
                 id: 'overview',
                 title: 'Projektübersicht',
                 content: `
-                  <p>${projectData.projectTexts?.heroParagraph || projectData.excerpt}</p>
-                  <p>${projectData.projectTexts?.description || projectData.description}</p>
+                  <p>${postData.projectTexts?.heroParagraph || ''}</p>
+                  <p>${postData.projectTexts?.description || ''}</p>
                 `
               },
               {
                 id: 'challenge',
                 title: 'Herausforderung',
                 content: `
-                  <p>${projectData.projectDetails?.challenges || 'Die größte Herausforderung bestand darin, eine Balance zwischen visueller Attraktivität und Performance zu finden.'}</p>
+                  <p>${postData.projectDetails?.challenges || 'Die größte Herausforderung bestand darin, eine Balance zwischen visueller Attraktivität und Performance zu finden.'}</p>
                 `
               },
               {
@@ -92,8 +90,8 @@ const ProjectDetail = () => {
                   <p>Durch den Einsatz modernster Technologien konnte eine hochperformante Website realisiert werden:</p>
                   <h3>Technischer Stack:</h3>
                   <ul>
-                    <li><strong>Technologien:</strong> ${projectData.projectDetails?.techStack || 'React, Next.js, CSS3'}</li>
-                    <li><strong>Inspiration:</strong> ${projectData.projectDetails?.inspiration || 'Behance, Dribbble'}</li>
+                    <li><strong>Technologien:</strong> ${postData.projectDetails?.techStack || 'React, Next.js, CSS3'}</li>
+                    <li><strong>Inspiration:</strong> ${postData.projectDetails?.inspiration || 'Behance, Dribbble'}</li>
                   </ul>
                 `
               },
@@ -101,14 +99,14 @@ const ProjectDetail = () => {
                 id: 'results',
                 title: 'Ergebnisse & Learnings',
                 content: `
-                  <p>${projectData.projectDetails?.learnings || projectData.projectDetails?.solutions || 'Das Projekt übertraf alle gesetzten Ziele und erhielt positive Resonanz.'}</p>
+                  <p>${postData.projectDetails?.learnings || postData.projectDetails?.solutions || 'Das Projekt übertraf alle gesetzten Ziele und erhielt positive Resonanz.'}</p>
                 `
               }
             ],
 
             // Technical details
-            techStack: projectData.projectDetails?.techStack ? 
-              projectData.projectDetails.techStack.split(', ').map(tech => ({
+            techStack: postData.projectDetails?.techStack ? 
+              postData.projectDetails.techStack.split(', ').map(tech => ({
                 name: tech,
                 category: 'Technology'
               })) : [
@@ -133,7 +131,7 @@ const ProjectDetail = () => {
             .map(p => ({
               slug: p.slug,
               title: p.title,
-              image: p.backgroundImage,
+              image: p.postData.backgroundImage,
               category: p.category
             }));
           setRelatedProjects(related);

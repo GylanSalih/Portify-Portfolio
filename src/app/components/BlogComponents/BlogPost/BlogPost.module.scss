@@ -73,7 +73,7 @@
 .hero {
   padding: 3rem 1rem 4rem;
   margin-top: 80px;
-  text-align: center;
+  text-align: left;
   position: relative;
   background: linear-gradient(180deg, hsl(240 10% 6%) 0%, hsl(240 10% 3.9%) 100%);
   border-bottom: 1px solid hsl(240 3.7% 18%);
@@ -98,7 +98,7 @@
 
 .heroMeta {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 1rem;
   margin-bottom: 2.5rem;
@@ -207,66 +207,79 @@
   margin-bottom: 2.5rem;
   position: relative;
 
-  /* Enhanced Typography Hierarchy */
-  :global(h1), :global(h2), :global(h3), :global(h4), :global(h5), :global(h6) {
-    color: hsl(0 0% 98%);
-    font-weight: 700;
-    line-height: 1.25;
-    letter-spacing: -0.025em;
-    margin: 3rem 0 1.25rem;
-    scroll-margin-top: 5rem;
-    position: relative;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  }
-
+  /* Custom H1 Styling - Applied to ALL blog posts */
   :global(h1) {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin: 3.5rem 0 2rem;
-    padding-bottom: 1rem;
-    letter-spacing: -0.035em;
+    text-align: left;
+    font-size: 2.75rem;
+    font-weight: 900;
+    color: hsl(0 0% 98%);
+    margin: 4rem 0 2rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 3px solid hsl(240 3.7% 18%);
+    letter-spacing: -0.04em;
+    line-height: 1.2;
   }
 
+  /* Custom H2 Styling */
   :global(h2) {
-    font-size: 2rem;
-    font-weight: 700;
-    margin: 3rem 0 1.5rem;
-    letter-spacing: -0.03em;
-  }
-
-  :global(h3) {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin: 2.5rem 0 1rem;
+    text-align: left;
+    font-size: 2.25rem;
+    font-weight: 800;
     color: hsl(0 0% 95%);
+    margin: 3.5rem 0 1.75rem;
+    letter-spacing: -0.035em;
+    line-height: 1.25;
   }
 
+  /* Custom H3 Styling */
+  :global(h3) {
+    text-align: left;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: hsl(0 0% 90%);
+    margin: 3rem 0 1.25rem;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+  }
+
+  /* Custom H4 Styling */
   :global(h4) {
-    font-size: 1.25rem;
+    text-align: left;
+    font-size: 1.375rem;
     font-weight: 600;
-    margin: 2rem 0 0.75rem;
-    color: hsl(240 5% 64.9%);
+    color: hsl(240 5% 84.9%);
+    margin: 2.5rem 0 1rem;
+    letter-spacing: -0.01em;
   }
 
+  /* Custom H5 Styling */
   :global(h5) {
+    text-align: left;
     font-size: 1.125rem;
-    font-weight: 500;
-    margin: 1.5rem 0 0.5rem;
-    color: hsl(240 5% 64.9%);
+    font-weight: 600;
+    color: hsl(240 5% 74.9%);
+    margin: 2rem 0 0.75rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    font-size: 0.9375rem;
   }
 
+  /* Custom H6 Styling */
   :global(h6) {
+    text-align: left;
     font-size: 1rem;
     font-weight: 500;
-    margin: 1.25rem 0 0.5rem;
     color: hsl(240 5% 64.9%);
+    margin: 1.5rem 0 0.5rem;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-size: 0.875rem;
+    letter-spacing: 0.08em;
+    font-size: 0.8125rem;
+    opacity: 0.9;
   }
 
   /* Optimized Paragraph Styles */
   :global(p) {
+    text-align: left;
     font-size: 1.125rem;
     line-height: 1.8;
     color: hsl(240 5% 64.9%);
@@ -283,136 +296,202 @@
     }
   }
 
-  /* Enhanced Lists */
-  :global(ul), :global(ol) {
+  /* Custom Unordered List Styling - Applied to ALL blog posts */
+  :global(ul) {
+    text-align: left;
     margin: 2rem 0;
     padding-left: 0;
-    color: hsl(240 5% 64.9%);
     list-style: none;
 
     :global(li) {
-      font-size: 1.125rem;
+      font-size: 1.0625rem;
       line-height: 1.8;
-      margin-bottom: 0.75rem;
-      padding-left: 2rem;
+      color: hsl(240 5% 70%);
+      margin-bottom: 1rem;
+      padding-left: 2.5rem;
       position: relative;
-    }
-  }
-
-  :global(ul li::before) {
-    content: '';
-    position: absolute;
-    left: 0.5rem;
-    top: 0.75rem;
-    width: 0.375rem;
-    height: 0.375rem;
-    background: hsl(240 5% 64.9%);
-    border-radius: 50%;
-    opacity: 0.7;
-  }
-
-  :global(ol) {
-    counter-reset: list-counter;
-
-    :global(li) {
-      counter-increment: list-counter;
 
       &::before {
-        content: counter(list-counter);
+        content: '●';
         position: absolute;
-        left: 0;
+        left: 0.75rem;
         top: 0;
-        background: hsl(240 4.8% 16%);
-        color: hsl(240 5% 64.9%);
-        font-size: 0.875rem;
-        font-weight: 600;
-        width: 1.5rem;
-        height: 1.5rem;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid hsl(240 3.7% 18%);
+        color: hsl(0 0% 98%);
+        font-size: 0.75rem;
+        line-height: 1.8;
       }
     }
   }
 
-  /* Enhanced Links */
+  /* Custom Ordered List Styling */
+  :global(ol) {
+    text-align: left;
+    margin: 2rem 0;
+    padding-left: 0;
+    counter-reset: custom-counter;
+    list-style: none;
+
+    :global(li) {
+      font-size: 1.0625rem;
+      line-height: 1.8;
+      color: hsl(240 5% 70%);
+      margin-bottom: 1rem;
+      padding-left: 3rem;
+      position: relative;
+      counter-increment: custom-counter;
+
+      &::before {
+        content: counter(custom-counter);
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: linear-gradient(135deg, hsl(240 10% 10%) 0%, hsl(240 10% 6%) 100%);
+        color: hsl(0 0% 98%);
+        font-size: 0.875rem;
+        font-weight: 700;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid hsl(240 3.7% 18%);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+
+  /* VSCode Terminal Code Block */
+  :global(code) {
+    display: block;
+    margin: 2.5rem 0;
+    padding: 1.25rem 1.5rem;
+    background: #1e1e1e;
+    border: 1px solid #2d2d2d;
+    border-radius: 8px;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: #d4d4d4;
+    overflow-x: auto;
+    white-space: pre;
+    box-shadow: 
+      0 2px 8px rgba(0, 0, 0, 0.2),
+      0 1px 2px rgba(0, 0, 0, 0.1);
+
+    /* Scrollbar */
+    &::-webkit-scrollbar {
+      height: 12px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(121, 121, 121, 0.4);
+      border: 3px solid #1e1e1e;
+      background-clip: padding-box;
+      border-radius: 6px;
+
+      &:hover {
+        background: rgba(100, 100, 100, 0.7);
+        background-clip: padding-box;
+      }
+    }
+  }
+
+  /* Custom Link Styling - Applied to ALL blog posts */
   :global(a) {
-    color: hsl(0 0% 98%);
+    color: hsl(48 96% 70%);
     text-decoration: none;
     position: relative;
-    font-weight: 500;
+    font-weight: 600;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    border-bottom: 2px solid hsl(48 96% 70% / 0.3);
 
     &::after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 1px;
-      bottom: -2px;
-      left: 0;
-      background: hsl(0 0% 98%);
-      transform: scaleX(0);
-      transform-origin: right;
+      content: '→';
+      margin-left: 0.25rem;
+      margin-right: 0.25rem;
+      display: inline-block;
       transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     &:hover {
-      color: hsl(0 0% 98%);
+      color: hsl(48 96% 80%);
+      border-bottom-color: hsl(48 96% 70%);
 
       &::after {
-        transform: scaleX(1);
-        transform-origin: left;
+        transform: translateX(3px);
       }
     }
   }
 
-  /* Enhanced Code Styles */
+  /* Custom Inline Code Styling */
   :global(code) {
-    background: hsl(240 10% 6%);
-    color: hsl(0 0% 98%);
-    padding: 0.25rem 0.5rem;
+    background: linear-gradient(135deg, hsl(240 10% 8%) 0%, hsl(240 10% 6%) 100%);
+    color: hsl(48 96% 70%);
+    padding: 0.375rem 0.625rem;
     border-radius: 0.5rem;
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    font-size: 0.875rem;
-    border: 1px solid hsl(240 3.7% 18%);
-    font-weight: 500;
-    position: relative;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9375rem;
+    border: 1px solid hsl(240 3.7% 20%);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   }
 
+  /* Custom Pre/Code Block Styling */
   :global(pre) {
-    background: hsl(240 10% 6%);
-    border: 1px solid hsl(240 3.7% 18%);
-    border-radius: 0.75rem;
-    padding: 1.5rem;
+    background: linear-gradient(135deg, hsl(240 10% 8%) 0%, hsl(240 10% 5%) 100%);
+    border: 2px solid hsl(240 3.7% 20%);
+    border-radius: 1rem;
+    padding: 2rem;
     overflow-x: auto;
-    margin: 2rem 0;
-    font-size: 0.875rem;
+    margin: 3rem 0;
+    font-size: 0.9375rem;
     position: relative;
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-
+    box-shadow: 0 8px 16px -4px rgb(0 0 0 / 0.3);
+    
     &::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent 0%, hsl(240 3.7% 18%) 50%, transparent 100%);
+      height: 2.5rem;
+      background: hsl(240 10% 10%);
+      border-bottom: 1px solid hsl(240 3.7% 20%);
+    }
+
+    &::after {
+      content: '● ● ●';
+      position: absolute;
+      top: 0.75rem;
+      left: 1rem;
+      color: hsl(240 5% 64.9%);
+      font-size: 0.625rem;
+      letter-spacing: 0.25rem;
     }
 
     :global(code) {
       background: none;
       border: none;
       padding: 0;
-      color: hsl(0 0% 98%);
+      padding-top: 2rem;
+      color: hsl(0 0% 95%);
       font-weight: 400;
+      box-shadow: none;
+      display: block;
+      font-size: 0.875rem;
+      line-height: 1.7;
     }
   }
 
   /* Enhanced Blockquotes */
   :global(blockquote) {
+    text-align: left;
     padding: 1.5rem 0 1.5rem 2rem;
     margin: 2.5rem 0;
     font-style: italic;
@@ -461,7 +540,7 @@
 
   :global(figure) {
     margin: 3rem 0;
-    text-align: center;
+    text-align: left;
     position: relative;
   }
 
@@ -472,6 +551,87 @@
     font-style: italic;
     padding: 0 1rem;
     line-height: 1.5;
+    text-align: left;
+  }
+
+  /* Enhanced Table Styling - Applied to ALL blog posts */
+  :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 3rem 0;
+    background: hsl(240 10% 6%);
+    border: 1px solid hsl(240 3.7% 18%);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  }
+
+  :global(thead) {
+    background: linear-gradient(135deg, hsl(240 10% 10%) 0%, hsl(240 10% 8%) 100%);
+    border-bottom: 2px solid hsl(240 3.7% 22%);
+  }
+
+  :global(th) {
+    padding: 1.25rem 1.5rem;
+    text-align: left;
+    font-weight: 700;
+    color: hsl(0 0% 98%);
+    font-size: 0.9375rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-right: 1px solid hsl(240 3.7% 18%);
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  :global(tbody) {
+    :global(tr) {
+      border-bottom: 1px solid hsl(240 3.7% 18%);
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: hsl(240 10% 8%);
+        box-shadow: inset 0 0 0 1px hsl(240 3.7% 22%);
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    :global(td) {
+      padding: 1rem 1.5rem;
+      color: hsl(240 5% 70%);
+      font-size: 1rem;
+      line-height: 1.6;
+      border-right: 1px solid hsl(240 3.7% 18%);
+
+      &:last-child {
+        border-right: none;
+      }
+
+      &:first-child {
+        font-weight: 600;
+        color: hsl(0 0% 90%);
+      }
+    }
+  }
+
+  /* Responsive Table */
+  @media (max-width: 768px) {
+    :global(table) {
+      display: block;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    :global(th),
+    :global(td) {
+      padding: 0.875rem 1rem;
+      font-size: 0.875rem;
+    }
   }
 }
 
@@ -497,13 +657,13 @@
 /* Enhanced Like Section */
 .likeSection {
   margin-bottom: 3rem;
-  text-align: center;
+  text-align: left;
 }
 
 /* Enhanced Tags Section */
 .tagsSection {
   margin-bottom: 3rem;
-  text-align: center;
+  text-align: left;
   position: relative;
 }
 
@@ -515,13 +675,14 @@
     margin: 0 0 1.5rem 0;
     letter-spacing: -0.01em;
     position: relative;
+    text-align: left;
 
     &::after {
       content: '';
       position: absolute;
       bottom: -0.5rem;
-      left: 50%;
-      transform: translateX(-50%);
+      left: 0;
+      transform: none;
       width: 2rem;
       height: 1px;
       background: hsl(240 5% 64.9%);
@@ -534,9 +695,9 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  justify-content: center;
-  max-width: 32rem;
-  margin: 0 auto;
+  justify-content: flex-start;
+  max-width: 100%;
+  margin: 0;
 }
 
 .tag {
@@ -593,8 +754,8 @@
   border: 2px solid hsl(240 3.7% 18%);
   border-radius: 1rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  max-width: 32rem;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
   position: relative;
   overflow: hidden;
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
@@ -766,7 +927,7 @@
 
   .authorCard {
     flex-direction: column;
-    text-align: center;
+    text-align: left;
     padding: 1.5rem;
     gap: 1.25rem;
   }
@@ -797,13 +958,14 @@
     flex-direction: column;
     gap: 0.625rem;
     margin-bottom: 1.75rem;
+    align-items: flex-start;
   }
 
   .metaItem {
     font-size: 0.75rem;
     padding: 0.3125rem 0.5625rem;
     max-width: fit-content;
-    margin: 0 auto;
+    margin: 0;
   }
 
   .heroTitle {
@@ -945,4 +1107,3 @@
   outline-offset: 3px;
   border-radius: 0.5rem;
 }
-

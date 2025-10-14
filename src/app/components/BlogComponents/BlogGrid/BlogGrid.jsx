@@ -52,12 +52,21 @@ const BlogGrid = () => {
   useEffect(() => {
     const loadPosts = async () => {
       try {
-        // Lade Blog-Posts aus bloggrid.json
-        const response = await fetch('/data/bloggrid.json');
+        // Lade Blog-Posts aus der neuen zentralen BlogData.json
+        const response = await fetch('/data/BlogData.json');
         const data = await response.json();
 
+        // Transformiere die Daten für das Grid (verwende gridData)
+        const gridPosts = data.map(post => ({
+          ...post.gridData,
+          slug: post.slug,
+          title: post.title,
+          tags: post.tags,
+          category: post.category
+        }));
+
         // Verarbeite alle Posts mit den neuen Utils
-        const postsWithProcessedContent = await processMultipleBlogPosts(data);
+        const postsWithProcessedContent = await processMultipleBlogPosts(gridPosts);
 
         const tags = extractUniqueTags(postsWithProcessedContent);
         setUniqueTags(tags);

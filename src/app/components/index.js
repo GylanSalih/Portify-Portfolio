@@ -16,7 +16,7 @@ export { default as Footer } from './Footer/Footer';
 export { default as HamburgerMenu } from './Navbar/HamburgerMenu/HamburgerMenu';
 
 export { default as HolographicCard } from './PortfolioGrid/HolographicCard/HolographicCard';
-
+export { default as InfinityCarousel } from './InfinityCarousel/InfinityCarousel';
 export { default as Loading } from './Loading/Loading';
 
 export { default as Mouse } from './Mouse/Mouse';

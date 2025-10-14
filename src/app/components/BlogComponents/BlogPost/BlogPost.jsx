@@ -29,23 +29,54 @@ const BlogPost = () => {
     incrementLikes,
   } = useBlogStats(slug);
 
-  // Lade Aktuelle Blog-Posts aus blogpost.json
+  // Lade Aktuelle Blog-Posts aus der neuen zentralen BlogData.json
   useEffect(() => {
     const loadPostData = async () => {
       try {
-        const response = await fetch('/data/blogpost.json');
-        const posts = await response.json();
-        const selectedPost = posts.find(post => post.slug === slug);
+        const response = await fetch('/data/BlogData.json');
+        const blogData = await response.json();
+        const selectedBlogItem = blogData.find(item => item.slug === slug);
 
-        if (selectedPost) {
+        if (selectedBlogItem) {
+          // Transformiere die neue Datenstruktur für die BlogPost-Komponente
+          const transformedPost = {
+            slug: selectedBlogItem.slug,
+            title: selectedBlogItem.title,
+            subtitle: selectedBlogItem.postData.subtitle,
+            author: "Gylan Salih", // Statischer Wert
+            date: selectedBlogItem.postData.date,
+            tags: selectedBlogItem.tags,
+            authorImage: "/assets/images/blog/author.webp", // Statischer Wert
+            content: selectedBlogItem.postData.content
+          };
+
           // Verwende die neue Utility-Funktion
           const postWithProcessedContent = await processBlogPostData(
-            selectedPost,
-            posts
+            transformedPost,
+            blogData.map(item => ({
+              slug: item.slug,
+              title: item.title,
+              tags: item.tags,
+              ...item.postData
+            }))
           );
           setPost(postWithProcessedContent);
         } else {
-          setPost(posts[0]);
+          // Fallback zum ersten Post
+          const firstItem = blogData[0];
+          if (firstItem) {
+            const transformedPost = {
+              slug: firstItem.slug,
+              title: firstItem.title,
+              subtitle: firstItem.postData.subtitle,
+              author: "Gylan Salih", // Statischer Wert
+              date: firstItem.postData.date,
+              tags: firstItem.tags,
+              authorImage: "/assets/images/blog/author.webp", // Statischer Wert
+              content: firstItem.postData.content
+            };
+            setPost(transformedPost);
+          }
         }
       } catch (error) {
         console.error('Error loading post data:', error);
@@ -103,13 +134,22 @@ const BlogPost = () => {
   useEffect(() => {
     const loadRelatedPosts = async () => {
       try {
-        const response = await fetch('/data/bloggrid.json');
-        const allPosts = await response.json();
+        const response = await fetch('/data/BlogData.json');
+        const blogData = await response.json();
 
         if (!post) return;
 
         console.log('Current post:', post.title);
         console.log('Current post tags:', post.tags);
+
+        // Transformiere die Daten für das Grid (verwende gridData)
+        const allPosts = blogData.map(item => ({
+          ...item.gridData,
+          slug: item.slug,
+          title: item.title,
+          tags: item.tags,
+          category: item.category
+        }));
 
         // Filtere aktuellen Post aus
         const otherPosts = allPosts.filter(p => p.slug !== slug);
@@ -263,7 +303,7 @@ const BlogPost = () => {
             <div className={styles.authorCard}>
               <div className={styles.authorAvatar}>
                 <Image
-                  src={post.authorImage || '/assets/images/blog/author.webp'}
+                  src='/assets/images/blog/author.webp'
                   alt={post.author}
                   width={64}
                   height={64}
@@ -271,7 +311,7 @@ const BlogPost = () => {
                 />
               </div>
               <div className={styles.authorInfo}>
-                <h4 className={styles.authorName}>{post.author}</h4>
+                <h4 className={styles.authorName}>Gylan Salih</h4>
                 <p className={styles.authorBio}>
                   Full-Stack Developer und UI/UX Designer mit Leidenschaft für
                   schöne, funktionale digitale Erlebnisse mit modernen

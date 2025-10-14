@@ -14,7 +14,6 @@ const Features = ({ features }) => {
       <div className={styles.grid}>
         {features.map((feature, index) => (
           <div key={`feature-${index}`} className={styles.item}>
-            <div className={styles.icon}>✓</div>
             <p>{feature}</p>
           </div>
         ))}

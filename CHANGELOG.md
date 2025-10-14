@@ -24,7 +24,7 @@ Note and Todos for myself:
 [X] Improve Mobile Menu and Header alignment
 [X] SSR Component pieces
 [X] darkmode / lightmode switch titles dont switch correctly
-[X] 
+[X] Clean codeblock for blogpost
 [X] 
 ---
 
@@ -44,6 +44,13 @@ Updates / Fixes:
 • All styles moved to style.module.scss for cleaner class names across all projects (className={styles.name})
 • Removed overly colorful elements from components – the goal is a more cohesive visual harmony with the portfolio page
 • Added CardContentSlider as a new component and updated all related components accordingly
+• Improved Grid JSON: merged two JSON files into one structured file, and shared data like tags directly with both
+• Created a default blog post page to adjust styling
+• Started the default post page — began styling elements like h1, h2, h3, p, images, tables, etc., to make them look consistent across all blog posts
+• Made author image, author description, and author name static to simplify future adjustments
+• 
+• 
+
 
 0.0.25 – Previous Updates
 • Split portfolio posts into individual components

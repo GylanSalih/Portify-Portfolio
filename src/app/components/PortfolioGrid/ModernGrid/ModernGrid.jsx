@@ -44,7 +44,7 @@ const ModernGrid = ({
               <figure className={styles.figure}>
                 <Link href={`/portfolio/${item.slug}`}>
                   <Image
-                    src={item.imgSrc}
+                    src={item.gridData.imgSrc}
                     alt={item.title}
                     width={550}
                     height={400}
@@ -55,7 +55,7 @@ const ModernGrid = ({
                       <h3>{item.title}</h3>
                       <p>{item.category}</p>
                       <div className={styles.tags}>
-                        {item.tags.slice(0, 2).map((tag, idx) => (
+                        {item.tags.map((tag, idx) => (
                           <span key={idx} className={styles.tag}>{tag}</span>
                         ))}
                       </div>

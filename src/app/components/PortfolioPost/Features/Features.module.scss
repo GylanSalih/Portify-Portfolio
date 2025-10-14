@@ -35,9 +35,6 @@
 }
 
 .item {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.875rem;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
@@ -68,20 +65,5 @@
   @media (max-width: 768px) {
     padding: 1.125rem;
   }
-}
-
-.icon {
-  background: rgba(59, 130, 246, 0.12);
-  color: #3b82f6;
-  width: 22px;
-  height: 22px;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  font-size: 0.75rem;
-  flex-shrink: 0;
-  border: 1px solid rgba(59, 130, 246, 0.2);
 }
 

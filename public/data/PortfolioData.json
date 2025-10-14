@@ -1,0 +1,493 @@
+[
+  {
+    "slug": "complete-demo-project",
+    "title": "Complete Portfolio Demo Project",
+    "category": "Coding",
+    "tags": ["React", "Next.js", "TypeScript", "GSAP", "Three.js", "Vercel"],
+    "gridData": {
+      "imgSrc": "/assets/images/portfolio/New1.png"
+    },
+    "postData": {
+      "abovetitle": "Full-Featured Showcase",
+      "backgroundImage": "/assets/images/landing/OniGirl2.jpg",
+      "projectDetails": {
+        "theme": "Coding",
+        "inspiration": "Awwwards, Behance, Dribbble",
+        "date": "15.10.2024",
+        "duration": "6 Monate",
+        "client": "Tech Startup GmbH",
+        "role": "Lead Full-Stack Developer & UI/UX Designer",
+        "status": "Live",
+        "techStack": "React, Next.js, TypeScript, TailwindCSS, GSAP, Three.js, Framer Motion, Supabase, Vercel",
+        "challenges": "Creating a highly interactive and performant web application with complex animations, 3D elements, and real-time data synchronization. The main challenge was balancing visual richness with optimal loading times and ensuring smooth 60fps animations across all devices.",
+        "solutions": "Implemented advanced code splitting and lazy loading strategies using Next.js dynamic imports. Used React.memo and useMemo hooks for expensive computations. Optimized 3D models with DRACO compression and implemented level-of-detail (LOD) techniques. Utilized Intersection Observer API for viewport-based animations and implemented a custom animation queue system to prevent layout thrashing.",
+        "learnings": "Mastered advanced React patterns including compound components, render props, and custom hooks. Gained deep understanding of WebGL performance optimization and shader programming. Learned how to architect large-scale applications with proper state management using Zustand. Developed expertise in creating accessible, performant animations that enhance rather than hinder user experience.",
+        "demoUrl": "https://complete-demo-project.vercel.app",
+        "githubUrl": "https://github.com/your-username/complete-demo-project"
+      },
+      "projectTexts": {
+        "heroParagraph": "Ein umfassendes Showcase-Projekt, das modernste Web-Technologien mit anspruchsvollem Design vereint. Dieses Projekt demonstriert meine Fähigkeiten in Full-Stack-Entwicklung, 3D-Visualisierung und Performance-Optimierung.",
+        "description": "Dieses Projekt repräsentiert den Höhepunkt meiner Entwicklungsfähigkeiten und zeigt, wie moderne Web-Technologien harmonisch zusammenarbeiten können, um ein außergewöhnliches Benutzererlebnis zu schaffen. Von der ersten Konzeptphase bis zur finalen Implementierung stand die Nutzerfreundlichkeit im Vordergrund, während gleichzeitig technische Exzellenz gewährleistet wurde. Die Anwendung vereint komplexe Animationen, 3D-Elemente und Echtzeit-Datenverarbeitung in einer nahtlosen, intuitiven Benutzeroberfläche. Jede Interaktion wurde sorgfältig gestaltet, um sowohl visuell beeindruckend als auch funktional optimal zu sein. Das Projekt diente als Lernplattform für fortgeschrittene Konzepte in React, Next.js und WebGL, während gleichzeitig Best Practices in Bezug auf Accessibility, SEO und Performance umgesetzt wurden."
+      },
+      "galleryImages": [
+        "New1.png",
+        "New2.png",
+        "New3.png",
+        "New4.png",
+        "New5.png",
+        "New6.png",
+        "New7.png",
+        "New8.png",
+        "New9.png",
+        "New10.png",
+        "New11.png"
+      ],
+      "videos": [
+        {
+          "url": "/assets/videos/cyberpunk.mp4",
+          "thumbnail": "/assets/images/portfolio/New1.png",
+          "caption": "Interactive 3D Hero Section with WebGL Effects",
+          "duration": "0:45"
+        },
+        {
+          "url": "/assets/videos/drift.mp4",
+          "thumbnail": "/assets/images/portfolio/New2.png",
+          "caption": "Smooth Page Transitions with GSAP",
+          "duration": "0:32"
+        },
+        {
+          "url": "/assets/videos/Sakura.mp4",
+          "thumbnail": "/assets/images/portfolio/New3.png",
+          "caption": "Real-time Data Visualization Dashboard",
+          "duration": "1:15"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "oni-girl-coding1",
+    "title": "E-Commerce Platform",
+    "category": "Coding",
+    "tags": ["React", "Node.js", "MongoDB"],
+    "gridData": {
+      "imgSrc": "/assets/images/portfolio/New2.png"
+    },
+    "postData": {
+      "abovetitle": "Best-CSS-Tricks",
+      "backgroundImage": "/assets/images/landing/OniGirl3.jpg",
+      "projectDetails": {
+        "theme": "Coding",
+        "inspiration": "Behance",
+        "date": "31.05.2024",
+        "duration": "3 Monate",
+        "client": "Personal Project",
+        "role": "Full-Stack Developer",
+        "status": "Live",
+        "techStack": "React, TailwindCSS, GSAP",
+        "challenges": "Building an interactive gallery with Fancybox and optimizing performance",
+        "solutions": "Implemented Fancybox with optimized lazy loading and code splitting",
+        "learnings": "Learned advanced React patterns and modern CSS techniques",
+        "demoUrl": "https://your-live-demo-link.com",
+        "githubUrl": "https://github.com/your-username/oni-girl-project"
+      },
+      "projectTexts": {
+        "heroParagraph": "I created this website with great dedication, focusing on modern web development practices and user experience design.",
+        "description": "This website is a showcase of my passion for web development and design. It features an interactive gallery, smooth animations, and responsive design. The project demonstrates advanced React concepts, modern CSS techniques, and performance optimization strategies."
+      },
+      "galleryImages": [
+        "New1.png",
+        "New2.png",
+        "New3.png",
+        "New4.png",
+        "New5.png",
+        "New6.png",
+        "New7.png"
+      ],
+      "videos": []
+    }
+  },
+  {
+    "slug": "oni-girl-coding2",
+    "title": "Brand Identity Design",
+    "category": "Design",
+    "tags": ["Figma", "UI/UX", "Branding"],
+    "gridData": {
+      "imgSrc": "/assets/images/portfolio/New3.png"
+    },
+    "postData": {
+      "abovetitle": "E-Commerce Platform",
+      "backgroundImage": "/assets/images/landing/OniBoy4.webp",
+      "projectDetails": {
+        "theme": "Coding",
+        "inspiration": "Behance, Dribbble",
+        "date": "15.08.2024",
+        "duration": "4 Monate",
+        "client": "Startup Client",
+        "role": "Lead Developer",
+        "status": "Live",
+        "techStack": "Node.js, Express, MongoDB, React",
+        "challenges": "Implementing complex e-commerce features and payment integration",
+        "solutions": "Used Stripe API for payments and implemented advanced state management",
+        "learnings": "Gained expertise in full-stack development and payment systems",
+        "demoUrl": "https://second-project-demo.com",
+        "githubUrl": "https://github.com/your-username/second-project"
+      },
+      "projectTexts": {
+        "heroParagraph": "A comprehensive e-commerce platform built with modern technologies and best practices.",
+        "description": "This e-commerce platform showcases advanced full-stack development skills. Features include user authentication, product management, shopping cart functionality, and secure payment processing."
+      },
+      "galleryImages": [
+        "New1.png",
+        "New2.png",
+        "New3.png",
+        "New4.png",
+        "New5.png",
+        "New6.png",
+        "New7.png"
+      ],
+      "videos": []
+    }
+  },
+  {
+    "slug": "oni-girl-coding3",
+    "title": "Social Media Campaign",
+    "category": "Marketing",
+    "tags": ["Social Media", "Content", "Analytics"],
+    "gridData": {
+      "imgSrc": "/assets/images/portfolio/New4.png"
+    },
+    "postData": {
+      "abovetitle": "UI/UX Design",
+      "backgroundImage": "/assets/images/landing/OniGirl3.jpg",
+      "projectDetails": {
+        "theme": "Design",
+        "inspiration": "Material Design, iOS Guidelines",
+        "date": "10.09.2024",
+        "duration": "2 Monate",
+        "client": "Mobile Startup",
+        "role": "UI/UX Designer",
+        "status": "Completed",
+        "techStack": "Figma, Principle, After Effects",
+        "challenges": "Creating intuitive user flows for complex mobile interactions",
+        "solutions": "Conducted user research and iterative testing to optimize UX",
+        "learnings": "Mastered mobile design patterns and user psychology",
+        "demoUrl": "https://figma.com/proto/mobile-app-design",
+        "githubUrl": null
+      },
+      "projectTexts": {
+        "heroParagraph": "A modern mobile app design focusing on user experience and visual appeal.",
+        "description": "This mobile app design project showcases modern UI/UX principles and mobile-first design thinking."
+      },
+      "galleryImages": [
+        "New1.png",
+        "New2.png",
+        "New3.png",
+        "New4.png",
+        "New5.png",
+        "New6.png",
+        "New7.png"
+      ],
+      "videos": []
+    }
+  },
+  {
+    "slug": "oni-girl-coding4",
+    "title": "Portfolio Website",
+    "category": "Coding",
+    "tags": ["Next.js", "CSS3", "Animation"],
+    "gridData": {
+      "imgSrc": "/assets/images/portfolio/New5.png"
+    },
+    "postData": {
+      "abovetitle": "Personal Branding",
+      "backgroundImage": "/assets/images/portfolio/New7.png",
+      "projectDetails": {
+        "theme": "Coding",
+        "inspiration": "Awwwards",
+        "date": "01.07.2024",
+        "duration": "2 Monate",
+        "client": "Personal",
+        "role": "Full-Stack Developer",
+        "status": "Live",
+        "techStack": "Next.js, React, GSAP",
+        "challenges": "Creating unique animations and smooth transitions",
+        "solutions": "Implemented GSAP for professional animations",
+        "learnings": "Advanced animation techniques and performance optimization",
+        "demoUrl": "https://portfolio-demo.com",
+        "githubUrl": "https://github.com/your-username/portfolio"
+      },
+      "projectTexts": {
+        "heroParagraph": "A personal portfolio website showcasing creative work and technical skills.",
+        "description": "This portfolio website combines modern web technologies with creative design to create a unique user experience."
+      },
+      "galleryImages": [
+        "New1.png",
+        "New2.png",
+        "New3.png"
+      ],
+      "videos": []
+    }
+  },
+  {
+    "slug": "oni-girl-coding5",
+    "title": "Mobile App Design",
+    "category": "Design",
+    "tags": ["Figma", "Mobile", "Prototyping"],
+    "gridData": {
+      "imgSrc": "/assets/images/portfolio/New6.png"
+    },
+    "postData": {
+      "abovetitle": "Digital Marketing",
+      "backgroundImage": "/assets/images/portfolio/New3.png",
+      "projectDetails": {
+        "theme": "Marketing",
+        "inspiration": "HubSpot",
+        "date": "20.06.2024",
+        "duration": "3 Monate",
+        "client": "Marketing Agency",
+        "role": "Digital Marketer",
+        "status": "Live",
+        "techStack": "Google Ads, Facebook Ads, Analytics",
+        "challenges": "Optimizing campaign performance and ROI",
+        "solutions": "Implemented A/B testing and data-driven optimization",
+        "learnings": "Advanced marketing analytics and campaign management",
+        "demoUrl": null,
+        "githubUrl": null
+      },
+      "projectTexts": {
+        "heroParagraph": "A comprehensive digital marketing campaign with measurable results.",
+        "description": "This marketing project demonstrates strategic planning and data-driven decision making."
+      },
+      "galleryImages": [
+        "New1.png",
+        "New2.png"
+      ],
+      "videos": []
+    }
+  },
+  {
+    "slug": "oni-girl-coding6",
+    "title": "SEO Optimization",
+    "category": "Marketing",
+    "tags": ["SEO", "Analytics", "Strategy"],
+    "gridData": {
+      "imgSrc": "/assets/images/portfolio/New7.png"
+    },
+    "postData": {
+      "abovetitle": "Web Development",
+      "backgroundImage": "/assets/images/portfolio/New4.png",
+      "projectDetails": {
+        "theme": "Coding",
+        "inspiration": "GitHub",
+        "date": "15.05.2024",
+        "duration": "4 Monate",
+        "client": "Tech Company",
+        "role": "Backend Developer",
+        "status": "Live",
+        "techStack": "Node.js, PostgreSQL, Redis",
+        "challenges": "Building scalable API architecture",
+        "solutions": "Implemented microservices and caching strategies",
+        "learnings": "Backend architecture and database optimization",
+        "demoUrl": "https://api-demo.com",
+        "githubUrl": "https://github.com/your-username/api-project"
+      },
+      "projectTexts": {
+        "heroParagraph": "A robust backend API built for scalability and performance.",
+        "description": "This project showcases backend development skills with focus on architecture and performance."
+      },
+      "galleryImages": [
+        "New1.png",
+        "New2.png",
+        "New3.png"
+      ],
+      "videos": []
+    }
+  },
+  {
+    "slug": "portfolio-website",
+    "title": "Personal Portfolio",
+    "category": "Coding",
+    "tags": ["Next.js", "GSAP", "Three.js"],
+    "gridData": {
+      "imgSrc": "/assets/images/portfolio/New8.png"
+    },
+    "postData": {
+      "abovetitle": "Personal Branding",
+      "backgroundImage": "/assets/images/portfolio/New7.png",
+      "projectDetails": {
+        "theme": "Coding",
+        "inspiration": "Awwwards",
+        "date": "01.04.2024",
+        "duration": "3 Monate",
+        "client": "Personal",
+        "role": "Full-Stack Developer & Designer",
+        "status": "Live",
+        "techStack": "Next.js, Three.js, GSAP",
+        "challenges": "Integrating 3D elements with smooth performance",
+        "solutions": "Optimized Three.js rendering and implemented lazy loading",
+        "learnings": "3D web graphics and advanced animations",
+        "demoUrl": "https://personal-portfolio.com",
+        "githubUrl": "https://github.com/your-username/3d-portfolio"
+      },
+      "projectTexts": {
+        "heroParagraph": "An innovative portfolio featuring 3D elements and interactive animations.",
+        "description": "This portfolio pushes the boundaries of web design with Three.js integration and GSAP animations."
+      },
+      "galleryImages": [
+        "New1.png",
+        "New2.png"
+      ],
+      "videos": []
+    }
+  },
+  {
+    "slug": "mobile-app-design",
+    "title": "Fitness App UI",
+    "category": "Design",
+    "tags": ["UI/UX", "Mobile", "Figma"],
+    "gridData": {
+      "imgSrc": "/assets/images/portfolio/New9.png"
+    },
+    "postData": {
+      "abovetitle": "UI/UX Design",
+      "backgroundImage": "/assets/images/landing/OniGirl3.jpg",
+      "projectDetails": {
+        "theme": "Design",
+        "inspiration": "Dribbble, Behance",
+        "date": "10.03.2024",
+        "duration": "2 Monate",
+        "client": "Fitness Startup",
+        "role": "UI/UX Designer",
+        "status": "Completed",
+        "techStack": "Figma, Adobe XD, Principle",
+        "challenges": "Designing for diverse user fitness levels",
+        "solutions": "Created adaptive UI based on user progress",
+        "learnings": "Health app design patterns and user motivation",
+        "demoUrl": "https://figma.com/proto/fitness-app",
+        "githubUrl": null
+      },
+      "projectTexts": {
+        "heroParagraph": "A comprehensive fitness app design focused on user engagement.",
+        "description": "This fitness app UI combines motivational design with practical functionality."
+      },
+      "galleryImages": [
+        "New1.png",
+        "New2.png",
+        "New3.png"
+      ],
+      "videos": []
+    }
+  },
+  {
+    "slug": "oni-girl-coding7",
+    "title": "Email Marketing",
+    "category": "Marketing",
+    "tags": ["Email", "Automation", "Campaign"],
+    "gridData": {
+      "imgSrc": "/assets/images/portfolio/New10.png"
+    },
+    "postData": {
+      "abovetitle": "Email Campaigns",
+      "backgroundImage": "/assets/images/portfolio/New9.png",
+      "projectDetails": {
+        "theme": "Marketing",
+        "inspiration": "Mailchimp",
+        "date": "25.02.2024",
+        "duration": "2 Monate",
+        "client": "E-commerce Brand",
+        "role": "Email Marketing Specialist",
+        "status": "Completed",
+        "techStack": "Mailchimp, HubSpot, Klaviyo",
+        "challenges": "Improving email open and conversion rates",
+        "solutions": "Implemented personalization and segmentation",
+        "learnings": "Email marketing best practices and automation",
+        "demoUrl": null,
+        "githubUrl": null
+      },
+      "projectTexts": {
+        "heroParagraph": "Strategic email marketing campaigns with high engagement rates.",
+        "description": "This email marketing project demonstrates effective segmentation and personalization strategies."
+      },
+      "galleryImages": [
+        "New1.png"
+      ],
+      "videos": []
+    }
+  },
+  {
+    "slug": "oni-girl-coding8",
+    "title": "Dashboard Design",
+    "category": "Design",
+    "tags": ["Dashboard", "Data Viz", "UI/UX"],
+    "gridData": {
+      "imgSrc": "/assets/images/portfolio/New10.png"
+    },
+    "postData": {
+      "abovetitle": "Data Visualization",
+      "backgroundImage": "/assets/images/portfolio/New10.png",
+      "projectDetails": {
+        "theme": "Design",
+        "inspiration": "Tableau, Power BI",
+        "date": "15.01.2024",
+        "duration": "3 Monate",
+        "client": "SaaS Company",
+        "role": "Product Designer",
+        "status": "Live",
+        "techStack": "Figma, D3.js, Chart.js",
+        "challenges": "Presenting complex data in intuitive ways",
+        "solutions": "Created custom visualizations and interactive charts",
+        "learnings": "Data visualization principles and dashboard UX",
+        "demoUrl": "https://dashboard-demo.com",
+        "githubUrl": null
+      },
+      "projectTexts": {
+        "heroParagraph": "A comprehensive dashboard design for data-driven decision making.",
+        "description": "This dashboard combines beautiful design with functional data visualization."
+      },
+      "galleryImages": [
+        "New1.png",
+        "New2.png"
+      ],
+      "videos": []
+    }
+  },
+  {
+    "slug": "oni-girl-coding9",
+    "title": "Web App Development",
+    "category": "Coding",
+    "tags": ["React", "TypeScript", "API"],
+    "gridData": {
+      "imgSrc": "/assets/images/portfolio/New11.png"
+    },
+    "postData": {
+      "abovetitle": "Full-Stack Development",
+      "backgroundImage": "/assets/images/portfolio/New11.png",
+      "projectDetails": {
+        "theme": "Coding",
+        "inspiration": "Modern SaaS",
+        "date": "01.12.2023",
+        "duration": "5 Monate",
+        "client": "Tech Startup",
+        "role": "Full-Stack Developer",
+        "status": "Live",
+        "techStack": "React, TypeScript, Node.js, MongoDB",
+        "challenges": "Building real-time collaboration features",
+        "solutions": "Implemented WebSockets and optimistic UI updates",
+        "learnings": "Real-time web applications and state management",
+        "demoUrl": "https://webapp-demo.com",
+        "githubUrl": "https://github.com/your-username/webapp"
+      },
+      "projectTexts": {
+        "heroParagraph": "A modern web application with real-time collaboration features.",
+        "description": "This web app showcases advanced React patterns and real-time functionality."
+      },
+      "galleryImages": [
+        "New1.png",
+        "New2.png",
+        "New3.png"
+      ],
+      "videos": []
+    }
+  }
+]
+
