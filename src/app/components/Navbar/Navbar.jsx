@@ -140,10 +140,14 @@ const Navbar = () => {
                   className={`${styles.mobileMenuButton} ${
                     isDarkMode ? styles.mobileMenuButtonDark : styles.mobileMenuButtonLight
                   }`}
-                  onClick={() => setIsMobileMenuOpen(true)}
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                   aria-label="Open menu"
                 >
-                  <Menu size={24} />
+                  <div className={styles.hamburgerIcon}>
+                    <span className={styles.hamburgerLine}></span>
+                    <span className={styles.hamburgerLine}></span>
+                    <span className={styles.hamburgerLine}></span>
+                  </div>
                 </button>
               </div>
             </div>

@@ -44,11 +44,11 @@ Updates / Fixes:
 • All styles moved to style.module.scss for cleaner class names across all projects (className={styles.name})
 • Removed overly colorful elements from components – the goal is a more cohesive visual harmony with the portfolio page
 • Added CardContentSlider as a new component and updated all related components accordingly
-• Improved Grid JSON: merged two JSON files into one structured file, and shared data like tags directly with both
+• Improved Grid JSON: merged two JSON files into one structured file, and shared data like tags directly with both for Portfolio and for Blog Data
 • Created a default blog post page to adjust styling
 • Started the default post page — began styling elements like h1, h2, h3, p, images, tables, etc., to make them look consistent across all blog posts
 • Made author image, author description, and author name static to simplify future adjustments
-• 
+• Added Lazyloading and changed Mobile Menu better ui + icon
 • 
 
 

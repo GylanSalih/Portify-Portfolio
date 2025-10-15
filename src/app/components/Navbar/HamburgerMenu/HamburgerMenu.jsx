@@ -11,9 +11,7 @@ import {
   X,
   Sun,
   Moon,
-  Github,
-  Linkedin,
-  Twitter,
+  ArrowUpRight,
 } from 'lucide-react';
 import Link from 'next/link';
 import styles from './styles.module.scss';
@@ -56,11 +54,6 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
     },
   ];
 
-  const socialLinks = [
-    { href: 'https://github.com', label: 'GitHub', icon: Github },
-    { href: 'https://linkedin.com', label: 'LinkedIn', icon: Linkedin },
-    { href: 'https://twitter.com', label: 'Twitter', icon: Twitter },
-  ];
 
   // Close menu on escape key
   useEffect(() => {
@@ -81,10 +74,6 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
     };
   }, [isOpen, onClose]);
 
-  // Close menu on route change
-  useEffect(() => {
-    onClose();
-  }, []);
 
   const handleLinkClick = () => {
     onClose();
@@ -106,10 +95,18 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
             ref={menuRef}
             className={`${styles.hamburgerMenuPanel} ${isDarkMode ? styles.dark : styles.light} ${isOpen ? styles.open : ''}`}
           >
+            {/* Close Button */}
+            <button
+              className={styles.closeButton}
+              onClick={onClose}
+              aria-label="Close menu"
+            >
+              <X size={24} />
+            </button>
+
             {/* Menu Header */}
             <div className={styles.menuHeader}>
-              <h2 className={styles.menuTitle}>Navigation</h2>
-              <p className={styles.menuSubtitle}>Explore my digital world</p>
+              <h1 className={styles.menuTitle}>Menu</h1>
             </div>
 
             {/* Navigation Links */}
@@ -121,7 +118,10 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
                     <li
                       key={item.href}
                       className={styles.menuItem}
-                      style={{ animationDelay: '0s' }}
+                      style={{ 
+                        animationDelay: `${index * 0.1}s`,
+                        '--item-index': index 
+                      }}
                     >
                       <Link
                         href={item.href}
@@ -129,17 +129,10 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
                         onClick={handleLinkClick}
                       >
                         <div className={styles.menuLinkContent}>
-                          <div className={styles.menuLinkIcon}>
-                            <IconComponent size={24} />
-                          </div>
-                          <div className={styles.menuLinkText}>
-                            <span className={styles.menuLinkLabel}>
-                              {item.label}
-                            </span>
-                            <span className={styles.menuLinkDescription}>
-                              {item.description}
-                            </span>
-                          </div>
+                          <span className={styles.menuLinkLabel}>
+                            {item.label}
+                          </span>
+                          <ArrowUpRight className={styles.menuLinkArrow} size={20} />
                         </div>
                       </Link>
                     </li>
@@ -148,36 +141,22 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
               </ul>
             </nav>
 
-            {/* Social Links */}
-            <div className={styles.menuSocial}>
-              <h3 className={styles.menuSocialTitle}>Connect</h3>
-              <div className={styles.menuSocialLinks}>
-                {socialLinks.map((social, index) => {
-                  const IconComponent = social.icon;
-                  return (
-                    <a
-                      key={social.href}
-                      href={social.href}
-                      className={styles.menuSocialLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={handleLinkClick}
-                      style={{ animationDelay: '0s' }}
-                    >
-                      <IconComponent size={20} />
-                    </a>
-                  );
-                })}
-              </div>
+            {/* Dark Mode Toggle */}
+            <div className={styles.menuFooter}>
+              <button
+                className={styles.darkModeToggle}
+                onClick={toggleDarkMode}
+                aria-label="Toggle dark mode"
+              >
+                <div className={styles.toggleIcon}>
+                  {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+                </div>
+                <span className={styles.toggleLabel}>
+                  {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+                </span>
+              </button>
             </div>
 
-            {/* Close Button */}
-            <button
-              className={styles.menuCloseBtn}
-              onClick={onClose}
-            >
-              <X size={24} />
-            </button>
           </div>
         </>
       )}

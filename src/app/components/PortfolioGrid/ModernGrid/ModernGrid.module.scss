@@ -16,10 +16,12 @@
   }
 
   @media (max-width: 768px) {
+    inline-size: 100%;
     padding: 3rem 20px;
   }
 
   @media (max-width: 480px) {
+    inline-size: 100%;
     padding: 2rem 15px;
   }
 }

@@ -1,7 +1,7 @@
 import { DarkModeProvider } from './contexts/DarkModeContext';
 import ClientLayout from './components/ClientLayout/ClientLayout';
 import Footer from './components/Footer/Footer';
-import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
+import ErrorBoundaryWrapper from './components/ErrorBoundary/ErrorBoundaryWrapper';
 import './fonts/fonts.css';
 import './styles/globals.css';
 
@@ -90,9 +90,9 @@ export default function RootLayout({ children }) {
       </head>
       <body suppressHydrationWarning={true}>
         <DarkModeProvider>
-          <ErrorBoundary>
+          <ErrorBoundaryWrapper>
             <ClientLayout>{children}</ClientLayout>
-          </ErrorBoundary>
+          </ErrorBoundaryWrapper>
         </DarkModeProvider>
         <Footer />
       </body>

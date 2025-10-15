@@ -9,6 +9,7 @@ export { default as CallToAction } from './HomeComponents/CallToAction/CallToAct
 export { default as CompanyCarousel } from './CompanyCarousel/CompanyCarousel';
 export { default as DarkModeToggle } from './Navbar/DarkModeToggle/DarkModeToggle';
 export { default as ErrorBoundary } from './ErrorBoundary/ErrorBoundary';
+export { default as ErrorBoundaryWrapper } from './ErrorBoundary/ErrorBoundaryWrapper';
 export { default as FeatureInteractive } from './HomeComponents/FeatureInteractive/FeaturesInteractive';
 export { default as Features } from './HomeComponents/Features/Features';
 export { default as Filter } from './PortfolioGrid/Filter/Filter';
@@ -25,6 +26,7 @@ export { default as OptimizedImage } from './OptimizedImage/OptimizedImage';
 export { default as LandingSlider } from './HomeComponents/LandingSlider/LandingSlider';
 export { default as PortfolioGrid } from './PortfolioGrid/PortfolioGrid';
 export { default as PortfolioPost } from './PortfolioPost/PortfolioPost';
+export { default as PortfolioSkeleton } from './PortfolioGrid/PortfolioSkeleton/PortfolioSkeleton';
 export { default as Preload } from './Preload/Preload';
 export { default as Skills } from './AboutMeComponents/Skills/Skills';
 export { default as Testimonials } from './HomeComponents/Testimonials/Testimonials';

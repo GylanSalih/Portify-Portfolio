@@ -11,11 +11,13 @@
   }
 
   @media (max-width: 768px) {
+    inline-size: 100%;
     margin-top: 10rem;
     padding: 1.5rem 0;
   }
 
   @media (max-width: 480px) {
+    inline-size: 100%;
     padding: 1rem 0;
     margin-top: 8rem;
   }

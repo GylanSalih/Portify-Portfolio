@@ -1,0 +1,715 @@
+/* ===== PORTFOLIO SKELETON STYLES ===== */
+
+/* Base skeleton animation */
+@keyframes skeletonLoading {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Base skeleton element */
+%skeletonBase {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeletonLoading 1.5s infinite;
+  border-radius: 8px;
+}
+
+/* ===== HERO SKELETON ===== */
+.heroSkeleton {
+  padding: 0;
+  background: transparent;
+  position: relative;
+  overflow: hidden;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+
+  .container {
+    inline-size: min(100% - 52px * 2, 1816px);
+    margin-inline: auto;
+    padding: 0rem 50px;
+    position: relative;
+    box-sizing: border-box;
+
+    @media (max-width: 1024px) {
+      inline-size: min(100% - 32px * 2, 1816px);
+      padding: 0rem 32px;
+    }
+
+    @media (max-width: 768px) {
+      inline-size: 100%;
+      padding: 0rem 20px;
+    }
+
+    @media (max-width: 480px) {
+      inline-size: 100%;
+      padding: 0rem 15px;
+    }
+  }
+
+  .sliderContainer {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 500px;
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .slideWrapper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .skeletonSlide {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .skeletonImage {
+    @extend %skeletonBase;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+  }
+
+  .skeletonOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 3rem;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  }
+
+  .skeletonContent {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 600px;
+  }
+
+  .skeletonCategory {
+    @extend %skeletonBase;
+    width: 120px;
+    height: 20px;
+    animation-delay: 0.1s;
+  }
+
+  .skeletonTitle {
+    @extend %skeletonBase;
+    width: 300px;
+    height: 40px;
+    animation-delay: 0.2s;
+  }
+
+  .skeletonDescription {
+    @extend %skeletonBase;
+    width: 400px;
+    height: 24px;
+    animation-delay: 0.3s;
+  }
+
+  .skeletonNavButton {
+    @extend %skeletonBase;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    animation-delay: 0.4s;
+
+    &.right {
+      left: auto;
+      right: 2rem;
+      animation-delay: 0.5s;
+    }
+  }
+
+  .skeletonDots {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .skeletonDot {
+    @extend %skeletonBase;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    animation-delay: 0.6s;
+
+    &:nth-child(2) { animation-delay: 0.65s; }
+    &:nth-child(3) { animation-delay: 0.7s; }
+    &:nth-child(4) { animation-delay: 0.75s; }
+  }
+}
+
+/* ===== FILTER SKELETON ===== */
+.filterSkeleton {
+  padding: 3rem 0;
+  background: rgba(15, 15, 15, 0.9);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+  .container {
+    inline-size: min(100% - 52px * 2, 1816px);
+    margin-inline: auto;
+    padding: 0rem 50px;
+    box-sizing: border-box;
+
+    @media (max-width: 1024px) {
+      inline-size: min(100% - 32px * 2, 1816px);
+      padding: 0rem 32px;
+    }
+
+    @media (max-width: 768px) {
+      inline-size: 100%;
+      padding: 0rem 20px;
+    }
+
+    @media (max-width: 480px) {
+      inline-size: 100%;
+      padding: 0rem 15px;
+    }
+  }
+
+  .skeletonMobileToggle {
+    display: none;
+    margin-bottom: 2rem;
+
+    @media (max-width: 768px) {
+      display: block;
+    }
+  }
+
+  .skeletonMobileButton {
+    @extend %skeletonBase;
+    width: 120px;
+    height: 44px;
+    border-radius: 12px;
+  }
+
+  .skeletonContent {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 2.5rem;
+  }
+
+  .skeletonRow {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+
+    @media (max-width: 1024px) {
+      flex-direction: column;
+      gap: 2rem;
+    }
+  }
+
+  .skeletonLeftGroup,
+  .skeletonRightGroup {
+    display: flex;
+    gap: 2rem;
+    flex: 1;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  .skeletonGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1;
+  }
+
+  .skeletonLabel {
+    @extend %skeletonBase;
+    width: 100px;
+    height: 20px;
+    margin-bottom: 0.5rem;
+  }
+
+  .skeletonCategoryGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .skeletonCategoryCard {
+    @extend %skeletonBase;
+    height: 80px;
+    border-radius: 12px;
+    animation-delay: 0.1s;
+
+    &:nth-child(2) { animation-delay: 0.15s; }
+    &:nth-child(3) { animation-delay: 0.2s; }
+    &:nth-child(4) { animation-delay: 0.25s; }
+  }
+
+  .skeletonLayoutOptions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .skeletonLayoutOption {
+    @extend %skeletonBase;
+    width: 80px;
+    height: 44px;
+    border-radius: 12px;
+    animation-delay: 0.3s;
+
+    &:nth-child(2) { animation-delay: 0.35s; }
+    &:nth-child(3) { animation-delay: 0.4s; }
+  }
+
+  .skeletonDropdown {
+    @extend %skeletonBase;
+    height: 44px;
+    border-radius: 12px;
+    animation-delay: 0.5s;
+  }
+}
+
+/* ===== GRID SKELETON ===== */
+.gridSkeleton {
+  padding: 4rem 0;
+  background: rgba(15, 15, 15, 0.8);
+
+  .container {
+    inline-size: min(100% - 52px * 2, 1816px);
+    margin-inline: auto;
+    padding: 0rem 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+
+    @media (max-width: 1550px) {
+      padding: 4rem 30px;
+    }
+
+    @media (max-width: 1250px) {
+      padding: 3rem 25px;
+    }
+
+    @media (max-width: 768px) {
+      inline-size: 100%;
+      padding: 3rem 20px;
+    }
+
+    @media (max-width: 480px) {
+      inline-size: 100%;
+      padding: 2rem 15px;
+    }
+  }
+
+  .skeletonHeader {
+    text-align: center;
+    margin-bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .skeletonSubtitle {
+    @extend %skeletonBase;
+    width: 120px;
+    height: 20px;
+  }
+
+  .skeletonTitle {
+    @extend %skeletonBase;
+    width: 300px;
+    height: 40px;
+    animation-delay: 0.1s;
+  }
+
+  .skeletonGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 550px);
+    gap: 30px;
+    justify-content: center;
+    list-style: none;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 3rem;
+
+    @media (max-width: 1800px) {
+      grid-template-columns: repeat(3, minmax(450px, 550px));
+      gap: 25px;
+    }
+
+    @media (max-width: 1550px) {
+      grid-template-columns: repeat(2, minmax(400px, 550px));
+      gap: 20px;
+    }
+
+    @media (max-width: 1250px) {
+      grid-template-columns: repeat(2, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      gap: 20px;
+    }
+
+    &.cardsLayout {
+      grid-template-columns: repeat(4, 1fr);
+      max-width: 100%;
+      gap: 24px;
+
+      @media (max-width: 1550px) {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+
+      @media (max-width: 1250px) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+      }
+
+      @media (max-width: 1024px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    &.listLayout {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+
+  .skeletonItem {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .skeletonCard {
+    width: 550px;
+    height: 400px;
+    background: transparent;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    position: relative;
+
+    @media (max-width: 1024px) {
+      width: 100%;
+      height: 320px;
+    }
+
+    @media (max-width: 768px) {
+      width: 100%;
+      max-width: 550px;
+      height: auto;
+      min-height: 300px;
+    }
+
+    @media (max-width: 480px) {
+      min-height: 260px;
+    }
+  }
+
+  .skeletonFigure {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skeletonImage {
+    @extend %skeletonBase;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+
+  .skeletonOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(0, 0, 0, 0.8) 100%
+    );
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem;
+  }
+
+  .skeletonOverlayContent {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .skeletonItemTitle {
+    @extend %skeletonBase;
+    width: 200px;
+    height: 24px;
+    animation-delay: 0.2s;
+  }
+
+  .skeletonItemCategory {
+    @extend %skeletonBase;
+    width: 100px;
+    height: 16px;
+    animation-delay: 0.3s;
+  }
+
+  .skeletonTags {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .skeletonTag {
+    @extend %skeletonBase;
+    width: 60px;
+    height: 20px;
+    border-radius: 20px;
+    animation-delay: 0.4s;
+
+    &:nth-child(2) { animation-delay: 0.45s; }
+    &:nth-child(3) { animation-delay: 0.5s; }
+  }
+
+  .skeletonLinkIcon {
+    @extend %skeletonBase;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    align-self: flex-end;
+    animation-delay: 0.6s;
+  }
+}
+
+/* ===== PAGINATION SKELETON ===== */
+.paginationSkeleton {
+  .section {
+    inline-size: min(100% - 52px * 2, 1816px);
+    margin-inline: auto;
+    background: transparent;
+    padding: 2rem;
+    position: relative;
+
+    @media (max-width: 1024px) {
+      margin: 2rem 0;
+      padding: 0 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      inline-size: 100%;
+      margin: 1.5rem 0;
+      padding: 0 20px;
+    }
+
+    @media (max-width: 480px) {
+      inline-size: 100%;
+      margin: 1rem 0;
+      padding: 0 15px;
+    }
+  }
+
+  .container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    background: transparent;
+    flex-wrap: nowrap;
+
+    @media (max-width: 1024px) {
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: 1.5rem;
+      justify-content: center;
+    }
+
+    @media (max-width: 768px) {
+      padding: 1rem 0;
+      gap: 1.25rem;
+    }
+
+    @media (max-width: 480px) {
+      padding: 0.75rem 0;
+      gap: 1rem;
+    }
+  }
+
+  .skeletonPaginationContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+
+  .skeletonItemsPerPage {
+    .skeletonSelect {
+      @extend %skeletonBase;
+      width: 120px;
+      height: 40px;
+      border-radius: 8px;
+    }
+  }
+
+  .skeletonPageNumbers {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .skeletonPageNumber {
+    @extend %skeletonBase;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    animation-delay: 0.1s;
+
+    &:nth-child(2) { animation-delay: 0.15s; }
+    &:nth-child(3) { animation-delay: 0.2s; }
+    &:nth-child(4) { animation-delay: 0.25s; }
+    &:nth-child(5) { animation-delay: 0.3s; }
+  }
+
+  .skeletonPageInfo {
+    @extend %skeletonBase;
+    width: 150px;
+    height: 20px;
+    animation-delay: 0.4s;
+  }
+}
+
+/* ===== MAIN PORTFOLIO SKELETON ===== */
+.portfolioSkeleton {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  
+  /* Ensure smooth transitions when skeleton disappears */
+  opacity: 1;
+  transition: opacity 0.3s ease-out;
+  
+  &.fadeOut {
+    opacity: 0;
+  }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1024px) {
+  .heroSkeleton {
+    .sliderContainer {
+      height: 400px;
+    }
+    
+    .skeletonOverlay {
+      padding: 2rem;
+    }
+    
+    .skeletonTitle {
+      width: 250px;
+      height: 32px;
+    }
+    
+    .skeletonDescription {
+      width: 300px;
+      height: 20px;
+    }
+  }
+  
+  .filterSkeleton {
+    .skeletonContent {
+      padding: 2rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .heroSkeleton {
+    .sliderContainer {
+      height: 300px;
+    }
+    
+    .skeletonOverlay {
+      padding: 1.5rem;
+    }
+    
+    .skeletonTitle {
+      width: 200px;
+      height: 28px;
+    }
+    
+    .skeletonDescription {
+      width: 250px;
+      height: 18px;
+    }
+    
+    .skeletonNavButton {
+      width: 40px;
+      height: 40px;
+      left: 1rem;
+      
+      &.right {
+        right: 1rem;
+      }
+    }
+  }
+  
+  .filterSkeleton {
+    .skeletonContent {
+      padding: 1.5rem;
+    }
+    
+    .skeletonMobileToggle {
+      display: block;
+    }
+  }
+  
+  .gridSkeleton {
+    padding: 3rem 0;
+    
+    .skeletonHeader {
+      margin-bottom: 3rem;
+    }
+  }
+}

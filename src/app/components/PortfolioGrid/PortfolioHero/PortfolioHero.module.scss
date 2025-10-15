@@ -20,13 +20,13 @@
   }
 
   @media (max-width: 768px) {
-    inline-size: min(100% - 24px * 2, 1816px);
-    padding: 0rem 24px;
+    inline-size: 100%;
+    padding: 0rem 20px;
   }
 
   @media (max-width: 480px) {
-    inline-size: min(100% - 16px * 2, 1816px);
-    padding: 0rem 16px;
+    inline-size: 100%;
+    padding: 0rem 15px;
   }
 }
 

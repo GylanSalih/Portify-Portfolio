@@ -6,6 +6,7 @@ import PortfolioHero from '../components/PortfolioGrid/PortfolioHero/PortfolioHe
 import ModernGrid from '../components/PortfolioGrid/ModernGrid/ModernGrid';
 import Filter from '../components/PortfolioGrid/Filter/Filter';
 import Pagination from '../components/PortfolioGrid/Pagination/Pagination';
+import PortfolioSkeleton from '../components/PortfolioGrid/PortfolioSkeleton/PortfolioSkeleton';
 import styles from './portfolio.module.scss';
 
 export default function PortfolioPage() {
@@ -13,6 +14,7 @@ export default function PortfolioPage() {
   const [category, setCategory] = useState('all');
   const [selectedTags, setSelectedTags] = useState([]);
   const [mounted, setMounted] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,11 +26,14 @@ export default function PortfolioPage() {
   useEffect(() => {
     const loadPortfolio = async () => {
       try {
+        setIsLoading(true);
         const response = await fetch('/data/PortfolioData.json');
         const data = await response.json();
         setAllItems(data);
       } catch (error) {
         console.error('Error loading portfolio data:', error);
+      } finally {
+        setIsLoading(false);
       }
     };
     loadPortfolio();
@@ -88,6 +93,15 @@ export default function PortfolioPage() {
 
   if (!mounted) {
     return null;
+  }
+
+  // Show skeleton while loading
+  if (isLoading) {
+    return (
+      <div className={styles.page}>
+        <PortfolioSkeleton layoutMode={layoutMode} showPagination={true} />
+      </div>
+    );
   }
 
   return (
