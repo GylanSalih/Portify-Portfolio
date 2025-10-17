@@ -6,6 +6,15 @@
   padding: 2rem;
   position: relative;
 
+  /* Dark mode support */
+  :global(html:not(.dark-mode)) & {
+    background: #f8f8f8;
+  }
+
+  :global(html.dark-mode) & {
+    background: #0a0a0a;
+  }
+
   @media (max-width: 1024px) {
     margin: 2rem 0;
     padding: 0 1.5rem;
@@ -76,6 +85,15 @@
   font-weight: 400;
   letter-spacing: 0.025em;
 
+  /* Dark mode support */
+  :global(html:not(.dark-mode)) & {
+    color: rgba(10, 10, 10, 0.6);
+  }
+
+  :global(html.dark-mode) & {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
   @media (max-width: 768px) {
     font-size: 0.8rem;
   }
@@ -141,6 +159,47 @@
   transition: color 0.2s ease;
   min-width: auto;
   white-space: nowrap;
+
+  /* Dark mode support */
+  :global(html:not(.dark-mode)) & {
+    color: rgba(10, 10, 10, 0.6);
+
+    &:hover:not(:disabled) {
+      color: rgba(10, 10, 10, 0.8);
+    }
+
+    &.active {
+      color: #0a0a0a;
+      background: rgba(10, 10, 10, 0.05);
+      border: 1px solid rgba(10, 10, 10, 0.1);
+      border-radius: 8px;
+      font-weight: 500;
+    }
+
+    &.disabled {
+      color: rgba(10, 10, 10, 0.4);
+    }
+  }
+
+  :global(html.dark-mode) & {
+    color: rgba(255, 255, 255, 0.6);
+
+    &:hover:not(:disabled) {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    &.active {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      font-weight: 500;
+    }
+
+    &.disabled {
+      color: rgba(255, 255, 255, 0.4);
+    }
+  }
 
   &:hover:not(:disabled) {
     color: rgba(255, 255, 255, 0.8);
@@ -229,6 +288,15 @@
   letter-spacing: 0.025em;
   white-space: nowrap;
 
+  /* Dark mode support */
+  :global(html:not(.dark-mode)) & {
+    color: rgba(10, 10, 10, 0.6);
+  }
+
+  :global(html.dark-mode) & {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
   @media (max-width: 768px) {
     font-size: 0.8rem;
   }
@@ -261,6 +329,39 @@
   cursor: pointer;
   min-width: 70px;
   transition: all 0.2s ease;
+
+  /* Dark mode support */
+  :global(html:not(.dark-mode)) & {
+    background: rgba(10, 10, 10, 0.05);
+    border: 1px solid rgba(10, 10, 10, 0.1);
+    color: rgba(10, 10, 10, 0.8);
+
+    &:hover {
+      background: rgba(10, 10, 10, 0.08);
+      border-color: rgba(10, 10, 10, 0.15);
+    }
+
+    &.open {
+      background: rgba(10, 10, 10, 0.08);
+      border-color: rgba(10, 10, 10, 0.15);
+    }
+  }
+
+  :global(html.dark-mode) & {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.8);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    &.open {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+  }
 
   &:hover {
     background: rgba(255, 255, 255, 0.08);
@@ -314,6 +415,19 @@
   z-index: 50;
   animation: dropdownSlide 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 0.5rem;
+
+  /* Dark mode support */
+  :global(html:not(.dark-mode)) & {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(10, 10, 10, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  }
+
+  :global(html.dark-mode) & {
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
 }
 
 .option {
@@ -330,6 +444,35 @@
   cursor: pointer;
   text-align: left;
   transition: all 0.2s ease;
+
+  /* Dark mode support */
+  :global(html:not(.dark-mode)) & {
+    color: rgba(10, 10, 10, 0.7);
+
+    &:hover {
+      background: rgba(10, 10, 10, 0.1);
+      color: rgba(10, 10, 10, 0.9);
+    }
+
+    &.selected {
+      background: rgba(62, 207, 142, 0.2);
+      color: #3ecf8e;
+    }
+  }
+
+  :global(html.dark-mode) & {
+    color: rgba(255, 255, 255, 0.7);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    &.selected {
+      background: rgba(62, 207, 142, 0.2);
+      color: #3ecf8e;
+    }
+  }
 
   &:hover {
     background: rgba(255, 255, 255, 0.1);

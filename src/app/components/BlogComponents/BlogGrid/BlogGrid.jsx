@@ -8,6 +8,7 @@ import {
   filterPostsByTags,
   sortBlogPosts,
   extractUniqueTags,
+  fetchMDXPosts,
 } from '../../../lib/blogUtils';
 import BlogCard from '../BlogCard/BlogCard';
 import Pagination from '../../PortfolioGrid/Pagination/Pagination';
@@ -52,29 +53,40 @@ const BlogGrid = () => {
   useEffect(() => {
     const loadPosts = async () => {
       try {
-        // Lade Blog-Posts aus der neuen zentralen BlogData.json
-        const response = await fetch('/data/BlogData.json');
-        const data = await response.json();
+        // Lade MDX-Posts über die neue API
+        const mdxPosts = await fetchMDXPosts();
 
-        // Transformiere die Daten für das Grid (verwende gridData)
-        const gridPosts = data.map(post => ({
-          ...post.gridData,
-          slug: post.slug,
-          title: post.title,
-          tags: post.tags,
-          category: post.category
-        }));
-
-        // Verarbeite alle Posts mit den neuen Utils
-        const postsWithProcessedContent = await processMultipleBlogPosts(gridPosts);
-
-        const tags = extractUniqueTags(postsWithProcessedContent);
+        // Extrahiere Tags
+        const tags = extractUniqueTags(mdxPosts);
         setUniqueTags(tags);
 
-        const sortedPosts = sortBlogPosts(postsWithProcessedContent, sortOrder);
+        // Sortiere die Posts
+        const sortedPosts = sortBlogPosts(mdxPosts, sortOrder);
         setBlogPosts(sortedPosts);
       } catch (error) {
-        console.error('Error loading posts:', error);
+        console.error('Error loading MDX posts:', error);
+        // Fallback zu JSON falls MDX fehlschlägt
+        try {
+          const response = await fetch('/data/BlogData.json');
+          const data = await response.json();
+
+          const gridPosts = data.map(post => ({
+            ...post.gridData,
+            slug: post.slug,
+            title: post.title,
+            tags: post.tags,
+            category: post.category
+          }));
+
+          const postsWithProcessedContent = await processMultipleBlogPosts(gridPosts);
+          const tags = extractUniqueTags(postsWithProcessedContent);
+          setUniqueTags(tags);
+
+          const sortedPosts = sortBlogPosts(postsWithProcessedContent, sortOrder);
+          setBlogPosts(sortedPosts);
+        } catch (fallbackError) {
+          console.error('Error loading fallback posts:', fallbackError);
+        }
       } finally {
         setIsLoading(false);
       }

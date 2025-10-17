@@ -122,6 +122,12 @@
   padding: 2.5rem;
   margin-bottom: 3rem;
   overflow: hidden;
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    background: rgba(248, 248, 248, 0.8);
+    border: 1px solid rgba(10, 10, 10, 0.1);
+  }
 }
 
 .filtersHeader {
@@ -134,11 +140,21 @@
   font-weight: 600;
   color: #ffffff;
   margin-bottom: 0.5rem;
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    color: #0a0a0a;
+  }
 }
 
 .filtersSubtitle {
   color: rgba(255, 255, 255, 0.6);
   font-size: 0.95rem;
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    color: rgba(10, 10, 10, 0.6);
+  }
 }
 
 /* Filter Controls */
@@ -199,6 +215,21 @@
   &::placeholder {
     color: rgba(255, 255, 255, 0.4);
   }
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    background: rgba(10, 10, 10, 0.05);
+    border: 2px solid rgba(10, 10, 10, 0.1);
+    color: #0a0a0a;
+
+    &:focus {
+      background: rgba(10, 10, 10, 0.08);
+    }
+
+    &::placeholder {
+      color: rgba(10, 10, 10, 0.4);
+    }
+  }
 }
 
 .selectGroup {
@@ -238,6 +269,19 @@
     border-color: #3b82f6;
     box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
   }
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    background: rgba(10, 10, 10, 0.05);
+    border: 2px solid rgba(10, 10, 10, 0.1);
+    color: rgba(10, 10, 10, 0.8);
+
+    &:hover {
+      background: rgba(10, 10, 10, 0.08);
+      border-color: rgba(10, 10, 10, 0.15);
+      color: rgba(10, 10, 10, 0.95);
+    }
+  }
 }
 
 .sortSelected {
@@ -251,6 +295,11 @@
 
   &.rotated {
     transform: rotate(180deg);
+  }
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    color: rgba(10, 10, 10, 0.6);
   }
 }
 
@@ -270,6 +319,13 @@
   overflow: visible;
   animation: dropdownSlide 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 0.75rem;
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(10, 10, 10, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  }
 }
 
 @keyframes dropdownSlide {
@@ -311,12 +367,28 @@
     background: rgba(59, 130, 246, 0.1);
     color: #60a5fa;
   }
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    border-bottom-color: rgba(10, 10, 10, 0.05);
+    color: rgba(10, 10, 10, 0.8);
+
+    &:hover {
+      background: rgba(10, 10, 10, 0.05);
+      color: rgba(10, 10, 10, 0.95);
+    }
+  }
 }
 
 /* Tag Section */
 .tagSection {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 1.5rem;
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    border-top-color: rgba(10, 10, 10, 0.1);
+  }
 }
 
 .tagHeader {
@@ -330,6 +402,11 @@
   color: rgba(255, 255, 255, 0.8);
   font-size: 0.95rem;
   font-weight: 500;
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    color: rgba(10, 10, 10, 0.8);
+  }
 }
 
 .clearFilter {
@@ -379,6 +456,19 @@
     font-weight: 600;
     box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
   }
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    background: rgba(10, 10, 10, 0.05);
+    border: 1px solid rgba(10, 10, 10, 0.1);
+    color: rgba(10, 10, 10, 0.8);
+
+    &:hover {
+      background: rgba(59, 130, 246, 0.1);
+      border-color: rgba(59, 130, 246, 0.3);
+      color: #3b82f6;
+    }
+  }
 }
 
 /* Results Counter */
@@ -392,12 +482,23 @@
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 12px;
   backdrop-filter: blur(10px);
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    background: rgba(10, 10, 10, 0.02);
+    border: 1px solid rgba(10, 10, 10, 0.05);
+  }
 }
 
 .resultsCount {
   font-size: 0.9rem;
   color: #a1a1aa;
   font-weight: 500;
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    color: #52525b;
+  }
 }
 
 .activeFilter {
@@ -420,6 +521,12 @@
   border: 1px solid rgba(255, 255, 255, 0.03);
   border-radius: 10px;
   backdrop-filter: blur(10px);
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    background: rgba(10, 10, 10, 0.015);
+    border: 1px solid rgba(10, 10, 10, 0.03);
+  }
 }
 
 .statItem {
@@ -438,6 +545,17 @@
     border-color: rgba(255, 255, 255, 0.05);
     transform: translateY(-1px);
   }
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    background: rgba(10, 10, 10, 0.01);
+    border: 1px solid rgba(10, 10, 10, 0.02);
+
+    &:hover {
+      background: rgba(10, 10, 10, 0.02);
+      border-color: rgba(10, 10, 10, 0.05);
+    }
+  }
 }
 
 .statLabel {
@@ -447,6 +565,11 @@
   margin-bottom: 0.25rem;
   text-transform: uppercase;
   letter-spacing: 0.3px;
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    color: #71717a;
+  }
 }
 
 .statValue {
@@ -457,6 +580,15 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    color: #3f3f46;
+    background: linear-gradient(135deg, #52525b, #71717a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 }
 
 /* ✅ PERFORMANCE OPTIMIZED Blog Grid */
@@ -480,6 +612,12 @@
   border-radius: 16px;
   overflow: hidden;
   pointer-events: none;
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    background: rgba(240, 240, 240, 0.8);
+    border: 1px solid rgba(10, 10, 10, 0.08);
+  }
 }
 
 .skeletonImage {
@@ -566,6 +704,12 @@
   border: 2px dashed rgba(255, 255, 255, 0.1);
   border-radius: 20px;
   backdrop-filter: blur(10px);
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    background: rgba(240, 240, 240, 0.5);
+    border: 2px dashed rgba(10, 10, 10, 0.1);
+  }
 }
 
 .noResultsIcon {
@@ -590,6 +734,11 @@
   font-weight: 600;
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 1rem;
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    color: rgba(10, 10, 10, 0.9);
+  }
 }
 
 .noResultsText {
@@ -600,6 +749,11 @@
   max-width: 400px;
   margin-left: auto;
   margin-right: auto;
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    color: rgba(10, 10, 10, 0.6);
+  }
 }
 
 .resetFilters {

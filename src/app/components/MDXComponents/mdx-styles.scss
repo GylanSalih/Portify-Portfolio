@@ -1,0 +1,974 @@
+/* =============================== MDXComponents SCSS =============================== */
+
+// SCSS Variables
+$primary-font: 'Wotfard', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$monospace-font: 'Courier New', Courier, monospace;
+
+// Color Variables
+$dark-bg-primary: hsl(240 10% 3.9%);
+$dark-bg-secondary: hsl(240 10% 6%);
+$dark-bg-tertiary: hsl(240 10% 8%);
+$dark-text-primary: hsl(0 0% 98%);
+$dark-text-secondary: hsl(0 0% 95%);
+$dark-text-tertiary: hsl(0 0% 92%);
+$dark-text-muted: hsl(240 5% 64.9%);
+$dark-border: hsl(240 3.7% 18%);
+
+$light-bg-primary: hsl(0 0% 98%);
+$light-bg-secondary: hsl(0 0% 96%);
+$light-bg-tertiary: hsl(0 0% 94%);
+$light-text-primary: hsl(240 10% 3.9%);
+$light-text-secondary: hsl(240 10% 5%);
+$light-text-tertiary: hsl(240 10% 8%);
+$light-text-muted: hsl(240 5% 35%);
+$light-border: hsl(0 0% 88%);
+
+$accent-color: hsl(48 96% 70%);
+$accent-hover: hsl(48 96% 80%);
+$accent-light: hsl(210 100% 45%);
+$accent-light-hover: hsl(210 100% 35%);
+
+// Mixins
+@mixin dark-mode {
+  :global(html:not(.dark-mode)) & {
+    @content;
+  }
+}
+
+@mixin light-mode {
+  :global(html:not(.dark-mode)) & {
+    @content;
+  }
+}
+
+@mixin global-dark-mode {
+  :global(html.dark-mode) & {
+    @content;
+  }
+}
+
+@mixin transition($property: all, $duration: 0.25s, $timing: cubic-bezier(0.4, 0, 0.2, 1)) {
+  transition: $property $duration $timing;
+}
+
+@mixin gradient-bg($start, $end) {
+  background: linear-gradient(135deg, $start 0%, $end 100%);
+}
+
+@mixin border-gradient($color) {
+  border: 1px solid $color;
+}
+
+@mixin shadow($type: default) {
+  @if $type == default {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  } @else if $type == light {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  } @else if $type == strong {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  } @else if $type == image {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+}
+
+/* MDX Content Container */
+.mdx-content {
+  color: $dark-text-primary;
+  font-family: $primary-font;
+  line-height: 1.75;
+  font-size: 16px;
+
+  @include light-mode {
+    color: $light-text-primary;
+  }
+}
+
+/* MDX Headings */
+.mdx-h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 2rem 0 1.5rem 0;
+  color: $dark-text-primary;
+  letter-spacing: -0.025em;
+  text-align: left;
+
+  @include light-mode {
+    color: $light-text-primary;
+  }
+}
+
+.mdx-h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 2.5rem 0 1rem 0;
+  color: $dark-text-secondary;
+  letter-spacing: -0.025em;
+  text-align: left;
+
+  @include light-mode {
+    color: $light-text-secondary;
+  }
+}
+
+.mdx-h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 2rem 0 0.75rem 0;
+  color: $dark-text-tertiary;
+  letter-spacing: -0.025em;
+  text-align: left;
+
+  @include light-mode {
+    color: $light-text-tertiary;
+  }
+}
+
+.mdx-h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 1.5rem 0 0.5rem 0;
+  color: $dark-text-tertiary;
+  text-align: left;
+
+  @include light-mode {
+    color: $light-text-tertiary;
+  }
+}
+
+.mdx-h5 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 1.25rem 0 0.5rem 0;
+  color: $dark-text-tertiary;
+  text-align: left;
+
+  @include light-mode {
+    color: $light-text-tertiary;
+  }
+}
+
+.mdx-h6 {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 1rem 0 0.5rem 0;
+  color: $dark-text-tertiary;
+  text-align: left;
+
+  @include light-mode {
+    color: $light-text-tertiary;
+  }
+}
+
+/* MDX Paragraphs */
+.mdx-paragraph {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: $dark-text-muted;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-align: left;
+
+  @include light-mode {
+    color: $light-text-muted;
+  }
+}
+
+/* MDX Lists */
+.mdx-list {
+  margin: 2rem 0;
+  padding-left: 0;
+}
+
+.mdx-list-unordered {
+  list-style: none;
+
+  .mdx-list-item {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    color: $dark-text-muted;
+    margin-bottom: 1rem;
+    padding-left: 2.5rem;
+    position: relative;
+
+    &::before {
+      content: '●';
+      position: absolute;
+      left: 0.75rem;
+      top: 0;
+      color: $dark-text-primary;
+      font-size: 0.75rem;
+      line-height: 1.8;
+    }
+
+    @include light-mode {
+      color: $light-text-muted;
+
+      &::before {
+        color: $light-text-primary;
+      }
+    }
+  }
+}
+
+.mdx-list-ordered {
+  list-style: none;
+  counter-reset: custom-counter;
+
+  .mdx-list-item {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    color: $dark-text-muted;
+    margin-bottom: 1rem;
+    padding-left: 3rem;
+    position: relative;
+    counter-increment: custom-counter;
+
+    &::before {
+      content: counter(custom-counter);
+      position: absolute;
+      left: 0;
+      top: 0;
+      @include gradient-bg($dark-bg-tertiary, $dark-bg-secondary);
+      color: $dark-text-primary;
+      font-size: 0.875rem;
+      font-weight: 700;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include border-gradient($dark-border);
+      @include shadow(strong);
+    }
+
+    @include light-mode {
+      color: $light-text-muted;
+
+      &::before {
+        @include gradient-bg($light-bg-secondary, $light-bg-tertiary);
+        color: $light-text-primary;
+        @include border-gradient($light-border);
+        @include shadow(light);
+      }
+    }
+  }
+}
+
+/* MDX Links */
+.mdx-link {
+  color: $accent-color;
+  text-decoration: none;
+  position: relative;
+  font-weight: 600;
+  border-bottom: 2px solid rgba($accent-color, 0.3);
+  @include transition;
+
+  &::after {
+    content: '→';
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+    display: inline-block;
+    @include transition(transform);
+  }
+
+  &:hover {
+    color: $accent-hover;
+    border-bottom-color: $accent-color;
+
+    &::after {
+      transform: translateX(3px);
+    }
+  }
+
+  @include light-mode {
+    color: $accent-light;
+    border-bottom-color: rgba($accent-light, 0.3);
+
+    &:hover {
+      color: $accent-light-hover;
+      border-bottom-color: $accent-light;
+    }
+  }
+}
+
+/* MDX Inline Code */
+.mdx-inline-code {
+  @include gradient-bg($dark-bg-tertiary, $dark-bg-secondary);
+  color: $accent-color;
+  padding: 0.375rem 0.625rem;
+  border-radius: 0.5rem;
+  font-family: $monospace-font;
+  font-size: 0.9375rem;
+  @include border-gradient($dark-border);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  @include shadow;
+
+  @include light-mode {
+    @include gradient-bg($light-bg-secondary, $light-bg-tertiary);
+    color: $accent-light;
+    @include border-gradient($light-border);
+    @include shadow(light);
+  }
+}
+
+/* MDX Code Blocks */
+.mdx-codeblock {
+  background: $dark-bg-secondary;
+  color: $dark-text-primary;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  font-family: $monospace-font;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  overflow-x: auto;
+  @include border-gradient($dark-border);
+  margin: 1.5rem 0;
+
+  @include light-mode {
+    background: $light-bg-secondary;
+    color: $light-text-primary;
+    @include border-gradient($light-border);
+  }
+}
+
+/* MDX Blockquotes */
+.mdx-blockquote {
+  border-left: 4px solid $accent-color;
+  background: $dark-bg-secondary;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  border-radius: 0 0.75rem 0.75rem 0;
+  font-style: italic;
+  color: $dark-text-muted;
+
+  @include light-mode {
+    background: $light-bg-secondary;
+    color: $light-text-muted;
+    border-left-color: $accent-light;
+  }
+}
+
+
+
+
+/* -------------------- MDX Horizontal Rule -------------------- */
+.mdx-table-wrapper {
+  overflow-x: auto;
+  margin: 2rem 0;
+  border-radius: 0.75rem;
+}
+
+
+.mdx-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid $dark-border; // Außentabelle
+
+  background: $dark-bg-secondary;
+
+  @include light-mode {
+    background: $light-bg-primary;
+    border-color: $light-border;
+  }
+}
+
+.mdx-table-header,
+.mdx-table-cell {
+  padding: 1rem;
+  text-align: left;
+  border: 1px solid $dark-border; // border für alle Seiten
+
+  @include light-mode {
+    border-color: $light-border;
+  }
+}
+
+.mdx-table-header {
+  font-weight: 600;
+  color: $dark-text-primary;
+
+  @include light-mode {
+    color: $light-text-primary;
+  }
+}
+
+.mdx-table-cell {
+  color: $dark-text-muted;
+
+  @include light-mode {
+    color: $light-text-muted;
+  }
+}
+
+/* Optional: Entferne doppelte Linien außen */
+.mdx-table tr:first-child .mdx-table-header {
+  border-top: none;
+}
+.mdx-table tr:last-child .mdx-table-cell {
+  border-bottom: none;
+}
+.mdx-table tr td:first-child,
+.mdx-table tr th:first-child {
+  border-left: none;
+}
+.mdx-table tr td:last-child,
+.mdx-table tr th:last-child {
+  border-right: none;
+}
+
+
+
+
+/* MDX Horizontal Rule */
+.mdx-divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, $dark-border 50%, transparent 100%);
+  margin: 3rem 0;
+
+  @include light-mode {
+    background: linear-gradient(90deg, transparent 0%, $light-border 50%, transparent 100%);
+  }
+}
+
+/* MDX Strong and Emphasis */
+.mdx-strong {
+  font-weight: 700;
+  color: $dark-text-secondary;
+
+  @include light-mode {
+    color: $light-text-secondary;
+  }
+}
+
+.mdx-emphasis {
+  font-style: italic;
+  color: $dark-text-tertiary;
+
+  @include light-mode {
+    color: $light-text-tertiary;
+  }
+}
+
+/* MDX Details/Summary */
+.mdx-details {
+  background: $dark-bg-secondary;
+  @include border-gradient($dark-border);
+  border-radius: 0.75rem;
+  margin: 1.5rem 0;
+  overflow: hidden;
+
+  @include light-mode {
+    background: $light-bg-secondary;
+    @include border-gradient($light-border);
+  }
+}
+
+.mdx-summary {
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  color: $dark-text-secondary;
+  background: $dark-bg-tertiary;
+  border-bottom: 1px solid $dark-border;
+  @include transition(background-color, 0.2s, ease);
+
+  &:hover {
+    background: $dark-bg-tertiary;
+  }
+
+  @include light-mode {
+    color: $light-text-secondary;
+    background: $light-bg-tertiary;
+    border-bottom-color: $light-border;
+
+    &:hover {
+      background: $light-bg-tertiary;
+    }
+  }
+}
+
+/* MDX Images */
+.mdx-image-figure {
+  margin: 2rem 0;
+  text-align: left;
+}
+
+.mdx-image-wrapper {
+  border-radius: 0.75rem;
+  overflow: hidden;
+  @include shadow(image);
+}
+
+.mdx-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.mdx-image-caption {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  color: $dark-text-muted;
+  font-style: italic;
+
+  @include light-mode {
+    color: $light-text-muted;
+  }
+}
+
+/* MDX Videos */
+.mdx-content video,
+.mdx-video {
+  width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  margin: 1.5rem 0;
+  @include shadow(image);
+}
+
+/* MDX Callouts */
+.mdx-callout {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  border-radius: 0.75rem;
+  @include border-gradient(transparent);
+}
+
+.mdx-callout-info {
+  background: rgba($accent-light, 0.1);
+  @include border-gradient(rgba($accent-light, 0.3));
+  color: rgba($accent-light, 0.8);
+}
+
+.mdx-callout-warning {
+  background: rgba(hsl(38 92% 50%), 0.1);
+  @include border-gradient(rgba(hsl(38 92% 50%), 0.3));
+  color: rgba(hsl(38 92% 50%), 0.8);
+}
+
+.mdx-callout-success {
+  background: rgba(hsl(142 76% 36%), 0.1);
+  @include border-gradient(rgba(hsl(142 76% 36%), 0.3));
+  color: rgba(hsl(142 76% 36%), 0.8);
+}
+
+.mdx-callout-error {
+  background: rgba(hsl(0 84% 60%), 0.1);
+  @include border-gradient(rgba(hsl(0 84% 60%), 0.3));
+  color: rgba(hsl(0 84% 60%), 0.8);
+}
+
+.mdx-callout-tip {
+  background: rgba($accent-color, 0.1);
+  @include border-gradient(rgba($accent-color, 0.3));
+  color: rgba($accent-color, 0.8);
+}
+
+.mdx-callout-caution {
+  background: rgba(hsl(25 95% 53%), 0.1);
+  @include border-gradient(rgba(hsl(25 95% 53%), 0.3));
+  color: rgba(hsl(25 95% 53%), 0.8);
+}
+
+.mdx-callout-important {
+  background: rgba(hsl(280 100% 70%), 0.1);
+  @include border-gradient(rgba(hsl(280 100% 70%), 0.3));
+  color: rgba(hsl(280 100% 70%), 0.8);
+}
+
+.mdx-callout-icon {
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.mdx-callout-content {
+  flex: 1;
+}
+
+
+
+/* Loading Styles */
+.loadingContainer {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $dark-bg-primary;
+  position: relative;
+
+  @include light-mode {
+    background: $light-bg-primary;
+  }
+
+  @include global-dark-mode {
+    background: $dark-bg-primary;
+  }
+}
+
+.loadingSpinner {
+  color: $dark-text-muted;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: $primary-font;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -2rem;
+    width: 1rem;
+    height: 1rem;
+    margin-top: -0.5rem;
+    border: 2px solid $dark-border;
+    border-top: 2px solid $dark-text-muted;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Base Blog Post Container */
+.container {
+  min-height: 100vh;
+  background: $dark-bg-primary;
+  color: $dark-text-primary;
+  font-family: $primary-font;
+  line-height: 1.75;
+  font-size: 16px;
+  position: relative;
+  overflow-x: hidden;
+
+  @include light-mode {
+    background: $light-bg-primary;
+    color: $light-text-primary;
+  }
+
+  @include global-dark-mode {
+    background: $dark-bg-primary;
+    color: $dark-text-primary;
+  }
+}
+
+/* Hero Section */
+.hero {
+  padding: 3rem 1rem 4rem;
+  margin-top: 80px;
+  text-align: left;
+  position: relative;
+  background: linear-gradient(180deg, $dark-bg-secondary 0%, $dark-bg-primary 100%);
+  border-bottom: 1px solid $dark-border;
+  margin-bottom: 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, $dark-border 50%, transparent 100%);
+  }
+
+  @include light-mode {
+    background: linear-gradient(180deg, $light-bg-secondary 0%, $light-bg-primary 100%);
+    border-bottom: 1px solid $light-border;
+
+    &::before {
+      background: linear-gradient(90deg, transparent 0%, $light-border 50%, transparent 100%);
+    }
+  }
+}
+
+.heroContainer {
+  max-width: 45rem;
+  margin: 0 auto;
+  position: relative;
+}
+
+.heroMeta {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.metaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: $dark-text-muted;
+  font-size: 0.875rem;
+  font-weight: 500;
+  background: $dark-bg-secondary;
+  padding: 0.5rem 0.875rem;
+  border-radius: 0.75rem;
+  @include border-gradient($dark-border);
+  @include transition;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.02), transparent);
+    @include transition(left, 0.5s);
+  }
+
+  &:hover {
+    background: $dark-bg-tertiary;
+    border-color: $dark-border;
+    transform: translateY(-1px);
+    @include shadow;
+
+    &::before {
+      left: 100%;
+    }
+  }
+
+  @include light-mode {
+    color: $light-text-muted;
+    background: $light-bg-secondary;
+    @include border-gradient($light-border);
+
+    &:hover {
+      background: $light-bg-tertiary;
+      border-color: $light-border;
+    }
+  }
+}
+
+.metaIcon {
+  width: 16px;
+  height: 16px;
+  opacity: 0.9;
+}
+
+/* Main Content Layout */
+.content {
+  max-width: 45rem;
+  margin: 0 auto;
+  padding: 4rem 1rem;
+  position: relative;
+}
+
+/* Article Content */
+.articleMain {
+  margin-bottom: 0;
+  position: relative;
+}
+
+.articleContent {
+  margin-bottom: 4rem;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, $dark-border 50%, transparent 100%);
+  }
+
+  @include light-mode {
+    &::before {
+      background: linear-gradient(90deg, transparent 0%, $light-border 50%, transparent 100%);
+    }
+  }
+}
+
+.contentSection {
+  margin-bottom: 2.5rem;
+  position: relative;
+
+  /* Paragraphs */
+  :global(p) {
+    text-align: left;
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: $dark-text-muted;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+
+    &:first-of-type {
+      font-size: 1.25rem;
+      line-height: 1.7;
+      color: $dark-text-secondary;
+      margin-bottom: 2rem;
+      font-weight: 400;
+
+      @include light-mode {
+        color: $light-text-secondary;
+      }
+    }
+
+    @include light-mode {
+      color: $light-text-muted;
+    }
+  }
+
+  /* Lists */
+  :global(ul) {
+    list-style: none;
+    margin: 2rem 0;
+    padding-left: 0;
+
+    :global(li) {
+      font-size: 1.0625rem;
+      line-height: 1.8;
+      color: $dark-text-muted;
+      margin-bottom: 1rem;
+      padding-left: 2.5rem;
+      position: relative;
+
+      &::before {
+        content: '●';
+        position: absolute;
+        left: 0.75rem;
+        top: 0;
+        color: $dark-text-primary;
+        font-size: 0.75rem;
+        line-height: 1.8;
+      }
+
+      @include light-mode {
+        color: $light-text-muted;
+
+        &::before {
+          color: $light-text-primary;
+        }
+      }
+    }
+  }
+
+  :global(ol) {
+    list-style: none;
+    margin: 2rem 0;
+    padding-left: 0;
+    counter-reset: custom-counter;
+
+    :global(li) {
+      font-size: 1.0625rem;
+      line-height: 1.8;
+      color: $dark-text-muted;
+      margin-bottom: 1rem;
+      padding-left: 3rem;
+      position: relative;
+      counter-increment: custom-counter;
+
+      &::before {
+        content: counter(custom-counter);
+        position: absolute;
+        left: 0;
+        top: 0;
+        @include gradient-bg($dark-bg-tertiary, $dark-bg-secondary);
+        color: $dark-text-primary;
+        font-size: 0.875rem;
+        font-weight: 700;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @include border-gradient($dark-border);
+        @include shadow(strong);
+      }
+
+      @include light-mode {
+        color: $light-text-muted;
+
+        &::before {
+          @include gradient-bg($light-bg-secondary, $light-bg-tertiary);
+          color: $light-text-primary;
+          @include border-gradient($light-border);
+          @include shadow(light);
+        }
+      }
+    }
+  }
+
+  /* Links */
+  :global(a) {
+    color: $accent-color;
+    text-decoration: none;
+    position: relative;
+    font-weight: 600;
+    border-bottom: 2px solid rgba($accent-color, 0.3);
+    @include transition;
+
+    &::after {
+      content: '→';
+      margin-left: 0.25rem;
+      margin-right: 0.25rem;
+      display: inline-block;
+      @include transition(transform);
+    }
+
+    &:hover {
+      color: $accent-hover;
+      border-bottom-color: $accent-color;
+
+      &::after {
+        transform: translateX(3px);
+      }
+    }
+
+    @include light-mode {
+      color: $accent-light;
+      border-bottom-color: rgba($accent-light, 0.3);
+
+      &:hover {
+        color: $accent-light-hover;
+        border-bottom-color: $accent-light;
+      }
+    }
+  }
+
+  /* Inline Code */
+  :global(code) {
+    @include gradient-bg($dark-bg-tertiary, $dark-bg-secondary);
+    color: $accent-color;
+    padding: 0.375rem 0.625rem;
+    border-radius: 0.5rem;
+    font-family: $monospace-font;
+    font-size: 0.9375rem;
+    @include border-gradient($dark-border);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    @include shadow;
+
+    @include light-mode {
+      @include gradient-bg($light-bg-secondary, $light-bg-tertiary);
+      color: $accent-light;
+      @include border-gradient($light-border);
+      @include shadow(light);
+    }
+  }
+}

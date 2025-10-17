@@ -1,6 +1,7 @@
 import React from 'react';
 import AboutMe from '../components/AboutMeComponents/AboutMe/AboutMe';
 import Skills from '../components/AboutMeComponents/Skills/Skills';
+import WakaTimeStats from '../components/AboutMeComponents/WakaTimeStats/WakaTimeStats';
 import styles from './About.module.scss';
 
 export default function About() {
@@ -8,6 +9,7 @@ export default function About() {
     <div className={styles.page}>
       <AboutMe />
       <Skills />
+      <WakaTimeStats />
     </div>
   );
 }

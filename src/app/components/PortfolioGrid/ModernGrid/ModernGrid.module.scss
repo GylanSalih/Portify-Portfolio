@@ -6,6 +6,16 @@
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
+  background: #0a0a0a;
+
+  /* Dark mode support */
+  :global(html:not(.dark-mode)) & {
+    background: #f8f8f8;
+  }
+
+  :global(html.dark-mode) & {
+    background: #0a0a0a;
+  }
 
   @media (max-width: 1550px) {
     padding: 4rem 30px;
@@ -37,7 +47,7 @@
     color: #111;
     margin: 0;
     text-align: left;
-    font-family: 'BlenderProBold', sans-serif;
+    font-family: 'Wotfard', sans-serif;
     line-height: 1.1;
 
     :global(html.dark-mode) & {
@@ -68,7 +78,12 @@
   color: #666;
   display: block;
   margin-bottom: 0.5rem;
-  font-family: 'RedHat', sans-serif;
+  font-family: 'Wotfard', sans-serif;
+
+  /* Dark mode support */
+  :global(html:not(.dark-mode)) & {
+    color: #666;
+  }
 
   :global(html.dark-mode) & {
     color: #aaa;
@@ -419,7 +434,7 @@
   h3 {
     font-size: 1.2rem;
     margin: 0;
-    font-family: 'BlenderProBold', sans-serif;
+    font-family: 'Wotfard', sans-serif;
 
     @media (max-width: 768px) {
       font-size: 1.1rem;
@@ -508,6 +523,15 @@
   padding: 4rem 2rem;
   color: #666;
   font-size: 1.125rem;
+
+  /* Dark mode support */
+  :global(html:not(.dark-mode)) & {
+    color: #666;
+  }
+
+  :global(html.dark-mode) & {
+    color: #aaa;
+  }
 
   @media (max-width: 480px) {
     padding: 3rem 1rem;

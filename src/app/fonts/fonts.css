@@ -6,60 +6,11 @@
 
 /* -------------------Avant Garde Font START--------------------------*/
 
-@font-face {
-  font-family: 'RedHat';
-  src: url('RedHatDisplay-Medium.ttf') format('truetype');
-  font-weight: 400; /* Definiere die unterstützten Gewichtungen */
-  font-style: normal;
-}
 
 @font-face {
-  font-family: 'Quicksand';
-  src: url('Quicksand-SemiBold.ttf') format('truetype');
+  font-family: 'Wotfard';
+  src: url('Wotfard-Regular.otf') format('opentype');
   font-weight: 400 900; /* Definiere die unterstützten Gewichtungen */
   font-style: normal;
 }
 
-@font-face {
-  font-family: 'AvantGardeLight';
-  src: url('AVGARDN_light.TTF') format('truetype');
-  font-weight: 400 900; /* Definiere die unterstützten Gewichtungen */
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'AvantGardeBold';
-  src: url('AVGARDD_bold.TTF') format('truetype');
-  font-weight: 400 900; /* Definiere die unterstützten Gewichtungen */
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'CommandOverride';
-  src: url('CommandOverride.otf') format('opentype');
-  font-weight: 400 900; /* Definiere die unterstützten Gewichtungen */
-  font-style: normal;
-}
-
-/* -------------------BlenderPro Font START--------------------------*/
-
-@font-face {
-  font-family: 'BlenderProMedium';
-  src: url('BlenderProMedium.ttf') format('truetype');
-  font-weight: 400; /* Definiere die unterstützten Gewichtungen */
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'BlenderProThin';
-  src: url('BlenderProThin.ttf') format('truetype');
-  font-weight: 400; /* Definiere die unterstützten Gewichtungen */
-  font-style: thin;
-}
-
-@font-face {
-  font-family: 'BlenderProBold';
-  src: url('BlenderProBold.ttf') format('truetype');
-  font-weight: 400; /* Definiere die unterstützten Gewichtungen */
-  font-style: bold;
-}

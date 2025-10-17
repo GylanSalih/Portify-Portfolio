@@ -1,8 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { Eye, Heart, Calendar } from 'lucide-react';
+import { Eye, Heart, Calendar, Clock } from 'lucide-react';
 import { memo } from 'react';
+import { blogShortExcerpt } from '../../../lib/blogUtils';
 import styles from './BlogCard.module.scss';
 
 // Einfache formatNumber Funktion für die BlogCard
@@ -41,6 +42,8 @@ const BlogCard = ({
     relevanceScore = 0,
     statsLoading = false,
   } = post;
+
+
 
   // Bestimme welche Tags angezeigt werden sollen
   const tagsToShow =
@@ -100,22 +103,19 @@ const BlogCard = ({
               <Calendar size={14} />
               {date}
             </span>
-            <span className={isRelated ? styles.relatedReadTime : styles.readTime}>{readTime} read</span>
+            <span className={isRelated ? styles.relatedReadTime : styles.readTime}>
+              <Clock size={14} />
+              {readTime}
+            </span>
           </div>
 
           <h3 className={isRelated ? styles.relatedTitle : styles.title}>
-            {truncateTitle && variant === 'default'
-              ? title.length > 50
-                ? `${title.substring(0, 50)}...`
-                : title
-              : title}
+            {title}
           </h3>
           <p className={isRelated ? styles.relatedExcerpt : styles.excerpt}>
             {truncateExcerpt && variant === 'default'
-              ? excerpt.length > 100
-                ? `${excerpt.substring(0, 100)}...`
-                : excerpt
-              : excerpt}
+              ? blogShortExcerpt(excerpt, 100)
+              : excerpt || 'No description available'}
           </p>
 
           {tagsToShow.length > 0 && (

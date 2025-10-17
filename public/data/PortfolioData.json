@@ -5,7 +5,7 @@
     "category": "Coding",
     "tags": ["React", "Next.js", "TypeScript", "GSAP", "Three.js", "Vercel"],
     "gridData": {
-      "imgSrc": "/assets/images/portfolio/New1.png"
+      "imgSrc": "/assets/images/portfolio/Akira2.jpg"
     },
     "postData": {
       "abovetitle": "Full-Featured Showcase",
@@ -46,20 +46,17 @@
         {
           "url": "/assets/videos/cyberpunk.mp4",
           "thumbnail": "/assets/images/portfolio/New1.png",
-          "caption": "Interactive 3D Hero Section with WebGL Effects",
-          "duration": "0:45"
+          "caption": "Interactive 3D Hero Section with WebGL Effects"
         },
         {
           "url": "/assets/videos/drift.mp4",
           "thumbnail": "/assets/images/portfolio/New2.png",
-          "caption": "Smooth Page Transitions with GSAP",
-          "duration": "0:32"
+          "caption": "Smooth Page Transitions with GSAP"
         },
         {
           "url": "/assets/videos/Sakura.mp4",
           "thumbnail": "/assets/images/portfolio/New3.png",
-          "caption": "Real-time Data Visualization Dashboard",
-          "duration": "1:15"
+          "caption": "Real-time Data Visualization Dashboard"
         }
       ]
     }

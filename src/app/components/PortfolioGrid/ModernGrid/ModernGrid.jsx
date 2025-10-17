@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 import styles from './ModernGrid.module.scss';
 
@@ -43,11 +42,9 @@ const ModernGrid = ({
             <div className={styles.card}>
               <figure className={styles.figure}>
                 <Link href={`/portfolio/${item.slug}`}>
-                  <Image
+                  <img
                     src={item.gridData.imgSrc}
                     alt={item.title}
-                    width={550}
-                    height={400}
                     className={styles.image}
                   />
                   <div className={styles.overlay}>

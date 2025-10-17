@@ -11,7 +11,7 @@
 .portfolio-subheading {
   font-size: 60px;
   font-style: normal;
-  font-family: 'BlenderProBold';
+  font-family: 'Wotfard';
   text-transform: uppercase;
   text-align: center;
   color: #ffffff;
@@ -111,7 +111,7 @@
 .portfolio-title {
   font-size: 120px;
   font-style: normal;
-  font-family: 'BlenderProBold';
+  font-family: 'Wotfard';
   text-align: left;
   color: #ffffff;
   margin-bottom: 3rem;
@@ -171,7 +171,7 @@ Profile-Information-(Steckbrief)
 .project-info-item {
   position: relative;
   font-size: 0.95rem;
-  font-family: 'RedHat', sans-serif;
+  font-family: 'Wotfard', sans-serif;
   line-height: 1.6;
   padding: 20px 15px 12px;
   border-radius: 8px;
@@ -197,7 +197,7 @@ Profile-Information-(Steckbrief)
   background: rgba(255, 255, 255, 0.03);
   padding: 0 10px;
   color: #3ecf8e;
-  font-family: 'RedHat', sans-serif;
+  font-family: 'Wotfard', sans-serif;
   font-size: 0.95rem;
   white-space: nowrap;
 }
@@ -236,7 +236,7 @@ Profile-Information-(Steckbrief)
   font-size: 60px;
   font-style: normal;
   text-transform: uppercase;
-  font-family: 'BlenderProBold';
+  font-family: 'Wotfard';
 }
 
 .portfolio-Paragraph {
@@ -313,7 +313,7 @@ Profile-Information-(Steckbrief)
 .counter-item {
   position: relative;
   font-size: 0.95rem;
-  font-family: 'RedHat', sans-serif;
+  font-family: 'Wotfard', sans-serif;
   line-height: 1.6;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.02);
@@ -339,7 +339,7 @@ Profile-Information-(Steckbrief)
   background: rgba(255, 255, 255, 0.03);
   padding: 0 10px;
   color: #3ecf8e;
-  font-family: 'RedHat', sans-serif;
+  font-family: 'Wotfard', sans-serif;
   font-size: 0.95rem;
   white-space: nowrap;
 }
@@ -351,7 +351,7 @@ Profile-Information-(Steckbrief)
   color: #fff;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-family: 'RedHat', sans-serif;
+  font-family: 'Wotfard', sans-serif;
   font-size: 0.95rem;
   display: flex;
   align-items: center;
@@ -389,7 +389,7 @@ Profile-Information-(Steckbrief)
 /* Counter Text */
 .counter-text {
   font-size: 0.95rem;
-  font-family: 'RedHat', sans-serif;
+  font-family: 'Wotfard', sans-serif;
 }
 
 .patternpost {
@@ -425,7 +425,7 @@ Profile-Information-(Steckbrief)
 .ive-demo-item {
   position: relative;
   font-size: 0.95rem;
-  font-family: 'RedHat', sans-serif;
+  font-family: 'Wotfard', sans-serif;
   line-height: 1.6;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.02);
@@ -450,7 +450,7 @@ Profile-Information-(Steckbrief)
   background: rgba(255, 255, 255, 0.03);
   padding: 0 10px;
   color: #3ecf8e;
-  font-family: 'RedHat', sans-serif;
+  font-family: 'Wotfard', sans-serif;
   font-size: 0.95rem;
   white-space: nowrap;
 }
@@ -462,7 +462,7 @@ Profile-Information-(Steckbrief)
   color: #fff;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-family: 'RedHat', sans-serif;
+  font-family: 'Wotfard', sans-serif;
   font-size: 0.95rem;
   display: flex;
   align-items: center;
@@ -494,7 +494,7 @@ Profile-Information-(Steckbrief)
 /* Counter Text */
 .ive-demo-text {
   font-size: 0.95rem;
-  font-family: 'RedHat', sans-serif;
+  font-family: 'Wotfard', sans-serif;
 }
 
 /* Gallery Styles */

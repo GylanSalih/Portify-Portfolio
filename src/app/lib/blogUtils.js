@@ -1,10 +1,16 @@
 // Blog-spezifische Utility-Funktionen
 import { calculateReadTime, processExcerpt } from './utils';
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
 
-// Text-Formatierung für Blog-Posts
-export const blogShortExcerpt = (text, maxLength = 100) => {
-  if (!text || text.length <= maxLength) return text;
-  return text.slice(0, maxLength) + '...';
+// Text-Formatierung für Blog-Posts - nur für description/excerpt verwenden
+export const blogShortExcerpt = (excerpt, maxLength = 100) => {
+  if (!excerpt || typeof excerpt !== 'string' || excerpt.trim() === '') {
+    return 'No description available';
+  }
+  if (excerpt.length <= maxLength) return excerpt;
+  return excerpt.slice(0, maxLength) + '...';
 };
 
 // Zahlen-Formatierung für Blog-Stats
@@ -16,23 +22,21 @@ export const formatNumber = num => {
   return num.toString();
 };
 
-// Blog-Post Datenverarbeitung
+// Blog-Post Datenverarbeitung (MDX-basiert)
 export const processBlogPostData = async (post, fullContentData = null) => {
   try {
     let processedPost = { ...post };
 
-    // Wenn kein fullContentData übergeben wurde, lade es
+    // Wenn kein fullContentData übergeben wurde, lade es über MDX-API
     if (!fullContentData) {
-      const fullContentResponse = await fetch('/data/BlogData.json');
-      const blogData = await fullContentResponse.json();
-      // Transformiere BlogData zu dem erwarteten Format
-      fullContentData = blogData.map(item => ({
-        slug: item.slug,
-        title: item.title,
-        tags: item.tags,
-        content: item.postData.content,
-        ...item.postData
-      }));
+      try {
+        const response = await fetch('/api/blog/mdx');
+        const mdxData = await response.json();
+        fullContentData = mdxData;
+      } catch (error) {
+        console.error('Error loading MDX data:', error);
+        fullContentData = [];
+      }
     }
 
     // Finde den vollständigen Content für diesen Post
@@ -63,24 +67,22 @@ export const processBlogPostData = async (post, fullContentData = null) => {
   }
 };
 
-// Mehrere Blog-Posts verarbeiten
+// Mehrere Blog-Posts verarbeiten (MDX-basiert)
 export const processMultipleBlogPosts = async (
   posts,
   fullContentData = null
 ) => {
   try {
-    // Wenn kein fullContentData übergeben wurde, lade es einmal
+    // Wenn kein fullContentData übergeben wurde, lade es über MDX-API
     if (!fullContentData) {
-      const fullContentResponse = await fetch('/data/BlogData.json');
-      const blogData = await fullContentResponse.json();
-      // Transformiere BlogData zu dem erwarteten Format
-      fullContentData = blogData.map(item => ({
-        slug: item.slug,
-        title: item.title,
-        tags: item.tags,
-        content: item.postData.content,
-        ...item.postData
-      }));
+      try {
+        const response = await fetch('/api/blog/mdx');
+        const mdxData = await response.json();
+        fullContentData = mdxData;
+      } catch (error) {
+        console.error('Error loading MDX data:', error);
+        fullContentData = [];
+      }
     }
 
     // Verarbeite alle Posts parallel
@@ -320,4 +322,115 @@ export const backupBlogPosts = posts => {
   };
 
   return JSON.stringify(backup, null, 2);
+};
+
+// ===== MDX-SPEZIFISCHE FUNKTIONEN =====
+
+// MDX-Dateien aus dem blog-mdx Ordner laden
+export const getMDXPosts = () => {
+  const postsDirectory = path.join(process.cwd(), 'public/data/blog-mdx');
+  
+  // Prüfe ob der Ordner existiert
+  if (!fs.existsSync(postsDirectory)) {
+    console.warn('MDX blog directory not found:', postsDirectory);
+    return [];
+  }
+
+  const filenames = fs.readdirSync(postsDirectory);
+  const posts = filenames
+    .filter(name => name.endsWith('.mdx'))
+    .map(filename => {
+      const filePath = path.join(postsDirectory, filename);
+      const fileContents = fs.readFileSync(filePath, 'utf8');
+      const { data: frontmatter, content } = matter(fileContents);
+      
+      
+      return {
+        slug: frontmatter.slug || filename.replace(/\.mdx$/, ''),
+        title: frontmatter.title || 'Untitled',
+        subtitle: frontmatter.subtitle || '',
+        category: frontmatter.category || 'General',
+        tags: frontmatter.tags || [],
+        date: frontmatter.date || new Date().toISOString(),
+        image: frontmatter.image || '/assets/images/blog/default.webp',
+        excerpt: frontmatter.excerpt || frontmatter.description || 'No excerpt available',
+        author: frontmatter.author || 'Gylan Salih',
+        authorImage: frontmatter.authorImage || '/assets/images/blog/author.webp',
+        content,
+        readTime: calculateReadTime(content),
+        filename
+      };
+    });
+
+  return posts;
+};
+
+// Einzelnen MDX-Post laden
+export const getMDXPost = (slug) => {
+  const posts = getMDXPosts();
+  return posts.find(post => post.slug === slug);
+};
+
+// MDX-Posts für Grid-Anzeige verarbeiten
+export const getMDXPostsForGrid = async () => {
+  const posts = getMDXPosts();
+  
+  return posts.map(post => ({
+    id: post.slug,
+    slug: post.slug,
+    title: post.title,
+    subtitle: post.subtitle,
+    category: post.category,
+    tags: post.tags,
+    date: post.date,
+    image: post.image,
+    excerpt: post.excerpt || 'No excerpt available',
+    author: post.author,
+    authorImage: post.authorImage,
+    readTime: post.readTime,
+    views: 0, // Wird von Supabase überschrieben
+    likes: 0  // Wird von Supabase überschrieben
+  }));
+};
+
+// MDX-Posts sortieren
+export const sortMDXPosts = (posts, sortOrder = 'latest') => {
+  return [...posts].sort((a, b) => {
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
+
+    if (sortOrder === 'latest') {
+      return dateB - dateA;
+    } else {
+      return dateA - dateB;
+    }
+  });
+};
+
+// Client-seitige Funktion für MDX-Posts (für API-Calls)
+export const fetchMDXPosts = async () => {
+  try {
+    const response = await fetch('/api/blog/mdx');
+    if (!response.ok) {
+      throw new Error('Failed to fetch MDX posts');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching MDX posts:', error);
+    return [];
+  }
+};
+
+// Client-seitige Funktion für einzelnen MDX-Post
+export const fetchMDXPost = async (slug) => {
+  try {
+    const response = await fetch(`/api/blog/mdx/${slug}`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch MDX post: ${slug}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching MDX post:', error);
+    return null;
+  }
 };

@@ -11,6 +11,14 @@ const VideoGallery = ({ videos }) => {
     return null;
   }
 
+  // Format duration to MM:SS
+  const formatDuration = (seconds) => {
+    if (!seconds || isNaN(seconds)) return '0:00';
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
+
   // Video controls
   const toggleVideoPlay = (videoId) => {
     const video = document.getElementById(videoId);
@@ -89,7 +97,9 @@ const VideoGallery = ({ videos }) => {
                   )}
                 </button>
                 
-                <span className={styles.duration}>{video.duration}</span>
+                <span className={styles.duration}>
+                  {formatDuration(videoStates[`video-${index}`]?.duration)}
+                </span>
               </div>
             </div>
             

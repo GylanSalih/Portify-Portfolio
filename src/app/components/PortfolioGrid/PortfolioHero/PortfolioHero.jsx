@@ -11,28 +11,28 @@ const PortfolioHero = () => {
   const slides = [
     {
       id: 1,
-      image: "/assets/images/portfolio/New1.png",
+      image: "/assets/images/portfolio/GITS2.jpg",
       title: "Modern Web Design",
       category: "Web Development",
       description: "A cutting-edge web application with modern UI/UX design"
     },
     {
       id: 2,
-      image: "/assets/images/portfolio/New2.png",
+      image: "/assets/images/portfolio/City.jpg",
       title: "Mobile App Design",
       category: "Mobile Development",
       description: "Intuitive mobile interface with seamless user experience"
     },
     {
       id: 3,
-      image: "/assets/images/portfolio/New3.png",
+      image: "/assets/images/portfolio/City2.jpg",
       title: "E-commerce Platform",
       category: "Full-Stack",
       description: "Complete e-commerce solution with advanced features"
     },
     {
       id: 4,
-      image: "/assets/images/portfolio/New4.png",
+      image: "/assets/images/portfolio/GITS.jpg",
       title: "Dashboard Design",
       category: "UI/UX Design",
       description: "Data visualization dashboard with interactive components"
@@ -79,9 +79,13 @@ const PortfolioHero = () => {
                       className={styles.slideImg}
                       priority={slide.id === 1}
                     />
+                    {/* Tag oben rechts */}
+                    <div className={styles.topRight}>
+                      <span className={styles.category}>{slide.category}</span>
+                    </div>
+
                     <div className={styles.slideOverlay}>
                       <div className={styles.slideContent}>
-                        <span className={styles.slideCategory}>{slide.category}</span>
                         <h2 className={styles.slideTitle}>{slide.title}</h2>
                         <p className={styles.slideDescription}>{slide.description}</p>
                       </div>

@@ -2,7 +2,7 @@
   padding: 0;
   background: transparent;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   margin-top: 2rem;
   margin-bottom: 0.5rem;
 }
@@ -13,6 +13,7 @@
   padding: 0rem 50px;
   position: relative;
   box-sizing: border-box;
+  overflow: visible;
 
   @media (max-width: 1024px) {
     inline-size: min(100% - 32px * 2, 1816px);
@@ -39,6 +40,7 @@
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  z-index: 1;
 
   @media (max-width: 1024px) {
     height: 60vh;
@@ -86,6 +88,14 @@
   position: relative;
   width: 100%;
   height: 100%;
+
+  /* Positionierte Elemente */
+  .topRight {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    z-index: 3;
+  }
 }
 
 .slideImg {
@@ -127,6 +137,45 @@
   color: white;
 }
 
+.category {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  font-family: 'Wotfard', sans-serif;
+
+
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 1024px) {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.7rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.6rem;
+  }
+}
+
 .slideCategory {
   display: inline-block;
   background: rgba(255, 255, 255, 0.1);
@@ -138,7 +187,7 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: 1rem;
-  font-family: 'RedHat', sans-serif;
+  font-family: 'Wotfard', sans-serif;
   border: 1px solid rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
 
@@ -158,7 +207,7 @@
   font-weight: 700;
   color: #ffffff;
   margin: 0 0 1rem 0;
-  font-family: 'BlenderProBold', sans-serif;
+  font-family: 'Wotfard', sans-serif;
   line-height: 1.1;
   letter-spacing: -0.02em;
 
@@ -180,7 +229,7 @@
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
   margin: 0;
-  font-family: 'RedHat', sans-serif;
+  font-family: 'Wotfard', sans-serif;
 
   @media (max-width: 1024px) {
     font-size: 1.1rem;

@@ -33,3 +33,8 @@ export { default as Testimonials } from './HomeComponents/Testimonials/Testimoni
 
 // Client Components
 export { default as ClientLayout } from './ClientLayout/ClientLayout';
+
+// MDX Components
+export { MDXComponents } from './MDXComponents/MDXComponents';
+export { MDXProvider } from './MDXComponents/MDXProvider';
+export { MDXRenderer, MDXSection } from './MDXComponents/MDXRenderer';

@@ -123,6 +123,14 @@
 
 .logoImage {
   transition: all 0.3s ease;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  
+  @media (max-width: 1023px) {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 .desktopNav {

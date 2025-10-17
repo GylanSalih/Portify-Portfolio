@@ -1,7 +1,7 @@
 .stack {
   margin-bottom: 4rem;
   position: relative;
-  max-width: 800px;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -14,8 +14,9 @@
   padding-bottom: 0;
   border-bottom: none;
   position: relative;
-  font-family: 'BlenderProBold', sans-serif;
+  font-family: 'Wotfard', sans-serif;
   letter-spacing: -0.01em;
+  text-align: center;
 
   @media (max-width: 768px) {
     font-size: 1.625rem;
@@ -27,6 +28,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.875rem;
+  justify-content: center;
+  align-items: center;
 
   @media (max-width: 768px) {
     gap: 0.75rem;
@@ -57,7 +60,7 @@
     font-weight: 500;
     color: rgba(255, 255, 255, 0.85);
     margin: 0;
-    font-family: 'RedHat', sans-serif;
+    font-family: 'Wotfard', sans-serif;
 
     @media (max-width: 768px) {
       font-size: 0.875rem;

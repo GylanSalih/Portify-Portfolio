@@ -25,7 +25,7 @@ Note and Todos for myself:
 [X] SSR Component pieces
 [X] darkmode / lightmode switch titles dont switch correctly
 [X] Clean codeblock for blogpost
-[X] 
+[X] Items per page pagination not working
 ---
 
 Lookbook:
@@ -49,8 +49,20 @@ Updates / Fixes:
 • Started the default post page — began styling elements like h1, h2, h3, p, images, tables, etc., to make them look consistent across all blog posts
 • Made author image, author description, and author name static to simplify future adjustments
 • Added Lazyloading and changed Mobile Menu better ui + icon
-• 
-
+• Fixed Related Projects Logic: Implemented intelligent category-based project selection with random shuffling instead of showing the same projects every time. Related projects now display projects from the same category as the current project, with fallback to other categories when needed. Features include: 1) Category-based selection (Coding/Design/Marketing), 2) Random shuffling (Fisher-Yates Shuffle) for variety, 3) Intelligent fallback when not enough projects in same category, 4) Current project exclusion.
+• Fixed Image Consistency: Changed Related Projects to use grid images (`gridData.imgSrc`) instead of hero background images (`postData.backgroundImage`) for consistent visual appearance with the portfolio grid. Also fixed hardcoded tags to display actual project tags dynamically.
+• Improved Portfolio Post Page Design: Updated and refined the overall design and layout of individual portfolio project pages for better visual consistency and user experience.
+• Added Skeleton for Blog Single Posts and Portfolio Single Posts
+• Improved Blog Related Posts Logic: Adapted the same intelligent category-based logic from Portfolio to Blog. Related blog posts now display posts from the same category as the current post (Development/Design/Marketing) with random shuffling for variety. Features include: 1) Category-based selection matching current post category, 2) Fisher-Yates Shuffle algorithm for randomized suggestions, 3) Intelligent fallback to other categories when not enough posts available, 4) Automatic exclusion of current post, 5) Simplified BlogMightLike component by removing complex tag-matching logic. -> Filters Posts by Category
+• Fixed console errors
+• Implemented Dark Mode / Light Mode for Portfolio and Blog pages
+• Improved slider on the Portfolio page
+• Cleaned up and enhanced the Portfolio Single Post page
+• Styled Blog card “Read Timer” consistently with the date
+• Added Wakatime to the About Me page
+• Changed from JSON to MDX for easier blog article management
+• Removed Blog Card title excerpt
+• Added global font Wotfard-Regular to all files (will update soon to better match overall font styling)
 
 0.0.25 – Previous Updates
 • Split portfolio posts into individual components
@@ -197,7 +209,7 @@ Styling: styleVars dynamically passed to the card’s style attribute to update 
 
 0.0.11 - Previous Updates
 
-• Integrated Quicksand font locally  
+• Integrated Wotfard font locally  
 • Added Skills page  
 • Included Bootstrap/FontAwesome icons  
 • Fixed dark mode on the single card information on the Portfolio page  

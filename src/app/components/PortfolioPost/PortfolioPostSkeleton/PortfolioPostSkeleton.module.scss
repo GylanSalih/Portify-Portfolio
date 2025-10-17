@@ -1,0 +1,577 @@
+/* ===== PORTFOLIO POST SKELETON STYLES ===== */
+
+/* Base skeleton animation */
+@keyframes skeletonLoading {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Base skeleton element */
+%skeletonBase {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeletonLoading 1.5s infinite;
+  border-radius: 8px;
+}
+
+/* ===== MAIN CONTAINER ===== */
+.postSkeleton {
+  min-height: 100vh;
+  background: transparent;
+  opacity: 1;
+  transition: opacity 0.3s ease-out;
+
+  &.fadeOut {
+    opacity: 0;
+  }
+}
+
+.wrapper {
+  max-width: 1650px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  background: transparent;
+
+  @media (max-width: 1800px) {
+    max-width: 1400px;
+    padding: 0 1.5rem;
+  }
+
+  @media (max-width: 1550px) {
+    max-width: 1200px;
+    padding: 0 1.5rem;
+  }
+
+  @media (max-width: 1024px) {
+    max-width: 100%;
+    padding: 0 1.25rem;
+  }
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0 0.75rem;
+  }
+}
+
+.main {
+  margin-bottom: 8rem;
+  margin-top: 2rem;
+  background: transparent;
+
+  @media (max-width: 768px) {
+    margin-bottom: 4rem;
+  }
+}
+
+/* ===== HERO SKELETON ===== */
+.heroSkeleton {
+  margin-top: 8rem;
+  margin-bottom: 2rem;
+
+  .imageContainer {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.02);
+
+    @media (max-width: 1024px) {
+      height: 500px;
+    }
+
+    @media (max-width: 768px) {
+      height: 400px;
+      border-radius: 16px;
+    }
+
+    @media (max-width: 480px) {
+      height: 350px;
+    }
+  }
+
+  .skeletonImage {
+    @extend %skeletonBase;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+
+  .topLeft,
+  .topRight,
+  .bottomLeft,
+  .bottomRight {
+    position: absolute;
+    display: flex;
+    gap: 0.75rem;
+    padding: 1.5rem;
+
+    @media (max-width: 768px) {
+      padding: 1rem;
+    }
+  }
+
+  .topLeft {
+    top: 0;
+    left: 0;
+  }
+
+  .topRight {
+    top: 0;
+    right: 0;
+  }
+
+  .bottomLeft {
+    bottom: 0;
+    left: 0;
+  }
+
+  .bottomRight {
+    bottom: 0;
+    right: 0;
+  }
+
+  .skeletonMetaItem {
+    @extend %skeletonBase;
+    width: 80px;
+    height: 32px;
+    border-radius: 20px;
+    animation-delay: 0.1s;
+
+    &:nth-child(2) {
+      animation-delay: 0.15s;
+    }
+  }
+
+  .skeletonCategory {
+    @extend %skeletonBase;
+    width: 100px;
+    height: 32px;
+    border-radius: 20px;
+    animation-delay: 0.2s;
+  }
+
+  .skeletonTags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .skeletonTag {
+    @extend %skeletonBase;
+    width: 70px;
+    height: 28px;
+    border-radius: 20px;
+    animation-delay: 0.3s;
+
+    &:nth-child(2) { animation-delay: 0.35s; }
+    &:nth-child(3) { animation-delay: 0.4s; }
+    &:nth-child(4) { animation-delay: 0.45s; }
+  }
+
+  .skeletonButtons {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .skeletonButton {
+    @extend %skeletonBase;
+    width: 120px;
+    height: 44px;
+    border-radius: 12px;
+    animation-delay: 0.5s;
+
+    &:nth-child(2) {
+      animation-delay: 0.55s;
+    }
+  }
+
+  .centerContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 80%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+
+    @media (max-width: 768px) {
+      width: 90%;
+    }
+  }
+
+  .skeletonTitle {
+    @extend %skeletonBase;
+    width: 400px;
+    max-width: 90%;
+    height: 48px;
+    animation-delay: 0.6s;
+
+    @media (max-width: 768px) {
+      height: 40px;
+    }
+  }
+
+  .skeletonSubtitle {
+    @extend %skeletonBase;
+    width: 300px;
+    max-width: 80%;
+    height: 24px;
+    animation-delay: 0.65s;
+
+    @media (max-width: 768px) {
+      height: 20px;
+    }
+  }
+}
+
+/* ===== PROJECT INFO SKELETON ===== */
+.infoSkeleton {
+  margin: 3rem 0;
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+
+  .skeletonCard {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    @media (max-width: 768px) {
+      padding: 1.25rem;
+    }
+  }
+
+  .skeletonCardTitle {
+    @extend %skeletonBase;
+    width: 80px;
+    height: 20px;
+    animation-delay: 0.1s;
+  }
+
+  .skeletonCardText {
+    @extend %skeletonBase;
+    width: 120px;
+    height: 24px;
+    animation-delay: 0.15s;
+  }
+}
+
+/* ===== CONTENT SKELETON ===== */
+.contentSkeleton {
+  margin: 4rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
+  @media (max-width: 768px) {
+    margin: 3rem 0;
+    gap: 2rem;
+  }
+
+  .skeletonSection {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .skeletonSectionTitle {
+    @extend %skeletonBase;
+    width: 200px;
+    height: 32px;
+    margin-bottom: 0.5rem;
+    animation-delay: 0.1s;
+
+    @media (max-width: 768px) {
+      height: 28px;
+    }
+  }
+
+  .skeletonParagraph {
+    @extend %skeletonBase;
+    width: 100%;
+    height: 20px;
+    animation-delay: 0.2s;
+
+    &:nth-child(3) { animation-delay: 0.25s; }
+    &:nth-child(4) { animation-delay: 0.3s; }
+
+    &.short {
+      width: 80%;
+    }
+  }
+}
+
+/* ===== SECTION HEADER ===== */
+.skeletonSectionHeader {
+  margin-bottom: 2rem;
+
+  .skeletonSectionTitle {
+    @extend %skeletonBase;
+    width: 250px;
+    height: 36px;
+    animation-delay: 0.1s;
+
+    @media (max-width: 768px) {
+      height: 32px;
+    }
+  }
+}
+
+/* ===== GALLERY SKELETON ===== */
+.gallerySkeleton {
+  margin: 4rem 0;
+
+  @media (max-width: 768px) {
+    margin: 3rem 0;
+  }
+
+  .galleryGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+
+  .skeletonGalleryItem {
+    @extend %skeletonBase;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: 12px;
+    animation-delay: 0.2s;
+
+    &:nth-child(2) { animation-delay: 0.25s; }
+    &:nth-child(3) { animation-delay: 0.3s; }
+    &:nth-child(4) { animation-delay: 0.35s; }
+    &:nth-child(5) { animation-delay: 0.4s; }
+    &:nth-child(6) { animation-delay: 0.45s; }
+  }
+}
+
+/* ===== TECH STACK SKELETON ===== */
+.techStackSkeleton {
+  margin: 4rem 0;
+
+  @media (max-width: 768px) {
+    margin: 3rem 0;
+  }
+
+  .techGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+
+    @media (max-width: 640px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+  }
+
+  .skeletonTechItem {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+
+    @media (max-width: 768px) {
+      padding: 1rem;
+    }
+  }
+
+  .skeletonTechIcon {
+    @extend %skeletonBase;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    animation-delay: 0.2s;
+
+    @media (max-width: 768px) {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  .skeletonTechName {
+    @extend %skeletonBase;
+    flex: 1;
+    height: 20px;
+    animation-delay: 0.25s;
+  }
+}
+
+/* ===== FEATURES SKELETON ===== */
+.featuresSkeleton {
+  margin: 4rem 0;
+
+  @media (max-width: 768px) {
+    margin: 3rem 0;
+  }
+
+  .featuresList {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .skeletonFeatureItem {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+
+    @media (max-width: 768px) {
+      padding: 1.25rem;
+    }
+  }
+
+  .skeletonFeatureIcon {
+    @extend %skeletonBase;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    animation-delay: 0.2s;
+  }
+
+  .skeletonFeatureText {
+    @extend %skeletonBase;
+    flex: 1;
+    height: 20px;
+    animation-delay: 0.25s;
+  }
+}
+
+/* ===== RELATED PROJECTS SKELETON ===== */
+.relatedSkeleton {
+  margin: 4rem 0;
+  padding: 3rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+  @media (max-width: 768px) {
+    margin: 3rem 0;
+    padding: 2rem 0;
+  }
+
+  .relatedGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+  }
+
+  .skeletonRelatedCard {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .skeletonRelatedImage {
+    @extend %skeletonBase;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: 0;
+    animation-delay: 0.2s;
+  }
+
+  .skeletonRelatedContent {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    @media (max-width: 768px) {
+      padding: 1.25rem;
+    }
+  }
+
+  .skeletonRelatedTitle {
+    @extend %skeletonBase;
+    width: 80%;
+    height: 24px;
+    animation-delay: 0.3s;
+  }
+
+  .skeletonRelatedCategory {
+    @extend %skeletonBase;
+    width: 60px;
+    height: 20px;
+    animation-delay: 0.35s;
+  }
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 768px) {
+  .heroSkeleton {
+    .bottomLeft,
+    .bottomRight {
+      flex-wrap: wrap;
+    }
+
+    .skeletonButton {
+      width: 100px;
+      height: 40px;
+    }
+  }
+}
+

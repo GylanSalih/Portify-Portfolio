@@ -14,6 +14,7 @@ import TechStack from './TechStack/TechStack';
 import Features from './Features/Features';
 import RelatedProjects from './RelatedProjects/RelatedProjects';
 import ImageModal from './ImageModal/ImageModal';
+import PortfolioPostSkeleton from './PortfolioPostSkeleton/PortfolioPostSkeleton';
 
 import styles from './PortfolioPost.module.scss';
 
@@ -124,16 +125,54 @@ const ProjectDetail = () => {
           
           setProject(transformedProject);
           
-          // Load related projects
-          const related = data
-            .filter(p => p.slug !== slug)
+          // Load related projects - use same category as current project
+          const currentProjectCategory = projectData.category;
+          
+          // Helper function to shuffle array
+          const shuffleArray = (array) => {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+          };
+          
+          // Get projects from same category (excluding current project)
+          const sameCategoryProjects = data
+            .filter(p => p.slug !== slug && p.category === currentProjectCategory);
+          
+          // Shuffle and take up to 3 projects
+          const shuffledSameCategory = shuffleArray(sameCategoryProjects);
+          const related = shuffledSameCategory
             .slice(0, 3)
             .map(p => ({
               slug: p.slug,
               title: p.title,
-              image: p.postData.backgroundImage,
-              category: p.category
+              image: p.gridData.imgSrc,
+              category: p.category,
+              tags: p.tags || []
             }));
+          
+          // If not enough projects in same category, fill with other projects
+          if (related.length < 3) {
+            const otherProjects = data
+              .filter(p => p.slug !== slug && p.category !== currentProjectCategory);
+            
+            const shuffledOtherProjects = shuffleArray(otherProjects);
+            const additionalProjects = shuffledOtherProjects
+              .slice(0, 3 - related.length)
+              .map(p => ({
+                slug: p.slug,
+                title: p.title,
+                image: p.gridData.imgSrc,
+                category: p.category,
+                tags: p.tags || []
+              }));
+            
+            related.push(...additionalProjects);
+          }
+          
           setRelatedProjects(related);
         }
         
@@ -164,14 +203,7 @@ const ProjectDetail = () => {
   };
 
   if (loading) {
-    return (
-      <div className={styles.loading}>
-        <div className={styles.loadingSpinner}>
-          <div className={styles.spinner}></div>
-          <p>Projekt wird geladen...</p>
-        </div>
-      </div>
-    );
+    return <PortfolioPostSkeleton />;
   }
 
   if (!project) {

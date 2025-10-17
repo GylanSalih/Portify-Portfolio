@@ -6,18 +6,114 @@ import { useParams } from 'next/navigation';
 import { useBlogStats } from '../../../hooks/useBlogStats';
 import {
   formatNumber,
-  processBlogPostData,
-  processMultipleBlogPosts,
 } from '../../../lib/blogUtils';
 import BlogMightLike from '../BlogMightLike/blogmightlike';
 import LikeButton from '../LikeButton';
 import { Clock, Eye } from 'lucide-react';
 import Image from 'next/image';
+import { MDXSection } from '../../MDXComponents/MDXRenderer';
+import { marked } from 'marked';
 import styles from './BlogPost.module.scss';
+import '../../MDXComponents/mdx-styles.scss';
 
-const BlogPost = () => {
+// Function to add MDX CSS classes to HTML content
+const addMDXClasses = (htmlContent) => {
+  return htmlContent
+    // Headings
+    .replace(/<h1([^>]*)>/g, '<h1 class="mdx-h1"$1>')
+    .replace(/<h2([^>]*)>/g, '<h2 class="mdx-h2"$1>')
+    .replace(/<h3([^>]*)>/g, '<h3 class="mdx-h3"$1>')
+    .replace(/<h4([^>]*)>/g, '<h4 class="mdx-h4"$1>')
+    .replace(/<h5([^>]*)>/g, '<h5 class="mdx-h5"$1>')
+    .replace(/<h6([^>]*)>/g, '<h6 class="mdx-h6"$1>')
+    
+    // Paragraphs
+    .replace(/<p([^>]*)>/g, '<p class="mdx-paragraph"$1>')
+    
+    // Lists
+    .replace(/<ul([^>]*)>/g, '<ul class="mdx-list mdx-list-unordered"$1>')
+    .replace(/<ol([^>]*)>/g, '<ol class="mdx-list mdx-list-ordered"$1>')
+    .replace(/<li([^>]*)>/g, '<li class="mdx-list-item"$1>')
+    
+    // Links
+    .replace(/<a([^>]*)>/g, '<a class="mdx-link"$1>')
+    
+    // Code
+    .replace(/<code([^>]*)>/g, '<code class="mdx-inline-code"$1>')
+    .replace(/<pre([^>]*)>/g, '<pre class="mdx-codeblock"$1>')
+    
+    // Blockquotes
+    .replace(/<blockquote([^>]*)>/g, '<blockquote class="mdx-blockquote"$1>')
+    
+    // Tables
+    .replace(/<table([^>]*)>/g, '<div class="mdx-table-wrapper"><table class="mdx-table"$1>')
+    .replace(/<\/table>/g, '</table></div>')
+    .replace(/<thead([^>]*)>/g, '<thead class="mdx-table-head"$1>')
+    .replace(/<tbody([^>]*)>/g, '<tbody class="mdx-table-body"$1>')
+    .replace(/<tr([^>]*)>/g, '<tr class="mdx-table-row"$1>')
+    .replace(/<th([^>]*)>/g, '<th class="mdx-table-header"$1>')
+    .replace(/<td([^>]*)>/g, '<td class="mdx-table-cell"$1>')
+    
+    // Horizontal rule
+    .replace(/<hr([^>]*)>/g, '<hr class="mdx-divider"$1>')
+    
+    // Strong and emphasis
+    .replace(/<strong([^>]*)>/g, '<strong class="mdx-strong"$1>')
+    .replace(/<em([^>]*)>/g, '<em class="mdx-emphasis"$1>')
+    
+    // Details/Summary
+    .replace(/<details([^>]*)>/g, '<details class="mdx-details"$1>')
+    .replace(/<summary([^>]*)>/g, '<summary class="mdx-summary"$1>')
+    
+    // Callouts (Note, Warning, Success, Error, Tip, Caution, Important)
+    .replace(/<Note>([\s\S]*?)<\/Note>/g, '<div class="mdx-callout mdx-callout-info"><div class="mdx-callout-icon">ℹ️</div><div class="mdx-callout-content">$1</div></div>')
+    .replace(/<Warning>([\s\S]*?)<\/Warning>/g, '<div class="mdx-callout mdx-callout-warning"><div class="mdx-callout-icon">⚠️</div><div class="mdx-callout-content">$1</div></div>')
+    .replace(/<Success>([\s\S]*?)<\/Success>/g, '<div class="mdx-callout mdx-callout-success"><div class="mdx-callout-icon">✅</div><div class="mdx-callout-content">$1</div></div>')
+    .replace(/<Error>([\s\S]*?)<\/Error>/g, '<div class="mdx-callout mdx-callout-error"><div class="mdx-callout-icon">❌</div><div class="mdx-callout-content">$1</div></div>')
+    .replace(/<Tip>([\s\S]*?)<\/Tip>/g, '<div class="mdx-callout mdx-callout-tip"><div class="mdx-callout-icon">💡</div><div class="mdx-callout-content">$1</div></div>')
+    .replace(/<Caution>([\s\S]*?)<\/Caution>/g, '<div class="mdx-callout mdx-callout-caution"><div class="mdx-callout-icon">⚠️</div><div class="mdx-callout-content">$1</div></div>')
+    .replace(/<Important>([\s\S]*?)<\/Important>/g, '<div class="mdx-callout mdx-callout-important"><div class="mdx-callout-icon">❗</div><div class="mdx-callout-content">$1</div></div>')
+    
+    // CustomImage components
+    .replace(/<CustomImage\s+([^>]*?)\/>/g, (match, attrs) => {
+      const srcMatch = attrs.match(/src="([^"]*)"/);
+      const altMatch = attrs.match(/alt="([^"]*)"/);
+      const captionMatch = attrs.match(/caption="([^"]*)"/);
+      const widthMatch = attrs.match(/width="([^"]*)"/);
+      const heightMatch = attrs.match(/height="([^"]*)"/);
+      
+      const src = srcMatch ? srcMatch[1] : '';
+      const alt = altMatch ? altMatch[1] : '';
+      const caption = captionMatch ? captionMatch[1] : '';
+      const width = widthMatch ? widthMatch[1] : '800';
+      const height = heightMatch ? heightMatch[1] : '400';
+      
+      return `<figure class="mdx-image-figure">
+        <div class="mdx-image-wrapper">
+          <img src="${src}" alt="${alt}" width="${width}" height="${height}" class="mdx-image" />
+        </div>
+        ${caption ? `<figcaption class="mdx-image-caption">${caption}</figcaption>` : ''}
+      </figure>`;
+    })
+    
+    // Video components
+    .replace(/<Video\s+([^>]*?)\/>/g, (match, attrs) => {
+      const srcMatch = attrs.match(/src="([^"]*)"/);
+      const titleMatch = attrs.match(/title="([^"]*)"/);
+      
+      const src = srcMatch ? srcMatch[1] : '';
+      const title = titleMatch ? titleMatch[1] : '';
+      
+      return `<video controls title="${title}" class="mdx-video">
+        <source src="${src}" type="video/mp4" />
+        Dein Browser unterstützt das Video-Tag nicht.
+      </video>`;
+    });
+};
+
+const BlogPost = ({ data = null, mdxContent = null }) => {
   const { slug } = useParams();
-  const [post, setPost] = useState(null);
+  const [post, setPost] = useState(data);
   const [relatedPosts, setRelatedPosts] = useState([]);
   const [viewProcessed, setViewProcessed] = useState(false);
 
@@ -29,62 +125,38 @@ const BlogPost = () => {
     incrementLikes,
   } = useBlogStats(slug);
 
-  // Lade Aktuelle Blog-Posts aus der neuen zentralen BlogData.json
+  // Lade MDX-Post über die API (nur wenn keine data prop übergeben wurde)
   useEffect(() => {
+    // Wenn bereits Daten übergeben wurden (MDX), lade keine neuen Daten
+    if (data) {
+      return;
+    }
+
     const loadPostData = async () => {
       try {
-        const response = await fetch('/data/BlogData.json');
-        const blogData = await response.json();
-        const selectedBlogItem = blogData.find(item => item.slug === slug);
-
-        if (selectedBlogItem) {
-          // Transformiere die neue Datenstruktur für die BlogPost-Komponente
-          const transformedPost = {
-            slug: selectedBlogItem.slug,
-            title: selectedBlogItem.title,
-            subtitle: selectedBlogItem.postData.subtitle,
-            author: "Gylan Salih", // Statischer Wert
-            date: selectedBlogItem.postData.date,
-            tags: selectedBlogItem.tags,
-            authorImage: "/assets/images/blog/author.webp", // Statischer Wert
-            content: selectedBlogItem.postData.content
-          };
-
-          // Verwende die neue Utility-Funktion
-          const postWithProcessedContent = await processBlogPostData(
-            transformedPost,
-            blogData.map(item => ({
-              slug: item.slug,
-              title: item.title,
-              tags: item.tags,
-              ...item.postData
-            }))
-          );
-          setPost(postWithProcessedContent);
+        // Versuche zuerst den spezifischen Post zu laden
+        const response = await fetch(`/api/blog/mdx/${slug}`);
+        if (response.ok) {
+          const postData = await response.json();
+          setPost(postData);
         } else {
-          // Fallback zum ersten Post
-          const firstItem = blogData[0];
-          if (firstItem) {
-            const transformedPost = {
-              slug: firstItem.slug,
-              title: firstItem.title,
-              subtitle: firstItem.postData.subtitle,
-              author: "Gylan Salih", // Statischer Wert
-              date: firstItem.postData.date,
-              tags: firstItem.tags,
-              authorImage: "/assets/images/blog/author.webp", // Statischer Wert
-              content: firstItem.postData.content
-            };
-            setPost(transformedPost);
+          // Fallback: Lade alle MDX-Posts und nimm den ersten
+          const allPostsResponse = await fetch('/api/blog/mdx');
+          if (allPostsResponse.ok) {
+            const allPosts = await allPostsResponse.json();
+            if (allPosts.length > 0) {
+              setPost(allPosts[0]);
+            }
           }
         }
       } catch (error) {
-        console.error('Error loading post data:', error);
+        console.error('Error loading MDX post:', error);
+        // Kein weiterer Fallback - zeige Loading-Zustand
       }
     };
 
     loadPostData();
-  }, [slug]);
+  }, [slug, data]);
 
   // Verbesserte View Counter Logic
   useEffect(() => {
@@ -130,89 +202,49 @@ const BlogPost = () => {
 
 
 
-  // Verbesserte "You might also like"-Posts Logik
+  // Kategorie-basierte Related Posts Logik (MDX-basiert)
   useEffect(() => {
     const loadRelatedPosts = async () => {
       try {
-        const response = await fetch('/data/BlogData.json');
-        const blogData = await response.json();
+        // Lade MDX-Posts über die API
+        const response = await fetch('/api/blog/mdx');
+        const allPosts = await response.json();
 
         if (!post) return;
 
-        console.log('Current post:', post.title);
-        console.log('Current post tags:', post.tags);
-
-        // Transformiere die Daten für das Grid (verwende gridData)
-        const allPosts = blogData.map(item => ({
-          ...item.gridData,
-          slug: item.slug,
-          title: item.title,
-          tags: item.tags,
-          category: item.category
-        }));
-
-        // Filtere aktuellen Post aus
-        const otherPosts = allPosts.filter(p => p.slug !== slug);
-        console.log('Other posts count:', otherPosts.length);
-
-        let relatedByTags = [];
-        let randomPosts = [];
-
-        // Wenn der aktuelle Post Tags hat, suche ähnliche Posts
-        if (post.tags && post.tags.length > 0) {
-          relatedByTags = otherPosts
-            .filter(p => {
-              if (!p.tags || !Array.isArray(p.tags)) return false;
-              const hasCommonTag = p.tags.some(tag => post.tags.includes(tag));
-              if (hasCommonTag) {
-                console.log(
-                  `Found related post: ${p.title} with tags:`,
-                  p.tags
-                );
-              }
-              return hasCommonTag;
-            })
-            .sort((a, b) => {
-              // Sortiere nach Anzahl gemeinsamer Tags (absteigend)
-              const aCommonTags = a.tags.filter(tag =>
-                post.tags.includes(tag)
-              ).length;
-              const bCommonTags = b.tags.filter(tag =>
-                post.tags.includes(tag)
-              ).length;
-              return bCommonTags - aCommonTags;
-            });
+        const currentPostCategory = post.category;
+        
+        // Helper function to shuffle array (Fisher-Yates Shuffle)
+        const shuffleArray = (array) => {
+          const shuffled = [...array];
+          for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+          }
+          return shuffled;
+        };
+        
+        // Get posts from same category (excluding current post)
+        const sameCategoryPosts = allPosts
+          .filter(p => p.slug !== slug && p.category === currentPostCategory);
+        
+        // Shuffle and take up to 4 posts
+        const shuffledSameCategory = shuffleArray(sameCategoryPosts);
+        const related = shuffledSameCategory.slice(0, 4);
+        
+        // If not enough posts in same category, fill with other posts
+        if (related.length < 4) {
+          const otherPosts = allPosts
+            .filter(p => p.slug !== slug && p.category !== currentPostCategory);
+          
+          const shuffledOtherPosts = shuffleArray(otherPosts);
+          const additionalPosts = shuffledOtherPosts.slice(0, 4 - related.length);
+          
+          related.push(...additionalPosts);
         }
 
-        console.log('Related posts by tags:', relatedByTags.length);
-
-        // Fülle mit zufälligen Posts auf, falls nicht genug ähnliche Posts vorhanden
-        const remainingPosts = otherPosts.filter(
-          p => !relatedByTags.includes(p)
-        );
-        randomPosts = remainingPosts
-          .sort(() => Math.random() - 0.5) // Zufällige Sortierung
-          .slice(0, 4 - relatedByTags.length);
-
-        // Kombiniere ähnliche und zufällige Posts (max. 4)
-        const finalRelatedPosts = [...relatedByTags, ...randomPosts].slice(
-          0,
-          4
-        );
-
-        // Verwende die neue Utility-Funktion für mehrere Posts
-        const postsWithProcessedContent =
-          await processMultipleBlogPosts(finalRelatedPosts);
-
-        console.log(
-          'Final related posts with processed content:',
-          postsWithProcessedContent.map(p => ({
-            title: p.title,
-            readTime: p.readTime,
-            excerpt: p.excerpt,
-          }))
-        );
-        setRelatedPosts(postsWithProcessedContent);
+        // MDX-Posts sind bereits verarbeitet, keine weitere Verarbeitung nötig
+        setRelatedPosts(related);
       } catch (error) {
         console.error('Error loading related posts:', error);
       }
@@ -262,13 +294,29 @@ const BlogPost = () => {
       <div className={styles.content}>
         <main className={styles.articleMain}>
           <article className={styles.articleContent}>
-            {post.content.map((section, index) => (
-              <div
-                key={section.sectionId || index}
-                className={styles.contentSection}
-                dangerouslySetInnerHTML={{ __html: section.content }}
+            {mdxContent ? (
+              // Render MDX Content with proper CSS classes
+              <div 
+                className={`${styles.mdxContent} mdx-content`}
+                dangerouslySetInnerHTML={{ 
+                  __html: addMDXClasses(marked(mdxContent, {
+                    breaks: true,
+                    gfm: true,
+                    headerIds: true,
+                    mangle: false
+                  }))
+                }}
               />
-            ))}
+            ) : (
+              // Render traditional JSON content
+              post.content.map((section, index) => (
+                <MDXSection
+                  key={section.sectionId || index}
+                  section={section}
+                  className={styles.contentSection}
+                />
+              ))
+            )}
           </article>
 
           {/* Article Footer */}
@@ -326,8 +374,6 @@ const BlogPost = () => {
       {/* Related Posts */}
       <BlogMightLike
         relatedPosts={relatedPosts}
-        currentPostTags={post.tags || []}
-        currentPostSlug={post.slug}
       />
     </div>
   );

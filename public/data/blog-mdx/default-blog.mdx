@@ -1,0 +1,260 @@
+---
+title: "Default Blog Post - Complete HTML Elements Test"
+subtitle: "A comprehensive test page showcasing all HTML elements for styling development"
+date: "February 9, 2025"
+tags: ["Default", "Testing", "Wireframe"]
+image: "/assets/images/blog/blog1.webp"
+---
+
+## Introduction to HTML Elements Testing
+
+This is a comprehensive test page designed to showcase all common HTML elements used in blog posts. It serves as a reference for styling and ensures consistent design across all blog content. Whether you're working with headings, paragraphs, lists, or code blocks, this page has it all.
+
+The purpose of this page is to provide developers and designers with a complete overview of how different HTML elements render with the current stylesheet. This helps maintain design consistency and identifies any styling gaps.
+
+## Typography and Text Formatting
+
+Typography is the foundation of good web design. This section demonstrates various text formatting options available in HTML, including **bold text**, *italic text*, and <u>underlined text</u>. You can also use `inline code` for highlighting technical terms or code snippets within paragraphs.
+
+Here's an example of a longer paragraph with multiple formatting styles. Good typography ensures that your content is readable and accessible to all users. Consider factors like line height, letter spacing, and font size when designing your blog posts. Remember that <mark>highlighted text</mark> can draw attention to important information, while <del>strikethrough text</del> can indicate corrections or outdated information.
+
+### Subheading Level 3
+
+Subheadings help organize content into logical sections. They create a visual hierarchy that guides readers through your article. Use them generously to break up long sections of text.
+
+#### Subheading Level 4
+
+Even smaller subheadings can be useful for very detailed sections. They provide additional levels of organization without overwhelming the reader.
+
+## Lists and Structured Content
+
+Lists are essential for organizing information in a scannable format. Here are some examples of different list types:
+
+### Unordered Lists
+
+- First item in the unordered list
+- Second item with more detail
+- Third item with nested content:
+  - Nested item 1
+  - Nested item 2
+- Fourth top-level item
+
+### Ordered Lists
+
+1. First step in the process
+2. Second step with detailed explanation
+3. Third step showing progression
+4. Final step completing the sequence
+
+### Definition Lists
+
+HTML  
+: HyperText Markup Language - the standard markup language for web pages  
+
+CSS  
+: Cascading Style Sheets - used for styling HTML elements  
+
+JavaScript  
+: A programming language that enables interactive web pages  
+
+## Code Blocks and Technical Examples
+
+Code blocks are essential for technical blog posts. Here's an example of inline code: `const example = 'Hello World';`
+
+And here's a larger code block demonstrating syntax:
+
+```javascript
+function calculateSum(a, b) {
+  // Add two numbers together
+  const sum = a + b;
+  return sum;
+}
+
+// Usage example
+const result = calculateSum(5, 10);
+console.log(result); // Output: 15
+````
+
+Code blocks should have proper syntax highlighting and formatting to make them easy to read and understand. They're perfect for showcasing examples, tutorials, and technical implementations.
+
+### Additional Code Examples
+
+```javascript
+// React component example
+import React from 'react';
+export default function Demo() {
+  return <h1>Hallo Welt</h1>;
+}
+```
+
+```css
+/* CSS styling example */
+.blog-post {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+```
+
+```html
+<!-- HTML structure example -->
+<div class="container">
+  <h1>Blog Post Title</h1>
+  <p>Content goes here</p>
+</div>
+```
+
+## Blockquotes and Citations
+
+Blockquotes are useful for highlighting important quotes or referenced material:
+
+> Web design is not just about creating pretty layouts. It's about understanding the marketing challenge behind your business. It's about creating a user experience that makes it easy for visitors to take action. Good design is invisible - it just works.
+
+Use blockquotes sparingly to emphasize key points or external references. They create visual breaks in your content and draw attention to important ideas.
+
+## Images and Media
+
+When using images in your blog posts, consider the following best practices:
+
+* Optimize images for web to reduce loading times
+* Use descriptive filenames and alt text
+* Ensure images are responsive and look good on all devices
+* Consider using WebP format for better compression
+
+### Custom Images with Captions
+
+<CustomImage 
+src="/assets/images/portfolio/GITS2.jpg" 
+alt="Ghost in the Shell Project 2" 
+caption="Ghost in the Shell - Character Model" 
+width={400} 
+height={300} 
+/>
+
+
+### Video Components
+
+<Video 
+src="/assets/videos/redfire.mp4" 
+title="Red Fire Effect" 
+/>
+
+## Tables for Data Presentation
+
+Tables are excellent for presenting structured data in a clear, organized format:
+
+| Feature           | Description                          | Importance |
+| ----------------- | ------------------------------------ | ---------- |
+| Responsive Design | Adapts to different screen sizes     | High       |
+| Performance       | Fast loading and smooth interactions | Critical   |
+| Accessibility     | Usable by everyone                   | Essential  |
+| SEO               | Search engine optimization           | Important  |
+
+### Project Details Table
+
+| Detail      | Information               |
+| ----------- | ------------------------- |
+| Theme       | Cyberpunk & Sci-Fi        |
+| Inspiration | Akira, Ghost in the Shell |
+
+Ensure your tables are responsive and maintain readability on mobile devices. Consider horizontal scrolling for wide tables.
+
+## Links and Navigation
+
+Links are the foundation of the web. They should be clearly identifiable and provide clear indication of their destination. Here are some examples:
+
+This is a [link to another section](#introduction) within the same page. You can also create [external links](https://example.com){:target="_blank" rel="noopener noreferrer"} that open in new tabs.
+
+### External Links
+
+[Live Demo](https://example.com/demo){:target="_blank" rel="noopener noreferrer"}
+
+[GitHub Repository](https://github.com/example/repo){:target="_blank" rel="noopener noreferrer"}
+
+Best practices for links include:
+
+* Use descriptive link text (avoid "click here")
+* Ensure links are keyboard accessible
+* Provide visual feedback on hover and focus
+* Use appropriate attributes for external links
+
+## MDX Components Showcase
+
+### Callouts and Admonitions
+
+<Note>This is a note callout for general information and tips.</Note>
+
+<Warning>This is a warning callout for important notices and potential issues.</Warning>
+
+<Success>This is a success callout for positive feedback and achievements.</Success>
+
+<Error>This is an error callout for critical issues and problems.</Error>
+
+<Tip>This is a tip callout for helpful suggestions and best practices.</Tip>
+
+<Caution>This is a caution callout for careful attention and considerations.</Caution>
+
+<Important>This is an important callout for essential information that requires attention.</Important>
+
+### Interactive Elements
+
+<details>
+  <summary>Click to expand technical details</summary>
+  <ul>
+    <li>Next.js + TypeScript</li>
+    <li>GSAP Animations</li>
+    <li>Three.js WebGL</li>
+    <li>Vercel Deployment</li>
+    <li>Responsive Design</li>
+    <li>Performance Optimization</li>
+  </ul>
+</details>
+
+<details>
+  <summary>Performance Tips</summary>
+  <ol>
+    <li>Use WebP format for images</li>
+    <li>Implement lazy loading</li>
+    <li>Compress 3D models with DRACO</li>
+    <li>Use CDN for static assets</li>
+  </ol>
+</details>
+
+
+## Mixed Content Section
+
+This section combines multiple MDX components to test their interaction:
+
+<Note>This note contains important information about the project.</Note>
+
+Here's a code snippet: `const example = 'Hello World';`
+
+<Warning>Remember to optimize images for web performance!</Warning>
+
+## Conclusion
+
+This comprehensive test page demonstrates all the essential HTML elements commonly used in blog posts. It serves as both a styling reference and a quality assurance tool for ensuring consistent design across your blog.
+
+By maintaining a well-structured HTML document with proper semantic markup, you ensure that your content is:
+
+* Accessible to all users, including those using assistive technologies
+* SEO-friendly with proper heading hierarchy and structure
+* Easy to style and maintain with CSS
+* Consistent across different browsers and devices
+
+Remember to regularly review and update your styling to ensure all elements render correctly and maintain a cohesive design throughout your blog. Happy blogging! 🚀
+
+### Final Notes
+
+This comprehensive test page now includes all available MDX components:
+
+* **Typography:** All heading levels, paragraphs, text formatting
+* **Lists:** Ordered, unordered, and definition lists
+* **Code:** Inline code and code blocks with syntax highlighting
+* **Media:** Custom images with captions and video components
+* **Interactive:** Details/summary elements and footnotes
+* **Callouts:** All admonition types (Note, Warning, Success, Error, Tip, Caution, Important)
+* **Tables:** Structured data presentation
+* **Links:** Internal and external links with proper attributes
+
+This serves as a complete reference for styling and testing all blog post elements and MDX components.

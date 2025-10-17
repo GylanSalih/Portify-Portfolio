@@ -4,12 +4,9 @@ import { useEffect, useState } from 'react';
 import BlogCard from '../BlogCard/BlogCard';
 import styles from './BlogMightLike.module.scss';
 import { useAllBlogStats } from '../../../hooks/useBlogStats'; // bloggrid hook fetch
-import { calculateReadTime, processExcerpt } from '../../../lib/utils';
 
 const BlogMightLike = ({
   relatedPosts = [],
-  currentPostTags = [],
-  currentPostSlug = null,
 }) => {
   const [maxPosts, setMaxPosts] = useState(3); // Default: Desktop = 3
   const { allStats, loading: statsLoading } = useAllBlogStats();
@@ -42,98 +39,9 @@ const BlogMightLike = ({
     return null;
   }
 
-  // Verbesserte Tag-Filterung mit Fallback für mindestens maxPosts Anzahl
-  const getFilteredAndSortedPosts = () => {
-    // Filtere den aktuellen Post aus den Related Posts raus
-    const filteredRelatedPosts = currentPostSlug
-      ? relatedPosts.filter(post => post.slug !== currentPostSlug)
-      : relatedPosts;
-
-    // Wenn currentPostTags leer ist oder nicht existiert, zeige alle Posts
-    if (!Array.isArray(currentPostTags) || currentPostTags.length === 0) {
-      console.log('No current post tags, showing all posts');
-      return filteredRelatedPosts;
-    }
-
-    // Normalisiere currentPostTags (lowercase, trim)
-    const normalizedCurrentTags = currentPostTags.map(tag =>
-      tag.toLowerCase().trim()
-    );
-
-    console.log('Current post tags (normalized):', normalizedCurrentTags);
-
-    // Berechne Relevanz-Score für jeden Post
-    const postsWithScore = filteredRelatedPosts.map(post => {
-      let score = 0;
-      const matchingTags = [];
-
-      if (post.tags && Array.isArray(post.tags)) {
-        const normalizedPostTags = post.tags.map(tag =>
-          tag.toLowerCase().trim()
-        );
-
-        normalizedCurrentTags.forEach(currentTag => {
-          if (normalizedPostTags.includes(currentTag)) {
-            score += 1;
-            matchingTags.push(currentTag);
-          }
-        });
-      }
-
-      console.log(
-        `Post "${post.title}" - Score: ${score}, Matching tags:`,
-        matchingTags
-      );
-
-      return {
-        ...post,
-        relevanceScore: score,
-        matchingTags: matchingTags,
-      };
-    });
-
-    // Sortiere nach Relevanz-Score (höchster zuerst)
-    const sortedPosts = postsWithScore.sort(
-      (a, b) => b.relevanceScore - a.relevanceScore
-    );
-
-    // Zeige Posts mit matching tags zuerst, dann andere
-    const postsWithMatchingTags = sortedPosts.filter(
-      post => post.relevanceScore > 0
-    );
-    const postsWithoutMatchingTags = sortedPosts.filter(
-      post => post.relevanceScore === 0
-    );
-
-    console.log(
-      `Found ${postsWithMatchingTags.length} posts with matching tags`
-    );
-    console.log(
-      `Found ${postsWithoutMatchingTags.length} posts without matching tags`
-    );
-
-    // WICHTIGER FIX: Immer eine kombinierte Liste zurückgeben
-    // Posts mit matching tags zuerst, dann andere als Auffüllung
-    const combinedPosts = [
-      ...postsWithMatchingTags,
-      ...postsWithoutMatchingTags,
-    ];
-
-    console.log(
-      `Total combined posts: ${combinedPosts.length}, will show: ${Math.min(maxPosts, combinedPosts.length)}`
-    );
-
-    return combinedPosts;
-  };
-
-  const filteredPosts = getFilteredAndSortedPosts();
-
-  if (filteredPosts.length === 0) {
-    return null;
-  }
-
-  // Stelle sicher, dass wir immer maxPosts anzeigen (oder alle verfügbaren, falls weniger)
-  const shownPosts = filteredPosts.slice(0, maxPosts);
+  // Einfache Logik: Die Posts sind bereits gefiltert und gemischt (kategorie-basiert)
+  // Nehme einfach maxPosts aus den übergebenen relatedPosts
+  const shownPosts = relatedPosts.slice(0, maxPosts);
 
   return (
     <div className={styles.section}>
@@ -172,7 +80,6 @@ const BlogMightLike = ({
                 post={postData}
                 index={index}
                 variant="related"
-                showRelevanceScore={true}
                 truncateTitle={false}
                 truncateExcerpt={false}
                 formatNumbers={true}

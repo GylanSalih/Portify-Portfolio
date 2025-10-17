@@ -34,8 +34,13 @@ const RelatedProjects = ({ relatedProjects }) => {
                       <h3>{relatedProject.title}</h3>
                       <p>{relatedProject.category}</p>
                       <div className={styles.tags}>
-                        <span className={styles.tag}>Portfolio</span>
-                        <span className={styles.tag}>Design</span>
+                        {relatedProject.tags && relatedProject.tags.length > 0 ? (
+                          relatedProject.tags.slice(0, 3).map((tag, idx) => (
+                            <span key={idx} className={styles.tag}>{tag}</span>
+                          ))
+                        ) : (
+                          <span className={styles.tag}>{relatedProject.category}</span>
+                        )}
                       </div>
                     </div>
                     <div className={styles.linkIcon}>

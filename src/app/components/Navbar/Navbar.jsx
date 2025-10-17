@@ -4,7 +4,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useDarkMode } from '../../contexts/DarkModeContext';
 import { Menu } from 'lucide-react';
 import Link from 'next/link';
-import Image from 'next/image';
 import DarkModeToggle from './DarkModeToggle/DarkModeToggle';
 import AudioIndicator from './AudioIndicator/AudioIndicator';
 import HamburgerMenu from './HamburgerMenu/HamburgerMenu';
@@ -43,6 +42,7 @@ const Navbar = () => {
     { href: '/portfolio', label: 'Portfolio' },
     { href: '/guestbook', label: 'Guestbook' },
     { href: '/about', label: 'About' },
+    { href: '/dashboard', label: 'Dashboard' },
   ];
 
   return (
@@ -61,17 +61,14 @@ const Navbar = () => {
             {/* Logo */}
             <div className={styles.logo}>
               <Link href="/" className={styles.logoLink}>
-                <Image
+                <img
                   src={
                     isDarkMode
                       ? '/assets/images/logo/logo_white.png'
                       : '/assets/images/logo/logo_black.png'
                   }
                   alt="Portify Logo"
-                  width={48}
-                  height={48}
                   className={styles.logoImage}
-                  priority
                 />
               </Link>
             </div>
@@ -114,17 +111,14 @@ const Navbar = () => {
               {/* Mobile Logo */}
               <div className={styles.mobileLogo}>
                 <Link href="/" className={styles.logoLink}>
-                  <Image
+                  <img
                     src={
                       isDarkMode
                         ? '/assets/images/logo/logo_white.png'
                         : '/assets/images/logo/logo_black.png'
                     }
                     alt="Portify Logo"
-                    width={40}
-                    height={40}
                     className={styles.logoImage}
-                    priority
                   />
                 </Link>
               </div>

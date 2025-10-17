@@ -88,6 +88,16 @@
     height: 1px;
     background: linear-gradient(90deg, transparent 0%, hsl(240 3.7% 18%) 50%, transparent 100%);
   }
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    background: linear-gradient(180deg, hsl(0 0% 96%) 0%, hsl(0 0% 98%) 100%);
+    border-bottom: 1px solid hsl(0 0% 88%);
+
+    &::before {
+      background: linear-gradient(90deg, transparent 0%, hsl(0 0% 88%) 50%, transparent 100%);
+    }
+  }
 }
 
 .heroContainer {
@@ -141,6 +151,18 @@
       left: 100%;
     }
   }
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    color: hsl(240 5% 40%);
+    background: hsl(0 0% 96%);
+    border: 1px solid hsl(0 0% 88%);
+
+    &:hover {
+      background: hsl(0 0% 94%);
+      border-color: hsl(0 0% 84%);
+    }
+  }
 }
 
 .metaIcon {
@@ -161,6 +183,15 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   position: relative;
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    color: hsl(240 10% 3.9%);
+    background: linear-gradient(180deg, hsl(240 10% 3.9%) 0%, hsl(240 5% 10%) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 .heroSubtitle {
@@ -171,6 +202,11 @@
   font-weight: 400;
   max-width: 40rem;
   opacity: 0.9;
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    color: hsl(240 5% 40%);
+  }
 }
 
 /* Main Content Layout - Optimized for Reading */
@@ -201,6 +237,13 @@
     height: 1px;
     background: linear-gradient(90deg, transparent 0%, hsl(240 3.7% 18%) 50%, transparent 100%);
   }
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    &::before {
+      background: linear-gradient(90deg, transparent 0%, hsl(0 0% 88%) 50%, transparent 100%);
+    }
+  }
 }
 
 .contentSection {
@@ -218,6 +261,12 @@
     border-bottom: 3px solid hsl(240 3.7% 18%);
     letter-spacing: -0.04em;
     line-height: 1.2;
+
+    /* Light mode support */
+    :global(html:not(.dark-mode)) & {
+      color: hsl(240 10% 3.9%);
+      border-bottom-color: hsl(0 0% 88%);
+    }
   }
 
   /* Custom H2 Styling */
@@ -229,6 +278,11 @@
     margin: 3.5rem 0 1.75rem;
     letter-spacing: -0.035em;
     line-height: 1.25;
+
+    /* Light mode support */
+    :global(html:not(.dark-mode)) & {
+      color: hsl(240 10% 5%);
+    }
   }
 
   /* Custom H3 Styling */
@@ -240,6 +294,11 @@
     margin: 3rem 0 1.25rem;
     letter-spacing: -0.02em;
     line-height: 1.3;
+
+    /* Light mode support */
+    :global(html:not(.dark-mode)) & {
+      color: hsl(240 10% 10%);
+    }
   }
 
   /* Custom H4 Styling */
@@ -250,6 +309,11 @@
     color: hsl(240 5% 84.9%);
     margin: 2.5rem 0 1rem;
     letter-spacing: -0.01em;
+
+    /* Light mode support */
+    :global(html:not(.dark-mode)) & {
+      color: hsl(240 5% 15%);
+    }
   }
 
   /* Custom H5 Styling */
@@ -262,6 +326,11 @@
     letter-spacing: 0.02em;
     text-transform: uppercase;
     font-size: 0.9375rem;
+
+    /* Light mode support */
+    :global(html:not(.dark-mode)) & {
+      color: hsl(240 5% 25%);
+    }
   }
 
   /* Custom H6 Styling */
@@ -275,6 +344,11 @@
     letter-spacing: 0.08em;
     font-size: 0.8125rem;
     opacity: 0.9;
+
+    /* Light mode support */
+    :global(html:not(.dark-mode)) & {
+      color: hsl(240 5% 35%);
+    }
   }
 
   /* Optimized Paragraph Styles */
@@ -293,6 +367,16 @@
       color: hsl(0 0% 95%);
       margin-bottom: 2rem;
       font-weight: 400;
+
+      /* Light mode support */
+      :global(html:not(.dark-mode)) & {
+        color: hsl(240 10% 5%);
+      }
+    }
+
+    /* Light mode support */
+    :global(html:not(.dark-mode)) & {
+      color: hsl(240 5% 35%);
     }
   }
 
@@ -319,6 +403,15 @@
         color: hsl(0 0% 98%);
         font-size: 0.75rem;
         line-height: 1.8;
+      }
+
+      /* Light mode support */
+      :global(html:not(.dark-mode)) & {
+        color: hsl(240 5% 30%);
+
+        &::before {
+          color: hsl(240 10% 3.9%);
+        }
       }
     }
   }
@@ -357,6 +450,18 @@
         justify-content: center;
         border: 2px solid hsl(240 3.7% 18%);
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Light mode support */
+      :global(html:not(.dark-mode)) & {
+        color: hsl(240 5% 30%);
+
+        &::before {
+          background: linear-gradient(135deg, hsl(0 0% 96%) 0%, hsl(0 0% 94%) 100%);
+          color: hsl(240 10% 3.9%);
+          border-color: hsl(0 0% 88%);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
       }
     }
   }
@@ -426,6 +531,17 @@
         transform: translateX(3px);
       }
     }
+
+    /* Light mode support */
+    :global(html:not(.dark-mode)) & {
+      color: hsl(210 100% 45%);
+      border-bottom-color: hsl(210 100% 45% / 0.3);
+
+      &:hover {
+        color: hsl(210 100% 35%);
+        border-bottom-color: hsl(210 100% 45%);
+      }
+    }
   }
 
   /* Custom Inline Code Styling */
@@ -440,6 +556,14 @@
     font-weight: 600;
     letter-spacing: 0.02em;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+
+    /* Light mode support */
+    :global(html:not(.dark-mode)) & {
+      background: linear-gradient(135deg, hsl(0 0% 96%) 0%, hsl(0 0% 94%) 100%);
+      color: hsl(210 100% 45%);
+      border-color: hsl(0 0% 88%);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+    }
   }
 
   /* Custom Pre/Code Block Styling */
@@ -487,6 +611,26 @@
       font-size: 0.875rem;
       line-height: 1.7;
     }
+
+    /* Light mode support */
+    :global(html:not(.dark-mode)) & {
+      background: linear-gradient(135deg, hsl(0 0% 96%) 0%, hsl(0 0% 94%) 100%);
+      border-color: hsl(0 0% 88%);
+      box-shadow: 0 8px 16px -4px rgb(0 0 0 / 0.1);
+
+      &::before {
+        background: hsl(0 0% 98%);
+        border-bottom-color: hsl(0 0% 88%);
+      }
+
+      &::after {
+        color: hsl(240 5% 40%);
+      }
+
+      :global(code) {
+        color: hsl(240 10% 5%);
+      }
+    }
   }
 
   /* Enhanced Blockquotes */
@@ -520,6 +664,16 @@
       font-size: inherit;
       color: inherit;
     }
+
+    /* Light mode support */
+    :global(html:not(.dark-mode)) & {
+      color: hsl(240 10% 5%);
+      background: hsl(0 0% 96%);
+
+      &::before {
+        color: hsl(240 5% 40%);
+      }
+    }
   }
 
   /* Enhanced Images & Figures */
@@ -535,6 +689,11 @@
     &:hover {
       box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
       transform: translateY(-2px);
+    }
+
+    /* Light mode support */
+    :global(html:not(.dark-mode)) & {
+      border-color: hsl(0 0% 88%);
     }
   }
 
@@ -552,6 +711,11 @@
     padding: 0 1rem;
     line-height: 1.5;
     text-align: left;
+
+    /* Light mode support */
+    :global(html:not(.dark-mode)) & {
+      color: hsl(240 5% 40%);
+    }
   }
 
   /* Enhanced Table Styling - Applied to ALL blog posts */
@@ -564,11 +728,23 @@
     border-radius: 0.75rem;
     overflow: hidden;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+
+    /* Light mode support */
+    :global(html:not(.dark-mode)) & {
+      background: hsl(0 0% 98%);
+      border-color: hsl(0 0% 88%);
+    }
   }
 
   :global(thead) {
     background: linear-gradient(135deg, hsl(240 10% 10%) 0%, hsl(240 10% 8%) 100%);
     border-bottom: 2px solid hsl(240 3.7% 22%);
+
+    /* Light mode support */
+    :global(html:not(.dark-mode)) & {
+      background: linear-gradient(135deg, hsl(0 0% 96%) 0%, hsl(0 0% 94%) 100%);
+      border-bottom-color: hsl(0 0% 88%);
+    }
   }
 
   :global(th) {
@@ -584,6 +760,12 @@
     &:last-child {
       border-right: none;
     }
+
+    /* Light mode support */
+    :global(html:not(.dark-mode)) & {
+      color: hsl(240 10% 3.9%);
+      border-right-color: hsl(0 0% 88%);
+    }
   }
 
   :global(tbody) {
@@ -598,6 +780,16 @@
 
       &:last-child {
         border-bottom: none;
+      }
+
+      /* Light mode support */
+      :global(html:not(.dark-mode)) & {
+        border-bottom-color: hsl(0 0% 88%);
+
+        &:hover {
+          background: hsl(0 0% 96%);
+          box-shadow: inset 0 0 0 1px hsl(0 0% 88%);
+        }
       }
     }
 
@@ -615,6 +807,16 @@
       &:first-child {
         font-weight: 600;
         color: hsl(0 0% 90%);
+      }
+
+      /* Light mode support */
+      :global(html:not(.dark-mode)) & {
+        color: hsl(240 5% 30%);
+        border-right-color: hsl(0 0% 88%);
+
+        &:first-child {
+          color: hsl(240 10% 10%);
+        }
       }
     }
   }
@@ -652,6 +854,15 @@
     height: 2px;
     background: hsl(0 0% 98%);
   }
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    border-top-color: hsl(0 0% 88%);
+
+    &::before {
+      background: hsl(240 10% 3.9%);
+    }
+  }
 }
 
 /* Enhanced Like Section */
@@ -687,6 +898,15 @@
       height: 1px;
       background: hsl(240 5% 64.9%);
       opacity: 0.5;
+    }
+
+    /* Light mode support */
+    :global(html:not(.dark-mode)) & {
+      color: hsl(240 10% 3.9%);
+
+      &::after {
+        background: hsl(240 5% 40%);
+      }
     }
   }
 }
@@ -742,6 +962,19 @@
     outline-offset: 3px;
     border-radius: 0.5rem;
   }
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    background: hsl(0 0% 96%);
+    color: hsl(240 5% 40%);
+    border-color: hsl(0 0% 88%);
+
+    &:hover {
+      background: hsl(0 0% 94%);
+      color: hsl(240 10% 5%);
+      border-color: hsl(0 0% 84%);
+    }
+  }
 }
 
 /* Enhanced Author Card */
@@ -794,6 +1027,21 @@
     outline: 2px solid hsl(240 5% 84%);
     outline-offset: 2px;
   }
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    background: hsl(0 0% 96%);
+    border-color: hsl(0 0% 88%);
+
+    &:hover {
+      background: hsl(0 0% 94%);
+      border-color: hsl(0 0% 84%);
+
+      .authorImage {
+        border-color: hsl(0 0% 84%);
+      }
+    }
+  }
 }
 
 .authorAvatar {
@@ -819,6 +1067,11 @@
   object-fit: cover;
   border: 2px solid hsl(240 3.7% 18%);
   transition: all 0.3s ease;
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    border-color: hsl(0 0% 88%);
+  }
 }
 
 .authorInfo {
@@ -831,6 +1084,11 @@
   color: hsl(0 0% 98%);
   margin: 0 0 0.5rem 0;
   letter-spacing: -0.01em;
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    color: hsl(240 10% 3.9%);
+  }
 }
 
 .authorBio {
@@ -839,6 +1097,11 @@
   margin: 0;
   font-size: 0.875rem;
   opacity: 0.9;
+
+  /* Light mode support */
+  :global(html:not(.dark-mode)) & {
+    color: hsl(240 5% 40%);
+  }
 }
 
 /* Enhanced Responsive Design */

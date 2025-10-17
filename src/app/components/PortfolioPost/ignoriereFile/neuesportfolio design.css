@@ -169,7 +169,7 @@
   .counter-item {
     position: relative;
     font-size: 0.95rem;
-    font-family: 'RedHat', sans-serif;
+    font-family: 'Wotfard', sans-serif;
     line-height: 1.6;
     border-radius: 8px;
     background: rgba(255, 255, 255, 0.02);
@@ -194,7 +194,7 @@
     background: rgba(255, 255, 255, 0.03);
     padding: 0 10px;
     color: #3ecf8e;
-    font-family: 'RedHat', sans-serif;
+    font-family: 'Wotfard', sans-serif;
     font-size: 0.95rem;
     white-space: nowrap;
   }
@@ -208,7 +208,7 @@
     color: #fff;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-family: 'RedHat', sans-serif;
+    font-family: 'Wotfard', sans-serif;
     font-size: 0.95rem;
     display: flex;
     align-items: center;
@@ -243,7 +243,7 @@
   
   .counter-text {
     font-size: 0.95rem;
-    font-family: 'RedHat', sans-serif;
+    font-family: 'Wotfard', sans-serif;
   }
   
   /* Main Content */

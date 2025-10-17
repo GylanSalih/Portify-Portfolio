@@ -21,8 +21,9 @@ About Me socials Styles
 }
 
 .socials a:hover {
-  border-color: #3ecf8e;
-  background: rgba(62, 207, 142, 0.1);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
 }
 
 .icon {
@@ -33,7 +34,7 @@ About Me socials Styles
 }
 
 .socials a:hover .icon {
-  color: #3ecf8e;
+  color: #ffffff;
 }
 
 /* Footer Styles mit Social Icons */

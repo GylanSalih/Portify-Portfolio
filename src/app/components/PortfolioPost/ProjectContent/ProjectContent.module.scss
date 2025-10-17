@@ -1,7 +1,7 @@
 .content {
   margin-bottom: 4rem;
   position: relative;
-  max-width: 800px;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -38,8 +38,9 @@
   padding-bottom: 0;
   border-bottom: none;
   position: relative;
-  font-family: 'BlenderProBold', sans-serif;
+  font-family: 'Wotfard', sans-serif;
   letter-spacing: -0.01em;
+  text-align: left;
 
   @media (max-width: 768px) {
     font-size: 1.625rem;
@@ -51,10 +52,12 @@
   color: rgba(255, 255, 255, 0.7);
   line-height: 1.7;
   font-size: 1rem;
-  font-family: 'RedHat', sans-serif;
+  font-family: 'Wotfard', sans-serif;
+  text-align: left;
 
   p {
     margin: 0 0 1rem 0;
+    text-align: left;
   }
 
   h3 {
@@ -63,7 +66,8 @@
     color: rgba(255, 255, 255, 0.95);
     margin: 1.5rem 0 0.875rem 0;
     position: relative;
-    font-family: 'BlenderProBold', sans-serif;
+    font-family: 'Wotfard', sans-serif;
+    text-align: left;
 
     @media (max-width: 768px) {
       font-size: 1.125rem;
@@ -74,12 +78,14 @@
     margin: 0.875rem 0;
     padding-left: 1.5rem;
     list-style: none;
+    text-align: left;
   }
 
   li {
     margin: 0.5rem 0;
     position: relative;
     padding-left: 0.5rem;
+    text-align: left;
 
     &::before {
       content: '•';

@@ -88,7 +88,7 @@ const Pagination = ({
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (isItemsPerPageOpen && !event.target.closest('.items-per-page-dropdown')) {
+      if (isItemsPerPageOpen && !event.target.closest(`.${styles.dropdown}`)) {
         setIsItemsPerPageOpen(false);
       }
     };
