@@ -63,6 +63,9 @@ Updates / Fixes:
 • Changed from JSON to MDX for easier blog article management
 • Removed Blog Card title excerpt
 • Added global font Wotfard-Regular to all files (will update soon to better match overall font styling)
+• Deleted unused dependencies
+• Fixed and Added Tags in Blog Single View ->Date, Read time, Views and Likes
+
 
 0.0.25 – Previous Updates
 • Split portfolio posts into individual components
