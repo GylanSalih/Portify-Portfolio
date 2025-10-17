@@ -51,7 +51,7 @@ export const processBlogPostData = async (post, fullContentData = null) => {
     } else {
       processedPost = {
         ...processedPost,
-        readTime: '3 min', // Fallback
+        readTime: 'Time Error :)', // Fallback
         excerpt: processExcerpt(post.excerpt, null, 120),
       };
     }
@@ -61,7 +61,7 @@ export const processBlogPostData = async (post, fullContentData = null) => {
     console.error('Error processing blog post data:', error);
     return {
       ...post,
-      readTime: '3 min',
+      readTime: 'Time Error :)',
       excerpt: processExcerpt(post.excerpt, null, 120),
     };
   }
@@ -95,7 +95,7 @@ export const processMultipleBlogPosts = async (
     console.error('Error processing multiple blog posts:', error);
     return posts.map(post => ({
       ...post,
-      readTime: '3 min',
+      readTime: 'Time Error :)',
       excerpt: processExcerpt(post.excerpt, null, 120),
     }));
   }
@@ -353,7 +353,7 @@ export const getMDXPosts = () => {
         tags: frontmatter.tags || [],
         date: frontmatter.date || new Date().toISOString(),
         image: frontmatter.image || '/assets/images/blog/default.webp',
-        excerpt: frontmatter.excerpt || frontmatter.description || 'No excerpt available',
+        excerpt: frontmatter.excerpt || frontmatter.subtitle || frontmatter.description || '',
         author: frontmatter.author || 'Gylan Salih',
         authorImage: frontmatter.authorImage || '/assets/images/blog/author.webp',
         content,
@@ -384,7 +384,7 @@ export const getMDXPostsForGrid = async () => {
     tags: post.tags,
     date: post.date,
     image: post.image,
-    excerpt: post.excerpt || 'No excerpt available',
+    excerpt: post.excerpt || post.subtitle || '',
     author: post.author,
     authorImage: post.authorImage,
     readTime: post.readTime,

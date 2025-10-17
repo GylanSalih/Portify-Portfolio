@@ -41,7 +41,9 @@ export default async function PostPage({ params }) {
       tags: post.tags,
       authorImage: post.authorImage,
       content: post.content,
-      image: post.image
+      image: post.image,
+      readTime: post.readTime,
+      excerpt: post.excerpt
     };
 
     return (

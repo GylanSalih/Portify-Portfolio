@@ -262,7 +262,7 @@ $accent-light-hover: hsl(210 100% 35%);
   }
 }
 
-/* MDX Links */
+/* MDX Links - Regular inline links */
 .mdx-link {
   color: $accent-color;
   text-decoration: none;
@@ -299,6 +299,54 @@ $accent-light-hover: hsl(210 100% 35%);
   }
 }
 
+/* MDX Link Buttons - Clean Shadcn-style for standalone links */
+.mdx-link-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  margin: 0.5rem 0.5rem 0.5rem 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  border-radius: 0.375rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  @include transition(all, 0.2s);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 1);
+    transform: scale(1.02);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  @include light-mode {
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0, 0, 0, 0.8);
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.08);
+      border-color: rgba(0, 0, 0, 0.2);
+      color: rgba(0, 0, 0, 1);
+    }
+  }
+}
+
+.mdx-link-button-icon {
+  width: 16px;
+  height: 16px;
+}
+
 /* MDX Inline Code */
 .mdx-inline-code {
   @include gradient-bg($dark-bg-tertiary, $dark-bg-secondary);
@@ -320,40 +368,200 @@ $accent-light-hover: hsl(210 100% 35%);
   }
 }
 
-/* MDX Code Blocks */
-.mdx-codeblock {
-  background: $dark-bg-secondary;
-  color: $dark-text-primary;
-  padding: 1.5rem;
-  border-radius: 0.75rem;
-  font-family: $monospace-font;
-  font-size: 0.875rem;
-  line-height: 1.6;
-  overflow-x: auto;
-  @include border-gradient($dark-border);
-  margin: 1.5rem 0;
+/* MDX Code Blocks - Modern Minimal Design */
+.mdx-codeblock-wrapper {
+  position: relative;
+  margin: 2rem 0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(0, 0, 0, 0.3);
+  @include transition(border-color, 0.2s);
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
 
   @include light-mode {
-    background: $light-bg-secondary;
-    color: $light-text-primary;
-    @include border-gradient($light-border);
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+
+    &:hover {
+      border-color: rgba(0, 0, 0, 0.12);
+    }
   }
 }
 
-/* MDX Blockquotes */
-.mdx-blockquote {
-  border-left: 4px solid $accent-color;
-  background: $dark-bg-secondary;
-  padding: 1.5rem;
-  margin: 2rem 0;
-  border-radius: 0 0.75rem 0.75rem 0;
-  font-style: italic;
-  color: $dark-text-muted;
+.mdx-codeblock-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 
   @include light-mode {
-    background: $light-bg-secondary;
-    color: $light-text-muted;
-    border-left-color: $accent-light;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+}
+
+.mdx-codeblock-language {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.4);
+  font-family: $monospace-font;
+
+  @include light-mode {
+    color: rgba(0, 0, 0, 0.4);
+  }
+}
+
+.mdx-codeblock-copy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.375rem;
+  background: transparent;
+  border: none;
+  border-radius: 0.25rem;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  @include transition(all, 0.2s);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  @include light-mode {
+    color: rgba(0, 0, 0, 0.5);
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.05);
+      color: rgba(0, 0, 0, 0.8);
+    }
+  }
+}
+
+.mdx-codeblock {
+  background: rgba(0, 0, 0, 0.2) !important;
+  color: #e8eaed;
+  padding: 1rem 0;
+  margin: 0;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Droid Sans Mono', 'Source Code Pro', monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  overflow-x: auto;
+  border: none;
+
+  code {
+    display: block;
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  .code-line {
+    display: flex;
+    align-items: flex-start;
+    padding: 0.125rem 1.25rem;
+    @include transition(background-color, 0.15s);
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+  }
+
+  .line-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 2.5rem;
+    padding-right: 1.25rem;
+    color: rgba(255, 255, 255, 0.25);
+    text-align: right;
+    user-select: none;
+    flex-shrink: 0;
+    font-size: 0.8125rem;
+
+    @include light-mode {
+      color: rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  .line-content {
+    flex: 1;
+    min-width: 0;
+    word-break: break-word;
+  }
+
+  @include light-mode {
+    background: rgba(0, 0, 0, 0.02) !important;
+    color: #24292e;
+
+    .code-line:hover {
+      background: rgba(0, 0, 0, 0.02);
+    }
+  }
+}
+
+/* MDX Blockquotes - Clean Shadcn Style */
+.mdx-blockquote {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0.5rem;
+  font-style: normal;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+
+  // Quote icon
+  &::before {
+    content: '"';
+    position: absolute;
+    top: 0.75rem;
+    left: 1rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.1);
+    line-height: 1;
+    font-family: Georgia, serif;
+  }
+
+  p {
+    margin: 0;
+    padding-left: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  @include light-mode {
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0, 0, 0, 0.9);
+
+    &::before {
+      color: rgba(0, 0, 0, 0.08);
+    }
   }
 }
 
@@ -459,60 +667,186 @@ $accent-light-hover: hsl(210 100% 35%);
   }
 }
 
-/* MDX Details/Summary */
-.mdx-details {
-  background: $dark-bg-secondary;
-  @include border-gradient($dark-border);
-  border-radius: 0.75rem;
-  margin: 1.5rem 0;
-  overflow: hidden;
+// Image caption styling (italic text after images)
+.mdx-paragraph {
+  em:only-child {
+    display: block;
+    text-align: center;
+    font-size: 0.875rem;
+    color: $dark-text-muted;
+    margin-top: -0.5rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
 
-  @include light-mode {
-    background: $light-bg-secondary;
-    @include border-gradient($light-border);
-  }
-}
-
-.mdx-summary {
-  padding: 1rem 1.5rem;
-  cursor: pointer;
-  font-weight: 600;
-  color: $dark-text-secondary;
-  background: $dark-bg-tertiary;
-  border-bottom: 1px solid $dark-border;
-  @include transition(background-color, 0.2s, ease);
-
-  &:hover {
-    background: $dark-bg-tertiary;
-  }
-
-  @include light-mode {
-    color: $light-text-secondary;
-    background: $light-bg-tertiary;
-    border-bottom-color: $light-border;
-
-    &:hover {
-      background: $light-bg-tertiary;
+    @include light-mode {
+      color: $light-text-muted;
     }
   }
 }
 
+/* MDX Details/Summary - Shadcn Accordion Style */
+.mdx-details {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.2);
+  @include transition(all, 0.2s);
+
+  &[open] {
+    border-color: rgba(255, 255, 255, 0.12);
+
+    .mdx-summary {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+      &::after {
+        transform: rotate(45deg);
+      }
+    }
+  }
+
+  @include light-mode {
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+
+    &[open] {
+      border-color: rgba(0, 0, 0, 0.15);
+
+      .mdx-summary {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      }
+    }
+  }
+}
+
+.mdx-summary {
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: $dark-text-primary;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid transparent;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @include transition(all, 0.2s);
+  position: relative;
+
+  // Remove default marker
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  &::marker {
+    display: none;
+  }
+
+  // Custom chevron icon
+  &::after {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    border-right: 2px solid rgba(255, 255, 255, 0.5);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+    transform: rotate(-45deg);
+    @include transition(transform, 0.25s, ease);
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.03);
+
+    &::after {
+      border-color: rgba(255, 255, 255, 0.7);
+    }
+  }
+
+  @include light-mode {
+    color: $light-text-primary;
+
+    &::after {
+      border-right-color: rgba(0, 0, 0, 0.5);
+      border-bottom-color: rgba(0, 0, 0, 0.5);
+    }
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.03);
+
+      &::after {
+        border-right-color: rgba(0, 0, 0, 0.7);
+        border-bottom-color: rgba(0, 0, 0, 0.7);
+      }
+    }
+  }
+}
+
+// Content inside details
+.mdx-details[open] {
+  > *:not(.mdx-summary) {
+    padding: 1rem 1.25rem;
+    animation: slideDown 0.2s ease-out;
+  }
+
+  ul, ol {
+    margin: 0;
+    padding-left: 1.5rem;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* MDX Images */
+.mdx-image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  @include transition(border-color, 0.2s);
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  @include light-mode {
+    border: 1px solid rgba(0, 0, 0, 0.08);
+
+    &:hover {
+      border-color: rgba(0, 0, 0, 0.15);
+    }
+  }
+}
+
 .mdx-image-figure {
   margin: 2rem 0;
   text-align: left;
 }
 
 .mdx-image-wrapper {
-  border-radius: 0.75rem;
+  border-radius: 0.5rem;
   overflow: hidden;
   @include shadow(image);
-}
-
-.mdx-image {
-  width: 100%;
-  height: auto;
-  display: block;
 }
 
 .mdx-image-caption {
@@ -520,6 +854,7 @@ $accent-light-hover: hsl(210 100% 35%);
   font-size: 0.875rem;
   color: $dark-text-muted;
   font-style: italic;
+  text-align: center;
 
   @include light-mode {
     color: $light-text-muted;
@@ -536,65 +871,134 @@ $accent-light-hover: hsl(210 100% 35%);
   @include shadow(image);
 }
 
-/* MDX Callouts */
+/* MDX Callouts - Modern Professional Style */
 .mdx-callout {
   display: flex;
-  gap: 1rem;
-  padding: 1.5rem;
-  margin: 2rem 0;
-  border-radius: 0.75rem;
-  @include border-gradient(transparent);
+  gap: 0.875rem;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  border-radius: 0.5rem;
+  border-left: 3px solid;
+  @include transition(all, 0.2s);
 }
 
-.mdx-callout-info {
-  background: rgba($accent-light, 0.1);
-  @include border-gradient(rgba($accent-light, 0.3));
-  color: rgba($accent-light, 0.8);
+.mdx-callout-note,
+.mdx-callout-tip {
+  background: rgba(59, 130, 246, 0.08);
+  border-left-color: rgba(59, 130, 246, 0.6);
+  color: $dark-text-primary;
+
+  .mdx-callout-icon {
+    color: rgba(59, 130, 246, 0.8);
+  }
+
+  @include light-mode {
+    background: rgba(59, 130, 246, 0.06);
+    color: $light-text-primary;
+
+    .mdx-callout-icon {
+      color: rgba(59, 130, 246, 0.9);
+    }
+  }
 }
 
-.mdx-callout-warning {
-  background: rgba(hsl(38 92% 50%), 0.1);
-  @include border-gradient(rgba(hsl(38 92% 50%), 0.3));
-  color: rgba(hsl(38 92% 50%), 0.8);
+.mdx-callout-warning,
+.mdx-callout-caution {
+  background: rgba(245, 158, 11, 0.08);
+  border-left-color: rgba(245, 158, 11, 0.6);
+  color: $dark-text-primary;
+
+  .mdx-callout-icon {
+    color: rgba(245, 158, 11, 0.8);
+  }
+
+  @include light-mode {
+    background: rgba(245, 158, 11, 0.06);
+    color: $light-text-primary;
+
+    .mdx-callout-icon {
+      color: rgba(245, 158, 11, 0.9);
+    }
+  }
 }
 
 .mdx-callout-success {
-  background: rgba(hsl(142 76% 36%), 0.1);
-  @include border-gradient(rgba(hsl(142 76% 36%), 0.3));
-  color: rgba(hsl(142 76% 36%), 0.8);
+  background: rgba(34, 197, 94, 0.08);
+  border-left-color: rgba(34, 197, 94, 0.6);
+  color: $dark-text-primary;
+
+  .mdx-callout-icon {
+    color: rgba(34, 197, 94, 0.8);
+  }
+
+  @include light-mode {
+    background: rgba(34, 197, 94, 0.06);
+    color: $light-text-primary;
+
+    .mdx-callout-icon {
+      color: rgba(34, 197, 94, 0.9);
+    }
+  }
 }
 
 .mdx-callout-error {
-  background: rgba(hsl(0 84% 60%), 0.1);
-  @include border-gradient(rgba(hsl(0 84% 60%), 0.3));
-  color: rgba(hsl(0 84% 60%), 0.8);
-}
+  background: rgba(239, 68, 68, 0.08);
+  border-left-color: rgba(239, 68, 68, 0.6);
+  color: $dark-text-primary;
 
-.mdx-callout-tip {
-  background: rgba($accent-color, 0.1);
-  @include border-gradient(rgba($accent-color, 0.3));
-  color: rgba($accent-color, 0.8);
-}
+  .mdx-callout-icon {
+    color: rgba(239, 68, 68, 0.8);
+  }
 
-.mdx-callout-caution {
-  background: rgba(hsl(25 95% 53%), 0.1);
-  @include border-gradient(rgba(hsl(25 95% 53%), 0.3));
-  color: rgba(hsl(25 95% 53%), 0.8);
+  @include light-mode {
+    background: rgba(239, 68, 68, 0.06);
+    color: $light-text-primary;
+
+    .mdx-callout-icon {
+      color: rgba(239, 68, 68, 0.9);
+    }
+  }
 }
 
 .mdx-callout-important {
-  background: rgba(hsl(280 100% 70%), 0.1);
-  @include border-gradient(rgba(hsl(280 100% 70%), 0.3));
-  color: rgba(hsl(280 100% 70%), 0.8);
+  background: rgba(168, 85, 247, 0.08);
+  border-left-color: rgba(168, 85, 247, 0.6);
+  color: $dark-text-primary;
+
+  .mdx-callout-icon {
+    color: rgba(168, 85, 247, 0.8);
+  }
+
+  @include light-mode {
+    background: rgba(168, 85, 247, 0.06);
+    color: $light-text-primary;
+
+    .mdx-callout-icon {
+      color: rgba(168, 85, 247, 0.9);
+    }
+  }
 }
 
 .mdx-callout-icon {
   flex-shrink: 0;
   margin-top: 0.125rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .mdx-callout-content {
   flex: 1;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+
+  p {
+    margin: 0;
+  }
+
+  strong {
+    font-weight: 600;
+  }
 }
 
 

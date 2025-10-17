@@ -123,21 +123,17 @@ When using images in your blog posts, consider the following best practices:
 
 ### Custom Images with Captions
 
-<CustomImage 
-src="/assets/images/portfolio/GITS2.jpg" 
-alt="Ghost in the Shell Project 2" 
-caption="Ghost in the Shell - Character Model" 
-width={400} 
-height={300} 
-/>
+![Ghost in the Shell Project 2](/assets/images/portfolio/GITS2.jpg)
+
+*Ghost in the Shell - Character Model*
 
 
 ### Video Components
 
-<Video 
-src="/assets/videos/redfire.mp4" 
-title="Red Fire Effect" 
-/>
+<video controls title="Red Fire Effect" style="width: 100%; max-width: 800px; border-radius: 0.5rem; margin: 1rem 0;">
+  <source src="/assets/videos/redfire.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
 
 ## Tables for Data Presentation
 
@@ -163,13 +159,13 @@ Ensure your tables are responsive and maintain readability on mobile devices. Co
 
 Links are the foundation of the web. They should be clearly identifiable and provide clear indication of their destination. Here are some examples:
 
-This is a [link to another section](#introduction) within the same page. You can also create [external links](https://example.com){:target="_blank" rel="noopener noreferrer"} that open in new tabs.
+This is a [link to another section](#introduction) within the same page. You can also create [external links](https://example.com) that open in new tabs.
 
 ### External Links
 
-[Live Demo](https://example.com/demo){:target="_blank" rel="noopener noreferrer"}
+[Live Demo](https://example.com/demo)
 
-[GitHub Repository](https://github.com/example/repo){:target="_blank" rel="noopener noreferrer"}
+[GitHub Repository](https://github.com/example/repo)
 
 Best practices for links include:
 
@@ -182,19 +178,19 @@ Best practices for links include:
 
 ### Callouts and Admonitions
 
-<Note>This is a note callout for general information and tips.</Note>
+> **Note:** This is a note callout for general information and tips.
 
-<Warning>This is a warning callout for important notices and potential issues.</Warning>
+> **Warning:** This is a warning callout for important notices and potential issues.
 
-<Success>This is a success callout for positive feedback and achievements.</Success>
+> **Success:** This is a success callout for positive feedback and achievements.
 
-<Error>This is an error callout for critical issues and problems.</Error>
+> **Error:** This is an error callout for critical issues and problems.
 
-<Tip>This is a tip callout for helpful suggestions and best practices.</Tip>
+> **Tip:** This is a tip callout for helpful suggestions and best practices.
 
-<Caution>This is a caution callout for careful attention and considerations.</Caution>
+> **Caution:** This is a caution callout for careful attention and considerations.
 
-<Important>This is an important callout for essential information that requires attention.</Important>
+> **Important:** This is an important callout for essential information that requires attention.
 
 ### Interactive Elements
 
@@ -225,11 +221,11 @@ Best practices for links include:
 
 This section combines multiple MDX components to test their interaction:
 
-<Note>This note contains important information about the project.</Note>
+> **Note:** This note contains important information about the project.
 
 Here's a code snippet: `const example = 'Hello World';`
 
-<Warning>Remember to optimize images for web performance!</Warning>
+> **Warning:** Remember to optimize images for web performance!
 
 ## Conclusion
 
@@ -251,9 +247,9 @@ This comprehensive test page now includes all available MDX components:
 * **Typography:** All heading levels, paragraphs, text formatting
 * **Lists:** Ordered, unordered, and definition lists
 * **Code:** Inline code and code blocks with syntax highlighting
-* **Media:** Custom images with captions and video components
-* **Interactive:** Details/summary elements and footnotes
-* **Callouts:** All admonition types (Note, Warning, Success, Error, Tip, Caution, Important)
+* **Media:** Images with captions and video elements
+* **Interactive:** Details/summary elements
+* **Callouts:** Blockquote-based callouts (Note, Warning, Success, Error, Tip, Caution, Important)
 * **Tables:** Structured data presentation
 * **Links:** Internal and external links with proper attributes
 

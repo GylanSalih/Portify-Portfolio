@@ -9,107 +9,15 @@ import {
 } from '../../../lib/blogUtils';
 import BlogMightLike from '../BlogMightLike/blogmightlike';
 import LikeButton from '../LikeButton';
-import { Clock, Eye } from 'lucide-react';
+import { Clock, Eye, Calendar } from 'lucide-react';
 import Image from 'next/image';
 import { MDXSection } from '../../MDXComponents/MDXRenderer';
-import { marked } from 'marked';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
+import { MDXComponents } from '../../MDXComponents/MDXComponents';
 import styles from './BlogPost.module.scss';
 import '../../MDXComponents/mdx-styles.scss';
-
-// Function to add MDX CSS classes to HTML content
-const addMDXClasses = (htmlContent) => {
-  return htmlContent
-    // Headings
-    .replace(/<h1([^>]*)>/g, '<h1 class="mdx-h1"$1>')
-    .replace(/<h2([^>]*)>/g, '<h2 class="mdx-h2"$1>')
-    .replace(/<h3([^>]*)>/g, '<h3 class="mdx-h3"$1>')
-    .replace(/<h4([^>]*)>/g, '<h4 class="mdx-h4"$1>')
-    .replace(/<h5([^>]*)>/g, '<h5 class="mdx-h5"$1>')
-    .replace(/<h6([^>]*)>/g, '<h6 class="mdx-h6"$1>')
-    
-    // Paragraphs
-    .replace(/<p([^>]*)>/g, '<p class="mdx-paragraph"$1>')
-    
-    // Lists
-    .replace(/<ul([^>]*)>/g, '<ul class="mdx-list mdx-list-unordered"$1>')
-    .replace(/<ol([^>]*)>/g, '<ol class="mdx-list mdx-list-ordered"$1>')
-    .replace(/<li([^>]*)>/g, '<li class="mdx-list-item"$1>')
-    
-    // Links
-    .replace(/<a([^>]*)>/g, '<a class="mdx-link"$1>')
-    
-    // Code
-    .replace(/<code([^>]*)>/g, '<code class="mdx-inline-code"$1>')
-    .replace(/<pre([^>]*)>/g, '<pre class="mdx-codeblock"$1>')
-    
-    // Blockquotes
-    .replace(/<blockquote([^>]*)>/g, '<blockquote class="mdx-blockquote"$1>')
-    
-    // Tables
-    .replace(/<table([^>]*)>/g, '<div class="mdx-table-wrapper"><table class="mdx-table"$1>')
-    .replace(/<\/table>/g, '</table></div>')
-    .replace(/<thead([^>]*)>/g, '<thead class="mdx-table-head"$1>')
-    .replace(/<tbody([^>]*)>/g, '<tbody class="mdx-table-body"$1>')
-    .replace(/<tr([^>]*)>/g, '<tr class="mdx-table-row"$1>')
-    .replace(/<th([^>]*)>/g, '<th class="mdx-table-header"$1>')
-    .replace(/<td([^>]*)>/g, '<td class="mdx-table-cell"$1>')
-    
-    // Horizontal rule
-    .replace(/<hr([^>]*)>/g, '<hr class="mdx-divider"$1>')
-    
-    // Strong and emphasis
-    .replace(/<strong([^>]*)>/g, '<strong class="mdx-strong"$1>')
-    .replace(/<em([^>]*)>/g, '<em class="mdx-emphasis"$1>')
-    
-    // Details/Summary
-    .replace(/<details([^>]*)>/g, '<details class="mdx-details"$1>')
-    .replace(/<summary([^>]*)>/g, '<summary class="mdx-summary"$1>')
-    
-    // Callouts (Note, Warning, Success, Error, Tip, Caution, Important)
-    .replace(/<Note>([\s\S]*?)<\/Note>/g, '<div class="mdx-callout mdx-callout-info"><div class="mdx-callout-icon">ℹ️</div><div class="mdx-callout-content">$1</div></div>')
-    .replace(/<Warning>([\s\S]*?)<\/Warning>/g, '<div class="mdx-callout mdx-callout-warning"><div class="mdx-callout-icon">⚠️</div><div class="mdx-callout-content">$1</div></div>')
-    .replace(/<Success>([\s\S]*?)<\/Success>/g, '<div class="mdx-callout mdx-callout-success"><div class="mdx-callout-icon">✅</div><div class="mdx-callout-content">$1</div></div>')
-    .replace(/<Error>([\s\S]*?)<\/Error>/g, '<div class="mdx-callout mdx-callout-error"><div class="mdx-callout-icon">❌</div><div class="mdx-callout-content">$1</div></div>')
-    .replace(/<Tip>([\s\S]*?)<\/Tip>/g, '<div class="mdx-callout mdx-callout-tip"><div class="mdx-callout-icon">💡</div><div class="mdx-callout-content">$1</div></div>')
-    .replace(/<Caution>([\s\S]*?)<\/Caution>/g, '<div class="mdx-callout mdx-callout-caution"><div class="mdx-callout-icon">⚠️</div><div class="mdx-callout-content">$1</div></div>')
-    .replace(/<Important>([\s\S]*?)<\/Important>/g, '<div class="mdx-callout mdx-callout-important"><div class="mdx-callout-icon">❗</div><div class="mdx-callout-content">$1</div></div>')
-    
-    // CustomImage components
-    .replace(/<CustomImage\s+([^>]*?)\/>/g, (match, attrs) => {
-      const srcMatch = attrs.match(/src="([^"]*)"/);
-      const altMatch = attrs.match(/alt="([^"]*)"/);
-      const captionMatch = attrs.match(/caption="([^"]*)"/);
-      const widthMatch = attrs.match(/width="([^"]*)"/);
-      const heightMatch = attrs.match(/height="([^"]*)"/);
-      
-      const src = srcMatch ? srcMatch[1] : '';
-      const alt = altMatch ? altMatch[1] : '';
-      const caption = captionMatch ? captionMatch[1] : '';
-      const width = widthMatch ? widthMatch[1] : '800';
-      const height = heightMatch ? heightMatch[1] : '400';
-      
-      return `<figure class="mdx-image-figure">
-        <div class="mdx-image-wrapper">
-          <img src="${src}" alt="${alt}" width="${width}" height="${height}" class="mdx-image" />
-        </div>
-        ${caption ? `<figcaption class="mdx-image-caption">${caption}</figcaption>` : ''}
-      </figure>`;
-    })
-    
-    // Video components
-    .replace(/<Video\s+([^>]*?)\/>/g, (match, attrs) => {
-      const srcMatch = attrs.match(/src="([^"]*)"/);
-      const titleMatch = attrs.match(/title="([^"]*)"/);
-      
-      const src = srcMatch ? srcMatch[1] : '';
-      const title = titleMatch ? titleMatch[1] : '';
-      
-      return `<video controls title="${title}" class="mdx-video">
-        <source src="${src}" type="video/mp4" />
-        Dein Browser unterstützt das Video-Tag nicht.
-      </video>`;
-    });
-};
 
 const BlogPost = ({ data = null, mdxContent = null }) => {
   const { slug } = useParams();
@@ -268,10 +176,18 @@ const BlogPost = ({ data = null, mdxContent = null }) => {
       <header className={styles.hero}>
         <div className={styles.heroContainer}>
           <div className={styles.heroMeta}>
-            <div className={styles.metaItem}>
-              <Clock className={styles.metaIcon} />
-              <span>{post.readTime}</span>
-            </div>
+            {post.date && (
+              <div className={styles.metaItem}>
+                <Calendar className={styles.metaIcon} />
+                <span>{post.date}</span>
+              </div>
+            )}
+            {post.readTime && (
+              <div className={styles.metaItem}>
+                <Clock className={styles.metaIcon} />
+                <span>{post.readTime}</span>
+              </div>
+            )}
             <div className={styles.metaItem}>
               <Eye className={styles.metaIcon} />
               <span>
@@ -286,7 +202,6 @@ const BlogPost = ({ data = null, mdxContent = null }) => {
             </div>
           </div>
           <h1 className={styles.heroTitle}>{post.title}</h1>
-          {post.excerpt && <p className={styles.heroSubtitle}>{post.excerpt}</p>}
         </div>
       </header>
 
@@ -295,18 +210,16 @@ const BlogPost = ({ data = null, mdxContent = null }) => {
         <main className={styles.articleMain}>
           <article className={styles.articleContent}>
             {mdxContent ? (
-              // Render MDX Content with proper CSS classes
-              <div 
-                className={`${styles.mdxContent} mdx-content`}
-                dangerouslySetInnerHTML={{ 
-                  __html: addMDXClasses(marked(mdxContent, {
-                    breaks: true,
-                    gfm: true,
-                    headerIds: true,
-                    mangle: false
-                  }))
-                }}
-              />
+              // Render MDX Content with react-markdown
+              <div className={`${styles.mdxContent} mdx-content`}>
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  rehypePlugins={[rehypeRaw]}
+                  components={MDXComponents}
+                >
+                  {mdxContent}
+                </ReactMarkdown>
+              </div>
             ) : (
               // Render traditional JSON content
               post.content.map((section, index) => (
