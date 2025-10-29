@@ -407,16 +407,27 @@ export const sortMDXPosts = (posts, sortOrder = 'latest') => {
   });
 };
 
-// Client-seitige Funktion für MDX-Posts (für API-Calls)
+// Client-seitige Funktion für MDX-Posts (lädt direkt aus public/data)
 export const fetchMDXPosts = async () => {
   try {
-    const response = await fetch('/api/blog/mdx');
+    // Lade die zur Build-Zeit generierten Blog-Daten direkt aus public
+    const response = await fetch('/data/generated-blog-data.json');
     if (!response.ok) {
-      throw new Error('Failed to fetch MDX posts');
+      throw new Error('Failed to fetch MDX posts from static file');
     }
-    return await response.json();
+    const posts = await response.json();
+    return posts || [];
   } catch (error) {
     console.error('Error fetching MDX posts:', error);
+    // Fallback: Versuche die API-Route (falls vorhanden)
+    try {
+      const apiResponse = await fetch('/api/blog/mdx');
+      if (apiResponse.ok) {
+        return await apiResponse.json();
+      }
+    } catch (apiError) {
+      console.error('API fallback also failed:', apiError);
+    }
     return [];
   }
 };
