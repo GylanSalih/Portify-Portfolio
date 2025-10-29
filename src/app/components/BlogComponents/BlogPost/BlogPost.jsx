@@ -114,8 +114,12 @@ const BlogPost = ({ data = null, mdxContent = null }) => {
   useEffect(() => {
     const loadRelatedPosts = async () => {
       try {
-        // Lade MDX-Posts über die API
-        const response = await fetch('/api/blog/mdx');
+        // Lade MDX-Posts direkt aus der statischen JSON-Datei
+        const response = await fetch('/data/generated-blog-data.json');
+        if (!response.ok) {
+          console.error('Failed to fetch blog data for related posts');
+          return;
+        }
         const allPosts = await response.json();
 
         if (!post) return;
