@@ -1,11 +1,11 @@
 // app/blog/[slug]/page.js (Server Component)
-import { getMDXPosts, getMDXPost } from '../../lib/blogUtils';
 import BlogPost from '../../components/BlogComponents/BlogPost/BlogPost';
+import generatedBlogData from '../../../../public/data/generated-blog-data.json';
 
 export async function generateStaticParams() {
   try {
-    // Generate params from MDX files
-    const posts = getMDXPosts();
+    // Generate params from generated blog data
+    const posts = generatedBlogData || [];
     return posts.map(post => ({
       slug: post.slug,
     }));
@@ -19,8 +19,9 @@ export default async function PostPage({ params }) {
   const { slug } = await params;
 
   try {
-    // Load the MDX post
-    const post = getMDXPost(slug);
+    // Load the MDX post from generated data
+    const posts = generatedBlogData || [];
+    const post = posts.find(p => p.slug === slug);
 
     if (!post) {
       return (
