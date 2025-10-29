@@ -2,9 +2,10 @@
   "name": "nexopo",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run generate-blog-data && next build",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
@@ -13,7 +14,8 @@
     "type-check": "tsc --noEmit",
     "analyze": "ANALYZE=true npm run build",
     "analyze:server": "BUNDLE_ANALYZE=server npm run build",
-    "analyze:browser": "BUNDLE_ANALYZE=browser npm run build"
+    "analyze:browser": "BUNDLE_ANALYZE=browser npm run build",
+    "generate-blog-data": "node scripts/generate-blog-data.js"
   },
   "dependencies": {
     "@fancyapps/ui": "^5.0.23",

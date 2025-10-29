@@ -65,7 +65,7 @@ Updates / Fixes:
 • Added global font Wotfard-Regular to all files (will update soon to better match overall font styling)
 • Deleted unused dependencies
 • Fixed and Added Tags in Blog Single View ->Date, Read time, Views and Likes
-
+• Deleted a lot of stuff
 
 0.0.25 – Previous Updates
 • Split portfolio posts into individual components

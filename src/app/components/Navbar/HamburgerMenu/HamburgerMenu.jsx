@@ -7,8 +7,6 @@ import {
   User,
   Briefcase,
   PenTool,
-  MessageSquare,
-  BarChart3,
   X,
   Sun,
   Moon,
@@ -46,18 +44,6 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
       label: 'Blog',
       icon: PenTool,
       description: 'Thoughts & insights',
-    },
-    {
-      href: '/guestbook',
-      label: 'Guestbook',
-      icon: MessageSquare,
-      description: 'Leave a message',
-    },
-    {
-      href: '/dashboard',
-      label: 'Dashboard',
-      icon: BarChart3,
-      description: 'Analytics & insights',
     },
   ];
 

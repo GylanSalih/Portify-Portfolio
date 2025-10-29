@@ -1,9 +1,6 @@
 .carouselWrapper {
   width: 100vw;
   height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
   position: relative;
   background: #000;
@@ -13,59 +10,56 @@
 
 .carouselContainer {
   position: relative;
-  width: 100vw;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.carouselTrack {
+  display: flex;
+  height: 100%;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+// Removed .itemSet - no longer needed
+
+.carouselItem {
   height: 100vh;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-.list {
-  height: 100vh;
-  position: relative;
-  width: 100vw;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  background: #000;
-  overflow: hidden;
-}
-
-.slide {
-  width: calc(100vw + 2px);
-  height: 100vh;
-  position: absolute;
-  left: -1px;
-  top: 0;
-  display: block;
   font-size: 1.5rem;
   font-weight: 600;
   color: white;
   user-select: none;
-  will-change: transform, opacity;
-  overflow: hidden;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: none !important;
-  outline: none !important;
-  box-sizing: border-box;
-  background-size: cover !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-
-  &.dragging {
-    transition: none !important;
+  position: relative;
+  
+  // For items with background images, calculate width based on aspect ratio
+  // This will maintain the image's natural proportions at full height
+  &[style*="background-image"] {
+    // Default aspect ratio width - will be overridden by JavaScript
+    // The width will be calculated dynamically based on each image's aspectRatio
+    width: calc(100vh * 2316 / 3240); // Default fallback
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+  }
+  
+  // For items without images (color backgrounds)
+  &:not([style*="background-image"]) {
+    width: 400px; // Fixed width for text/color slides
+    min-width: 300px;
   }
 }
 
-.slideContent {
+.itemContent {
   text-align: center;
   padding: 20px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  width: 100%;
 }
 
 .dragArea {
@@ -74,69 +68,18 @@
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 15;
+  z-index: 10;
   cursor: grab;
-  touch-action: pan-y pinch-zoom; // Allow vertical scrolling and pinch zoom, but capture horizontal
+  touch-action: none;
   user-select: none;
   -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 
   &:active {
     cursor: grabbing;
   }
 }
 
-.indicators {
-  position: fixed;
-  top: 50%;
-  right: 40px;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  z-index: 1000;
-
-  @media (max-width: 768px) {
-    right: 20px;
-    gap: 12px;
-  }
-
-  @media (max-width: 480px) {
-    right: 15px;
-    gap: 10px;
-  }
-}
-
-.indicator {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  background: transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 0;
-  backdrop-filter: blur(4px);
-
-  @media (max-width: 480px) {
-    width: 10px;
-    height: 10px;
-    border-width: 2px;
-  }
-
-  &:hover {
-    border-color: rgba(255, 255, 255, 0.9);
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.2);
-  }
-}
-
-.indicatorActive {
-  background: white;
-  border-color: white;
-  transform: scale(1.3);
-
-  @media (max-width: 480px) {
-    transform: scale(1.2);
-  }
-}
 

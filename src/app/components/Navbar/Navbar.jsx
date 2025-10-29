@@ -40,9 +40,7 @@ const Navbar = () => {
     { href: '/', label: 'Home' },
     { href: '/blog', label: 'Blog' },
     { href: '/portfolio', label: 'Portfolio' },
-    { href: '/guestbook', label: 'Guestbook' },
     { href: '/about', label: 'About' },
-    { href: '/dashboard', label: 'Dashboard' },
   ];
 
   return (

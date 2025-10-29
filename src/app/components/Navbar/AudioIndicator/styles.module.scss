@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .audioBtn {
@@ -224,9 +225,9 @@
   justify-content: center;
   gap: 0.125rem;
   position: absolute;
-  bottom: 0.25rem;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 50%;
+  right: -0.75rem;
+  transform: translateY(-50%);
   z-index: 1;
 }
 
