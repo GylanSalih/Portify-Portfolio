@@ -6,7 +6,8 @@ import Testimonials from './components/HomeComponents/Testimonials/Testimonials'
 import CallToAction from './components/HomeComponents/CallToAction/CallToAction';
 import ContentSlider from './components/HomeComponents/ContentSlider/ContentSlider';
 
-import './styles/home-page.css'; // nur für home
+// nur für home
+import './styles/home-page.css';
 
 const Home = () => {
   return (

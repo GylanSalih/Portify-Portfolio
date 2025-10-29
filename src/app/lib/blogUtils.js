@@ -432,6 +432,7 @@ export const fetchMDXPosts = async () => {
   }
 };
 
+
 // Client-seitige Funktion für einzelnen MDX-Post
 export const fetchMDXPost = async (slug) => {
   try {
