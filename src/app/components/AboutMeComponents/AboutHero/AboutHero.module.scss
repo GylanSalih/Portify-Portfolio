@@ -13,6 +13,8 @@
   position: relative;
   box-sizing: border-box;
   overflow: visible;
+  display: flex;
+  justify-content: center;
 }
 
 .grid {
@@ -20,36 +22,50 @@
   grid-template-columns: 1fr;
   gap: 2rem;
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @media (max-width: 1280px) {
+    max-width: 1000px;
+  }
+
+  @media (max-width: 1024px) {
+    max-width: 900px;
+  }
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
 }
 
 .heroImageLarge {
   width: 100%;
-  height: 80vh;
-  min-height: 500px;
-  max-height: 800px;
+  height: 50vh;
+  min-height: 320px;
+  max-height: 500px;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   position: relative;
 
   @media (max-width: 1024px) {
-    height: 70vh;
-    min-height: 450px;
-    max-height: 700px;
+    height: 45vh;
+    min-height: 280px;
+    max-height: 420px;
     border-radius: 16px;
   }
 
   @media (max-width: 768px) {
-    height: 60vh;
-    min-height: 400px;
-    max-height: 600px;
+    height: 40vh;
+    min-height: 250px;
+    max-height: 380px;
     border-radius: 12px;
   }
 
   @media (max-width: 480px) {
-    height: 50vh;
-    min-height: 350px;
-    max-height: 500px;
+    height: 35vh;
+    min-height: 220px;
+    max-height: 320px;
     border-radius: 8px;
   }
 }
@@ -68,32 +84,32 @@
 
 .heroImageSmall {
   width: 100%;
-  height: 40vh;
-  min-height: 300px;
-  max-height: 400px;
+  height: 25vh;
+  min-height: 200px;
+  max-height: 280px;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
   position: relative;
 
   @media (max-width: 1024px) {
-    height: 35vh;
-    min-height: 250px;
-    max-height: 350px;
+    height: 22vh;
+    min-height: 170px;
+    max-height: 240px;
     border-radius: 16px;
   }
 
   @media (max-width: 768px) {
-    height: 30vh;
-    min-height: 200px;
-    max-height: 300px;
+    height: 20vh;
+    min-height: 150px;
+    max-height: 220px;
     border-radius: 12px;
   }
 
   @media (max-width: 480px) {
-    height: 25vh;
-    min-height: 180px;
-    max-height: 250px;
+    height: 18vh;
+    min-height: 130px;
+    max-height: 180px;
     border-radius: 8px;
   }
 }
@@ -102,6 +118,40 @@
   position: relative;
   width: 100%;
   height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.75) 0%,
+      rgba(0, 0, 0, 0.35) 40%,
+      rgba(0, 0, 0, 0.05) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    will-change: opacity;
+    z-index: 1;
+  }
+
+  &:hover {
+    .image {
+      transform: scale(1.02);
+    }
+
+    &::after {
+      opacity: 1;
+    }
+
+    .overlay {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
 .image {
@@ -109,11 +159,9 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.3s ease;
-
-  &:hover {
-    transform: scale(1.05);
-  }
+  transition:
+    transform 0.4s ease,
+    opacity 0.4s ease;
 }
 
 .overlay {
@@ -122,26 +170,17 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(0, 0, 0, 0.6) 0%,
-    rgba(0, 0, 0, 0.3) 50%,
-    rgba(0, 0, 0, 0.7) 100%
-  );
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  transition: background 0.3s ease;
-
-  &:hover {
-    background: linear-gradient(
-      135deg,
-      rgba(0, 0, 0, 0.7) 0%,
-      rgba(0, 0, 0, 0.4) 50%,
-      rgba(0, 0, 0, 0.8) 100%
-    );
-  }
+  opacity: 0;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  transform: translateY(15px);
+  z-index: 2;
+  will-change: transform, opacity;
 
   @media (max-width: 768px) {
     padding: 1.5rem;
