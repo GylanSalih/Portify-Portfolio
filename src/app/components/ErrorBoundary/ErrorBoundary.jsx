@@ -55,7 +55,7 @@ class ErrorBoundary extends Component {
                     Something went wrong
                   </h1>
                   <p className="text-zinc-400 text-sm leading-relaxed max-w-sm mx-auto">
-                    An unexpected error occurred. Don't worry, this has been logged and we're looking into it.
+                    An unexpected error occurred. Don&apos;t worry, this has been logged and we&apos;re looking into it.
                   </p>
                 </div>
 

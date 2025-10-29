@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Github, Linkedin, Dribbble, Mail } from 'lucide-react';
-import Link from 'next/link';
 import styles from './AboutMe.module.scss';
 
 const AboutMe = () => {

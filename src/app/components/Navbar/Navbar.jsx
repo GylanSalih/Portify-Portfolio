@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useDarkMode } from '../../contexts/DarkModeContext';
-import { Menu } from 'lucide-react';
 import Link from 'next/link';
 import DarkModeToggle from './DarkModeToggle/DarkModeToggle';
 import AudioIndicator from './AudioIndicator/AudioIndicator';

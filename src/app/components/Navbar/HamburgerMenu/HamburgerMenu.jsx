@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDarkMode } from '../../../contexts/DarkModeContext';
 import {
   Home,
@@ -105,9 +105,7 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
             {/* Navigation Links */}
             <nav className={styles.menuNav}>
               <ul className={styles.menuList}>
-                {menuItems.map((item, index) => {
-                  const IconComponent = item.icon;
-                  return (
+                {menuItems.map((item, index) => (
                     <li
                       key={item.href}
                       className={styles.menuItem}
@@ -129,8 +127,7 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
                         </div>
                       </Link>
                     </li>
-                  );
-                })}
+                ))}
               </ul>
             </nav>
 

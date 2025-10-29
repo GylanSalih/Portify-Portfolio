@@ -4,7 +4,6 @@ import { useState, useEffect, useCallback } from 'react';
 
 export const usePortfolioStats = slug => {
   const [stats, setStats] = useState({ views: 0, likes: 0 });
-  const [loading, setLoading] = useState(false);
   const [hasLiked, setHasLiked] = useState(false);
 
   // Lade Statistiken aus localStorage
@@ -56,7 +55,6 @@ export const usePortfolioStats = slug => {
 
   return {
     stats,
-    loading,
     hasLiked,
     incrementViews,
     incrementLikes,

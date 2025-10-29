@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Clock, TrendingUp, Code, Monitor, Terminal } from 'lucide-react';
+import { Code, Monitor, Terminal } from 'lucide-react';
 import styles from './WakaTimeStats.module.scss';
 
 const WakaTimeStats = () => {
