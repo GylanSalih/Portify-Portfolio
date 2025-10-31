@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { AnimatePresence } from 'framer-motion';
 import { getShowcaseData } from '../lib/showcaseData';
@@ -8,7 +8,7 @@ import styles from './showcase.module.scss';
 import ShowGrid from '../components/showcase/ShowGrid/ShowGrid';
 import ShowStart from '../components/showcase/ShowStart/ShowStart';
 
-const Showcase = () => {
+const ShowcaseContent = () => {
   const searchParams = useSearchParams();
   const [activeCategory, setActiveCategory] = useState('all');
   const [sortOrder, setSortOrder] = useState('ordered');
@@ -146,6 +146,24 @@ const Showcase = () => {
         </div>
       </div>
     </main>
+  );
+};
+
+const Showcase = () => {
+  return (
+    <Suspense fallback={
+      <main className={styles.showcaseMain}>
+        <div className={styles.showcaseWrapper}>
+          <div className={styles.contentContainer}>
+            <div style={{ color: '#fff', textAlign: 'center', padding: '2rem' }}>
+              Loading...
+            </div>
+          </div>
+        </div>
+      </main>
+    }>
+      <ShowcaseContent />
+    </Suspense>
   );
 };
 
