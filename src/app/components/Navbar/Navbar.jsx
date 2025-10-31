@@ -39,6 +39,7 @@ const Navbar = () => {
     { href: '/', label: 'Home' },
     { href: '/blog', label: 'Blog' },
     { href: '/portfolio', label: 'Portfolio' },
+    { href: '/showcase', label: 'Showcase' },
     { href: '/about', label: 'About' },
   ];
 

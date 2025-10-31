@@ -165,21 +165,34 @@
   }
 }
 
-/* Left Group: Categories + Layout */
+/* Left Group: Categories + Layout + Options */
 .leftGroup {
   display: flex;
   gap: 2rem;
   flex: 1;
   align-items: flex-start;
 
+  // Mehr Abstand zwischen Layout und Options
+  & > .group:nth-child(2) {
+    margin-right: 6rem; // Doppelter zusätzlicher Abstand vor Options
+  }
+
   @media (max-width: 1024px) {
     flex-direction: column;
     gap: 1.5rem;
+
+    & > .group:nth-child(2) {
+      margin-right: 0;
+    }
   }
 
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 1.5rem;
+
+    & > .group:nth-child(2) {
+      margin-right: 0;
+    }
   }
 }
 
@@ -189,6 +202,45 @@
   gap: 2rem;
   flex: 0 0 auto;
   align-items: flex-start;
+
+  // Spezifische Styles für Right Group Items
+  .group:nth-child(1) {
+    flex: 0 0 200px;
+    min-width: 200px;
+    max-width: 200px;
+
+    @media (max-width: 1024px) {
+      flex: 0 0 180px;
+      min-width: 180px;
+      max-width: 180px;
+    }
+
+    @media (max-width: 768px) {
+      flex: 1 1 100%;
+      width: 100%;
+      min-width: 100%;
+      max-width: 100%;
+    }
+  }
+
+  .group:nth-child(2) {
+    flex: 0 0 180px;
+    min-width: 180px;
+    max-width: 180px;
+
+    @media (max-width: 1024px) {
+      flex: 0 0 160px;
+      min-width: 160px;
+      max-width: 160px;
+    }
+
+    @media (max-width: 768px) {
+      flex: 1 1 100%;
+      width: 100%;
+      min-width: 100%;
+      max-width: 100%;
+    }
+  }
 
   @media (max-width: 1024px) {
     flex-direction: row;
@@ -247,15 +299,18 @@
     }
   }
 
+  // Options group (Show Content & Shuffle) - ausreichend Abstand zu Layout
   &:nth-child(3) {
-    flex: 0 0 200px;
-    min-width: 200px;
-    max-width: 200px;
+    flex: 0 0 auto;
+    min-width: auto;
+    max-width: none;
+    margin-left: 0; // Kein negativer Margin, normaler Abstand
 
     @media (max-width: 1024px) {
-      flex: 0 0 180px;
-      min-width: 180px;
-      max-width: 180px;
+      flex: 0 0 auto;
+      min-width: auto;
+      max-width: none;
+      margin-left: 0;
     }
 
     @media (max-width: 768px) {
@@ -263,27 +318,10 @@
       width: 100%;
       min-width: 100%;
       max-width: 100%;
+      margin-left: 0;
     }
   }
 
-  &:nth-child(4) {
-    flex: 0 0 180px;
-    min-width: 180px;
-    max-width: 180px;
-
-    @media (max-width: 1024px) {
-      flex: 0 0 160px;
-      min-width: 160px;
-      max-width: 160px;
-    }
-
-    @media (max-width: 768px) {
-      flex: 1 1 100%;
-      width: 100%;
-      min-width: 100%;
-      max-width: 100%;
-    }
-  }
 }
 
 .label {
@@ -512,6 +550,27 @@
       width: 16px;
       height: 16px;
     }
+  }
+}
+
+// aA Button
+.aaButton {
+  position: relative;
+  
+  .aaIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+  }
+  
+  &.active .aaIcon {
+    opacity: 1;
+  }
+  
+  &:hover .aaIcon {
+    opacity: 0.8;
   }
 }
 

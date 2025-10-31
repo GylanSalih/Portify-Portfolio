@@ -25,13 +25,24 @@ Note and Todos for myself:
 [X] SSR Component pieces
 [X] darkmode / lightmode switch titles dont switch correctly
 [X] Clean codeblock for blogpost
+[X] Clean Folder Structure Kebab-Case CamelCase
 [X] Items per page pagination not working
 ---
 
 Lookbook:
-Updates / Fixes:
 
-0.0.26 – Newest Updates
+
+Updates / Fixes:
+0.0.27 – Newest Updates
+• Added new Page Showcase – looks awesome
+• Added some new components, e.g., AutoImgScroll
+• Added Showcase Single View Page, still in progress
+• Started mobile responsiveness for these 3 pages
+• Mobile view skips the showStart Showcase page, starts directly with ShowGrid page
+• Portfolio filter bar: added shuffle and aA options to display content directly without hover
+
+
+0.0.26 – Previous Updates
 • Fixed memory leaks that were causing severe slowdowns
 • Redesign in progress – aiming for a simpler, cleaner, smoother, and more modern look
 • Removed several features (such as the holo effect) since the redesign is planned; these visual effects, while nice, negatively impacted performance and user experience

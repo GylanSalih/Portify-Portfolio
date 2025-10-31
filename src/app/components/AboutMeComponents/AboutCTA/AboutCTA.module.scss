@@ -1,0 +1,128 @@
+.ctaBlock {
+  position: relative;
+  padding-top: 3.75rem;
+  padding-bottom: 3.75rem;
+  padding-right: 2.25rem;
+  padding-left: 2.25rem;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.inner {
+  background-color: #f2f2f2;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  padding: 35px;
+  
+  @media (max-width: 768px) {
+    padding: 35px;
+  }
+}
+
+.eyebrow {
+  font-size: 0.875rem;
+  font-family: inherit;
+  line-height: 120%;
+  text-align: left;
+  letter-spacing: normal;
+  font-weight: 400;
+  text-transform: uppercase;
+  padding-bottom: 2.25rem;
+  color: #151515;
+  opacity: 0.8;
+}
+
+.title {
+  font-size: 86px;
+  font-family: inherit;
+  line-height: 110%;
+  text-align: left;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  width: 100%;
+  color: #151515;
+  margin: 0;
+  
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+    line-height: 115%;
+  }
+}
+
+.link {
+  padding-top: 3.5rem;
+  
+  @media (max-width: 768px) {
+    padding-top: 2.25rem;
+  }
+}
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2.5rem;
+  background-color: #151515;
+  color: #fafafa;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.button:hover {
+  background-color: #2a2a2a;
+  transform: translateY(-2px);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+.buttonIcon {
+  transition: transform 0.25s ease;
+}
+
+.button:hover .buttonIcon {
+  transform: translateX(4px);
+}
+
+@media (max-width: 768px) {
+  .button {
+    padding: 0.6rem 1.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+// Dark mode support
+:global(.dark-mode) {
+  .inner {
+    background-color: #2a2a2a;
+  }
+  
+  .eyebrow {
+    color: #fafafa;
+  }
+  
+  .title {
+    color: #fafafa;
+  }
+  
+  .button {
+    background-color: #fafafa;
+    color: #151515;
+    
+    &:hover {
+      background-color: #e0e0e0;
+    }
+  }
+}
+

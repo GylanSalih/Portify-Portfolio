@@ -11,6 +11,7 @@ import {
   Sun,
   Moon,
   ArrowUpRight,
+  Image,
 } from 'lucide-react';
 import Link from 'next/link';
 import styles from './styles.module.scss';
@@ -26,6 +27,12 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
       label: 'Home',
       icon: Home,
       description: 'Welcome to my digital space',
+    },
+    {
+      href: '/showcase',
+      label: 'Showcase',
+      icon: Image,
+      description: 'Visual gallery of my work',
     },
     {
       href: '/about',

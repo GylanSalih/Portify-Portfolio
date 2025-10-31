@@ -1,8 +1,18 @@
+'use client';
+
 import React from 'react';
+import { usePathname } from 'next/navigation';
 import { Github, Linkedin, Dribbble, Mail } from 'lucide-react';
 import styles from './Footer.module.scss';
 
 const Footer = () => {
+  const pathname = usePathname();
+  
+  // Hide footer on showcase page
+  if (pathname === '/showcase') {
+    return null;
+  }
+  
   return (
     <footer className={styles.footer}>
       <div className={styles.content}>

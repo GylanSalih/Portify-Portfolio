@@ -1,0 +1,268 @@
+{
+  "showcaseData": [
+    {
+      "id": 1,
+      "slug": "akira-bike-design",
+      "title": "Akira Bike Design",
+      "date": "January 2025",
+      "description": "A futuristic motorcycle design inspired by the iconic Akira anime. This project showcases advanced 3D modeling techniques and attention to detail in vehicle design.",
+      "image": "/assets/images/portfolio/Akira1.jpg",
+      "category": "art",
+      "categoryDisplay": "Digital Art",
+      "type": "image",
+      "wide": true,
+      "tags": ["3D", "Concept", "Vehicle"],
+      "dateObj": "2025-01-15",
+      "coverImage": "/assets/images/portfolio/Akira1.jpg",
+      "gallery": [
+        "/assets/images/portfolio/Akira1.jpg",
+        "/assets/images/portfolio/City.jpg",
+        "/assets/images/landing/OniGirl1.webp"
+      ]
+    },
+    {
+      "id": 2,
+      "slug": "city-landscape",
+      "title": "City Landscape",
+      "date": "February 2025",
+      "description": "An urban landscape illustration capturing the essence of modern city life with vibrant colors and dynamic composition.",
+      "image": "/assets/images/portfolio/City.jpg",
+      "category": "art",
+      "categoryDisplay": "Digital Art",
+      "type": "image",
+      "tags": ["Landscape", "Urban", "Illustration"],
+      "dateObj": "2025-02-10",
+      "coverImage": "/assets/images/portfolio/City.jpg",
+      "gallery": [
+        "/assets/images/portfolio/City.jpg",
+        "/assets/images/landing/OniBoy1.webp"
+      ]
+    },
+    {
+      "id": 3,
+      "slug": "landing-page-design",
+      "title": "Landing Page Design",
+      "date": "March 2025",
+      "description": "A modern and responsive landing page design focusing on user experience and conversion optimization.",
+      "image": "/assets/images/landing/OniGirl1.webp",
+      "category": "web",
+      "categoryDisplay": "Web Development",
+      "type": "image",
+      "tall": true,
+      "tags": ["React", "UI/UX", "Responsive"],
+      "dateObj": "2025-03-20",
+      "coverImage": "/assets/images/landing/OniGirl1.webp",
+      "gallery": [
+        "/assets/images/landing/OniGirl1.webp",
+        "/assets/images/portfolio/New1.png"
+      ]
+    },
+    {
+      "id": 4,
+      "slug": "character-design",
+      "title": "Character Design",
+      "date": "November 2024",
+      "description": "Original character design featuring unique style and personality, perfect for animation or game development.",
+      "image": "/assets/images/landing/OniBoy1.webp",
+      "category": "art",
+      "categoryDisplay": "Digital Art",
+      "type": "image",
+      "tags": ["Character", "Anime", "Portrait"],
+      "dateObj": "2024-11-05",
+      "coverImage": "/assets/images/landing/OniBoy1.webp",
+      "gallery": [
+        "/assets/images/landing/OniBoy1.webp",
+        "/assets/images/landing/OniGirl5.webp"
+      ]
+    },
+    {
+      "id": 5,
+      "slug": "ui-ux-project",
+      "title": "UI/UX Project",
+      "date": "November 2024",
+      "description": "A comprehensive UI/UX design project showcasing modern interface design principles and user-centered approach.",
+      "image": "/assets/images/portfolio/New1.png",
+      "category": "design",
+      "categoryDisplay": "UI/UX Design",
+      "type": "image",
+      "tags": ["Figma", "Interface", "Mobile"],
+      "dateObj": "2024-11-15",
+      "coverImage": "/assets/images/portfolio/New1.png",
+      "gallery": [
+        "/assets/images/portfolio/New1.png",
+        "/assets/images/portfolio/New2.png"
+      ]
+    },
+    {
+      "id": 6,
+      "slug": "illustration-work",
+      "title": "Illustration Work",
+      "date": "November 2024",
+      "description": "A collection of digital illustrations showcasing various styles and techniques.",
+      "image": "/assets/images/landing/OniGirl5.webp",
+      "category": "art",
+      "categoryDisplay": "Digital Art",
+      "type": "image",
+      "tags": ["Illustration", "Fantasy", "Digital"],
+      "dateObj": "2024-11-25",
+      "coverImage": "/assets/images/landing/OniGirl5.webp",
+      "gallery": [
+        "/assets/images/landing/OniGirl5.webp",
+        "/assets/images/landing/OniGirl7.webp"
+      ]
+    },
+    {
+      "id": 7,
+      "slug": "web-development",
+      "title": "Web Development",
+      "date": "January 2025",
+      "description": "Full-stack web application built with modern technologies and best practices.",
+      "image": "/assets/images/portfolio/New2.png",
+      "category": "web",
+      "categoryDisplay": "Web Development",
+      "type": "image",
+      "wide": true,
+      "tags": ["Next.js", "Full-Stack", "API"],
+      "dateObj": "2025-01-05",
+      "coverImage": "/assets/images/portfolio/New2.png",
+      "gallery": [
+        "/assets/images/portfolio/New2.png",
+        "/assets/images/portfolio/New3.png"
+      ]
+    },
+    {
+      "id": 8,
+      "slug": "branding-project",
+      "title": "Branding Project",
+      "date": "December 2024",
+      "description": "Complete branding identity including logo design, color palette, and brand guidelines.",
+      "image": "/assets/images/portfolio/New3.png",
+      "category": "design",
+      "categoryDisplay": "UI/UX Design",
+      "type": "image",
+      "tags": ["Branding", "Logo", "Identity"],
+      "dateObj": "2024-12-10",
+      "coverImage": "/assets/images/portfolio/New3.png",
+      "gallery": [
+        "/assets/images/portfolio/New3.png",
+        "/assets/images/portfolio/New4.png"
+      ]
+    },
+    {
+      "id": 9,
+      "slug": "digital-art",
+      "title": "Digital Art",
+      "date": "February 2025",
+      "description": "Original digital artwork created using various digital painting techniques.",
+      "image": "/assets/images/landing/OniGirl7.webp",
+      "category": "art",
+      "categoryDisplay": "Digital Art",
+      "type": "image",
+      "tall": true,
+      "tags": ["Digital", "Painting", "Portrait"],
+      "dateObj": "2025-02-25",
+      "coverImage": "/assets/images/landing/OniGirl7.webp",
+      "gallery": [
+        "/assets/images/landing/OniGirl7.webp",
+        "/assets/images/landing/OniGirl11.webp"
+      ]
+    },
+    {
+      "id": 10,
+      "slug": "creative-project",
+      "title": "Creative Project",
+      "date": "November 2024",
+      "description": "A creative exploration combining various artistic techniques and styles.",
+      "image": "/assets/images/landing/OniGirl11.webp",
+      "category": "art",
+      "categoryDisplay": "Digital Art",
+      "type": "image",
+      "tags": ["Creative", "Digital", "Artwork"],
+      "dateObj": "2024-11-20",
+      "coverImage": "/assets/images/landing/OniGirl11.webp",
+      "gallery": [
+        "/assets/images/landing/OniGirl11.webp",
+        "/assets/images/landing/OniGirl13.webp"
+      ]
+    },
+    {
+      "id": 11,
+      "slug": "web-application",
+      "title": "Web Application",
+      "date": "March 2025",
+      "description": "Interactive web application with advanced features and seamless user experience.",
+      "image": "/assets/images/portfolio/New4.png",
+      "category": "web",
+      "categoryDisplay": "Web Development",
+      "type": "image",
+      "tags": ["React", "Dashboard", "SaaS"],
+      "dateObj": "2025-03-05",
+      "coverImage": "/assets/images/portfolio/New4.png",
+      "gallery": [
+        "/assets/images/portfolio/New4.png",
+        "/assets/images/portfolio/Akira1.jpg"
+      ]
+    },
+    {
+      "id": 12,
+      "slug": "concept-art",
+      "title": "Concept Art",
+      "date": "December 2024",
+      "description": "Concept art for character development and visual storytelling.",
+      "image": "/assets/images/landing/OniBoy2.webp",
+      "category": "art",
+      "categoryDisplay": "Digital Art",
+      "type": "image",
+      "tags": ["Concept", "Character", "Anime"],
+      "dateObj": "2024-12-20",
+      "coverImage": "/assets/images/landing/OniBoy2.webp",
+      "gallery": [
+        "/assets/images/landing/OniBoy2.webp",
+        "/assets/images/landing/OniBoy1.webp"
+      ]
+    },
+    {
+      "id": 13,
+      "slug": "character-portrait",
+      "title": "Character Portrait",
+      "date": "December 2024",
+      "description": "Detailed character portrait showcasing advanced digital painting techniques.",
+      "image": "/assets/images/landing/OniGirl6.webp",
+      "category": "art",
+      "categoryDisplay": "Digital Art",
+      "type": "image",
+      "tags": ["Portrait", "Character", "Digital"],
+      "dateObj": "2024-12-15",
+      "coverImage": "/assets/images/landing/OniGirl6.webp",
+      "gallery": [
+        "/assets/images/landing/OniGirl6.webp",
+        "/assets/images/landing/OniGirl5.webp"
+      ]
+    },
+    {
+      "id": 14,
+      "slug": "fantasy-illustration",
+      "title": "Fantasy Illustration",
+      "date": "December 2024",
+      "description": "Fantasy-themed illustration with rich details and atmospheric lighting.",
+      "image": "/assets/images/landing/OniGirl13.webp",
+      "category": "art",
+      "categoryDisplay": "Digital Art",
+      "type": "image",
+      "tags": ["Fantasy", "Illustration", "Art"],
+      "dateObj": "2024-12-05",
+      "coverImage": "/assets/images/landing/OniGirl13.webp",
+      "gallery": [
+        "/assets/images/landing/OniGirl13.webp",
+        "/assets/images/landing/OniGirl11.webp"
+      ]
+    }
+  ],
+  "categories": [
+    { "name": "All", "count": 14, "key": "all" },
+    { "name": "Web", "count": 3, "key": "web" },
+    { "name": "Design", "count": 2, "key": "design" },
+    { "name": "Art", "count": 9, "key": "art" }
+  ]
+}
+

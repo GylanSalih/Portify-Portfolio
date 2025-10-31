@@ -1,0 +1,812 @@
+.mobileHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 6rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.headerContent {
+  color: white;
+
+  .mainTitle {
+    margin-bottom: 0.75rem;
+    font-size: 2rem;
+    font-weight: 900;
+    line-height: 2.25rem;
+  }
+
+  .mainDescription {
+    margin-bottom: 0;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.85);
+  }
+}
+
+// Content Container
+.contentContainer {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+
+  // Wenn Split View aktiv ist, keine Scroll
+  &.noScroll {
+    height: 100vh;
+    overflow: hidden;
+  }
+}
+
+
+.filterCard {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  width: 100%;
+  height: 100%;
+  border-radius: 1.5rem;
+  gap: 0.125rem;
+  padding: 0.125rem;
+  opacity: 1;
+}
+
+.filterButton {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.375rem 0.75rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  min-height: auto;
+
+  &:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+
+  &.active {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .filterLabel {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.875rem;
+    font-family: monospace;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+
+    @media (min-width: 768px) {
+      font-size: 0.75rem;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 0.875rem;
+    }
+  }
+
+  .filterCount {
+    color: rgba(255, 255, 255, 0.8);
+    font-family: monospace;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 5px;
+
+    @media (min-width: 768px) {
+      font-size: 1.55vw;
+    }
+
+    @media (min-width: 1280px) {
+      font-size: 1.5rem;
+    }
+  }
+
+  &:hover .filterLabel,
+  &.active .filterLabel {
+    color: rgba(255, 255, 255, 1);
+  }
+
+  &:hover .filterCount,
+  &.active .filterCount {
+    color: rgba(255, 255, 255, 1);
+  }
+}
+
+.sortControls {
+  gap: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.sortButton {
+  position: relative;
+  display: flex;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 100%);
+  border: 1px solid transparent;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 9999px;
+  padding: 0.125rem;
+  gap: 0.25rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+  }
+
+  .sortIcon {
+    border-radius: 9999px;
+    padding: 0.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+    opacity: 0.4;
+    transition: opacity 0.3s ease;
+  }
+
+  &.active .sortIcon {
+    opacity: 1;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+// Toggle Switch
+.toggleSwitch {
+  position: relative;
+  display: flex;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 100%);
+  border: 1px solid transparent;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 9999px;
+  padding: 0.125rem;
+  gap: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: auto;
+  min-width: 80px;
+  flex-shrink: 0;
+
+  &:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+  }
+}
+
+.toggleButton {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  width: 50%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
+
+  .toggleIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    opacity: 0.4;
+    transition: opacity 0.3s ease;
+  }
+
+  &.active {
+    .toggleIcon {
+      opacity: 1;
+    }
+  }
+}
+
+.toggleIndicator {
+  position: absolute;
+  top: 0.125rem;
+  left: 0.125rem;
+  width: calc(50% - 0.125rem);
+  height: calc(100% - 0.25rem);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  transition: transform 0.3s ease;
+  z-index: 1;
+}
+
+// AZ Button
+.azButton {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 100%);
+  border: 1px solid transparent;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 9999px;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: auto;
+  min-width: 40px;
+
+  &:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+  }
+
+  .azIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    opacity: 0.4;
+    transition: opacity 0.3s ease;
+  }
+
+  .azOverlay {
+    position: absolute;
+    inset: 0;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 9999px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover .azOverlay {
+    opacity: 1;
+  }
+
+  // Active State
+  &.active {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: none;
+
+    .azIcon {
+      opacity: 1;
+    }
+
+    .azOverlay {
+      opacity: 0;
+    }
+  }
+}
+
+// Back Button
+.backButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 100%);
+  border: 1px solid transparent;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  flex: 1;
+  min-width: 60px;
+
+  &:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+    color: rgba(255, 255, 255, 1);
+  }
+}
+
+// Desktop Header
+.desktopHeader {
+  display: none;
+
+  @media (min-width: 768px) {
+    display: block;
+    color: white;
+    padding: 7rem 0 2rem 0;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+
+    .mainTitle {
+      margin-bottom: 1rem;
+      font-size: 3rem;
+      font-weight: 900;
+      line-height: 1.2;
+    }
+
+    .mainDescription {
+      margin-bottom: 0;
+      font-size: 1rem;
+      line-height: 1.6;
+      max-width: 100%;
+    }
+  }
+}
+
+// Desktop Grid
+.desktopGrid {
+  display: none;
+
+  @media (min-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-flow: dense; // Füllt automatisch Lücken
+    gap: 0.5rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 0;
+    position: relative;
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.5rem;
+  }
+}
+
+// Showcase Cards
+.showcaseCard {
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  border-radius: 1.5rem;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  will-change: transform, opacity;
+
+  .cardLink {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  &:hover {
+    .cardImage {
+      transform: scale(1.02);
+    }
+
+    .figure::after {
+      opacity: 1;
+    }
+
+    .overlay {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  // Show Info State - Info immer sichtbar
+  &.showInfo {
+    .figure::after {
+      opacity: 1;
+    }
+  }
+}
+
+// Wide Card für Desktop
+.wideCard {
+  grid-column: span 2; // Nimmt 2 Grid-Positionen ein
+  aspect-ratio: 2 / 1; // Längliches Format
+}
+
+// Tall Card für Desktop
+.tallCard {
+  grid-row: span 2; // Nimmt 2 Grid-Zeilen ein
+  aspect-ratio: 1 / 2; // Hohes Format
+}
+
+// Figure Element (enthält Bild und Overlay)
+.figure {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  margin: 0;
+  background-color: black;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.75) 0%,
+      rgba(0, 0, 0, 0.35) 40%,
+      rgba(0, 0, 0, 0.05) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    will-change: opacity;
+  }
+}
+
+// Card Image
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition:
+    transform 0.4s ease,
+    opacity 0.4s ease;
+  user-select: none;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+}
+
+// Text Overlay (erscheint bei Hover)
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  color: #fff;
+  opacity: 0;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  transform: translateY(15px);
+  z-index: 2;
+  will-change: transform, opacity;
+
+  // Always Visible State
+  &.alwaysVisible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  > div:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    margin: 0;
+    font-family: 'Wotfard', sans-serif;
+
+    @media (max-width: 768px) {
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1rem;
+    }
+  }
+
+  p {
+    font-size: 1rem;
+    margin: 0;
+    font-weight: 400;
+    opacity: 0.9;
+
+    @media (max-width: 768px) {
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.875rem;
+  }
+}
+
+.linkIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  opacity: 0.8;
+  will-change: transform, opacity;
+  transition: all 0.3s ease;
+
+  &:hover {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+// Tags
+.tags {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    margin-top: 0.4rem;
+  }
+
+  @media (max-width: 480px) {
+    gap: 0.3rem;
+  }
+}
+
+.tag {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  font-weight: 500;
+  backdrop-filter: blur(5px);
+
+  @media (max-width: 768px) {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.65rem;
+  }
+}
+
+// Filter Card im Grid
+.gridFilterCard {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.9) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 1.5rem;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  cursor: default;
+}
+
+// Alte Styles entfernt - jetzt verwenden wir .figure, .cardImage, .overlay
+
+// Trivia Card
+.triviaCard {
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 1 / 1;
+  transform: scale(1);
+  transition: all 0.3s ease-in-out;
+  border-radius: 1.5rem;
+  background: linear-gradient(135deg, rgba(31, 31, 31, 0.7) 0%, rgba(26, 26, 26, 1) 100%);
+  padding: 1rem;
+  background-size: cover;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  margin: 2rem auto 0;
+
+  &:hover {
+    background: rgba(55, 55, 55, 0.7);
+  }
+}
+
+.triviaContent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.speechBubble {
+  position: relative;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    right: 20px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid rgba(0, 0, 0, 0.8);
+  }
+
+  span {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+    -webkit-box-orient: vertical;
+    color: white;
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+}
+
+.triviaCharacter {
+  height: 33.333%;
+  display: flex;
+  justify-content: flex-end;
+
+  img {
+    height: 100%;
+    max-height: 53px;
+
+    @media (min-width: 768px) {
+      max-height: 100%;
+    }
+  }
+}
+
+// Mobile Grid
+.mobileGrid {
+  display: grid;
+  grid-template-columns: 1fr; // Einzelne Spalte für Mobile
+  grid-auto-flow: dense; // Füllt automatisch Lücken
+  gap: 0.75rem;
+  position: relative;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+// Mobile Filter Card
+.mobileFilterCard {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.9) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 1.5rem;
+  width: 100%;
+  aspect-ratio: auto; // Automatische Höhe basierend auf Inhalt
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  cursor: default;
+  
+  // Mobile-spezifische Filter Button Anpassungen
+  .filterButton {
+    padding: 0.75rem 1rem;
+    border-radius: 16px;
+    
+    .filterLabel {
+      font-size: 0.875rem;
+    }
+    
+    .filterCount {
+      font-size: 1.25rem;
+    }
+  }
+  
+  .sortControls {
+    gap: 0.5rem;
+    flex-direction: row;
+  }
+  
+  .toggleSwitch {
+    min-width: 80px;
+  }
+  
+  .toggleButton {
+    padding: 0.5rem;
+  }
+  
+  .azButton {
+    padding: 0.5rem;
+    min-width: 40px;
+  }
+  
+  .backButton {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    min-width: 60px;
+    display: none; // Back Button auf Mobile verstecken
+  }
+}
+
+.mobileCard {
+  aspect-ratio: 16 / 9; // Breiteres Format für bessere Darstellung
+  overflow: hidden;
+  background: transparent;
+  border-radius: 1.5rem;
+  position: relative;
+  will-change: transform, opacity;
+
+  .cardLink {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  &:hover {
+    .cardImage {
+      transform: scale(1.02);
+    }
+
+    .figure::after {
+      opacity: 1;
+    }
+
+    .overlay {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  // Show Info State - Info immer sichtbar
+  &.showInfo {
+    .figure::after {
+      opacity: 1;
+    }
+    
+    .overlay {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+// Wide Card für Mobile - keine Änderung bei 1 Spalte (alle Cards sind gleich breit)
+.mobileWideCard {
+  aspect-ratio: 16 / 9; // Gleiches Format wie normale Cards
+}
+
+// Tall Card für Mobile - höheres Format für bessere Darstellung
+.mobileTallCard {
+  aspect-ratio: 4 / 5; // Höheres Format (Portrait-ähnlich)
+}

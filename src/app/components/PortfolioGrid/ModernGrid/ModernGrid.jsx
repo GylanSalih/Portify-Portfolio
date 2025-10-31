@@ -8,7 +8,8 @@ const ModernGrid = ({
   layoutMode = 1, 
   currentPage = 1,
   itemsPerPage = 9,
-  filteredItems = []
+  filteredItems = [],
+  showAllInfo = false
 }) => {
   // Pagination-Logik
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -38,7 +39,7 @@ const ModernGrid = ({
 
       <ul className={getLayoutClass()}>
         {paginatedItems.map((item) => (
-          <li key={item.slug} className={styles.item}>
+          <li key={item.slug} className={`${styles.item} ${showAllInfo ? styles.showInfo : ''}`}>
             <div className={styles.card}>
               <figure className={styles.figure}>
                 <Link href={`/portfolio/${item.slug}`}>
@@ -47,7 +48,7 @@ const ModernGrid = ({
                     alt={item.title}
                     className={styles.image}
                   />
-                  <div className={styles.overlay}>
+                  <div className={`${styles.overlay} ${showAllInfo ? styles.alwaysVisible : ''}`}>
                     <div>
                       <h3>{item.title}</h3>
                       <p>{item.category}</p>

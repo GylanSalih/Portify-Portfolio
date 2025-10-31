@@ -15,6 +15,9 @@ export default function PortfolioPage() {
   const [selectedTags, setSelectedTags] = useState([]);
   const [mounted, setMounted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [showAllInfo, setShowAllInfo] = useState(false);
+  const [isShuffled, setIsShuffled] = useState(false);
+  const [shuffledItems, setShuffledItems] = useState([]);
   
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
@@ -46,13 +49,26 @@ export default function PortfolioPage() {
 
   // Calculate filtered items with useMemo
   const filteredItems = useMemo(() => {
-    return allItems.filter(item => {
+    const filtered = allItems.filter(item => {
       const matchesCategory = category === 'all' || item.category === category;
       const matchesTags = selectedTags.length === 0 || 
         selectedTags.some(tag => item.tags.includes(tag));
       return matchesCategory && matchesTags;
     });
-  }, [allItems, category, selectedTags]);
+    
+    // Return shuffled items if shuffle is active, otherwise return filtered items
+    if (isShuffled && shuffledItems.length > 0) {
+      // Filter shuffled items to match current filters
+      return shuffledItems.filter(item => {
+        const matchesCategory = category === 'all' || item.category === category;
+        const matchesTags = selectedTags.length === 0 || 
+          selectedTags.some(tag => item.tags.includes(tag));
+        return matchesCategory && matchesTags;
+      });
+    }
+    
+    return filtered;
+  }, [allItems, category, selectedTags, isShuffled, shuffledItems]);
 
   // Update total items when filtered items change
   useEffect(() => {
@@ -88,6 +104,25 @@ export default function PortfolioPage() {
     setCurrentPage(1);
   }, []);
 
+  const handleShowAllInfoChange = useCallback((show) => {
+    setShowAllInfo(show);
+  }, []);
+
+  const handleShuffleChange = useCallback((shuffle) => {
+    setIsShuffled(shuffle);
+    if (shuffle) {
+      // Shuffle the current filtered items
+      const filtered = allItems.filter(item => {
+        const matchesCategory = category === 'all' || item.category === category;
+        const matchesTags = selectedTags.length === 0 || 
+          selectedTags.some(tag => item.tags.includes(tag));
+        return matchesCategory && matchesTags;
+      });
+      const shuffled = [...filtered].sort(() => Math.random() - 0.5);
+      setShuffledItems(shuffled);
+    }
+  }, [allItems, category, selectedTags]);
+
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
 
@@ -112,6 +147,9 @@ export default function PortfolioPage() {
         onCategoryChange={handleCategoryChange}
         onTagsChange={handleTagsChange}
         onLayoutChange={handleLayoutChange}
+        onShowAllInfoChange={handleShowAllInfoChange}
+        onShuffleChange={handleShuffleChange}
+        showAllInfo={showAllInfo}
         hasContent={true}
         isLoading={false}
         showLoadMore={false}
@@ -124,6 +162,7 @@ export default function PortfolioPage() {
         currentPage={currentPage}
         itemsPerPage={itemsPerPage}
         filteredItems={filteredItems}
+        showAllInfo={showAllInfo}
       />
       <Pagination
         key="portfolio-pagination"

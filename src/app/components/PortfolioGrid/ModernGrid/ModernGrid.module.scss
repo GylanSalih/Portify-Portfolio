@@ -350,6 +350,18 @@
     }
   }
 
+  // Show Info State - Info immer sichtbar
+  &.showInfo {
+    .figure::after {
+      opacity: 1;
+    }
+
+    .overlay {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   @media (max-width: 1024px) {
     width: 100%;
     height: 320px;
@@ -423,6 +435,12 @@
   transform: translateY(15px);
   z-index: 2;
   will-change: transform, opacity;
+
+  // Always Visible State
+  &.alwaysVisible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
   > div:first-child {
     display: flex;

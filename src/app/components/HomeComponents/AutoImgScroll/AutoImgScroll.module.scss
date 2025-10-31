@@ -1,0 +1,398 @@
+.autoImgScroll {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-top: 2.5rem;
+  padding-bottom: 2rem;
+  color: white;
+  
+  @media (min-width: 768px) {
+    padding-top: 5rem;
+    padding-bottom: 3.75rem;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  
+  @media (min-width: 768px) {
+    gap: 0.5rem;
+  }
+}
+
+.scrollRow {
+  display: flex;
+  overflow: hidden;
+  gap: 0.75rem;
+  position: relative;
+  
+  // Linker Gradient - fade out nach rechts
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 120px;
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.8) 30%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    z-index: 10; // Über den Items, um Ränder zu verdecken
+    pointer-events: none; // Items bleiben trotzdem klickbar
+    
+    @media (min-width: 768px) {
+      width: 150px;
+    }
+    
+    @media (min-width: 1280px) {
+      width: 200px;
+    }
+  }
+  
+  // Rechter Gradient - fade out nach links
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 120px;
+    background: linear-gradient(
+      to left,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.8) 30%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    z-index: 10; // Über den Items, um Ränder zu verdecken
+    pointer-events: none; // Items bleiben trotzdem klickbar
+    
+    @media (min-width: 768px) {
+      width: 150px;
+    }
+    
+    @media (min-width: 1280px) {
+      width: 200px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    gap: 0.5rem;
+  }
+}
+
+.scrollContent {
+  display: flex;
+  gap: 0.75rem;
+  
+  @media (min-width: 768px) {
+    gap: 0.5rem;
+  }
+}
+
+.scrollTrack {
+  display: flex;
+  gap: 0.75rem;
+  animation: loop-scroll 30s linear infinite;
+  
+  @media (min-width: 768px) {
+    gap: 0.5rem;
+  }
+  
+  &.reverse {
+    animation: loop-scroll-reverse 30s linear infinite;
+  }
+}
+
+.scrollItem {
+  overflow: hidden;
+  position: relative;
+  max-width: none;
+  background-color: black;
+  border-radius: 0.5rem;
+  width: 180px;
+  height: 180px;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  position: relative;
+  z-index: 1; // Unter den Gradienten, aber trotzdem klickbar wegen pointer-events: none
+  
+  @media (min-width: 480px) {
+    width: 200px;
+    height: 200px;
+    border-radius: 0.625rem;
+  }
+  
+  @media (min-width: 768px) {
+    border-radius: 0.75rem;
+    width: 250px;
+    height: 250px;
+  }
+  
+  @media (min-width: 1280px) {
+    width: 300px;
+    height: 300px;
+  }
+  
+  @media (min-width: 1536px) {
+    width: 350px;
+    height: 350px;
+  }
+  
+  &:hover {
+    .media {
+      transform: scale(1.02);
+    }
+
+    .figure::after {
+      opacity: 1;
+    }
+
+    .overlay {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.figure {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  margin: 0;
+  background-color: black;
+
+  @media (min-width: 480px) {
+    border-radius: 0.625rem;
+  }
+  
+  @media (min-width: 768px) {
+    border-radius: 0.75rem;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.75) 0%,
+      rgba(0, 0, 0, 0.35) 40%,
+      rgba(0, 0, 0, 0.05) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    will-change: opacity;
+  }
+}
+
+.media {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: 
+    transform 0.4s ease,
+    opacity 0.4s ease;
+  user-select: none;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  will-change: transform;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  color: #fff;
+  opacity: 0;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  transform: translateY(15px);
+  z-index: 2;
+  will-change: transform, opacity;
+  font-family: 'Wotfard', sans-serif;
+
+  > div:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+    font-family: 'Wotfard', sans-serif;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    margin: 0;
+    font-family: 'Wotfard', sans-serif;
+    font-weight: 400;
+    line-height: 1.2;
+    text-align: left;
+
+    @media (max-width: 768px) {
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1rem;
+    }
+  }
+
+  p {
+    font-size: 1rem;
+    margin: 0;
+    font-weight: 400;
+    opacity: 0.9;
+    font-family: 'Wotfard', sans-serif;
+    line-height: 1.5;
+    text-align: left;
+
+    @media (max-width: 768px) {
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.875rem;
+  }
+}
+
+.linkIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  opacity: 0.8;
+  will-change: transform, opacity;
+  transition: all 0.3s ease;
+
+  &:hover {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+.tags {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    margin-top: 0.4rem;
+  }
+
+  @media (max-width: 480px) {
+    gap: 0.3rem;
+  }
+}
+
+.tag {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  font-weight: 500;
+  font-family: 'Wotfard', sans-serif;
+  backdrop-filter: blur(5px);
+
+  @media (max-width: 768px) {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.65rem;
+  }
+}
+
+.viewAllLink {
+  display: flex;
+  gap: 0.25rem;
+  justify-content: flex-start;
+  align-items: center;
+  font-weight: 500;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.link {
+  display: flex;
+  gap: 0.25rem;
+  justify-content: flex-start;
+  align-items: center;
+  font-weight: 500;
+  padding-left: 1rem;
+  font-size: 5px;
+  text-decoration: none;
+  color: inherit;
+  
+  &:hover {
+    opacity: 0.6;
+  }
+  
+  h1 {
+    margin: 0;
+  }
+}
+
+.arrow {
+  width: 22px;
+  height: 22px;
+}
+
+// Animation keyframes
+@keyframes loop-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes loop-scroll-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+// Pause animation on hover
+.scrollTrack:hover {
+  animation-play-state: paused;
+}
+
