@@ -4,9 +4,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { useBlogStats } from '../../../hooks/useBlogStats';
-import {
-  formatNumber,
-} from '../../../lib/blogUtils';
+import { formatNumber } from '../../../lib/blogUtils';
+import { shuffleArray } from '../../../lib/utils';
 import BlogMightLike from '../BlogMightLike/blogmightlike';
 import LikeButton from '../LikeButton';
 import { Clock, Eye, Calendar } from 'lucide-react';
@@ -126,33 +125,18 @@ const BlogPost = ({ data = null, mdxContent = null }) => {
 
         const currentPostCategory = post.category;
         
-        // Helper function to shuffle array (Fisher-Yates Shuffle)
-        const shuffleArray = (array) => {
-          const shuffled = [...array];
-          for (let i = shuffled.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-          }
-          return shuffled;
-        };
-        
         // Get posts from same category (excluding current post)
         const sameCategoryPosts = allPosts
           .filter(p => p.slug !== slug && p.category === currentPostCategory);
         
         // Shuffle and take up to 4 posts
-        const shuffledSameCategory = shuffleArray(sameCategoryPosts);
-        const related = shuffledSameCategory.slice(0, 4);
+        const related = shuffleArray(sameCategoryPosts).slice(0, 4);
         
         // If not enough posts in same category, fill with other posts
         if (related.length < 4) {
           const otherPosts = allPosts
             .filter(p => p.slug !== slug && p.category !== currentPostCategory);
-          
-          const shuffledOtherPosts = shuffleArray(otherPosts);
-          const additionalPosts = shuffledOtherPosts.slice(0, 4 - related.length);
-          
-          related.push(...additionalPosts);
+          related.push(...shuffleArray(otherPosts).slice(0, 4 - related.length));
         }
 
         // MDX-Posts sind bereits verarbeitet, keine weitere Verarbeitung nötig

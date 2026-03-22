@@ -16,11 +16,7 @@ export { default as Filter } from './PortfolioGrid/Filter/Filter';
 export { default as Footer } from './Footer/Footer';
 export { default as HamburgerMenu } from './Navbar/HamburgerMenu/HamburgerMenu';
 
-export { default as InfinityCarousel } from './InfinityCarousel/InfinityCarousel';
 export { default as LandingImage } from './global/LandingImage/LandingImage';
-
-
-export { default as Mouse } from './Mouse/Mouse';
 export { default as Navbar } from './Navbar/Navbar';    
 export { default as LandingSlider } from './HomeComponents/LandingSlider/LandingSlider';
 export { default as Preload } from './Preload/Preload';

@@ -15,7 +15,7 @@ import Pagination from '../../PortfolioGrid/Pagination/Pagination';
 import styles from './BlogGrid.module.scss';
 
 const BlogGrid = () => {
-  const [blogPosts, setBlogPosts] = useState([]);
+  const [rawPosts, setRawPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedTag, setSelectedTag] = useState('');
   const [sortOrder, setSortOrder] = useState('latest');
@@ -24,6 +24,9 @@ const BlogGrid = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false);
   const [itemsPerPage, setItemsPerPage] = useState(6);
+
+  // Sorted posts derived from rawPosts — no re-fetch on sort change
+  const blogPosts = useMemo(() => sortBlogPosts(rawPosts, sortOrder), [rawPosts, sortOrder]);
 
   const sectionRef = useRef(null);
   const filterRef = useRef(null);
@@ -53,37 +56,26 @@ const BlogGrid = () => {
   useEffect(() => {
     const loadPosts = async () => {
       try {
-        // Lade MDX-Posts über die neue API
         const mdxPosts = await fetchMDXPosts();
-
-        // Extrahiere Tags
         const tags = extractUniqueTags(mdxPosts);
         setUniqueTags(tags);
-
-        // Sortiere die Posts
-        const sortedPosts = sortBlogPosts(mdxPosts, sortOrder);
-        setBlogPosts(sortedPosts);
+        setRawPosts(mdxPosts);
       } catch (error) {
         console.error('Error loading MDX posts:', error);
-        // Fallback zu JSON falls MDX fehlschlägt
         try {
           const response = await fetch('/data/BlogData.json');
           const data = await response.json();
-
           const gridPosts = data.map(post => ({
             ...post.gridData,
             slug: post.slug,
             title: post.title,
             tags: post.tags,
-            category: post.category
+            category: post.category,
           }));
-
           const postsWithProcessedContent = await processMultipleBlogPosts(gridPosts);
           const tags = extractUniqueTags(postsWithProcessedContent);
           setUniqueTags(tags);
-
-          const sortedPosts = sortBlogPosts(postsWithProcessedContent, sortOrder);
-          setBlogPosts(sortedPosts);
+          setRawPosts(postsWithProcessedContent);
         } catch (fallbackError) {
           console.error('Error loading fallback posts:', fallbackError);
         }
@@ -91,9 +83,8 @@ const BlogGrid = () => {
         setIsLoading(false);
       }
     };
-
     loadPosts();
-  }, [sortOrder]);
+  }, []);
 
   // Memoize filtered posts for better performance
   const filteredPosts = useMemo(() => {

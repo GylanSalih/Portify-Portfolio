@@ -48,19 +48,11 @@ export const usePortfolioStats = slug => {
     return Promise.resolve();
   }, [slug]);
 
-  // Alias-Funktionen für Kompatibilität
-  const incrementViewsRPC = incrementViews;
-  const incrementLikesRPC = incrementLikes;
-  const incrementViewsSimple = incrementViews;
-
   return {
     stats,
     hasLiked,
     incrementViews,
     incrementLikes,
-    incrementViewsRPC,
-    incrementLikesRPC,
-    incrementViewsSimple
   };
 };
 

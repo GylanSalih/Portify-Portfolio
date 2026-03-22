@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDarkMode } from '../../contexts/DarkModeContext';
 import Link from 'next/link';
+import Image from 'next/image';
 import DarkModeToggle from './DarkModeToggle/DarkModeToggle';
 import AudioIndicator from './AudioIndicator/AudioIndicator';
 import HamburgerMenu from './HamburgerMenu/HamburgerMenu';
@@ -14,21 +15,13 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
 
-  const navbarRef = useRef(null);
-
   // Scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Close mobile menu on route change
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
   }, []);
 
   const toggleAudioIndicator = () => {
@@ -46,10 +39,7 @@ const Navbar = () => {
   return (
     <>
       {/* Desktop Navbar */}
-      <header
-        ref={navbarRef}
-        className={`${styles.navbar} ${styles['lg-block']}`}
-      >
+      <header className={`${styles.navbar} ${styles['lg-block']}`}>
         <div className={styles.container}>
             <div
               className={`${styles.navbarContent} ${
@@ -59,14 +49,17 @@ const Navbar = () => {
             {/* Logo */}
             <div className={styles.logo}>
               <Link href="/" className={styles.logoLink}>
-                <img
+                <Image
                   src={
                     isDarkMode
                       ? '/assets/images/logo/logo_white.png'
                       : '/assets/images/logo/logo_black.png'
                   }
                   alt="Portify Logo"
+                  width={48}
+                  height={48}
                   className={styles.logoImage}
+                  priority
                 />
               </Link>
             </div>
@@ -109,14 +102,17 @@ const Navbar = () => {
               {/* Mobile Logo */}
               <div className={styles.mobileLogo}>
                 <Link href="/" className={styles.logoLink}>
-                  <img
+                  <Image
                     src={
                       isDarkMode
                         ? '/assets/images/logo/logo_white.png'
                         : '/assets/images/logo/logo_black.png'
                     }
                     alt="Portify Logo"
+                    width={48}
+                    height={48}
                     className={styles.logoImage}
+                    priority
                   />
                 </Link>
               </div>

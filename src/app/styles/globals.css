@@ -146,6 +146,35 @@ body.dark-mode {
 }
 
 /* -----------------------------------------------------------
+ Global Grid Pattern Utility
+ Use on any section that should show the Background grid pattern:
+ Apply class="grid-bg-pattern" on a position: relative section
+---------------------------------------------------------- */
+.grid-bg-pattern {
+  position: relative;
+  overflow: hidden;
+}
+
+.grid-bg-pattern::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.3;
+  z-index: 0;
+  pointer-events: none;
+}
+
+html:not(.dark-mode) .grid-bg-pattern::before {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+}
+
+/* -----------------------------------------------------------
 Links
 ---------------------------------------------------------- */
 

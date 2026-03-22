@@ -8,6 +8,8 @@ import {
   ShoppingCart,
   Settings,
   Grid3X3,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react';
 import styles from './Testimonials.module.scss';
 
@@ -189,10 +191,13 @@ TestimonialCard.displayName = 'TestimonialCard';
 
 export default memo(function Testimonials() {
   const [activeCategory, setActiveCategory] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
+  const ITEMS_PER_PAGE = 6;
 
   const handleCategoryChange = useCallback((categoryId) => {
     if (categoryId === activeCategory) return;
     setActiveCategory(categoryId);
+    setCurrentPage(0);
   }, [activeCategory]);
 
   const filteredTestimonials = useMemo(() => 
@@ -201,6 +206,13 @@ export default memo(function Testimonials() {
       : testimonials.filter(testimonial =>
           testimonial.categories.includes(activeCategory)
         ), [activeCategory]);
+
+  const totalPages = Math.ceil(filteredTestimonials.length / ITEMS_PER_PAGE);
+  const pageStart = currentPage * ITEMS_PER_PAGE;
+  const visibleTestimonials = filteredTestimonials.slice(pageStart, pageStart + ITEMS_PER_PAGE);
+
+  const goPrev = useCallback(() => setCurrentPage(p => Math.max(0, p - 1)), []);
+  const goNext = useCallback(() => setCurrentPage(p => Math.min(totalPages - 1, p + 1)), [totalPages]);
 
   return (
     <section className={styles.section} aria-label="Client Testimonials">
@@ -246,7 +258,7 @@ export default memo(function Testimonials() {
 
         {/* Testimonials Grid */}
         <div className={styles.grid}>
-          {filteredTestimonials.map((testimonial, index) => (
+          {visibleTestimonials.map((testimonial, index) => (
             <TestimonialCard
               key={testimonial.id}
               testimonial={testimonial}
@@ -255,13 +267,33 @@ export default memo(function Testimonials() {
           ))}
         </div>
 
-        {/* Results Counter */}
-        <div className={styles.counter}>
-          <span className={styles.counterText}>
-            Showing {filteredTestimonials.length} of {testimonials.length}{' '}
-            testimonials
-          </span>
-        </div>
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className={styles.pagination}>
+            <button
+              className={`${styles.pageBtn} ${currentPage === 0 ? styles.disabled : ''}`}
+              onClick={goPrev}
+              disabled={currentPage === 0}
+              aria-label="Previous page"
+            >
+              <ChevronLeft size={18} />
+            </button>
+
+            <span className={styles.pageCount}>
+              {pageStart + 1}–{Math.min(pageStart + ITEMS_PER_PAGE, filteredTestimonials.length)}{' '}
+              / {filteredTestimonials.length}
+            </span>
+
+            <button
+              className={`${styles.pageBtn} ${currentPage >= totalPages - 1 ? styles.disabled : ''}`}
+              onClick={goNext}
+              disabled={currentPage >= totalPages - 1}
+              aria-label="Next page"
+            >
+              <ChevronRight size={18} />
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

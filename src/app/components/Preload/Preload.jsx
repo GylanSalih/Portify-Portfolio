@@ -1,15 +1,8 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styles from './Preload.module.scss';
 
-const Preload = ({ onLoaded }) => {
-  const [progress, setProgress] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-  const [hoveredKanjiIndex, setHoveredKanjiIndex] = useState(-1);
-
-  // Asset-Liste direkt in der Komponente definiert
-  const assetsToPreload = [
+const assetsToPreload = [
     // Wichtige Bilder
     { type: 'image', path: '/assets/images/logo/logo_white.png' },
     { type: 'image', path: '/assets/images/logo/logo_black.png' },
@@ -43,16 +36,24 @@ const Preload = ({ onLoaded }) => {
     // Videos (wenn vorhanden)
     { type: 'video', path: '/assets/videos/drift.mp4' },
     { type: 'video', path: '/assets/videos/Kenshin.mp4' },
-  ];
+];
 
-  const kanjiData = [
+const kanjiData = [
     { bg: '1技', inner: '1術', explanation: 'Technology/Skill' },
     { bg: '2創', inner: '2造', explanation: 'Creation/Design' },
     { bg: '3計', inner: '3算', explanation: 'Calculation/Algorithm' },
     { bg: '4情', inner: '4報', explanation: 'Information/Data' },
     { bg: '5構', inner: '5築', explanation: 'Structure/Architecture' },
     { bg: '6開', inner: '6発', explanation: 'Development/Coding' },
-  ];
+];
+
+const Preload = ({ onLoaded }) => {
+  const [progress, setProgress] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [hoveredKanjiIndex, setHoveredKanjiIndex] = useState(-1);
+  const completionTimeoutRef = useRef(null);
+  const enterTimeoutRef = useRef(null);
 
   useEffect(() => {
     let loadedCount = 0;
@@ -64,10 +65,7 @@ const Preload = ({ onLoaded }) => {
       setProgress(newProgress);
       
       if (loadedCount === totalAssets) {
-        // MEMORY LEAK FIX: Store timeout ID for cleanup
-        const timeoutId = setTimeout(() => setIsLoaded(true), 500);
-        // Store for potential cleanup
-        updateProgress.timeoutId = timeoutId;
+        completionTimeoutRef.current = setTimeout(() => setIsLoaded(true), 500);
       }
     };
 
@@ -100,14 +98,15 @@ const Preload = ({ onLoaded }) => {
           });
       }
     });
+
+    return () => {
+      if (completionTimeoutRef.current) clearTimeout(completionTimeoutRef.current);
+    };
   }, []);
 
   const handleEnter = () => {
     setIsVisible(false);
-    // MEMORY LEAK FIX: Store timeout ID for cleanup
-    const timeoutId = setTimeout(() => onLoaded?.(), 800);
-    // Store for potential cleanup
-    handleEnter.timeoutId = timeoutId;
+    enterTimeoutRef.current = setTimeout(() => onLoaded?.(), 800);
   };
 
   if (!isVisible) return null;

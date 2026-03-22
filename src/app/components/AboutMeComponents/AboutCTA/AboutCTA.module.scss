@@ -8,7 +8,6 @@
 
 .container {
   width: 100%;
-  max-width: 1200px;
 }
 
 .inner {
@@ -20,6 +19,28 @@
   @media (max-width: 768px) {
     padding: 35px;
   }
+}
+
+:global(html.dark-mode) .inner {
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+:global(html.dark-mode) .eyebrow {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+:global(html.dark-mode) .title {
+  color: #ffffff;
+}
+
+:global(html.dark-mode) .button {
+  background-color: #ffffff;
+  color: #0a0a0a;
+}
+
+:global(html.dark-mode) .button:hover {
+  background-color: #f0f0f0;
 }
 
 .eyebrow {

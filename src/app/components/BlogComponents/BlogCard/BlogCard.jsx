@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Eye, Heart, Calendar, Clock } from 'lucide-react';
 import { memo } from 'react';
 import { blogShortExcerpt } from '../../../lib/blogUtils';
@@ -65,12 +66,13 @@ const BlogCard = ({
         className={isRelated ? styles.relatedLink : styles.link}
       >
         <div className={isRelated ? styles.relatedImageContainer : styles.imageContainer}>
-          <img
+          <Image
             src={image}
             alt={title}
+            fill
             className={isRelated ? styles.relatedImage : styles.image}
-            loading="lazy"
-            decoding="async"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            style={{ objectFit: 'cover' }}
           />
           {/* Stats in image area - top left */}
           <div className={isRelated ? styles.relatedImageStats : styles.imageStats}>

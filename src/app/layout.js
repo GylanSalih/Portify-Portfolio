@@ -30,7 +30,6 @@ export default function RootLayout({ children }) {
     <html lang="de" suppressHydrationWarning={true} data-scroll-behavior="smooth">
       <head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         <script
           dangerouslySetInnerHTML={{

@@ -4,29 +4,28 @@
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-}
-
-.section {
-  margin-bottom: 2.5rem;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 16px;
-  padding: 2rem;
-  transition: all 0.3s ease;
+  overflow: hidden;
   backdrop-filter: blur(10px);
+}
 
-  &:hover {
-    border-color: rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.04);
-    transform: translateY(-2px);
-  }
+.section {
+  padding: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: background 0.2s ease;
 
   &:last-child {
-    margin-bottom: 0;
+    border-bottom: none;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.02);
   }
 
   @media (max-width: 768px) {
-    margin-bottom: 2.5rem;
+    padding: 1.5rem;
   }
 }
 

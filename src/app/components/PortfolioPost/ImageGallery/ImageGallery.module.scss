@@ -43,9 +43,12 @@
   display: block;
   border-radius: 12px;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, border-color 0.3s ease;
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.06);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 
   &:hover {
     transform: translateY(-3px);
@@ -64,6 +67,10 @@
   transition: transform 0.4s ease;
   display: block;
   border-radius: 12px;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
 
   @media (max-width: 1024px) {
     height: 240px;

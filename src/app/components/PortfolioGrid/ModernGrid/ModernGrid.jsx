@@ -47,6 +47,8 @@ const ModernGrid = ({
                     src={item.gridData.imgSrc}
                     alt={item.title}
                     className={styles.image}
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className={`${styles.overlay} ${showAllInfo ? styles.alwaysVisible : ''}`}>
                     <div>

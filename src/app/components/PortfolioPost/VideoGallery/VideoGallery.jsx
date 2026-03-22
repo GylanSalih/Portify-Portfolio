@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
 import styles from './VideoGallery.module.scss';
 
 const VideoGallery = ({ videos }) => {
   const [videoStates, setVideoStates] = useState({});
+  const videoRefs = useRef({});
 
   if (!videos || videos.length === 0) {
     return null;
@@ -19,27 +20,26 @@ const VideoGallery = ({ videos }) => {
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
-  // Video controls
-  const toggleVideoPlay = (videoId) => {
-    const video = document.getElementById(videoId);
+  const toggleVideoPlay = (videoKey) => {
+    const video = videoRefs.current[videoKey];
     if (video) {
       if (video.paused) {
         video.play();
-        setVideoStates(prev => ({ ...prev, [videoId]: { ...prev[videoId], playing: true } }));
+        setVideoStates(prev => ({ ...prev, [videoKey]: { ...prev[videoKey], playing: true } }));
       } else {
         video.pause();
-        setVideoStates(prev => ({ ...prev, [videoId]: { ...prev[videoId], playing: false } }));
+        setVideoStates(prev => ({ ...prev, [videoKey]: { ...prev[videoKey], playing: false } }));
       }
     }
   };
 
-  const toggleVideoMute = (videoId) => {
-    const video = document.getElementById(videoId);
+  const toggleVideoMute = (videoKey) => {
+    const video = videoRefs.current[videoKey];
     if (video) {
       video.muted = !video.muted;
-      setVideoStates(prev => ({ 
-        ...prev, 
-        [videoId]: { ...prev[videoId], muted: video.muted }
+      setVideoStates(prev => ({
+        ...prev,
+        [videoKey]: { ...prev[videoKey], muted: video.muted },
       }));
     }
   };
@@ -48,66 +48,67 @@ const VideoGallery = ({ videos }) => {
     <section className={styles.gallery}>
       <h2 className={styles.title}>Videos</h2>
       <div className={styles.grid}>
-        {videos.map((video, index) => (
-          <div key={`video-${index}`} className={styles.container}>
-            <div className={styles.wrapper}>
-              <video
-                id={`video-${index}`}
-                className={styles.player}
-                poster={video.thumbnail}
-                preload="metadata"
-                onLoadedMetadata={() => {
-                  const videoEl = document.getElementById(`video-${index}`);
-                  if (videoEl) {
+        {videos.map((video, index) => {
+          const videoKey = `video-${index}`;
+          return (
+            <div key={videoKey} className={styles.container}>
+              <div className={styles.wrapper}>
+                <video
+                  ref={el => { videoRefs.current[videoKey] = el; }}
+                  className={styles.player}
+                  poster={video.thumbnail}
+                  preload="metadata"
+                  muted
+                  onLoadedMetadata={(e) => {
                     setVideoStates(prev => ({
                       ...prev,
-                      [`video-${index}`]: {
-                        duration: videoEl.duration,
+                      [videoKey]: {
+                        duration: e.target.duration,
                         muted: true,
-                        playing: false
-                      }
+                        playing: false,
+                      },
                     }));
-                  }
-                }}
-              >
-                <source src={video.url} type="video/mp4" />
-                Ihr Browser unterstützt das Video-Element nicht.
-              </video>
-              
-              <div className={styles.controls}>
-                <button 
-                  className={styles.button}
-                  onClick={() => toggleVideoPlay(`video-${index}`)}
+                  }}
                 >
-                  {videoStates[`video-${index}`]?.playing ? (
-                    <Pause className="icon" />
-                  ) : (
-                    <Play className="icon" />
-                  )}
-                </button>
-                
-                <button 
-                  className={styles.button}
-                  onClick={() => toggleVideoMute(`video-${index}`)}
-                >
-                  {videoStates[`video-${index}`]?.muted ? (
-                    <VolumeX className="icon" />
-                  ) : (
-                    <Volume2 className="icon" />
-                  )}
-                </button>
-                
-                <span className={styles.duration}>
-                  {formatDuration(videoStates[`video-${index}`]?.duration)}
-                </span>
+                  <source src={video.url} type="video/mp4" />
+                  Ihr Browser unterst\u00fctzt das Video-Element nicht.
+                </video>
+
+                <div className={styles.controls}>
+                  <button
+                    className={styles.button}
+                    onClick={() => toggleVideoPlay(videoKey)}
+                  >
+                    {videoStates[videoKey]?.playing ? (
+                      <Pause className="icon" />
+                    ) : (
+                      <Play className="icon" />
+                    )}
+                  </button>
+
+                  <button
+                    className={styles.button}
+                    onClick={() => toggleVideoMute(videoKey)}
+                  >
+                    {videoStates[videoKey]?.muted !== false ? (
+                      <VolumeX className="icon" />
+                    ) : (
+                      <Volume2 className="icon" />
+                    )}
+                  </button>
+
+                  <span className={styles.duration}>
+                    {formatDuration(videoStates[videoKey]?.duration)}
+                  </span>
+                </div>
               </div>
+
+              {video.caption && (
+                <p className={styles.caption}>{video.caption}</p>
+              )}
             </div>
-            
-            {video.caption && (
-              <p className={styles.caption}>{video.caption}</p>
-            )}
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

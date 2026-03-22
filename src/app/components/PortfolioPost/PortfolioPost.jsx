@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
+import { shuffleArray } from '../../lib/utils';
 
 
 // Import components
@@ -13,7 +14,6 @@ import VideoGallery from './VideoGallery/VideoGallery';
 import TechStack from './TechStack/TechStack';
 import Features from './Features/Features';
 import RelatedProjects from './RelatedProjects/RelatedProjects';
-import ImageModal from './ImageModal/ImageModal';
 import PortfolioPostSkeleton from './PortfolioPostSkeleton/PortfolioPostSkeleton';
 
 import styles from './PortfolioPost.module.scss';
@@ -22,8 +22,6 @@ const ProjectDetail = () => {
   const { slug } = useParams();
   const [project, setProject] = useState(null);
   const [relatedProjects, setRelatedProjects] = useState([]);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
 
   // Fancybox is now initialized in ImageGallery component
@@ -128,48 +126,33 @@ const ProjectDetail = () => {
           // Load related projects - use same category as current project
           const currentProjectCategory = projectData.category;
           
-          // Helper function to shuffle array
-          const shuffleArray = (array) => {
-            const shuffled = [...array];
-            for (let i = shuffled.length - 1; i > 0; i--) {
-              const j = Math.floor(Math.random() * (i + 1));
-              [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-            }
-            return shuffled;
-          };
-          
           // Get projects from same category (excluding current project)
           const sameCategoryProjects = data
             .filter(p => p.slug !== slug && p.category === currentProjectCategory);
           
-          // Shuffle and take up to 3 projects
-          const shuffledSameCategory = shuffleArray(sameCategoryProjects);
-          const related = shuffledSameCategory
+          const related = shuffleArray(sameCategoryProjects)
             .slice(0, 3)
             .map(p => ({
               slug: p.slug,
               title: p.title,
               image: p.gridData.imgSrc,
               category: p.category,
-              tags: p.tags || []
+              tags: p.tags || [],
             }));
           
           // If not enough projects in same category, fill with other projects
           if (related.length < 3) {
             const otherProjects = data
               .filter(p => p.slug !== slug && p.category !== currentProjectCategory);
-            
-            const shuffledOtherProjects = shuffleArray(otherProjects);
-            const additionalProjects = shuffledOtherProjects
+            const additionalProjects = shuffleArray(otherProjects)
               .slice(0, 3 - related.length)
               .map(p => ({
                 slug: p.slug,
                 title: p.title,
                 image: p.gridData.imgSrc,
                 category: p.category,
-                tags: p.tags || []
+                tags: p.tags || [],
               }));
-            
             related.push(...additionalProjects);
           }
           
@@ -189,18 +172,7 @@ const ProjectDetail = () => {
   }, [slug]);
 
 
-  // Image navigation
-  const nextImage = () => {
-    if (project?.images) {
-      setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
-    }
-  };
-
-  const prevImage = () => {
-    if (project?.images) {
-      setCurrentImageIndex((prev) => (prev - 1 + project.images.length) % project.images.length);
-    }
-  };
+  // Image navigation helpers removed — Fancybox handles gallery navigation
 
   if (loading) {
     return <PortfolioPostSkeleton />;
@@ -247,16 +219,6 @@ const ProjectDetail = () => {
         {/* Related Projects */}
         <RelatedProjects relatedProjects={relatedProjects} />
       </div>
-
-      {/* Image Modal */}
-      <ImageModal 
-        isOpen={isImageModalOpen}
-        onClose={() => setIsImageModalOpen(false)}
-        currentImage={project.images[currentImageIndex]}
-        onPrevImage={prevImage}
-        onNextImage={nextImage}
-        hasMultipleImages={project.images && project.images.length > 1}
-      />
     </div>
   );
 };

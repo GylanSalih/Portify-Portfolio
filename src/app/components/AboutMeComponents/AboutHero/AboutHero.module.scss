@@ -22,20 +22,7 @@
   grid-template-columns: 1fr;
   gap: 2rem;
   width: 100%;
-  max-width: 1200px;
   margin: 0 auto;
-
-  @media (max-width: 1280px) {
-    max-width: 1000px;
-  }
-
-  @media (max-width: 1024px) {
-    max-width: 900px;
-  }
-
-  @media (max-width: 768px) {
-    max-width: 100%;
-  }
 }
 
 .heroImageLarge {

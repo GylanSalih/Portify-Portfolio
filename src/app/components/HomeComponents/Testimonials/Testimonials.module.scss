@@ -2,25 +2,41 @@
 .section {
   position: relative;
   width: 100%;
-  max-width: 80rem;
-  margin: 0 auto;
   padding: 4rem 1rem;
-  background: #0a0a0a;
+  background: transparent;
   min-height: 100vh;
 
-  /* Dark mode support */
-  :global(html:not(.dark-mode)) & {
-    background: #f8f8f8;
+  /* Grid Pattern Background - same as Featured Projects */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+    opacity: 0.3;
+    z-index: 0;
+    pointer-events: none;
   }
 
-  :global(html.dark-mode) & {
-    background: #0a0a0a;
+  :global(html:not(.dark-mode)) & {
+    background: transparent;
+
+    &::before {
+      background-image:
+        linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+    }
   }
 }
 
 .container {
   position: relative;
   z-index: 10;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
 /* Header */
@@ -231,14 +247,62 @@
   }
 }
 
-/* Counter */
-.counter {
+/* Counter - removed in favour of pagination */
+
+/* Pagination */
+.pagination {
   display: flex;
+  align-items: center;
   justify-content: center;
+  gap: 1.25rem;
   margin-top: 3rem;
 }
 
-.counterText {
+.pageBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+  }
+
+  &.disabled,
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  :global(html:not(.dark-mode)) & {
+    border-color: rgba(10, 10, 10, 0.15);
+    color: rgba(10, 10, 10, 0.6);
+
+    &:hover:not(:disabled) {
+      background: rgba(10, 10, 10, 0.06);
+      border-color: rgba(10, 10, 10, 0.25);
+      color: #0a0a0a;
+    }
+  }
+}
+
+.pageCount {
   font-size: 0.875rem;
   color: rgba(255, 255, 255, 0.5);
+  font-family: 'Wotfard', sans-serif;
+  min-width: 80px;
+  text-align: center;
+
+  :global(html:not(.dark-mode)) & {
+    color: rgba(10, 10, 10, 0.5);
+  }
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 
 export const useBlogStats = slug => {
   const [stats, setStats] = useState({ views: 0, likes: 0 });
@@ -48,19 +48,11 @@ export const useBlogStats = slug => {
     return Promise.resolve();
   }, [slug]);
 
-  // Alias-Funktionen für Kompatibilität
-  const incrementViewsRPC = incrementViews;
-  const incrementLikesRPC = incrementLikes;
-  const incrementViewsSimple = incrementViews;
-
   return {
     stats,
     hasLiked,
     incrementViews,
     incrementLikes,
-    incrementViewsRPC,
-    incrementLikesRPC,
-    incrementViewsSimple
   };
 };
 
@@ -158,106 +150,5 @@ export const useBlogSearch = (posts, delay = 500) => {
     setSearchQuery,
     searchResults,
     isSearching,
-  };
-};
-
-// Hook für Blog-Analytics
-export const useBlogAnalytics = (posts) => {
-  const [analytics, setAnalytics] = useState({
-    totalPosts: 0,
-    totalViews: 0,
-    totalLikes: 0,
-    averageReadTime: 0,
-    engagementRate: 0,
-    topPosts: [],
-    tagDistribution: {},
-    monthlyStats: {},
-  });
-
-  useEffect(() => {
-    if (!posts || posts.length === 0) return;
-
-    const calculateAnalytics = () => {
-      const totalPosts = posts.length;
-      const totalViews = posts.reduce((sum, post) => sum + (post.views || 0), 0);
-      const totalLikes = posts.reduce((sum, post) => sum + (post.likes || 0), 0);
-      const averageReadTime = posts.reduce((sum, post) => {
-        const time = parseInt(post.readTime) || 3;
-        return sum + time;
-      }, 0) / totalPosts;
-
-      const topPosts = [...posts]
-        .sort((a, b) => (b.views || 0) - (a.views || 0))
-        .slice(0, 5);
-
-      const tagDistribution = posts.reduce((acc, post) => {
-        if (post.tags) {
-          post.tags.forEach(tag => {
-            acc[tag] = (acc[tag] || 0) + 1;
-          });
-        }
-        return acc;
-      }, {});
-
-      setAnalytics({
-        totalPosts,
-        totalViews,
-        totalLikes,
-        averageReadTime: Math.round(averageReadTime),
-        engagementRate: totalPosts > 0 ? (totalLikes / totalPosts).toFixed(2) : 0,
-        topPosts,
-        tagDistribution,
-        monthlyStats: {},
-      });
-    };
-
-    calculateAnalytics();
-  }, [posts]);
-
-  return analytics;
-};
-
-// Hook für Blog-Cache
-export const useBlogCache = () => {
-  const [cache, setCache] = useState(new Map());
-  const [cacheStats, setCacheStats] = useState({
-    hits: 0,
-    misses: 0,
-    size: 0,
-  });
-
-  const getFromCache = useCallback((key) => {
-    if (cache.has(key)) {
-      setCacheStats(prev => ({ ...prev, hits: prev.hits + 1 }));
-      return cache.get(key);
-    }
-    setCacheStats(prev => ({ ...prev, misses: prev.misses + 1 }));
-    return null;
-  }, [cache]);
-
-  const setInCache = useCallback((key, value) => {
-    const newCache = new Map(cache);
-    newCache.set(key, value);
-
-    if (newCache.size > 100) {
-      const firstKey = newCache.keys().next().value;
-      newCache.delete(firstKey);
-    }
-
-    setCache(newCache);
-    setCacheStats(prev => ({ ...prev, size: newCache.size }));
-  }, [cache]);
-
-  const clearCache = useCallback(() => {
-    setCache(new Map());
-    setCacheStats({ hits: 0, misses: 0, size: 0 });
-  }, []);
-
-  return {
-    getFromCache,
-    setInCache,
-    clearCache,
-    cacheStats,
-    cacheSize: cache.size,
   };
 };

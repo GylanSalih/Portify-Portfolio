@@ -103,9 +103,6 @@ const Card = memo(({ src, title, description, className, buttonHref, isGif, cate
 const CardHomeFeatures = memo(() => {
   return (
     <section className={styles.section}>
-      {/* Floating Background Elements */}
-      <div className={`${styles.orb} ${styles.orb1}`}></div>
-      <div className={`${styles.orb} ${styles.orb2}`}></div>
 
       <div className={styles.container}>
         {/* Header Section */}
