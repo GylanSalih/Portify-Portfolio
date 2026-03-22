@@ -219,7 +219,7 @@ const BlogGrid = () => {
             </p>
           </div>
 
-          <div className={styles.filtersTopRow}>
+          <div className={styles.filtersTopRow} suppressHydrationWarning>
             <div className={styles.inputGroup}>
               <input
                 type="text"

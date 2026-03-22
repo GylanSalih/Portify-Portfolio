@@ -39,21 +39,24 @@ const AutoImgScroll = () => {
   return (
     <div className={styles.autoImgScroll}>
       <div className={styles.viewAllLink}>
-        <a href="/portfolio" className={styles.link}>
-          <h1>View all projects</h1>
-          <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            viewBox="0 0 24 24" 
-            fill="currentColor" 
-            className={styles.arrow}
-          >
-            <path 
-              fillRule="evenodd" 
-              d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" 
-              clipRule="evenodd"
-            />
-          </svg>
-        </a>
+        <div className={styles.header}>
+          <a href="/portfolio" className={styles.titleLink}>
+            <h2 className={styles.title}>View all projects</h2>
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              viewBox="0 0 24 24" 
+              fill="currentColor" 
+              className={styles.arrow}
+            >
+              <path 
+                fillRule="evenodd" 
+                d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" 
+                clipRule="evenodd"
+              />
+            </svg>
+          </a>
+          <p className={styles.subtitle}>Browse the full collection of my portfolio work</p>
+        </div>
       </div>
       
       <div className={styles.container}>

@@ -30,18 +30,7 @@
     background: #0a0a0a;
   }
 
-  /* Subtle Grid Pattern */
-&::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 32px 32px;
-  opacity: 0.3;
-  z-index: 0;
-}
+
 
 @media (min-width: 1280px) {
   padding: 6rem 0;

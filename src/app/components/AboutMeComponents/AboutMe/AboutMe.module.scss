@@ -564,6 +564,40 @@ About Me socials Styles
 Timeline // Work, Achievements
 ---------------------------------------------------------- */
 
+/* Full-width timeline section below contentGrid */
+.timelineSection {
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid #e0e0e0;
+}
+
+:global(.dark-mode) .timelineSection {
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+.timelineSection h5 {
+  font-size: 1.5rem;
+  font-family: 'Wotfard', sans-serif;
+  color: #1a1a1a;
+  margin: 0 0 2rem 0;
+  font-weight: 600;
+  text-align: left;
+}
+
+:global(.dark-mode) .timelineSection h5 {
+  color: #ffffff;
+}
+
+.timelineGrid {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 /* Improved Timeline */
 .timeline {
   display: grid;

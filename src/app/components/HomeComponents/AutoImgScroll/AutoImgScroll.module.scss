@@ -343,32 +343,65 @@
   gap: 0.25rem;
   justify-content: flex-start;
   align-items: center;
-  font-weight: 500;
-  font-size: 1rem;
   margin-bottom: 1rem;
-  
   &:hover {
     opacity: 0.6;
   }
 }
 
-.link {
-  display: flex;
-  gap: 0.25rem;
-  justify-content: flex-start;
-  align-items: center;
-  font-weight: 500;
-  padding-left: 1rem;
-  font-size: 5px;
-  text-decoration: none;
-  color: inherit;
-  
-  &:hover {
-    opacity: 0.6;
+.header {
+  text-align: left;
+  margin-left: 64px;
+
+  @media (max-width: 768px) {
+    margin-left: 48px;
   }
-  
-  h1 {
-    margin: 0;
+
+  @media (max-width: 480px) {
+    margin-left: 0;
+  }
+}
+
+.titleLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--color-foreground);
+  margin-bottom: 0.5rem;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  text-align: left;
+  color: var(--color-foreground);
+  margin: 0;
+  font-family: 'Wotfard', sans-serif;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.25rem;
+  }
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: var(--color-muted-foreground);
+  text-align: left;
+  margin: 0;
+  line-height: 1.5;
+  font-family: 'Wotfard', sans-serif;
+
+  @media (max-width: 768px) {
+    font-size: 0.875rem;
   }
 }
 
@@ -380,19 +413,19 @@
 // Animation keyframes
 @keyframes loop-scroll {
   from {
-    transform: translate3d(0, 0, 0);
+    transform: translateX(0);
   }
   to {
-    transform: translate3d(-50%, 0, 0);
+    transform: translateX(-50%);
   }
 }
 
 @keyframes loop-scroll-reverse {
   from {
-    transform: translate3d(-50%, 0, 0);
+    transform: translateX(-50%);
   }
   to {
-    transform: translate3d(0, 0, 0);
+    transform: translateX(0);
   }
 }
 

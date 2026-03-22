@@ -268,6 +268,10 @@
   padding-top: 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 
+  :global(html:not(.dark-mode)) & {
+    border-top-color: rgba(10, 10, 10, 0.15);
+  }
+
   @media (max-width: 768px) {
     flex-wrap: wrap;
     gap: 1rem;
@@ -283,6 +287,10 @@
   font-weight: 700;
   color: #ffffff;
   margin-bottom: 0.25rem;
+
+  :global(html:not(.dark-mode)) & {
+    color: #0a0a0a;
+  }
 }
 
 .statLabel {
@@ -290,5 +298,9 @@
   color: rgba(255, 255, 255, 0.6);
   text-transform: uppercase;
   letter-spacing: 0.05em;
+
+  :global(html:not(.dark-mode)) & {
+    color: rgba(10, 10, 10, 0.6);
+  }
 }
 

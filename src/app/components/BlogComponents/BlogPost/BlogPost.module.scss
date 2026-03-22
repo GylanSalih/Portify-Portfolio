@@ -89,6 +89,7 @@
   max-width: 45rem;
   margin: 0 auto;
   position: relative;
+  padding-top: 80px;
 }
 
 .heroMeta {
@@ -194,24 +195,6 @@
 .articleContent {
   margin-bottom: 4rem;
   position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: -2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 3rem;
-    height: 1px;
-    background: linear-gradient(90deg, transparent 0%, hsl(240 3.7% 18%) 50%, transparent 100%);
-  }
-
-  /* Light mode support */
-  :global(html:not(.dark-mode)) & {
-    &::before {
-      background: linear-gradient(90deg, transparent 0%, hsl(0 0% 88%) 50%, transparent 100%);
-    }
-  }
 }
 
 .contentSection {
