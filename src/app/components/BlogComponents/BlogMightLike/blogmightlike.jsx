@@ -45,8 +45,6 @@ const BlogMightLike = ({
 
   return (
     <div className={styles.section}>
-      {/* Background Elements */}
-      <div className={styles.backgroundGrid}></div>
 
       {/* Hero Header */}
       <div className={styles.heroSection}>

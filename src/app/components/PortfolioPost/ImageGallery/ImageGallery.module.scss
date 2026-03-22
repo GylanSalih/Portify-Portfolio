@@ -55,7 +55,7 @@
     border-color: rgba(255, 255, 255, 0.12);
 
     .image {
-      transform: scale(1.02);
+      transform: translateZ(0) scale(1.02);
     }
   }
 }
@@ -70,7 +70,8 @@
   will-change: transform;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  transform: translateZ(0);
+  transform: translateZ(0) scale(1);
+  filter: none;
 
   @media (max-width: 1024px) {
     height: 240px;

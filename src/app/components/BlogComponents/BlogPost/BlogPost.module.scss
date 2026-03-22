@@ -49,7 +49,7 @@
 /* Base Blog Post Container */
 .container {
   min-height: 100vh;
-  background: hsl(240 10% 3.9%);
+  background: #0a0a0a;
   color: hsl(0 0% 98%);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   line-height: 1.75;
@@ -64,7 +64,7 @@
   }
 
   :global(html.dark-mode) & {
-    background: hsl(240 10% 3.9%);
+    background: #0a0a0a;
     color: hsl(0 0% 98%);
   }
 }
@@ -72,31 +72,16 @@
 /* Hero Section - Modern & Elegant */
 .hero {
   padding: 3rem 1rem 4rem;
-  margin-top: 80px;
   text-align: left;
   position: relative;
-  background: linear-gradient(180deg, hsl(240 10% 6%) 0%, hsl(240 10% 3.9%) 100%);
+  background: transparent;
   border-bottom: 1px solid hsl(240 3.7% 18%);
   margin-bottom: 0;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent 0%, hsl(240 3.7% 18%) 50%, transparent 100%);
-  }
-
   /* Light mode support */
   :global(html:not(.dark-mode)) & {
-    background: linear-gradient(180deg, hsl(0 0% 96%) 0%, hsl(0 0% 98%) 100%);
+    background: transparent;
     border-bottom: 1px solid hsl(0 0% 88%);
-
-    &::before {
-      background: linear-gradient(90deg, transparent 0%, hsl(0 0% 88%) 50%, transparent 100%);
-    }
   }
 }
 
@@ -127,29 +112,12 @@
   border-radius: 0.75rem;
   border: 1px solid hsl(240 3.7% 18%);
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.02), transparent);
-    transition: left 0.5s;
-  }
 
   &:hover {
     background: hsl(240 10% 8%);
     border-color: hsl(240 3.7% 22%);
     transform: translateY(-1px);
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-
-    &::before {
-      left: 100%;
-    }
   }
 
   /* Light mode support */

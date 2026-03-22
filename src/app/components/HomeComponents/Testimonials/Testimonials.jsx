@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, memo, useMemo } from 'react';
+import { useState, useCallback, memo, useMemo, useLayoutEffect, useRef } from 'react';
 import {
   Globe,
   Palette,
@@ -193,6 +193,15 @@ export default memo(function Testimonials() {
   const [activeCategory, setActiveCategory] = useState(1);
   const [currentPage, setCurrentPage] = useState(0);
   const ITEMS_PER_PAGE = 6;
+  const scrollPosRef = useRef(null);
+
+  // Preserve scroll position after pagination re-render
+  useLayoutEffect(() => {
+    if (scrollPosRef.current !== null) {
+      window.scrollTo({ top: scrollPosRef.current, behavior: 'instant' });
+      scrollPosRef.current = null;
+    }
+  });
 
   const handleCategoryChange = useCallback((categoryId) => {
     if (categoryId === activeCategory) return;
@@ -211,8 +220,14 @@ export default memo(function Testimonials() {
   const pageStart = currentPage * ITEMS_PER_PAGE;
   const visibleTestimonials = filteredTestimonials.slice(pageStart, pageStart + ITEMS_PER_PAGE);
 
-  const goPrev = useCallback(() => setCurrentPage(p => Math.max(0, p - 1)), []);
-  const goNext = useCallback(() => setCurrentPage(p => Math.min(totalPages - 1, p + 1)), [totalPages]);
+  const goPrev = useCallback(() => {
+    scrollPosRef.current = window.scrollY;
+    setCurrentPage(p => Math.max(0, p - 1));
+  }, []);
+  const goNext = useCallback(() => {
+    scrollPosRef.current = window.scrollY;
+    setCurrentPage(p => Math.min(totalPages - 1, p + 1));
+  }, [totalPages]);
 
   return (
     <section className={styles.section} aria-label="Client Testimonials">

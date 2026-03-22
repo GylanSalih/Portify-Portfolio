@@ -98,6 +98,9 @@
   display: flex;
   gap: 0;
   animation: loop-scroll 30s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
   
   @media (min-width: 768px) {
     gap: 0;
@@ -376,25 +379,27 @@
 
 // Animation keyframes
 @keyframes loop-scroll {
-  0% {
-    transform: translateX(0);
+  from {
+    transform: translate3d(0, 0, 0);
   }
-  100% {
-    transform: translateX(-50%);
+  to {
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
 @keyframes loop-scroll-reverse {
-  0% {
-    transform: translateX(-50%);
+  from {
+    transform: translate3d(-50%, 0, 0);
   }
-  100% {
-    transform: translateX(0);
+  to {
+    transform: translate3d(0, 0, 0);
   }
 }
 
-// Pause animation on hover
-.scrollTrack:hover {
-  animation-play-state: paused;
+// Pause animation on hover (desktop only — avoid triggering on touch)
+@media (hover: hover) {
+  .scrollTrack:hover {
+    animation-play-state: paused;
+  }
 }
 

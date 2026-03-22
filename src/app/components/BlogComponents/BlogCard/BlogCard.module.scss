@@ -132,13 +132,13 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
-    background: rgba(59, 130, 246, 0.3);
-    border-color: rgba(59, 130, 246, 0.6);
-    color: #60a5fa;
-    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.95);
+    transform: scale(1.05);
 
     svg {
-      transform: scale(1.2);
+      transform: scale(1.1);
     }
   }
 
@@ -149,9 +149,9 @@
     color: rgba(10, 10, 10, 0.9);
 
     &:hover {
-      background: rgba(59, 130, 246, 0.2);
-      border-color: rgba(59, 130, 246, 0.6);
-      color: #3b82f6;
+      background: rgba(255, 255, 255, 0.98);
+      border-color: rgba(10, 10, 10, 0.25);
+      color: rgba(10, 10, 10, 0.95);
     }
   }
 }

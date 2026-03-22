@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState, useRef, useMemo, useCallback } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Sparkles } from 'lucide-react';
 import { useAllBlogStats, useBlogSearch } from '../../../hooks/useBlogStats';
 import {
   formatNumber,
@@ -318,7 +318,7 @@ const BlogGrid = () => {
             </div>
             <div className={styles.statItem}>
               <span className={styles.statLabel}>Coming Soon</span>
-              <span className={styles.statValue}>✨</span>
+              <span className={styles.statValue}><Sparkles size={18} /></span>
             </div>
           </div>
         )}

@@ -443,18 +443,18 @@
   font-weight: 500;
 
   &:hover {
-    background: rgba(59, 130, 246, 0.1);
-    border-color: rgba(59, 130, 246, 0.3);
-    color: #3b82f6;
-    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.9);
+    transform: translateY(-1px);
   }
 
   &.active {
-    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-    border-color: transparent;
-    color: #ffffff;
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #0a0a0a;
     font-weight: 600;
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   }
 
   /* Light mode support */
@@ -464,9 +464,16 @@
     color: rgba(10, 10, 10, 0.8);
 
     &:hover {
-      background: rgba(59, 130, 246, 0.1);
-      border-color: rgba(59, 130, 246, 0.3);
-      color: #3b82f6;
+      background: rgba(10, 10, 10, 0.1);
+      border-color: rgba(10, 10, 10, 0.2);
+      color: rgba(10, 10, 10, 0.9);
+    }
+
+    &.active {
+      background: rgba(10, 10, 10, 0.9);
+      border-color: rgba(10, 10, 10, 0.3);
+      color: #f8f8f8;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     }
   }
 }
