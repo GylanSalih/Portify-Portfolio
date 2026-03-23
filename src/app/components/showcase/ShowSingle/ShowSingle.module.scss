@@ -191,9 +191,9 @@
   align-items: center;
   justify-content: center;
   padding: 0.5rem;
-  background: rgba(38, 38, 38, 1);
+  background: rgb(10, 10, 10);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
   transition: all 0.15s ease;
 
@@ -208,9 +208,9 @@
   }
 
   &:hover:not(:disabled) {
-    background: rgba(64, 64, 64, 1);
+    background: rgba(38, 38, 38, 1);
     border-color: rgba(255, 255, 255, 0.4);
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 1);
   }
 
   &:disabled {
@@ -225,7 +225,7 @@
   justify-content: center;
   width: 38px;
   height: 38px;
-  background: rgba(38, 38, 38, 0.8);
+  background: rgb(10, 10, 10);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   color: #fff;
@@ -233,7 +233,7 @@
   transition: all 0.2s ease;
 
   &:hover {
-    background: rgba(64, 64, 64, 1);
+    background: rgb(30, 30, 30);
     border-color: rgba(255, 255, 255, 0.4);
   }
 }
@@ -365,46 +365,23 @@
   .navButtons {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     gap: 0;
     width: fit-content;
     margin: 0 auto;
   }
 }
 
-/* Position indicator between mobile nav buttons */
+/* Position indicator between mobile nav buttons — seamless pill segment */
 .navIndicator {
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.28rem 1rem;
+  padding: 0 1rem;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  margin: 0 0.35rem;
-  min-width: 64px;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1px;
-    height: 5px;
-    background: rgba(255, 255, 255, 0.2);
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1px;
-    height: 5px;
-    background: rgba(255, 255, 255, 0.2);
-  }
+  min-width: 68px;
+  background: rgb(10, 10, 10);
 }
 
 .navIndicatorText {

@@ -21,14 +21,35 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
   const menuRef = useRef(null);
   const overlayRef = useRef(null);
 
-  // Keep elements in DOM during close animation (650ms matches transition duration)
+  // Three-phase animation:
+  //   Open:  isVisible→true → 2 rAFs → panelOpen→true (panel slides in, 600ms) → itemsVisible→true
+  //   Close: itemsVisible→false (items exit, 380ms) → panelOpen→false (panel slides out, 650ms) → isVisible→false
   const [isVisible, setIsVisible] = useState(false);
+  const [panelOpen, setPanelOpen] = useState(false);
+  const [itemsVisible, setItemsVisible] = useState(false);
   useEffect(() => {
     if (isOpen) {
       setIsVisible(true);
+      let cancelled = false;
+      const f = requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          if (!cancelled) setPanelOpen(true);
+        });
+      });
+      const t = setTimeout(() => { if (!cancelled) setItemsVisible(true); }, 590);
+      return () => {
+        cancelled = true;
+        cancelAnimationFrame(f);
+        clearTimeout(t);
+      };
     } else {
-      const timer = setTimeout(() => setIsVisible(false), 650);
-      return () => clearTimeout(timer);
+      setItemsVisible(false);
+      const t1 = setTimeout(() => setPanelOpen(false), 380);
+      const t2 = setTimeout(() => setIsVisible(false), 1050);
+      return () => {
+        clearTimeout(t1);
+        clearTimeout(t2);
+      };
     }
   }, [isOpen]);
 
@@ -108,14 +129,14 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
           {/* Backdrop Overlay */}
           <div
             ref={overlayRef}
-            className={`${styles.hamburgerOverlay} ${isOpen ? styles.open : ''}`}
+            className={`${styles.hamburgerOverlay} ${panelOpen ? styles.open : ''}`}
             onClick={onClose}
           />
 
           {/* Mobile Menu Panel */}
           <div
             ref={menuRef}
-            className={`${styles.hamburgerMenuPanel} ${isDarkMode ? styles.dark : styles.light} ${isOpen ? styles.open : ''}`}
+            className={`${styles.hamburgerMenuPanel} ${isDarkMode ? styles.dark : styles.light} ${panelOpen ? styles.open : ''} ${itemsVisible ? styles.itemsOpen : ''}`}
           >
             {/* Top bar: Menu title + dark mode toggle + close */}
             <div className={styles.menuTopBar}>
@@ -145,10 +166,7 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
                     <li
                       key={item.href}
                       className={styles.menuItem}
-                      style={{ 
-                        animationDelay: `${index * 0.1}s`,
-                        '--item-index': index 
-                      }}
+                      style={{ '--item-index': index }}
                     >
                       <Link
                         href={item.href}

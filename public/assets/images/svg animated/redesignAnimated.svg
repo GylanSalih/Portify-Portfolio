@@ -1,0 +1,352 @@
+<svg viewBox="0 0 700 450" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Freelancer Website Redesign Illustration" style="width:100%;max-width:700px;background:#0a0a0a;border-radius:20px;">
+
+  <defs>
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#0a0a0a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="heroGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.04"/>
+    </linearGradient>
+    <linearGradient id="progressGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.4"/>
+    </linearGradient>
+
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- Screen clip -->
+    <clipPath id="screenClip">
+      <rect x="231" y="151" width="238" height="163"/>
+    </clipPath>
+
+    <!-- Connection paths — used for animateMotion -->
+    <path id="connTL"  d="M 158 118 Q 230 160 312 210"/>
+    <path id="connBL"  d="M 158 322 Q 230 280 312 230"/>
+    <path id="connML"  d="M 158 220 L 312 220"/>
+    <path id="connTR"  d="M 544 118 Q 455 168 388 210"/>
+    <path id="connBR"  d="M 388 230 Q 455 274 544 322"/>
+    <path id="connMR"  d="M 544 220 L 388 220"/>
+
+    <style>
+      /* Hub ring pulse */
+      .hub-ring {
+        animation: hubPulse 3s ease-in-out infinite;
+        transform-origin: 350px 220px;
+      }
+      @keyframes hubPulse {
+        0%,100% { opacity:0.08; }
+        50%     { opacity:0.03; }
+      }
+
+      /* Screen crossfade wireframe ↔ design */
+      .old-screen { animation: fadeOld 5s ease-in-out infinite; }
+      .new-screen { animation: fadeNew 5s ease-in-out infinite; }
+      @keyframes fadeOld { 0%,25%{opacity:1} 55%,100%{opacity:0} }
+      @keyframes fadeNew { 0%,25%{opacity:0} 55%,100%{opacity:1} }
+
+      /* Cursor blink */
+      .cursor { animation: cursorBlink 1.1s step-end infinite; }
+      @keyframes cursorBlink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+      /* Node float */
+      .node-ml { animation: floatML 5s ease-in-out infinite 0.6s; }
+      @keyframes floatML { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+      .node-tl { animation: floatA 5s   ease-in-out infinite; }
+      .node-bl { animation: floatB 5.5s ease-in-out infinite 0.5s; }
+      .node-tr { animation: floatC 4.8s ease-in-out infinite 1s; }
+      .node-br { animation: floatD 5.2s ease-in-out infinite 0.3s; }
+      .node-mr { animation: floatE 4.5s ease-in-out infinite 0.8s; }
+      @keyframes floatA { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
+      @keyframes floatB { 0%,100%{transform:translateY(0)} 50%{transform:translateY(4px)} }
+      @keyframes floatC { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+      @keyframes floatD { 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
+      @keyframes floatE { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+
+      /* Pen tool draw */
+      .pen-path {
+        stroke-dasharray: 60;
+        animation: penDraw 3s ease-in-out infinite;
+      }
+      @keyframes penDraw { 0%,100%{stroke-dashoffset:60} 50%{stroke-dashoffset:0} }
+
+      /* Grid lines shimmer */
+      .grid-line { animation: gridFade 4s ease-in-out infinite; }
+      @keyframes gridFade { 0%,100%{opacity:0.04} 50%{opacity:0.09} }
+
+      /* Code lines type */
+      .code-l1 { animation: codeType 3s ease-out infinite; }
+      .code-l2 { animation: codeType 3s ease-out infinite 0.3s; }
+      .code-l3 { animation: codeType 3s ease-out infinite 0.6s; }
+      @keyframes codeType { 0%,100%{opacity:0.2} 50%{opacity:0.8} }
+
+      /* Swatch shimmer */
+      .swatch-a { animation: swatchGlow 2s ease-in-out infinite; }
+      @keyframes swatchGlow { 0%,100%{opacity:0.55} 50%{opacity:1} }
+
+      /* Slider dot active pulse */
+      .dot-a { animation: dotA 5s ease-in-out infinite; }
+      .dot-b { animation: dotB 5s ease-in-out infinite; }
+      @keyframes dotA {
+        0%,25%  { r:2.5; opacity:1; }
+        55%,100%{ r:1.5; opacity:0.3; }
+      }
+      @keyframes dotB {
+        0%,25%  { r:1.5; opacity:0.3; }
+        55%,100%{ r:2.5; opacity:1; }
+      }
+    </style>
+  </defs>
+
+  <!-- ── BACKGROUND GLOW ── -->
+  <ellipse cx="350" cy="220" rx="300" ry="200" fill="url(#bgGlow)"/>
+
+  <!-- ── SUBTLE GRID LINES ── -->
+  <line class="grid-line" x1="175" y1="60"  x2="175" y2="400" stroke="white" stroke-width="0.5"/>
+  <line class="grid-line" x1="525" y1="60"  x2="525" y2="400" stroke="white" stroke-width="0.5"/>
+  <line class="grid-line" x1="100" y1="220" x2="600" y2="220" stroke="white" stroke-width="0.5"/>
+
+  <!-- ── CONNECTION LINES ── -->
+  <path d="M 158 118 Q 230 160 312 210" stroke="white" stroke-width="1.2" stroke-opacity="0.12" stroke-dasharray="5 4"/>
+  <path d="M 158 322 Q 230 280 312 230" stroke="white" stroke-width="1.2" stroke-opacity="0.12" stroke-dasharray="5 4"/>
+  <!-- CONTENT ML → Monitor -->
+  <path d="M 158 220 L 312 220"         stroke="white" stroke-width="1.2" stroke-opacity="0.12" stroke-dasharray="5 4"/>
+  <!-- TYPO → Monitor (data stream direction reversed) -->
+  <path d="M 544 118 Q 455 168 388 210" stroke="white" stroke-width="1.2" stroke-opacity="0.12" stroke-dasharray="5 4"/>
+  <path d="M 388 230 Q 455 274 544 322" stroke="white" stroke-width="1.2" stroke-opacity="0.12" stroke-dasharray="5 4"/>
+  <path d="M 544 220 L 388 220"         stroke="white" stroke-width="1.2" stroke-opacity="0.12" stroke-dasharray="5 4"/>
+
+  <!-- ── PARTICLES along paths ── -->
+  <!-- CONTENT → Monitor -->
+  <circle r="2.5" fill="white" filter="url(#glow)">
+    <animateMotion dur="3s" repeatCount="indefinite" begin="0.4s"><mpath href="#connML"/></animateMotion>
+    <animate attributeName="opacity" values="0;0.8;0.8;0" keyTimes="0;0.1;0.9;1" dur="3s" repeatCount="indefinite" begin="0.4s"/>
+  </circle>
+  <!-- FARBEN → Monitor -->
+  <circle r="3" fill="white" filter="url(#glow)">
+    <animateMotion dur="3s" repeatCount="indefinite" begin="0s"><mpath href="#connTL"/></animateMotion>
+    <animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.1;0.9;1" dur="3s" repeatCount="indefinite" begin="0s"/>
+  </circle>
+  <!-- DESIGN → Monitor -->
+  <circle r="3" fill="white" filter="url(#glow)">
+    <animateMotion dur="3.5s" repeatCount="indefinite" begin="0.8s"><mpath href="#connBL"/></animateMotion>
+    <animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.1;0.9;1" dur="3.5s" repeatCount="indefinite" begin="0.8s"/>
+  </circle>
+  <!-- TYPO → Monitor -->
+  <circle r="2.5" fill="white" filter="url(#glow)">
+    <animateMotion dur="3s" repeatCount="indefinite" begin="1.5s"><mpath href="#connTR"/></animateMotion>
+    <animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.1;0.9;1" dur="3s" repeatCount="indefinite" begin="1.5s"/>
+  </circle>
+  <!-- second TYPO → Monitor offset -->
+  <circle r="2" fill="white" filter="url(#glow)">
+    <animateMotion dur="3s" repeatCount="indefinite" begin="3s"><mpath href="#connTR"/></animateMotion>
+    <animate attributeName="opacity" values="0;0.7;0.7;0" keyTimes="0;0.1;0.9;1" dur="3s" repeatCount="indefinite" begin="3s"/>
+  </circle>
+  <!-- Monitor → CODE -->
+  <circle r="2.5" fill="white" filter="url(#glow)">
+    <animateMotion dur="3.5s" repeatCount="indefinite" begin="0.3s"><mpath href="#connBR"/></animateMotion>
+    <animate attributeName="opacity" values="0;0.8;0.8;0" keyTimes="0;0.1;0.9;1" dur="3.5s" repeatCount="indefinite" begin="0.3s"/>
+  </circle>
+  <!-- LAYOUT → Monitor -->
+  <circle r="2.5" fill="white" filter="url(#glow)">
+    <animateMotion dur="2.8s" repeatCount="indefinite" begin="1.1s"><mpath href="#connMR"/></animateMotion>
+    <animate attributeName="opacity" values="0;0.8;0.8;0" keyTimes="0;0.1;0.9;1" dur="2.8s" repeatCount="indefinite" begin="1.1s"/>
+  </circle>
+
+  <!-- ══════════════════════════════════════════════
+       CENTER HUB — Browser / Website Preview
+  ══════════════════════════════════════════════ -->
+  <g>
+    <!-- Halo ring -->
+    <circle cx="350" cy="220" r="82" fill="#111" fill-opacity="0.45" stroke="white" stroke-width="0.8" stroke-opacity="0.07"/>
+    <circle class="hub-ring" cx="350" cy="220" r="82" fill="none" stroke="white" stroke-width="1.5" stroke-opacity="0.07"/>
+
+    <!-- Browser shell -->
+    <rect x="226" y="120" width="248" height="200" rx="10" fill="#111111" stroke="rgba(255,255,255,0.13)" stroke-width="1.5"/>
+
+    <!-- Chrome bar -->
+    <rect x="226" y="120" width="248" height="30" rx="10" fill="#191919"/>
+    <rect x="226" y="138" width="248" height="12" fill="#191919"/>
+
+    <!-- Neutral window control dots (no mac colors) -->
+    <circle cx="246" cy="135" r="3.5" fill="rgba(255,255,255,0.18)"/>
+    <circle cx="259" cy="135" r="3.5" fill="rgba(255,255,255,0.11)"/>
+    <circle cx="272" cy="135" r="3.5" fill="rgba(255,255,255,0.07)"/>
+
+    <!-- URL bar -->
+    <rect x="290" y="128" width="162" height="14" rx="7" fill="#0a0a0a" stroke="rgba(255,255,255,0.14)" stroke-width="0.8"/>
+    <rect x="306" y="133" width="130" height="4" rx="2" fill="rgba(255,255,255,0.13)"/>
+
+    <!-- Screen bg -->
+    <rect x="231" y="151" width="238" height="163" rx="0" fill="#0a0a0a"/>
+
+    <!-- ── WIREFRAME STATE ── -->
+    <g class="old-screen" clip-path="url(#screenClip)">
+      <rect x="231" y="151" width="238" height="14" fill="#141414"/>
+      <rect x="236" y="155" width="24" height="5" rx="2" fill="rgba(255,255,255,0.25)"/>
+      <rect x="385" y="155" width="15" height="5" rx="2" fill="rgba(255,255,255,0.1)"/>
+      <rect x="403" y="155" width="15" height="5" rx="2" fill="rgba(255,255,255,0.1)"/>
+      <rect x="421" y="155" width="15" height="5" rx="2" fill="rgba(255,255,255,0.1)"/>
+      <rect x="439" y="155" width="15" height="5" rx="2" fill="rgba(255,255,255,0.1)"/>
+      <!-- two wireframe placeholder blocks -->
+      <rect x="235" y="172" width="116" height="70" rx="3" fill="#141414" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" stroke-dasharray="3 2"/>
+      <rect x="357" y="172" width="108" height="70" rx="3" fill="#141414" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" stroke-dasharray="3 2"/>
+      <text x="293" y="213" font-family="monospace" font-size="7" fill="rgba(255,255,255,0.12)" text-anchor="middle">WIREFRAME</text>
+      <text x="411" y="213" font-family="monospace" font-size="7" fill="rgba(255,255,255,0.12)" text-anchor="middle">WIREFRAME</text>
+      <!-- text rows -->
+      <rect x="235" y="250" width="230" height="5" rx="2" fill="#1a1a1a"/>
+      <rect x="235" y="260" width="170" height="4" rx="2" fill="#141414"/>
+      <rect x="235" y="269" width="140" height="4" rx="2" fill="#141414"/>
+      <rect x="235" y="278" width="195" height="4" rx="2" fill="#141414"/>
+      <rect x="235" y="287" width="100" height="4" rx="2" fill="#141414"/>
+    </g>
+
+    <!-- ── NEW DESIGN STATE ── -->
+    <g class="new-screen" clip-path="url(#screenClip)">
+      <!-- Thin nav strip -->
+      <rect x="231" y="151" width="238" height="18" fill="#111111"/>
+      <rect x="237" y="157" width="26" height="5" rx="2" fill="rgba(255,255,255,0.7)"/>
+      <rect x="382" y="157" width="17" height="5" rx="2" fill="rgba(255,255,255,0.18)"/>
+      <rect x="402" y="157" width="17" height="5" rx="2" fill="rgba(255,255,255,0.18)"/>
+      <rect x="422" y="157" width="17" height="5" rx="2" fill="rgba(255,255,255,0.18)"/>
+      <rect x="442" y="157" width="17" height="5" rx="2" fill="rgba(255,255,255,0.18)"/>
+
+      <!-- Hero card -->
+      <rect x="235" y="173" width="230" height="48" rx="4" fill="url(#heroGrad)"/>
+      <!-- Hero card overlay bottom -->
+      <rect x="235" y="200" width="230" height="21" rx="0" fill="rgba(0,0,0,0.55)"/>
+      <rect x="240" y="203" width="64" height="5" rx="2" fill="rgba(255,255,255,0.75)"/>
+      <rect x="240" y="212" width="44" height="3" rx="1.5" fill="rgba(255,255,255,0.35)"/>
+      <!-- tag pill -->
+      <rect x="412" y="204" width="26" height="6" rx="3" fill="rgba(255,255,255,0.15)"/>
+      <!-- link arrow icon area -->
+      <rect x="444" y="203" width="10" height="10" rx="2" fill="rgba(255,255,255,0.08)"/>
+
+      <!-- 3-card grid row -->
+      <g>
+        <rect x="235" y="228" width="70" height="46" rx="4" fill="#1a1a1a"/>
+        <rect x="235" y="228" width="70" height="26" rx="4" fill="rgba(255,255,255,0.07)"/>
+        <rect x="239" y="258" width="42" height="3.5" rx="1.5" fill="rgba(255,255,255,0.45)"/>
+        <rect x="239" y="264" width="30" height="3"   rx="1.5" fill="rgba(255,255,255,0.2)"/>
+      </g>
+      <rect x="313" y="228" width="70" height="46" rx="4" fill="#1a1a1a"/>
+      <rect x="313" y="228" width="70" height="26" rx="4" fill="rgba(255,255,255,0.07)"/>
+      <rect x="317" y="258" width="42" height="3.5" rx="1.5" fill="rgba(255,255,255,0.45)"/>
+      <rect x="317" y="264" width="30" height="3"   rx="1.5" fill="rgba(255,255,255,0.2)"/>
+      <rect x="391" y="228" width="74" height="46" rx="4" fill="#1a1a1a"/>
+      <rect x="391" y="228" width="74" height="26" rx="4" fill="rgba(255,255,255,0.07)"/>
+      <rect x="395" y="258" width="42" height="3.5" rx="1.5" fill="rgba(255,255,255,0.45)"/>
+      <rect x="395" y="264" width="30" height="3"   rx="1.5" fill="rgba(255,255,255,0.2)"/>
+
+      <!-- Slider pagination dots -->
+      <circle class="dot-a" cx="341" cy="284" r="2.5" fill="white"/>
+      <circle class="dot-b" cx="350" cy="284" r="1.5" fill="rgba(255,255,255,0.3)"/>
+      <circle           cx="359" cy="284" r="1.5" fill="rgba(255,255,255,0.18)"/>
+
+      <!-- Progress bar -->
+      <rect x="235" y="291" width="230" height="2" rx="1" fill="#1a1a1a"/>
+      <rect x="235" y="291" height="2" rx="1" fill="url(#progressGrad)">
+        <animate attributeName="width" from="0" to="230" dur="5s" repeatCount="indefinite"/>
+      </rect>
+    </g>
+  </g>
+
+  <!-- ══════════════════════════════════════════════
+       NODE ML — CONTENT
+  ══════════════════════════════════════════════ -->
+  <g class="node-ml">
+    <rect x="60" y="180" width="96" height="80" rx="14" fill="#111111" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    <text x="108" y="198" font-family="monospace" font-size="7.5" fill="rgba(255,255,255,0.38)" text-anchor="middle" letter-spacing="1">CONTENT</text>
+    <!-- Slider/card preview -->
+    <rect x="73" y="207" width="70" height="30" rx="3" fill="rgba(255,255,255,0.07)"/>
+    <rect x="73" y="207" width="70" height="10" rx="3" fill="rgba(255,255,255,0.06)"/>
+    <rect x="76" y="221" width="36" height="3"   rx="1.5" fill="rgba(255,255,255,0.45)"/>
+    <rect x="76" y="228" width="26" height="2.5" rx="1.2" fill="rgba(255,255,255,0.2)"/>
+    <!-- Pagination dots -->
+    <circle cx="101" cy="245" r="2"   fill="rgba(255,255,255,0.7)"/>
+    <circle cx="108" cy="245" r="1.5" fill="rgba(255,255,255,0.25)"/>
+    <circle cx="114" cy="245" r="1.5" fill="rgba(255,255,255,0.15)"/>
+  </g>
+
+  <!-- ══════════════════════════════════════════════
+       NODE TL — FARBEN
+  ══════════════════════════════════════════════ -->
+  <g class="node-tl">
+    <rect x="60" y="58" width="96" height="80" rx="14" fill="#111111" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    <text x="108" y="76" font-family="monospace" font-size="7.5" fill="rgba(255,255,255,0.38)" text-anchor="middle" letter-spacing="1">FARBEN</text>
+    <!-- Rich color swatches: dark forest green, elegant red, vermillion, royal blue dark -->
+    <circle cx="74"  cy="95" r="9" fill="#1a4731" class="swatch-a"/>
+    <circle cx="74"  cy="95" r="10" fill="none" stroke="white" stroke-width="1.5" stroke-opacity="0.3"/>
+    <circle cx="97"  cy="95" r="9" fill="#8b1a1a"/>
+    <circle cx="120" cy="95" r="9" fill="#e34234"/>
+    <circle cx="143" cy="95" r="9" fill="#00308F"/>
+    <rect x="73" y="112" width="66" height="4" rx="2" fill="rgba(255,255,255,0.12)"/>
+    <rect x="73" y="120" width="44" height="3" rx="1.5" fill="rgba(255,255,255,0.08)"/>
+  </g>
+
+  <!-- ══════════════════════════════════════════════
+       NODE BL — DESIGN
+  ══════════════════════════════════════════════ -->
+  <g class="node-bl">
+    <rect x="60" y="280" width="96" height="80" rx="14" fill="#111111" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    <text x="108" y="298" font-family="monospace" font-size="7.5" fill="rgba(255,255,255,0.38)" text-anchor="middle" letter-spacing="1">DESIGN</text>
+    <path class="pen-path" d="M 82 318 C 90 308 100 310 108 305 C 116 300 122 308 128 320" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round" fill="none"/>
+    <rect x="79"  y="315" width="6" height="6" rx="1" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.2"/>
+    <rect x="125" y="317" width="6" height="6" rx="1" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.2"/>
+    <circle cx="108" cy="305" r="3" fill="rgba(255,255,255,0.7)"/>
+    <rect x="73" y="333" width="58" height="4" rx="2" fill="rgba(255,255,255,0.1)"/>
+    <rect x="73" y="341" width="40" height="3" rx="1.5" fill="rgba(255,255,255,0.06)"/>
+  </g>
+
+  <!-- ══════════════════════════════════════════════
+       NODE TR — TYPO (data streams go → Monitor)
+  ══════════════════════════════════════════════ -->
+  <g class="node-tr">
+    <rect x="544" y="58" width="96" height="80" rx="14" fill="#111111" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    <text x="592" y="76" font-family="monospace" font-size="7.5" fill="rgba(255,255,255,0.38)" text-anchor="middle" letter-spacing="1">TYPO</text>
+    <text x="574" y="105" font-family="'Georgia', serif" font-size="30" fill="rgba(255,255,255,0.75)" font-weight="bold">Aa</text>
+    <rect x="556" y="112" width="66" height="3" rx="1.5" fill="rgba(255,255,255,0.14)"/>
+    <rect x="556" y="119" width="48" height="3" rx="1.5" fill="rgba(255,255,255,0.09)"/>
+    <rect x="556" y="126" width="55" height="3" rx="1.5" fill="rgba(255,255,255,0.06)"/>
+  </g>
+
+  <!-- ══════════════════════════════════════════════
+       NODE BR — CODE
+  ══════════════════════════════════════════════ -->
+  <g class="node-br">
+    <rect x="544" y="280" width="96" height="80" rx="14" fill="#111111" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    <text x="592" y="298" font-family="monospace" font-size="7.5" fill="rgba(255,255,255,0.38)" text-anchor="middle" letter-spacing="1">CODE</text>
+    <text class="code-l1" x="558" y="313" font-family="monospace" font-size="8" fill="rgba(255,255,255,0.7)">&lt;div class=</text>
+    <text class="code-l2" x="558" y="323" font-family="monospace" font-size="8" fill="rgba(255,255,255,0.5)">.hero {</text>
+    <text class="code-l3" x="558" y="333" font-family="monospace" font-size="8" fill="rgba(255,255,255,0.38)">flex: 1;</text>
+    <rect x="556" y="341" width="66" height="4" rx="2" fill="rgba(255,255,255,0.1)"/>
+    <rect x="556" y="349" width="44" height="3" rx="1.5" fill="rgba(255,255,255,0.06)"/>
+  </g>
+
+  <!-- ══════════════════════════════════════════════
+       NODE MR — LAYOUT
+  ══════════════════════════════════════════════ -->
+  <g class="node-mr">
+    <rect x="544" y="180" width="96" height="80" rx="14" fill="#111111" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    <text x="592" y="198" font-family="monospace" font-size="7.5" fill="rgba(255,255,255,0.38)" text-anchor="middle" letter-spacing="1">LAYOUT</text>
+    <!-- Desktop icon -->
+    <rect x="558" y="203" width="36" height="24" rx="2" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.2"/>
+    <rect x="567" y="227" width="18" height="3" rx="1" fill="rgba(255,255,255,0.25)"/>
+    <!-- Mobile icon -->
+    <rect x="600" y="205" width="18" height="22" rx="3" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.2"/>
+    <rect x="607" y="224" width="4"  height="2" rx="1" fill="rgba(255,255,255,0.25)"/>
+    <rect x="558" y="234" width="62" height="4" rx="2" fill="rgba(255,255,255,0.1)"/>
+    <rect x="558" y="242" width="44" height="3" rx="1.5" fill="rgba(255,255,255,0.07)"/>
+    <rect x="558" y="249" width="52" height="3" rx="1.5" fill="rgba(255,255,255,0.05)"/>
+  </g>
+
+
+</svg>

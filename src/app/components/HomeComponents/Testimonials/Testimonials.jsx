@@ -194,6 +194,7 @@ export default memo(function Testimonials() {
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(6);
   const scrollPosRef = useRef(null);
+  const filterWrapperRef = useRef(null);
 
   // Responsive items per page: 3 on mobile, 6 on desktop
   useEffect(() => {
@@ -210,6 +211,22 @@ export default memo(function Testimonials() {
       scrollPosRef.current = null;
     }
   });
+
+  // Scroll active filter button into center view
+  useEffect(() => {
+    const wrapper = filterWrapperRef.current;
+    if (!wrapper) return;
+    const activeBtn = wrapper.querySelector('[aria-pressed="true"]');
+    if (!activeBtn) return;
+    const wrapperRect = wrapper.getBoundingClientRect();
+    const btnRect = activeBtn.getBoundingClientRect();
+    const scrollLeft =
+      wrapper.scrollLeft +
+      (btnRect.left - wrapperRect.left) -
+      wrapperRect.width / 2 +
+      btnRect.width / 2;
+    wrapper.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+  }, [activeCategory]);
 
   const handleCategoryChange = useCallback((categoryId) => {
     if (categoryId === activeCategory) return;
@@ -269,7 +286,7 @@ export default memo(function Testimonials() {
           >
             <ChevronLeft size={16} />
           </button>
-          <div className={styles.filterWrapper}>
+          <div className={styles.filterWrapper} ref={filterWrapperRef}>
             {categories.map(category => {
               const IconComponent = category.icon;
               return (
@@ -328,8 +345,7 @@ export default memo(function Testimonials() {
             </button>
 
             <span className={styles.pageCount}>
-              {pageStart + 1}–{Math.min(pageStart + itemsPerPage, filteredTestimonials.length)}{' '}
-              / {filteredTestimonials.length}
+              {currentPage + 1} / {totalPages}
             </span>
 
             <button

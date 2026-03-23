@@ -74,6 +74,8 @@
 .filterWrapper {
   display: flex;
   align-items: center;
+  flex: 1 1 0;
+  min-width: 0;
   background: transparent;
   border-radius: 12px;
   padding: 8px;
@@ -87,8 +89,6 @@
 
   @media (max-width: 768px) {
     flex-wrap: nowrap;
-    min-width: 0;
-    max-width: calc(100vw - 5rem);
   }
 }
 

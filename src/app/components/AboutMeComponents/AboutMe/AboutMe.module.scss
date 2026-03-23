@@ -160,191 +160,6 @@ Blog Retro Tags
   }
 }
 
-/* =========================== */
-
-.content {
-  width: 100%;
-  justify-content: center;
-}
-
-/* =========================== */
-/* =========================== */
-
-/* -----------------------------------------------------------
-Profile-Information-(Steckbrief)
----------------------------------------------------------- */
-
-/* Existing Container */
-.profileInformations {
-  margin-top: 25px;
-  padding: 25px;
-  border-radius: 16px;
-  background: #f5f5f5;
-  border: 1px solid #e0e0e0;
-}
-
-:global(.dark-mode) .profileInformations {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.profileInformations h3 {
-  color: #333;
-  font-size: 1.5rem;
-  font-family: 'Wotfard', sans-serif;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-:global(.dark-mode) .profileInformations h3 {
-  color: #fff;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.profileInformations ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-/* Styling of list items */
-.profileInformations :global(li.profile-item) {
-  position: relative;
-  font-size: 0.95rem;
-  font-family: 'Wotfard', sans-serif;
-  line-height: 1.6;
-  padding: 20px 15px 12px;
-  border-radius: 8px;
-  background: #fff;
-  border: 1px solid #e0e0e0;
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  color: #333;
-}
-
-:global(.dark-mode) .profileInformations :global(li.profile-item) {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  color: #ccc;
-}
-
-/* Hover Effect */
-.profileInformations :global(li.profile-item:hover) {
-  border-color: #333;
-  background: #fafafa;
-  transform: translateY(-3px);
-}
-
-:global(.dark-mode) .profileInformations :global(li.profile-item:hover) {
-  border-color: #666;
-  background: rgba(255, 255, 255, 0.05);
-}
-
-/* Floating Label - aligned left */
-.profileInformations :global(li.profile-item .profile-label) {
-  position: absolute;
-  top: -12px;
-  left: 20px;
-  background: #f5f5f5;
-  padding: 0 10px;
-  color: #666;
-  font-family: 'Wotfard', sans-serif;
-  font-size: 0.95rem;
-  white-space: nowrap;
-}
-
-:global(.dark-mode) .profileInformations :global(li.profile-item .profile-label) {
-  background: rgba(255, 255, 255, 0.03);
-  color: #999;
-}
-
-/* The actual content */
-.profileInformations :global(li.profile-item .profile-content) {
-  display: block;
-}
-
-/* -----------------------------------------------------------
-About Me socials Styles
----------------------------------------------------------- */
-
-/* Social Icons Anpassungen */
-.socials {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-}
-
-.socials a {
-  width: 40px;
-  height: 40px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-}
-
-.socials a:hover {
-  border-color: #333;
-  background: rgba(0, 0, 0, 0.05);
-}
-
-:global(.dark-mode) .socials a:hover {
-  border-color: #666;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.icon {
-  width: 20px;
-  height: 20px;
-  color: #666;
-  transition: all 0.3s ease;
-}
-
-:global(.dark-mode) .icon {
-  color: #aaa;
-}
-
-.socials a:hover .icon {
-  color: #000;
-}
-
-:global(.dark-mode) .socials a:hover .icon {
-  color: #fff;
-}
-
-/* Responsive Anpassungen */
-@media (max-width: 768px) {
-  .profileInformations {
-    margin-top: 30px;
-    padding: 20px;
-  }
-
-  .profileInformations h3 {
-    font-size: 1.3rem;
-  }
-
-  .profileInformations :global(li) {
-    font-size: 0.9rem;
-    padding: 10px;
-  }
-
-  .profileInformations :global(li strong) {
-    min-width: 100px;
-    display: block;
-    margin-bottom: 5px;
-  }
-}
-
-/* =========================== */
-
 /* Base Styles */
 .section {
   position: relative;
@@ -396,168 +211,6 @@ About Me socials Styles
 
 .gradient {
   color: inherit;
-}
-
-/* Content Grid */
-.contentGrid {
-  display: grid;
-  gap: 60px;
-}
-
-@media (min-width: 1024px) {
-  .contentGrid {
-    grid-template-columns: 1fr 1.5fr;
-  }
-}
-
-/* Profile Column */
-.profileColumn {
-  top: 100px;
-}
-
-.imageWrapper {
-  position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid #e0e0e0;
-}
-
-:global(.dark-mode) .imageWrapper {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.profileImage {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.imageOverlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
-}
-
-/* Social Links */
-.socialLinks {
-  padding-bottom: 30px;
-  display: flex;
-  gap: 12px;
-}
-
-.socialLink {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px;
-  border-radius: 12px;
-  background-color: #f5f5f5;
-  transition: background-color 0.3s ease;
-  color: inherit;
-  text-decoration: none;
-}
-
-:global(.dark-mode) .socialLink {
-  background-color: rgba(255, 255, 255, 0.05);
-}
-
-.socialLink:hover {
-  background-color: #e0e0e0;
-}
-
-:global(.dark-mode) .socialLink:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-/* Content Column */
-.contentColumn {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
-
-.intro {
-  font-size: 18px;
-  font-family: 'Wotfard', sans-serif;
-  line-height: 1.7;
-  color: #666;
-  margin: 0;
-}
-
-:global(.dark-mode) .intro {
-  color: #aaa;
-}
-
-/* Content Column Headings */
-.contentColumn h5 {
-  font-size: 1.5rem;
-  font-family: 'Wotfard', sans-serif;
-  color: #1a1a1a;
-  margin: 2rem 0 1.5rem 0;
-  font-weight: 600;
-  text-align: left;
-}
-
-:global(.dark-mode) .contentColumn h5 {
-  color: #ffffff;
-}
-
-/* Tech Stack */
-.techstack {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-  align-items: flex-start;
-}
-
-.techItem {
-  font-size: 18px;
-  font-family: 'Wotfard', sans-serif;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  border-radius: 12px;
-  background-color: #f5f5f5;
-  border: 1px solid #e0e0e0;
-  transition: all 0.3s ease;
-  justify-content: flex-start;
-  padding: 10px;
-  max-height: 55px;
-}
-
-:global(.dark-mode) .techItem {
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.techItem:hover {
-  border-color: #333;
-  background: #e0e0e0;
-  transform: translateY(-3px);
-}
-
-:global(.dark-mode) .techItem:hover {
-  border-color: #666;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.techIcon {
-  width: 35px;
-  height: 35px;
-  display: block;
-  margin-left: 0;
-  margin-right: 10px;
-  filter: brightness(0) saturate(100%) invert(27%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(95%) contrast(92%);
-}
-
-:global(.dark-mode) .techIcon {
-  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7500%) hue-rotate(360deg) brightness(100%) contrast(100%);
-}
-
-.techText {
-  text-align: center;
-  flex: 1;
-  font-size: 16px;
 }
 
 /* -----------------------------------------------------------
@@ -692,10 +345,11 @@ Timeline // Work, Achievements
 .timelineCard {
   background: #f5f5f5;
   border-radius: 16px;
-  padding: 1.5rem 1.75rem;
+  padding: 0;
   border: 1px solid #e0e0e0;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   cursor: default;
+  overflow: hidden;
 }
 
 :global(.dark-mode) .timelineCard {
@@ -714,11 +368,90 @@ Timeline // Work, Achievements
   border-color: rgba(255, 255, 255, 0.18);
 }
 
+/* Text area inside the card — has padding, SVG sits outside */
+.timelineContent {
+  padding: 1.25rem 1.75rem 1rem;
+}
+
+/* Profile-informations style list inside timeline cards */
+.timelineInfo {
+  padding: 1.5rem 1.75rem 1.25rem;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+/* Timeline Info übernimmt Profil-Item Styles */
+.timelineInfo :global(li.profile-item) {
+  position: relative;
+  font-size: 0.95rem;
+  font-family: 'Wotfard', sans-serif;
+  line-height: 1.6;
+  padding: 20px 15px 12px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #333;
+}
+
+/* Dark Mode */
+:global(.dark-mode) .timelineInfo :global(li.profile-item) {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: #ccc;
+}
+
+/* Hover */
+.timelineInfo :global(li.profile-item:hover) {
+  border-color: #333;
+  background: #fafafa;
+  transform: translateY(-3px);
+}
+
+:global(.dark-mode) .timelineInfo :global(li.profile-item:hover) {
+  border-color: #666;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Floating Label */
+.timelineInfo :global(li.profile-item .profile-label) {
+  position: absolute;
+  top: -12px;
+  left: 20px;
+  background: #f5f5f5;
+  padding: 0 10px;
+  color: #666;
+  font-family: 'Wotfard', sans-serif;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+/* Dark Mode Label */
+:global(.dark-mode) .timelineInfo :global(li.profile-item .profile-label) {
+  background: #ffffff08; /* identisch mit profileInformations */
+  color: #999;
+}
+
+/* Content */
+.timelineInfo :global(li.profile-item .profile-content) {
+  display: block;
+}
+
 .timelineHeader {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.55rem;
   flex-wrap: wrap;
   gap: 0.25rem;
 }
@@ -761,15 +494,41 @@ Timeline // Work, Achievements
   color: #f0f0f0;
 }
 
-.timelineDescription {
-  margin: 0;
-  color: #777;
-  font-size: 0.9rem;
-  line-height: 1.6;
+.timelineTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.85rem;
 }
 
-:global(.dark-mode) .timelineDescription {
-  color: #888;
+.timelineTag {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.07);
+  color: #555;
+
+  :global(.dark-mode) & {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.65);
+  }
+}
+
+.timelineSvgWrap {
+  margin: 0; /* entfernt negative margin */
+  line-height: 0;
+  border-radius: 0 0 14px 14px;
+  overflow: hidden;
+  width: 100%;       /* volle Breite */
+}
+
+.timelineSvg {
+  display: block;
+  width: 100%;       /* volle Breite */
+  height: auto;
+  object-fit: cover; /* optional, damit es nicht verzerrt */
 }
 
 /* Mobile: single column */

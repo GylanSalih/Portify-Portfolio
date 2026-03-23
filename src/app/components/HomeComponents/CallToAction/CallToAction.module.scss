@@ -1,16 +1,15 @@
 .section {
   position: relative;
-  min-height: 100vh;
+  min-height: unset;
   background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 5rem 2rem;
   overflow: hidden;
-  padding-top: 30px;
 
   @media (max-width: 768px) {
-    padding: 1rem;
+    padding: 3.5rem 1rem;
   }
 }
 

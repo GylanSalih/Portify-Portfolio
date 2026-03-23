@@ -1,0 +1,192 @@
+<svg viewBox="0 0 700 450" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Strategie Illustration" style="width:100%;max-width:700px;background:#0a0a0a;border-radius:20px;">
+  <defs>
+    <radialGradient id="bgGlowS" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#0a0a0a" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glowS" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!--
+      COORDINATE PLAN (all verified):
+      ROOT HOME:     x=308 y=118 w=84 h=37  cx=350  bottom=155
+      L1 LEISTUNGEN: x=160 y=228 w=84 h=35  cx=202  top=228  bottom=263
+      C1 PORTFOLIO:  x=308 y=228 w=84 h=35  cx=350  top=228  bottom=263
+      R1 KONTAKT:    x=456 y=228 w=84 h=35  cx=498  top=228  bottom=263
+
+      6 L2 nodes w=60 h=26 gap=14  startX=135  (6×60+5×14=430, (700-430)/2=135)
+      WEBDESIGN:  x=135 cx=165 top=318
+      SEO:        x=209 cx=239 top=318
+      PROJEKTE:   x=283 cx=313 top=318
+      CASE STUDY: x=357 cx=387 top=318
+      FORMULAR:   x=431 cx=461 top=318
+      SOCIAL:     x=505 cx=535 top=318
+
+      Parent-child center alignment:
+      LEISTUNGEN cx=202 = (165+239)/2=202 ✓
+      PORTFOLIO  cx=350 = (313+387)/2=350 ✓
+      KONTAKT    cx=498 = (461+535)/2=498 ✓
+    -->
+    <path id="pRL1"   d="M 350 155 L 202 228"/>
+    <path id="pRC1"   d="M 350 155 L 350 228"/>
+    <path id="pRR1"   d="M 350 155 L 498 228"/>
+    <path id="pL1WD"  d="M 202 263 L 165 318"/>
+    <path id="pL1SEO" d="M 202 263 L 239 318"/>
+    <path id="pC1PRJ" d="M 350 263 L 313 318"/>
+    <path id="pC1CS"  d="M 350 263 L 387 318"/>
+    <path id="pR1FM"  d="M 498 263 L 461 318"/>
+    <path id="pR1SC"  d="M 498 263 L 535 318"/>
+    <style>
+      .grid-s { animation: gridFadeS 4s ease-in-out infinite; }
+      @keyframes gridFadeS { 0%,100%{opacity:0.04} 50%{opacity:0.09} }
+      .node-root { animation: floatRoot 4s ease-in-out infinite; }
+      @keyframes floatRoot { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+      .node-l1 { animation: floatL1 5s ease-in-out infinite 0.3s; }
+      .node-c1 { animation: floatC1 4.5s ease-in-out infinite 0.8s; }
+      .node-r1 { animation: floatR1 5.2s ease-in-out infinite 0.5s; }
+      @keyframes floatL1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-3px)} }
+      @keyframes floatC1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+      @keyframes floatR1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-3px)} }
+      .node-l2 { animation: floatL2 4.8s ease-in-out infinite 1s; }
+      .node-c2 { animation: floatC2 5s ease-in-out infinite 0.2s; }
+      .node-r2 { animation: floatR2 4.6s ease-in-out infinite 0.7s; }
+      @keyframes floatL2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-2px)} }
+      @keyframes floatC2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-3px)} }
+      @keyframes floatR2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-2px)} }
+      .active-cycle-0 { animation: activePop 9s ease-in-out infinite 0s; }
+      .active-cycle-1 { animation: activePop 9s ease-in-out infinite 3s; }
+      .active-cycle-2 { animation: activePop 9s ease-in-out infinite 6s; }
+      @keyframes activePop {
+        0%,10%  { stroke-opacity:0.55; fill-opacity:0.12; }
+        20%,80% { stroke-opacity:0.12; fill-opacity:0.04; }
+        90%,100%{ stroke-opacity:0.55; fill-opacity:0.12; }
+      }
+    </style>
+  </defs>
+
+  <ellipse cx="350" cy="225" rx="300" ry="200" fill="url(#bgGlowS)"/>
+  <line class="grid-s" x1="175" y1="40"  x2="175" y2="410" stroke="white" stroke-width="0.5"/>
+  <line class="grid-s" x1="525" y1="40"  x2="525" y2="410" stroke="white" stroke-width="0.5"/>
+  <line class="grid-s" x1="80"  y1="225" x2="620" y2="225" stroke="white" stroke-width="0.5"/>
+
+  <!-- Connection lines drawn before nodes -->
+  <line x1="350" y1="155" x2="202" y2="228" stroke="white" stroke-width="1"   stroke-opacity="0.12" stroke-dasharray="4 4"/>
+  <line x1="350" y1="155" x2="350" y2="228" stroke="white" stroke-width="1"   stroke-opacity="0.12" stroke-dasharray="4 4"/>
+  <line x1="350" y1="155" x2="498" y2="228" stroke="white" stroke-width="1"   stroke-opacity="0.12" stroke-dasharray="4 4"/>
+  <line x1="202" y1="263" x2="165" y2="318" stroke="white" stroke-width="0.8" stroke-opacity="0.09" stroke-dasharray="3 4"/>
+  <line x1="202" y1="263" x2="239" y2="318" stroke="white" stroke-width="0.8" stroke-opacity="0.09" stroke-dasharray="3 4"/>
+  <line x1="350" y1="263" x2="313" y2="318" stroke="white" stroke-width="0.8" stroke-opacity="0.09" stroke-dasharray="3 4"/>
+  <line x1="350" y1="263" x2="387" y2="318" stroke="white" stroke-width="0.8" stroke-opacity="0.09" stroke-dasharray="3 4"/>
+  <line x1="498" y1="263" x2="461" y2="318" stroke="white" stroke-width="0.8" stroke-opacity="0.09" stroke-dasharray="3 4"/>
+  <line x1="498" y1="263" x2="535" y2="318" stroke="white" stroke-width="0.8" stroke-opacity="0.09" stroke-dasharray="3 4"/>
+
+  <!-- Particles along every branch -->
+  <circle r="2.5" fill="white" filter="url(#glowS)">
+    <animateMotion dur="2.4s" repeatCount="indefinite" begin="0s"><mpath href="#pRL1"/></animateMotion>
+    <animate attributeName="opacity" values="0;0.85;0.85;0" keyTimes="0;0.1;0.9;1" dur="2.4s" repeatCount="indefinite" begin="0s"/>
+  </circle>
+  <circle r="2.5" fill="white" filter="url(#glowS)">
+    <animateMotion dur="2.4s" repeatCount="indefinite" begin="0.8s"><mpath href="#pRC1"/></animateMotion>
+    <animate attributeName="opacity" values="0;0.85;0.85;0" keyTimes="0;0.1;0.9;1" dur="2.4s" repeatCount="indefinite" begin="0.8s"/>
+  </circle>
+  <circle r="2.5" fill="white" filter="url(#glowS)">
+    <animateMotion dur="2.4s" repeatCount="indefinite" begin="1.6s"><mpath href="#pRR1"/></animateMotion>
+    <animate attributeName="opacity" values="0;0.85;0.85;0" keyTimes="0;0.1;0.9;1" dur="2.4s" repeatCount="indefinite" begin="1.6s"/>
+  </circle>
+  <circle r="1.8" fill="white" filter="url(#glowS)">
+    <animateMotion dur="1.8s" repeatCount="indefinite" begin="2.0s"><mpath href="#pL1WD"/></animateMotion>
+    <animate attributeName="opacity" values="0;0.7;0.7;0" keyTimes="0;0.1;0.9;1" dur="1.8s" repeatCount="indefinite" begin="2.0s"/>
+  </circle>
+  <circle r="1.8" fill="white" filter="url(#glowS)">
+    <animateMotion dur="1.8s" repeatCount="indefinite" begin="2.6s"><mpath href="#pL1SEO"/></animateMotion>
+    <animate attributeName="opacity" values="0;0.7;0.7;0" keyTimes="0;0.1;0.9;1" dur="1.8s" repeatCount="indefinite" begin="2.6s"/>
+  </circle>
+  <circle r="1.8" fill="white" filter="url(#glowS)">
+    <animateMotion dur="1.8s" repeatCount="indefinite" begin="2.2s"><mpath href="#pC1PRJ"/></animateMotion>
+    <animate attributeName="opacity" values="0;0.7;0.7;0" keyTimes="0;0.1;0.9;1" dur="1.8s" repeatCount="indefinite" begin="2.2s"/>
+  </circle>
+  <circle r="1.8" fill="white" filter="url(#glowS)">
+    <animateMotion dur="1.8s" repeatCount="indefinite" begin="2.9s"><mpath href="#pC1CS"/></animateMotion>
+    <animate attributeName="opacity" values="0;0.7;0.7;0" keyTimes="0;0.1;0.9;1" dur="1.8s" repeatCount="indefinite" begin="2.9s"/>
+  </circle>
+  <circle r="1.8" fill="white" filter="url(#glowS)">
+    <animateMotion dur="1.8s" repeatCount="indefinite" begin="2.4s"><mpath href="#pR1FM"/></animateMotion>
+    <animate attributeName="opacity" values="0;0.7;0.7;0" keyTimes="0;0.1;0.9;1" dur="1.8s" repeatCount="indefinite" begin="2.4s"/>
+  </circle>
+  <circle r="1.8" fill="white" filter="url(#glowS)">
+    <animateMotion dur="1.8s" repeatCount="indefinite" begin="3.1s"><mpath href="#pR1SC"/></animateMotion>
+    <animate attributeName="opacity" values="0;0.7;0.7;0" keyTimes="0;0.1;0.9;1" dur="1.8s" repeatCount="indefinite" begin="3.1s"/>
+  </circle>
+
+  <!-- ROOT HOME -->
+  <g class="node-root">
+    <rect x="308" y="118" width="84" height="37" rx="10" fill="#111" stroke="rgba(255,255,255,0.22)" stroke-width="1.2" class="active-cycle-0"/>
+    <rect x="308" y="118" width="84" height="37" rx="10" fill="rgba(255,255,255,0.06)"/>
+    <text x="350" y="132" font-family="monospace" font-size="7" fill="rgba(255,255,255,0.35)" text-anchor="middle" letter-spacing="0.8">HOME</text>
+    <rect x="322" y="137" width="56" height="3.5" rx="1.5" fill="rgba(255,255,255,0.45)"/>
+    <rect x="330" y="143" width="40" height="2.5" rx="1.2" fill="rgba(255,255,255,0.2)"/>
+  </g>
+
+  <!-- LEVEL 1 -->
+  <g class="node-l1">
+    <rect x="160" y="228" width="84" height="35" rx="9" fill="#111" stroke="rgba(255,255,255,0.14)" stroke-width="1" class="active-cycle-1"/>
+    <rect x="160" y="228" width="84" height="35" rx="9" fill="rgba(255,255,255,0.04)"/>
+    <text x="202" y="241" font-family="monospace" font-size="5.8" fill="rgba(255,255,255,0.3)" text-anchor="middle" letter-spacing="0.6">LEISTUNGEN</text>
+    <rect x="170" y="247" width="64" height="3" rx="1.5" fill="rgba(255,255,255,0.35)"/>
+    <rect x="176" y="253" width="50" height="2.5" rx="1.2" fill="rgba(255,255,255,0.18)"/>
+  </g>
+  <g class="node-c1">
+    <rect x="308" y="228" width="84" height="35" rx="9" fill="#111" stroke="rgba(255,255,255,0.14)" stroke-width="1" class="active-cycle-2"/>
+    <rect x="308" y="228" width="84" height="35" rx="9" fill="rgba(255,255,255,0.04)"/>
+    <text x="350" y="241" font-family="monospace" font-size="5.8" fill="rgba(255,255,255,0.3)" text-anchor="middle" letter-spacing="0.6">PORTFOLIO</text>
+    <rect x="318" y="247" width="64" height="3" rx="1.5" fill="rgba(255,255,255,0.35)"/>
+    <rect x="324" y="253" width="50" height="2.5" rx="1.2" fill="rgba(255,255,255,0.18)"/>
+  </g>
+  <g class="node-r1">
+    <rect x="456" y="228" width="84" height="35" rx="9" fill="#111" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+    <rect x="456" y="228" width="84" height="35" rx="9" fill="rgba(255,255,255,0.04)"/>
+    <text x="498" y="241" font-family="monospace" font-size="5.8" fill="rgba(255,255,255,0.3)" text-anchor="middle" letter-spacing="0.6">KONTAKT</text>
+    <rect x="466" y="247" width="64" height="3" rx="1.5" fill="rgba(255,255,255,0.35)"/>
+    <rect x="472" y="253" width="50" height="2.5" rx="1.2" fill="rgba(255,255,255,0.18)"/>
+  </g>
+
+  <!-- LEVEL 2 — w=60 h=26 gap=14 startX=135 -->
+  <g class="node-l2">
+    <rect x="135" y="318" width="60" height="26" rx="6" fill="#111" stroke="rgba(255,255,255,0.09)" stroke-width="0.8"/>
+    <text x="165" y="328" font-family="monospace" font-size="5.2" fill="rgba(255,255,255,0.25)" text-anchor="middle" letter-spacing="0.4">WEBDESIGN</text>
+    <rect x="143" y="333" width="44" height="2" rx="1" fill="rgba(255,255,255,0.2)"/>
+    <rect x="148" y="337" width="32" height="1.8" rx="0.9" fill="rgba(255,255,255,0.12)"/>
+  </g>
+  <g class="node-l2">
+    <rect x="209" y="318" width="60" height="26" rx="6" fill="#111" stroke="rgba(255,255,255,0.09)" stroke-width="0.8"/>
+    <text x="239" y="328" font-family="monospace" font-size="5.2" fill="rgba(255,255,255,0.25)" text-anchor="middle" letter-spacing="0.4">SEO</text>
+    <rect x="217" y="333" width="44" height="2" rx="1" fill="rgba(255,255,255,0.2)"/>
+    <rect x="222" y="337" width="32" height="1.8" rx="0.9" fill="rgba(255,255,255,0.12)"/>
+  </g>
+  <g class="node-c2">
+    <rect x="283" y="318" width="60" height="26" rx="6" fill="#111" stroke="rgba(255,255,255,0.09)" stroke-width="0.8"/>
+    <text x="313" y="328" font-family="monospace" font-size="5.2" fill="rgba(255,255,255,0.25)" text-anchor="middle" letter-spacing="0.4">PROJEKTE</text>
+    <rect x="291" y="333" width="44" height="2" rx="1" fill="rgba(255,255,255,0.2)"/>
+    <rect x="296" y="337" width="32" height="1.8" rx="0.9" fill="rgba(255,255,255,0.12)"/>
+  </g>
+  <g class="node-c2">
+    <rect x="357" y="318" width="60" height="26" rx="6" fill="#111" stroke="rgba(255,255,255,0.09)" stroke-width="0.8"/>
+    <text x="387" y="328" font-family="monospace" font-size="5.2" fill="rgba(255,255,255,0.25)" text-anchor="middle" letter-spacing="0.4">CASE STUDY</text>
+    <rect x="365" y="333" width="44" height="2" rx="1" fill="rgba(255,255,255,0.2)"/>
+    <rect x="370" y="337" width="32" height="1.8" rx="0.9" fill="rgba(255,255,255,0.12)"/>
+  </g>
+  <g class="node-r2">
+    <rect x="431" y="318" width="60" height="26" rx="6" fill="#111" stroke="rgba(255,255,255,0.09)" stroke-width="0.8"/>
+    <text x="461" y="328" font-family="monospace" font-size="5.2" fill="rgba(255,255,255,0.25)" text-anchor="middle" letter-spacing="0.4">FORMULAR</text>
+    <rect x="439" y="333" width="44" height="2" rx="1" fill="rgba(255,255,255,0.2)"/>
+    <rect x="444" y="337" width="32" height="1.8" rx="0.9" fill="rgba(255,255,255,0.12)"/>
+  </g>
+  <g class="node-r2">
+    <rect x="505" y="318" width="60" height="26" rx="6" fill="#111" stroke="rgba(255,255,255,0.09)" stroke-width="0.8"/>
+    <text x="535" y="328" font-family="monospace" font-size="5.2" fill="rgba(255,255,255,0.25)" text-anchor="middle" letter-spacing="0.4">SOCIAL</text>
+    <rect x="513" y="333" width="44" height="2" rx="1" fill="rgba(255,255,255,0.2)"/>
+    <rect x="518" y="337" width="32" height="1.8" rx="0.9" fill="rgba(255,255,255,0.12)"/>
+  </g>
+
+</svg>

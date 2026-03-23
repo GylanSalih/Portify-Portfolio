@@ -28,16 +28,16 @@ const Footer = () => {
             {/* Stats row */}
             <div className={styles.stats}>
               <div className={styles.statItem}>
-                <span className={styles.statVal}>5+</span>
-                <span className={styles.statLabel}>Projects</span>
+                <span className={styles.statVal}>140+</span>
+                <span className={styles.statLabel}>Github Stars</span>
               </div>
               <div className={styles.statItem}>
                 <span className={styles.statVal}>2+</span>
-                <span className={styles.statLabel}>Years doing what I love</span>
+                <span className={styles.statLabel}>Experience</span>
               </div>
               <div className={styles.statItem}>
-                <span className={styles.statVal}>50+</span>
-                <span className={styles.statLabel}>Late nights well spent</span>
+                <span className={styles.statVal}>5+</span>
+                <span className={styles.statLabel}>Projects</span>
               </div>
             </div>
             <h2 className={styles.headline}>
