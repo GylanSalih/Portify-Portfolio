@@ -1,12 +1,15 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import styles from './PortfolioHero.module.scss';
 
+const SLIDE_INTERVAL = 8000;
+
 const PortfolioHero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [progressKey, setProgressKey] = useState(0);
 
   const slides = [
     {
@@ -43,20 +46,24 @@ const PortfolioHero = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 8000);
+      setProgressKey((prev) => prev + 1);
+    }, SLIDE_INTERVAL);
     return () => clearInterval(interval);
   }, [slides.length]);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
+    setProgressKey((prev) => prev + 1);
   };
 
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    setProgressKey((prev) => prev + 1);
   };
 
   const goToSlide = (index) => {
     setCurrentSlide(index);
+    setProgressKey((prev) => prev + 1);
   };
 
   return (
@@ -79,7 +86,7 @@ const PortfolioHero = () => {
                       className={styles.slideImg}
                       priority={slide.id === 1}
                     />
-                    {/* Tag oben rechts */}
+                    {/* Tag – top right */}
                     <div className={styles.topRight}>
                       <span className={styles.category}>{slide.category}</span>
                     </div>
@@ -112,7 +119,15 @@ const PortfolioHero = () => {
                 className={`${styles.dot} ${currentSlide === index ? styles.active : ''}`}
                 onClick={() => goToSlide(index)}
                 aria-label={`Go to slide ${index + 1}`}
-              />
+              >
+                {currentSlide === index && (
+                  <span
+                    key={progressKey}
+                    className={styles.dotProgress}
+                    style={{ '--fill-duration': `${SLIDE_INTERVAL}ms` }}
+                  />
+                )}
+              </button>
             ))}
           </div>
         </div>

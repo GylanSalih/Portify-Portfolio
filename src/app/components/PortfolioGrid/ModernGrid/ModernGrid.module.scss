@@ -494,11 +494,24 @@
   color: #fff;
   opacity: 0.8;
   will-change: transform, opacity;
+  flex-shrink: 0;
 
-  &:hover {
-    opacity: 1;
-    transform: scale(1.05);
+  svg {
+    /* Quick exit when leaving hover */
+    transition: transform 0.2s ease;
   }
+}
+
+/* Grid / Card view: deliberate hover — delayed start so rapid moves don't trigger */
+.card:hover .linkIcon svg {
+  transform: rotate(45deg); /* ArrowUpRight (↗) + 45° CW = points → right */
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+}
+
+/* List view: same rotation */
+.listLayout .item:hover .linkIcon svg {
+  transform: rotate(45deg);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
 }
 
 /* Tags */

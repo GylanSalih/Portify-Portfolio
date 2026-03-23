@@ -3,83 +3,58 @@
   margin-top: 4rem;
   position: relative;
   width: 100%;
-  margin-left: auto;
-  margin-right: auto;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  width: 100%;
-  margin: 0 auto;
-
-  @media (max-width: 1024px) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
-    padding: 0 1rem;
-  }
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    padding: 0 0.5rem;
-  }
-}
-
-.card {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  padding: 1.5rem;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(10px);
+.row {
   display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
 
-  &:hover {
-    transform: translateY(-2px);
-    border-color: rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.04);
+  @media (max-width: 640px) {
+    flex-direction: column;
+    border-bottom: none;
+  }
+}
+
+.cell {
+  flex: 1;
+  padding: 1.5rem 1.75rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+
+  &:last-child {
+    border-right: none;
   }
 
   h3 {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: rgba(255, 255, 255, 0.5);
-    margin: 0 0 0.625rem 0;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.4);
+    margin: 0 0 0.5rem 0;
     font-family: 'Wotfard', sans-serif;
-    text-align: left;
   }
 
   p {
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.85);
     margin: 0;
     line-height: 1.4;
     font-family: 'Wotfard', sans-serif;
-    text-align: left;
-    
-    &.status {
-      text-align: left;
-      width: fit-content;
-    }
   }
 
-  @media (max-width: 768px) {
-    padding: 1.5rem;
+  @media (max-width: 640px) {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.25rem 0;
   }
 }
 
-.status {
+.statusValue {
   display: inline-block;
-  padding: 0.25rem 0.625rem;
+  padding: 0.2rem 0.6rem;
   border-radius: 20px;
   font-size: 0.75rem;
   font-weight: 500;

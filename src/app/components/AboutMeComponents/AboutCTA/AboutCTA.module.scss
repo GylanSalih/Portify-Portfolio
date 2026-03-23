@@ -10,84 +10,96 @@
   width: 100%;
 }
 
+/* Card wrapper — same dimensions & shape as ScrollCard */
 .inner {
-  background-color: #f2f2f2;
+  position: relative;
   border-radius: 1.25rem;
   overflow: hidden;
-  padding: 35px;
-  
+  height: 28rem;
+  background-color: #0d0d0d;
+}
+
+/* Parallax background image layer */
+.bgImage {
+  position: absolute;
+  top: -10%;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  z-index: 1;
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+
+.bgImg {
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Dark overlay with opacity so image shows through */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 8, 12, 0.72);
+  z-index: 2;
+}
+
+/* Content sits above image + overlay */
+.content {
+  position: relative;
+  z-index: 3;
+  height: 100%;
+  padding: 2.5rem 2.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
   @media (max-width: 768px) {
-    padding: 35px;
+    padding: 1.75rem 1.5rem;
   }
 }
 
-:global(html.dark-mode) .inner {
-  background-color: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-:global(html.dark-mode) .eyebrow {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-:global(html.dark-mode) .title {
-  color: #ffffff;
-}
-
-:global(html.dark-mode) .button {
-  background-color: #ffffff;
-  color: #0a0a0a;
-}
-
-:global(html.dark-mode) .button:hover {
-  background-color: #f0f0f0;
-}
-
 .eyebrow {
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   font-family: inherit;
   line-height: 120%;
   text-align: left;
-  letter-spacing: normal;
-  font-weight: 400;
+  letter-spacing: 0.12em;
+  font-weight: 500;
   text-transform: uppercase;
-  padding-bottom: 2.25rem;
-  color: #151515;
-  opacity: 0.8;
+  padding-bottom: 1.5rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0;
 }
 
 .title {
-  font-size: 86px;
-  font-family: inherit;
+  font-size: clamp(2.25rem, 5vw, 5rem);
+  font-family: 'Wotfard', sans-serif;
   line-height: 110%;
   text-align: left;
   letter-spacing: -0.02em;
   font-weight: 400;
   width: 100%;
-  color: #151515;
+  color: #ffffff;
   margin: 0;
-  
-  @media (max-width: 768px) {
-    font-size: 2.5rem;
-    line-height: 115%;
-  }
 }
 
 .link {
-  padding-top: 3.5rem;
-  
+  padding-top: 2.5rem;
+
   @media (max-width: 768px) {
-    padding-top: 2.25rem;
+    padding-top: 1.75rem;
   }
 }
+
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   padding: 0.75rem 2.5rem;
-  background-color: #151515;
-  color: #fafafa;
+  background-color: #ffffff;
+  color: #0a0a0a;
   border: none;
   border-radius: 0.75rem;
   font-size: 1rem;
@@ -100,7 +112,7 @@
 }
 
 .button:hover {
-  background-color: #2a2a2a;
+  background-color: #e8e8e8;
   transform: translateY(-2px);
 }
 
@@ -120,30 +132,6 @@
   .button {
     padding: 0.6rem 1.8rem;
     font-size: 0.9rem;
-  }
-}
-
-// Dark mode support
-:global(.dark-mode) {
-  .inner {
-    background-color: #2a2a2a;
-  }
-  
-  .eyebrow {
-    color: #fafafa;
-  }
-  
-  .title {
-    color: #fafafa;
-  }
-  
-  .button {
-    background-color: #fafafa;
-    color: #151515;
-    
-    &:hover {
-      background-color: #e0e0e0;
-    }
   }
 }
 

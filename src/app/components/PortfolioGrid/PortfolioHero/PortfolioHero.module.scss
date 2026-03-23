@@ -92,9 +92,19 @@
   /* Positionierte Elemente */
   .topRight {
     position: absolute;
-    top: 2rem;
-    right: 2rem;
+    top: 1.25rem;
+    right: 1.25rem;
     z-index: 3;
+
+    @media (max-width: 768px) {
+      top: 0.75rem;
+      right: 0.75rem;
+    }
+
+    @media (max-width: 480px) {
+      top: 0.6rem;
+      right: 0.6rem;
+    }
   }
 }
 
@@ -297,6 +307,18 @@
 
 .navButtonLeft {
   left: 20px;
+
+  @media (max-width: 1024px) {
+    left: 15px;
+  }
+
+  @media (max-width: 768px) {
+    left: 10px;
+  }
+
+  @media (max-width: 480px) {
+    left: 8px;
+  }
 }
 
 .navButtonRight {
@@ -315,7 +337,7 @@
   }
 }
 
-/* Lines Indicator */
+/* Dots / Progress Indicator */
 .dotsContainer {
   position: absolute;
   bottom: 20px;
@@ -327,41 +349,74 @@
 
   @media (max-width: 768px) {
     bottom: 15px;
+    gap: 6px;
   }
 
   @media (max-width: 480px) {
     bottom: 12px;
-    gap: 8px;
+    gap: 5px;
   }
 }
 
 .dot {
+  position: relative;
+  overflow: hidden;
   width: 30px;
   height: 3px;
   border-radius: 2px;
   border: none;
   background: rgba(255, 255, 255, 0.3);
   cursor: pointer;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
+  transition: background 0.3s ease, width 0.3s ease;
+  padding: 0;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.5);
-    transform: scaleY(1.5);
+    background: rgba(255, 255, 255, 0.45);
   }
 
+  /* Active dot is slightly wider on desktop */
   &.active {
-    background: #ffffff;
+    width: 40px;
   }
 
+  /* Mobile: pill dots, wider for better touch */
   @media (max-width: 768px) {
-    width: 10px;
-    height: 10px;
+    width: 26px;
+    height: 4px;
+    border-radius: 2px;
+
+    &.active {
+      width: 38px;
+    }
   }
 
   @media (max-width: 480px) {
-    width: 8px;
-    height: 8px;
+    width: 20px;
+    height: 4px;
+
+    &.active {
+      width: 32px;
+    }
   }
+}
+
+/* Progress fill — uses scaleX for GPU-accelerated smooth animation */
+.dotProgress {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  border-radius: inherit;
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: dotFill var(--fill-duration, 8s) linear forwards;
+  will-change: transform;
+  pointer-events: none;
+}
+
+@keyframes dotFill {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
 }
 

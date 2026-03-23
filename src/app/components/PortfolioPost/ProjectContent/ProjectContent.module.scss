@@ -4,22 +4,17 @@
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  background: transparent;
-  border: none;
-  border-radius: 0;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
   overflow: hidden;
 }
 
 .section {
   padding: 2rem;
-  transition: background 0.2s ease;
 
-  &:last-child {
-    border-bottom: none;
-  }
-
-  &:hover {
-    background: rgba(255, 255, 255, 0.02);
+  & + & {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
   }
 
   @media (max-width: 768px) {

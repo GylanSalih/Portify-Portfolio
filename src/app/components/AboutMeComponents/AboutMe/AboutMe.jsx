@@ -1,10 +1,30 @@
 'use client';
 
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Github, Linkedin, Dribbble, Mail } from 'lucide-react';
 import styles from './AboutMe.module.scss';
 
 const AboutMe = () => {
+  const timelineRef = useRef(null);
+  const [timelineProgress, setTimelineProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!timelineRef.current) return;
+      const rect = timelineRef.current.getBoundingClientRect();
+      const windowH = window.innerHeight;
+      // start: timeline top hits bottom of screen → progress = 0
+      // end: timeline bottom hits 40% from top of screen → progress = 1
+      const start = windowH;
+      const end = -(rect.height - windowH * 0.6);
+      let progress = (start - rect.top) / (start - end);
+      setTimelineProgress(Math.max(0, Math.min(1, progress)));
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <section className={styles.section} id="about">
       <div className={styles.container}>
@@ -135,8 +155,9 @@ const AboutMe = () => {
         <div className={styles.timelineSection}>
           <h5>My Journey</h5>
 
-          <div className={styles.timelineGrid}>
-            <div className={styles.timelineItem}>
+          <div className={styles.timelineGrid} ref={timelineRef} style={{ '--timeline-progress': `${timelineProgress * 100}%` }}>
+            {/* 4 items — dots activate at 0%, 25%, 50%, 75% progress thresholds */}
+            <div className={`${styles.timelineItem} ${timelineProgress >= 0.05 ? styles.timelineItemActive : ''}`}>
               <div className={styles.timelineCard}>
                 <div className={styles.timelineHeader}>
                   <div className={styles.timelineYear}>05.2025 - Now</div>
@@ -153,7 +174,7 @@ const AboutMe = () => {
               </div>
             </div>
 
-            <div className={styles.timelineItem}>
+            <div className={`${styles.timelineItem} ${timelineProgress >= 0.3 ? styles.timelineItemActive : ''}`}>
               <div className={styles.timelineCard}>
                 <div className={styles.timelineHeader}>
                   <div className={styles.timelineYear}>2023 - 2025</div>
@@ -169,7 +190,7 @@ const AboutMe = () => {
               </div>
             </div>
 
-            <div className={styles.timelineItem}>
+            <div className={`${styles.timelineItem} ${timelineProgress >= 0.58 ? styles.timelineItemActive : ''}`}>
               <div className={styles.timelineCard}>
                 <div className={styles.timelineHeader}>
                   <div className={styles.timelineYear}>02.2019 - 08.2023</div>
@@ -185,7 +206,7 @@ const AboutMe = () => {
               </div>
             </div>
 
-            <div className={styles.timelineItem}>
+            <div className={`${styles.timelineItem} ${timelineProgress >= 0.82 ? styles.timelineItemActive : ''}`}>
               <div className={styles.timelineCard}>
                 <div className={styles.timelineHeader}>
                   <div className={styles.timelineYear}>08.2018 - 02.2019</div>

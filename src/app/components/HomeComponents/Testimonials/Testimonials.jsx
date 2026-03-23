@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, memo, useMemo, useLayoutEffect, useRef } from 'react';
+import { useState, useCallback, memo, useMemo, useLayoutEffect, useRef, useEffect } from 'react';
 import {
   Globe,
   Palette,
@@ -192,8 +192,16 @@ TestimonialCard.displayName = 'TestimonialCard';
 export default memo(function Testimonials() {
   const [activeCategory, setActiveCategory] = useState(1);
   const [currentPage, setCurrentPage] = useState(0);
-  const ITEMS_PER_PAGE = 6;
+  const [itemsPerPage, setItemsPerPage] = useState(6);
   const scrollPosRef = useRef(null);
+
+  // Responsive items per page: 3 on mobile, 6 on desktop
+  useEffect(() => {
+    const update = () => setItemsPerPage(window.innerWidth < 768 ? 3 : 6);
+    update();
+    window.addEventListener('resize', update, { passive: true });
+    return () => window.removeEventListener('resize', update);
+  }, []);
 
   // Preserve scroll position after pagination re-render
   useLayoutEffect(() => {
@@ -209,6 +217,15 @@ export default memo(function Testimonials() {
     setCurrentPage(0);
   }, [activeCategory]);
 
+  // Filter prev/next category
+  const currentCatIndex = categories.findIndex(c => c.id === activeCategory);
+  const goPrevCategory = useCallback(() => {
+    if (currentCatIndex > 0) handleCategoryChange(categories[currentCatIndex - 1].id);
+  }, [currentCatIndex, handleCategoryChange]);
+  const goNextCategory = useCallback(() => {
+    if (currentCatIndex < categories.length - 1) handleCategoryChange(categories[currentCatIndex + 1].id);
+  }, [currentCatIndex, handleCategoryChange]);
+
   const filteredTestimonials = useMemo(() => 
     activeCategory === 1
       ? testimonials
@@ -216,9 +233,9 @@ export default memo(function Testimonials() {
           testimonial.categories.includes(activeCategory)
         ), [activeCategory]);
 
-  const totalPages = Math.ceil(filteredTestimonials.length / ITEMS_PER_PAGE);
-  const pageStart = currentPage * ITEMS_PER_PAGE;
-  const visibleTestimonials = filteredTestimonials.slice(pageStart, pageStart + ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(filteredTestimonials.length / itemsPerPage);
+  const pageStart = currentPage * itemsPerPage;
+  const visibleTestimonials = filteredTestimonials.slice(pageStart, pageStart + itemsPerPage);
 
   const goPrev = useCallback(() => {
     scrollPosRef.current = window.scrollY;
@@ -244,6 +261,14 @@ export default memo(function Testimonials() {
 
         {/* Filter Navigation */}
         <nav className={styles.filters} aria-label="Project Categories">
+          <button
+            className={styles.filterArrow}
+            onClick={goPrevCategory}
+            disabled={currentCatIndex === 0}
+            aria-label="Previous category"
+          >
+            <ChevronLeft size={16} />
+          </button>
           <div className={styles.filterWrapper}>
             {categories.map(category => {
               const IconComponent = category.icon;
@@ -269,6 +294,14 @@ export default memo(function Testimonials() {
               );
             })}
           </div>
+          <button
+            className={styles.filterArrow}
+            onClick={goNextCategory}
+            disabled={currentCatIndex === categories.length - 1}
+            aria-label="Next category"
+          >
+            <ChevronRight size={16} />
+          </button>
         </nav>
 
         {/* Testimonials Grid */}
@@ -295,7 +328,7 @@ export default memo(function Testimonials() {
             </button>
 
             <span className={styles.pageCount}>
-              {pageStart + 1}–{Math.min(pageStart + ITEMS_PER_PAGE, filteredTestimonials.length)}{' '}
+              {pageStart + 1}–{Math.min(pageStart + itemsPerPage, filteredTestimonials.length)}{' '}
               / {filteredTestimonials.length}
             </span>
 

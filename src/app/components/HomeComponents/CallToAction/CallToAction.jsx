@@ -65,21 +65,6 @@ const CallToAction = memo(() => {
           </div>
         </div>
 
-        {/* Bottom Stats */}
-        <div className={styles.stats} suppressHydrationWarning>
-          <div className={styles.stat} suppressHydrationWarning>
-            <div className={styles.statNumber} suppressHydrationWarning>5+</div>
-            <div className={styles.statLabel} suppressHydrationWarning>Projects</div>
-          </div>
-          <div className={styles.stat} suppressHydrationWarning>
-            <div className={styles.statNumber} suppressHydrationWarning>2+</div>
-            <div className={styles.statLabel} suppressHydrationWarning>years doing what I love</div>
-          </div>
-          <div className={styles.stat} suppressHydrationWarning>
-            <div className={styles.statNumber} suppressHydrationWarning>50+</div>
-            <div className={styles.statLabel} suppressHydrationWarning>late nights well spent</div>
-          </div>
-        </div>
       </div>
     </section>
   );

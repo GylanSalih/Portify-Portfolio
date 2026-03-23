@@ -10,10 +10,17 @@ import styles from './ShowSingle.module.scss';
 const ShowSingle = () => {
   const params = useParams();
   const router = useRouter();
+  const [currentSlug, setCurrentSlug] = useState(params.slug);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isImageViewOpen, setIsImageViewOpen] = useState(false);
   const [showcaseData, setShowcaseData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  // Sync slug when browser back/forward navigates
+  useEffect(() => {
+    setCurrentSlug(params.slug);
+    setCurrentImageIndex(0);
+  }, [params.slug]);
 
   // Load showcase data
   useEffect(() => {
@@ -31,11 +38,18 @@ const ShowSingle = () => {
     loadData();
   }, []);
 
+  // SPA-style navigation: update URL without remounting the component
+  const navigateTo = (slug) => {
+    window.history.pushState(null, '', `/showcase/${slug}`);
+    setCurrentSlug(slug);
+    setCurrentImageIndex(0);
+  };
+
   // Find current showcase item by slug
-  const currentItem = showcaseData.find(item => item.slug === params.slug);
+  const currentItem = showcaseData.find(item => item.slug === currentSlug);
   
   // Find navigation items
-  const currentIndex = showcaseData.findIndex(item => item.slug === params.slug);
+  const currentIndex = showcaseData.findIndex(item => item.slug === currentSlug);
   const prevItem = currentIndex > 0 ? showcaseData[currentIndex - 1] : null;
   const nextItem = currentIndex < showcaseData.length - 1 ? showcaseData[currentIndex + 1] : null;
 
@@ -103,109 +117,138 @@ const ShowSingle = () => {
 
   return (
     <>
-      <div className={styles.showSingle}>
-        {/* Close Button */}
-        <button 
-          className={styles.closeButton}
-          onClick={() => router.push('/showcase?view=grid')}
-          aria-label="Close"
-        >
-          <X size={20} />
-        </button>
+      <motion.div
+        className={styles.showSingle}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.2, ease: 'easeOut' }}
+      >
+        {/* ── Fixed Sidebar ── */}
+        <aside className={styles.sidebar}>
+          <div className={styles.sidebarHeader}>
+            <p className={styles.sidebarLabel}>Projects</p>
+          </div>
+          <div className={styles.sidebarInner}>
+            <div className={styles.sidebarList}>
+              {showcaseData.map((item) => (
+                <button
+                  key={item.slug}
+                  className={`${styles.sidebarItem} ${item.slug === currentSlug ? styles.sidebarItemActive : ''}`}
+                  onClick={() => navigateTo(item.slug)}
+                  title={item.title}
+                >
+                  <div className={styles.sidebarThumb}>
+                    <img
+                      src={item.coverImage || item.image}
+                      alt={item.title}
+                      className={styles.sidebarThumbImg}
+                    />
+                  </div>
+                  <span className={styles.sidebarItemTitle}>{item.title}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </aside>
 
-        {/* Navigation Bar (Desktop) */}
-        <div className={styles.navigationBar}>
-          <div className={styles.navContent}>
-            <div className={styles.navButtons}>
-              <button 
+        {/* ── Main scrollable content ── */}
+        <div className={styles.mainScroll}>
+
+          {/* Top bar: prev/next + close — all aligned on one row */}
+          <div className={styles.topBar}>
+            <div className={styles.topBarNav}>
+              <button
                 className={styles.navButton}
-                onClick={() => prevItem && router.push(`/showcase/${prevItem.slug}`)}
+                onClick={() => prevItem && navigateTo(prevItem.slug)}
                 disabled={!prevItem}
+                aria-label="Previous project"
               >
                 <ChevronLeft size={20} />
               </button>
-              <button 
+              <button
                 className={styles.navButton}
-                onClick={() => nextItem && router.push(`/showcase/${nextItem.slug}`)}
+                onClick={() => nextItem && navigateTo(nextItem.slug)}
                 disabled={!nextItem}
+                aria-label="Next project"
+              >
+                <ChevronRight size={20} />
+              </button>
+            </div>
+            <button
+              className={styles.closeButton}
+              onClick={() => router.push('/showcase?view=grid')}
+              aria-label="Close"
+            >
+              <X size={20} />
+            </button>
+          </div>
+
+          {/* Project header — centered above gallery */}
+          <div className={styles.projectHeader}>
+            <div className={styles.headerTags}>
+              {currentItem.tags.map((tag, index) => (
+                <span key={index} className={styles.tag}>{tag}</span>
+              ))}
+            </div>
+            <h1 className={styles.title}>{currentItem.title}</h1>
+            <div className={styles.meta}>
+              <div className={styles.metaItem}>
+                <Calendar size={14} />
+                <span>{currentItem.date}</span>
+              </div>
+            </div>
+            <p className={styles.description}>{currentItem.description}</p>
+          </div>
+
+          {/* Gallery */}
+          <div className={styles.gallery}>
+            {currentItem.gallery.map((image, index) => (
+              <motion.div
+                key={index}
+                className={styles.galleryItem}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.08 }}
+                onClick={() => handleImageClick(index)}
+              >
+                <img
+                  src={image}
+                  alt={`${currentItem.title} - Image ${index + 1}`}
+                  className={styles.galleryImage}
+                />
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Mobile Navigation */}
+          <div className={styles.mobileNavigationBar}>
+            <div className={styles.navButtons}>
+              <button
+                className={styles.navButton}
+                onClick={() => prevItem && navigateTo(prevItem.slug)}
+                disabled={!prevItem}
+                aria-label="Previous project"
+              >
+                <ChevronLeft size={20} />
+              </button>
+              <div className={styles.navIndicator}>
+                <span className={styles.navIndicatorText}>
+                  {currentIndex + 1} / {showcaseData.length}
+                </span>
+              </div>
+              <button
+                className={styles.navButton}
+                onClick={() => nextItem && navigateTo(nextItem.slug)}
+                disabled={!nextItem}
+                aria-label="Next project"
               >
                 <ChevronRight size={20} />
               </button>
             </div>
           </div>
+
         </div>
-
-        {/* Content */}
-        <div className={styles.contentWrapper}>
-          <div className={styles.container}>
-            {/* Left Column - Info */}
-            <div className={styles.infoColumn}>
-              <div className={styles.stickyInfo}>
-                <h1 className={styles.title}>{currentItem.title}</h1>
-                
-                <div className={styles.meta}>
-                  <div className={styles.metaItem}>
-                    <Calendar size={16} />
-                    <span>{currentItem.date}</span>
-                  </div>
-                </div>
-
-                <p className={styles.description}>{currentItem.description}</p>
-
-                <div className={styles.tags}>
-                  {currentItem.tags.map((tag, index) => (
-                    <span key={index} className={styles.tag}>
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Right Column - Gallery */}
-            <div className={styles.galleryColumn}>
-              <div className={styles.gallery}>
-                {currentItem.gallery.map((image, index) => (
-                  <motion.div
-                    key={index}
-                    className={styles.galleryItem}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    onClick={() => handleImageClick(index)}
-                  >
-                    <img 
-                      src={image} 
-                      alt={`${currentItem.title} - Image ${index + 1}`}
-                      className={styles.galleryImage}
-                    />
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile Navigation Bar */}
-        <div className={styles.mobileNavigationBar}>
-          <div className={styles.navButtons}>
-            <button 
-              className={styles.navButton}
-              onClick={() => prevItem && router.push(`/showcase/${prevItem.slug}`)}
-              disabled={!prevItem}
-            >
-              <ChevronLeft size={20} />
-            </button>
-            <button 
-              className={styles.navButton}
-              onClick={() => nextItem && router.push(`/showcase/${nextItem.slug}`)}
-              disabled={!nextItem}
-            >
-              <ChevronRight size={20} />
-            </button>
-          </div>
-        </div>
-      </div>
+      </motion.div>
 
       {/* Fullscreen Image Viewer */}
       <AnimatePresence>
@@ -215,6 +258,7 @@ const ShowSingle = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
             onClick={() => setIsImageViewOpen(false)}
           >
             <button 
@@ -233,16 +277,18 @@ const ShowSingle = () => {
                 <ChevronLeft size={32} />
               </button>
 
-              <motion.img
-                key={currentImageIndex}
-                src={currentItem.gallery[currentImageIndex]}
-                alt={`${currentItem.title} - Image ${currentImageIndex + 1}`}
-                className={styles.viewerImage}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
-              />
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={currentImageIndex}
+                  src={currentItem.gallery[currentImageIndex]}
+                  alt={`${currentItem.title} - Image ${currentImageIndex + 1}`}
+                  className={styles.viewerImage}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.2 }}
+                />
+              </AnimatePresence>
 
               <button 
                 className={`${styles.viewerNav} ${styles.viewerNavNext}`}

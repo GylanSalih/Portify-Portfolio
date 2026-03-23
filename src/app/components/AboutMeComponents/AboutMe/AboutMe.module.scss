@@ -579,7 +579,7 @@ Timeline // Work, Achievements
   font-size: 1.5rem;
   font-family: 'Wotfard', sans-serif;
   color: #1a1a1a;
-  margin: 0 0 2rem 0;
+  margin: 0 0 3rem 0;
   font-weight: 600;
   text-align: left;
 }
@@ -588,133 +588,214 @@ Timeline // Work, Achievements
   color: #ffffff;
 }
 
+/* ── Vertical alternating timeline ── */
 .timelineGrid {
-  display: grid;
-  gap: 30px;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 
-  @media (min-width: 1024px) {
-    grid-template-columns: repeat(4, 1fr);
+  /* Gray base line */
+  &::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #e0e0e0;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  /* White progress fill on top of the gray line */
+  &::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 2px;
+    height: var(--timeline-progress, 0%);
+    background: #ffffff;
+    transform: translateX(-50%);
+    pointer-events: none;
+    z-index: 2;
+    transition: height 0.15s linear;
   }
 }
 
-/* Improved Timeline */
-.timeline {
-  display: grid;
-  gap: 30px;
-  position: relative;
+:global(.dark-mode) .timelineGrid::before {
+  background: rgba(255, 255, 255, 0.12);
 }
 
-.timeline h5 {
-  font-size: 1.5rem;
-  font-family: 'Wotfard', sans-serif;
-  color: #1a1a1a;
-  margin: 0 0 1.5rem 0;
-  font-weight: 600;
-  text-align: left;
+:global(.dark-mode) .timelineGrid::after {
+  background: #ffffff;
 }
 
-:global(.dark-mode) .timeline h5 {
-  color: #ffffff;
-}
-
+/* Each row of the timeline */
 .timelineItem {
   position: relative;
-  padding-left: 30px;
+  display: grid;
+  grid-template-columns: 1fr 80px 1fr;
+  align-items: flex-start;
+  padding-bottom: 3.5rem;
 }
 
-.timelineItem:before {
+/* White dot centered on the line */
+.timelineItem::before {
   content: '';
   position: absolute;
-  left: 0;
-  top: 24px;
+  left: 50%;
+  top: 1.6rem;
   width: 12px;
   height: 12px;
-  background: #333;
   border-radius: 50%;
+  background: #ccc;
+  border: 2px solid #fff;
+  transform: translateX(-50%);
+  z-index: 3;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.06);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
-:global(.dark-mode) .timelineItem:before {
-  background: #fff;
+/* Active dot turns white */
+.timelineItemActive::before {
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2), 0 0 12px rgba(255, 255, 255, 0.4);
 }
 
-.timelineItem:after {
-  content: '';
-  position: absolute;
-  left: 5px;
-  top: 36px;
-  bottom: -30px;
-  width: 2px;
-  background: #e0e0e0;
+:global(.dark-mode) .timelineItem::before {
+  background: rgba(255, 255, 255, 0.5);
+  border-color: #0a0a0a;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.08);
 }
 
-:global(.dark-mode) .timelineItem:after {
-  background: rgba(255, 255, 255, 0.1);
+:global(.dark-mode) .timelineItemActive::before {
+  background: #ffffff;
+  border-color: #0a0a0a;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2), 0 0 12px rgba(255, 255, 255, 0.4);
 }
 
-.timelineItem:last-child:after {
-  display: none;
+/* Odd items: card on the LEFT, gap on the right */
+.timelineItem:nth-child(odd) .timelineCard {
+  grid-column: 1;
+  margin-right: 2rem;
 }
 
+/* Even items: gap on left, card on the RIGHT */
+.timelineItem:nth-child(even) .timelineCard {
+  grid-column: 3;
+  margin-left: 2rem;
+}
+
+/* The card itself */
 .timelineCard {
   background: #f5f5f5;
-  border-radius: 12px;
-  padding: 20px;
+  border-radius: 16px;
+  padding: 1.5rem 1.75rem;
   border: 1px solid #e0e0e0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  cursor: default;
 }
 
 :global(.dark-mode) .timelineCard {
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.timelineCard:hover {
+  transform: scale(1.025);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  border-color: #bbb;
+}
+
+:global(.dark-mode) .timelineCard:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.18);
 }
 
 .timelineHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+  gap: 0.25rem;
 }
 
 .timelineYear {
-  font-family: monospace;
-  color: #666;
-  font-size: 14px;
   font-family: 'Wotfard', sans-serif;
+  color: #888;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
 }
 
 :global(.dark-mode) .timelineYear {
-  color: #999;
+  color: #666;
 }
 
 .timelineCompany {
-  color: #666;
-  font-size: 14px;
+  color: #888;
+  font-size: 0.8rem;
   font-family: 'Wotfard', sans-serif;
+  background: #eaeaea;
+  border-radius: 4px;
+  padding: 0.15rem 0.6rem;
 }
 
 :global(.dark-mode) .timelineCompany {
-  color: #aaa;
+  color: #666;
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .timelineTitle {
-  margin: 0 0 8px;
-  font-size: 18px;
+  margin: 0 0 0.6rem;
+  font-size: 1.05rem;
   font-family: 'Wotfard', sans-serif;
   color: #1a1a1a;
+  font-weight: 600;
+  line-height: 1.35;
 }
 
 :global(.dark-mode) .timelineTitle {
-  color: #fff;
+  color: #f0f0f0;
 }
 
 .timelineDescription {
   margin: 0;
-  color: #666;
+  color: #777;
+  font-size: 0.9rem;
   line-height: 1.6;
 }
 
 :global(.dark-mode) .timelineDescription {
-  color: #aaa;
+  color: #888;
+}
+
+/* Mobile: single column */
+@media (max-width: 768px) {
+  .timelineGrid::before {
+    left: 18px;
+    transform: none;
+  }
+
+  .timelineItem {
+    display: block;
+    padding-left: 48px;
+    padding-bottom: 2.5rem;
+  }
+
+  .timelineItem::before {
+    left: 12px;
+    transform: none;
+  }
+
+  .timelineItem:nth-child(odd) .timelineCard,
+  .timelineItem:nth-child(even) .timelineCard {
+    grid-column: unset;
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
 /* -----------------------------------------------------------
@@ -794,16 +875,6 @@ Responsive Styles
 
   .heading {
     font-size: 36px;
-  }
-
-  .timelineItem {
-    padding-left: 20px;
-  }
-
-  .timelineItem:before {
-    width: 8px;
-    height: 8px;
-    top: 20px;
   }
 }
 

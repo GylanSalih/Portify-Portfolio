@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDarkMode } from '../../../contexts/DarkModeContext';
 import {
   Home,
@@ -20,6 +20,17 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const menuRef = useRef(null);
   const overlayRef = useRef(null);
+
+  // Keep elements in DOM during close animation (650ms matches transition duration)
+  const [isVisible, setIsVisible] = useState(false);
+  useEffect(() => {
+    if (isOpen) {
+      setIsVisible(true);
+    } else {
+      const timer = setTimeout(() => setIsVisible(false), 650);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
 
   const menuItems = [
     {
@@ -92,7 +103,7 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
 
   return (
     <>
-      {isOpen && (
+      {isVisible && (
         <>
           {/* Backdrop Overlay */}
           <div
@@ -106,18 +117,25 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
             ref={menuRef}
             className={`${styles.hamburgerMenuPanel} ${isDarkMode ? styles.dark : styles.light} ${isOpen ? styles.open : ''}`}
           >
-            {/* Close Button */}
-            <button
-              className={styles.closeButton}
-              onClick={onClose}
-              aria-label="Close menu"
-            >
-              <X size={24} />
-            </button>
-
-            {/* Menu Header */}
-            <div className={styles.menuHeader}>
+            {/* Top bar: Menu title + dark mode toggle + close */}
+            <div className={styles.menuTopBar}>
               <h1 className={styles.menuTitle}>Menu</h1>
+              <div className={styles.menuTopActions}>
+                <button
+                  className={styles.darkModeToggle}
+                  onClick={toggleDarkMode}
+                  aria-label="Toggle dark mode"
+                >
+                  {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+                </button>
+                <button
+                  className={styles.closeButton}
+                  onClick={onClose}
+                  aria-label="Close menu"
+                >
+                  <X size={24} />
+                </button>
+              </div>
             </div>
 
             {/* Navigation Links */}
@@ -148,22 +166,6 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
                 ))}
               </ul>
             </nav>
-
-            {/* Dark Mode Toggle */}
-            <div className={styles.menuFooter}>
-              <button
-                className={styles.darkModeToggle}
-                onClick={toggleDarkMode}
-                aria-label="Toggle dark mode"
-              >
-                <div className={styles.toggleIcon}>
-                  {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-                </div>
-                <span className={styles.toggleLabel}>
-                  {isDarkMode ? 'Light Mode' : 'Dark Mode'}
-                </span>
-              </button>
-            </div>
 
           </div>
         </>

@@ -1,76 +1,189 @@
-// ShowSingle.module.scss
-// Single showcase item view with gallery
+// ShowSingle.module.scss — Fixed sidebar + scrollable main area
 
+/* ── Outer shell ── */
 .showSingle {
   position: fixed;
   inset: 0;
   z-index: 5000;
   background: #000;
   color: #fff;
-  margin: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
-// Close Button
-.closeButton {
+/* ── Sidebar: fixed to left edge, always full viewport height ── */
+.sidebar {
   position: fixed;
-  top: 1rem;
-  right: 1rem;
-  z-index: 50;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  background: rgba(38, 38, 38, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  color: #fff;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  left: 10px;
+  top: 0;
+  bottom: 0;
+  width: 180px;
+  height: 100dvh;
+  z-index: 5001;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+  background: #000;
 
-  &:hover {
-    background: rgba(38, 38, 38, 1);
-    border-color: rgba(255, 255, 255, 0.4);
+  &::-webkit-scrollbar { width: 3px; }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
   }
 
   @media (max-width: 768px) {
-    top: 0.75rem;
-    right: 0.75rem;
+    display: none;
   }
 }
 
-// Navigation Bar (Desktop)
-.navigationBar {
-  display: none;
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: rgba(0, 0, 0, 0.9);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
+/* ── Sidebar header — aligns with topBar height ── */
+.sidebarHeader {
+  height: 66px;
+  display: flex;
+  align-items: center;
+  padding: 0 0.6rem 0 0.9rem;
+  flex-shrink: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
 
-  @media (min-width: 769px) {
-    display: block;
+/* ── Sidebar inner elements ── */
+.sidebarInner {
+  padding: 0.75rem 0.6rem 2rem;
+}
+
+.sidebarLabel {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.25);
+  margin: 0;
+}
+
+.sidebarList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.sidebarItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  width: 100%;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255,255,255,0.08);
   }
 }
 
-.navContent {
+.sidebarItemActive {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.sidebarThumb {
   position: relative;
   width: 100%;
+  aspect-ratio: 16/10;
+  border-radius: 5px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
 }
 
-.navButtons {
+.sidebarThumbImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+
+  .sidebarItem:hover & {
+    transform: scale(1.04);
+  }
+}
+
+.sidebarActiveBar {
   position: absolute;
-  top: 0.75rem;
-  right: 4rem;
-  z-index: 50;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 0 2px 2px 0;
+}
+
+.sidebarItemTitle {
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.3;
+  font-family: 'Wotfard', sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  .sidebarItemActive & {
+    color: rgba(255, 255, 255, 0.85);
+  }
+}
+
+/* ── Main scrollable content — right of sidebar ── */
+.mainScroll {
+  position: fixed;
+  left: 190px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.08) transparent;
+
+  &::-webkit-scrollbar { width: 4px; }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 2px;
+  }
+
+  @media (max-width: 768px) {
+    left: 0;
+    padding-bottom: 4rem;
+  }
+}
+
+/* ── Top bar: nav arrows + close on same horizontal row ── */
+.topBar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1rem;
+  background: rgba(0, 0, 0, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+}
+
+.topBarNav {
   display: flex;
   align-items: center;
   gap: 0;
   border-radius: 9999px;
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 .navButton {
@@ -82,7 +195,7 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: rgba(255, 255, 255, 0.6);
   cursor: pointer;
-  transition: all 0.1s ease;
+  transition: all 0.15s ease;
 
   &:first-child {
     border-right: 0;
@@ -97,7 +210,7 @@
   &:hover:not(:disabled) {
     background: rgba(64, 64, 64, 1);
     border-color: rgba(255, 255, 255, 0.4);
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.9);
   }
 
   &:disabled {
@@ -106,175 +219,104 @@
   }
 }
 
-// Mobile Navigation Bar
-.mobileNavigationBar {
-  display: block;
-  position: sticky;
-  bottom: 0;
-  z-index: 50;
-  background: rgba(0, 0, 0, 0.9);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
-  padding: 0.75rem 1rem;
-
-  @media (min-width: 769px) {
-    display: none;
-  }
-
-  .navButtons {
-    position: static;
-    justify-content: center;
-  }
-}
-
-// Content Wrapper
-.contentWrapper {
-  padding: 2rem 0 5rem;
-
-  @media (min-width: 769px) {
-    padding: 2.5rem 2rem;
-  }
-}
-
-.container {
-  max-width: 1400px;
-  margin: 0 auto;
+.closeButton {
   display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: rgba(38, 38, 38, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
 
-  @media (min-width: 769px) {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 3rem;
+  &:hover {
+    background: rgba(64, 64, 64, 1);
+    border-color: rgba(255, 255, 255, 0.4);
   }
 }
 
-// Info Column
-.infoColumn {
-  padding: 0 1rem;
-
-  @media (min-width: 769px) {
-    padding: 0;
-  }
+/* ── Project header — centered above gallery ── */
+.projectHeader {
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 3rem 2.5rem 2rem;
+  text-align: center;
 }
 
-.stickyInfo {
-  // Auf Mobile nicht sticky, nur auf Desktop
-  position: static;
-  
-  @media (min-width: 769px) {
-    position: sticky;
-    top: 6.25rem;
-  }
+.headerTags {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
 }
 
 .title {
-  font-size: 1.75rem;
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
   font-weight: 700;
   text-transform: uppercase;
-  margin-bottom: 1rem;
   letter-spacing: -0.02em;
-  text-align: left;
+  margin: 0 0 1rem;
   font-family: 'Wotfard', sans-serif;
-
-  @media (min-width: 769px) {
-    font-size: 1.875rem;
-  }
+  line-height: 1.1;
 }
 
 .meta {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   gap: 0.75rem;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 1.25rem;
 }
 
 .metaItem {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
+  gap: 0.4rem;
+  font-size: 0.8rem;
   font-family: 'Wotfard', sans-serif;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.05em;
 
-  svg {
-    opacity: 0.6;
-  }
+  svg { opacity: 0.6; }
 }
 
 .description {
   font-size: 1rem;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 1.5rem;
-  text-align: left;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.7);
   font-family: 'Wotfard', sans-serif;
-
-  @media (min-width: 769px) {
-    font-size: 1rem;
-  }
-}
-
-.tags {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
-  flex-wrap: wrap;
-
-  @media (max-width: 768px) {
-    margin-top: 0.4rem;
-  }
-
-  @media (max-width: 480px) {
-    gap: 0.3rem;
-  }
+  max-width: 640px;
+  margin: 0 auto;
 }
 
 .tag {
-  font-size: 0.75rem;
-  padding: 0.25rem 0.5rem;
-  background: rgba(255, 255, 255, 0.15);
+  font-size: 0.7rem;
+  padding: 0.2rem 0.55rem;
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 4px;
   font-weight: 500;
-  backdrop-filter: blur(5px);
-  color: rgba(255, 255, 255, 0.9);
-  transition: all 0.2s ease;
+  color: rgba(255, 255, 255, 0.8);
+  transition: background 0.2s ease;
 
-  @media (max-width: 768px) {
-    font-size: 0.7rem;
-    padding: 0.2rem 0.4rem;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 0.65rem;
-  }
-
-  &:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: translateY(-1px);
-  }
+  &:hover { background: rgba(255, 255, 255, 0.18); }
 }
 
-// Gallery Column
-.galleryColumn {
-  padding: 0 1rem;
-
-  @media (min-width: 769px) {
-    padding: 0;
-  }
-}
-
+/* ── Gallery ── */
 .gallery {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.25rem;
+  padding: 0 2rem 5rem;
+  max-width: 1400px;
+  margin: 0 auto;
 
-  @media (min-width: 769px) {
-    gap: 1.5rem;
+  @media (max-width: 768px) {
+    padding: 0 1rem 3rem;
+    gap: 0.875rem;
   }
 }
 
@@ -282,19 +324,16 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   cursor: pointer;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
-  box-shadow: none;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: border-color 0.25s ease;
 
   &:hover {
-    box-shadow: none;
+    border-color: rgba(255, 255, 255, 0.18);
 
-    .galleryImage {
-      transform: scale(1.04);
-    }
+    .galleryImage { transform: scale(1.025); }
   }
 }
 
@@ -303,7 +342,78 @@
   height: auto;
   display: block;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  transition: transform 0.4s ease;
+}
+
+/* ── Mobile bottom nav ── */
+.mobileNavigationBar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5002;
+  background: rgba(0, 0, 0, 0.9);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  padding: 0.75rem 1rem;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+
+  .navButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    width: fit-content;
+    margin: 0 auto;
+  }
+}
+
+/* Position indicator between mobile nav buttons */
+.navIndicator {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.28rem 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 0 0.35rem;
+  min-width: 64px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.2);
+  }
+}
+
+.navIndicatorText {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.08em;
+  font-family: 'Wotfard', monospace;
+  line-height: 1;
 }
 
 // Fullscreen Image Viewer

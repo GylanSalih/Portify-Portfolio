@@ -8,33 +8,28 @@ const ProjectInfo = ({ project }) => {
     return null;
   }
 
+  const cells = [
+    project.client  && { label: 'Client',  value: project.client },
+    project.role    && { label: 'Rolle',   value: project.role },
+    project.status  && { label: 'Status',  value: project.status, isStatus: true },
+    project.duration && { label: 'Dauer',  value: project.duration },
+  ].filter(Boolean);
+
   return (
     <section className={styles.info}>
-      <div className={styles.grid}>
-        {project.client && (
-          <div className={styles.card}>
-            <h3>Client</h3>
-            <p>{project.client}</p>
+      <div className={styles.row}>
+        {cells.map((cell, i) => (
+          <div key={i} className={styles.cell}>
+            <h3>{cell.label}</h3>
+            {cell.isStatus ? (
+              <p className={`${styles.statusValue} ${styles[project.status.toLowerCase()]}`}>
+                {cell.value}
+              </p>
+            ) : (
+              <p>{cell.value}</p>
+            )}
           </div>
-        )}
-        {project.role && (
-          <div className={styles.card}>
-            <h3>Rolle</h3>
-            <p>{project.role}</p>
-          </div>
-        )}
-        {project.status && (
-          <div className={styles.card}>
-            <h3>Status</h3>
-            <p className={`${styles.status} ${styles[project.status.toLowerCase()]}`}>{project.status}</p>
-          </div>
-        )}
-        {project.duration && (
-          <div className={styles.card}>
-            <h3>Dauer</h3>
-            <p>{project.duration}</p>
-          </div>
-        )}
+        ))}
       </div>
     </section>
   );
