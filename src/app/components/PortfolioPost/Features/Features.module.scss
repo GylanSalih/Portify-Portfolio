@@ -17,6 +17,10 @@
   font-family: 'Wotfard', sans-serif;
   letter-spacing: -0.01em;
 
+  :global(html:not(.dark-mode)) & {
+    color: #0a0a0a;
+  }
+
   @media (max-width: 768px) {
     font-size: 1.625rem;
     margin-bottom: 1.25rem;
@@ -45,12 +49,24 @@
   align-items: flex-start;
   gap: 0.75rem;
 
+  :global(html:not(.dark-mode)) & {
+    border-bottom-color: rgba(10, 10, 10, 0.08);
+
+    &:first-child {
+      border-top-color: rgba(10, 10, 10, 0.08);
+    }
+  }
+
   &:first-child {
     border-top: 1px solid rgba(255, 255, 255, 0.06);
   }
 
   &:hover {
     background: rgba(255, 255, 255, 0.02);
+
+    :global(html:not(.dark-mode)) & {
+      background: rgba(10, 10, 10, 0.02);
+    }
   }
 
   &::before {
@@ -59,6 +75,10 @@
     font-size: 0.875rem;
     flex-shrink: 0;
     margin-top: 0.1rem;
+
+    :global(html:not(.dark-mode)) & {
+      color: rgba(10, 10, 10, 0.4);
+    }
   }
 
   p {
@@ -68,6 +88,10 @@
     line-height: 1.6;
     font-weight: 400;
     font-family: 'Wotfard', sans-serif;
+
+    :global(html:not(.dark-mode)) & {
+      color: rgba(10, 10, 10, 0.8);
+    }
 
     @media (max-width: 768px) {
       font-size: 0.875rem;

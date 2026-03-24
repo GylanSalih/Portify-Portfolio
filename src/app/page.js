@@ -16,10 +16,6 @@ const Home = () => {
   return (
     <div className="page home-page">
       <LandingSlider />
-      {/* <LandingImage 
-        src="https://cdn.shopify.com/s/files/1/0762/5972/1435/collections/Anime_Expo_Key_Art-min.jpg?v=1751412005" 
-        alt="Landing Image"
-      /> */}
       <Testimonials />
       <AutoImgScroll/>
       <Features />

@@ -38,9 +38,9 @@
     width: 120px;
     background: linear-gradient(
       to right,
-      rgba(0, 0, 0, 1) 0%,
-      rgba(0, 0, 0, 0.8) 30%,
-      rgba(0, 0, 0, 0) 100%
+      var(--dark-mode) 0%,
+      color-mix(in srgb, var(--dark-mode) 80%, transparent) 30%,
+      transparent 100%
     );
     z-index: 10; // Über den Items, um Ränder zu verdecken
     pointer-events: none; // Items bleiben trotzdem klickbar
@@ -64,9 +64,9 @@
     width: 120px;
     background: linear-gradient(
       to left,
-      rgba(0, 0, 0, 1) 0%,
-      rgba(0, 0, 0, 0.8) 30%,
-      rgba(0, 0, 0, 0) 100%
+      var(--dark-mode) 0%,
+      color-mix(in srgb, var(--dark-mode) 80%, transparent) 30%,
+      transparent 100%
     );
     z-index: 10; // Über den Items, um Ränder zu verdecken
     pointer-events: none; // Items bleiben trotzdem klickbar
@@ -293,16 +293,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
-  opacity: 0.8;
-  will-change: transform, opacity;
-  transition: all 0.3s ease;
 
-  &:hover {
-    opacity: 1;
-    transform: scale(1.1);
+  svg {
+    transition: transform 0.2s ease;
   }
 }
+
+.scrollItem:hover .linkIcon svg {
+  transform: rotate(45deg);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+}
+
 
 .tags {
   display: flex;
@@ -344,6 +345,16 @@
   justify-content: flex-start;
   align-items: center;
   margin-bottom: 1rem;
+  padding: 0 2rem;
+
+  @media (max-width: 640px) {
+    padding: 0 1rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0;
+  }
+
   &:hover {
     opacity: 0.6;
   }

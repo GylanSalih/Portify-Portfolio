@@ -8,6 +8,11 @@
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 16px;
   overflow: hidden;
+
+  :global(html:not(.dark-mode)) & {
+    background: rgba(10, 10, 10, 0.02);
+    border-color: rgba(10, 10, 10, 0.08);
+  }
 }
 
 .section {
@@ -15,6 +20,10 @@
 
   & + & {
     border-top: 1px solid rgba(255, 255, 255, 0.06);
+
+    :global(html:not(.dark-mode)) & {
+      border-top-color: rgba(10, 10, 10, 0.08);
+    }
   }
 
   @media (max-width: 768px) {
@@ -34,6 +43,10 @@
   letter-spacing: -0.01em;
   text-align: left;
 
+  :global(html:not(.dark-mode)) & {
+    color: #0a0a0a;
+  }
+
   @media (max-width: 768px) {
     font-size: 1.625rem;
     margin-bottom: 1rem;
@@ -46,6 +59,10 @@
   font-size: 1rem;
   font-family: 'Wotfard', sans-serif;
   text-align: left;
+
+  :global(html:not(.dark-mode)) & {
+    color: rgba(10, 10, 10, 0.75);
+  }
 
   p {
     margin: 0 0 1rem 0;
@@ -60,6 +77,10 @@
     position: relative;
     font-family: 'Wotfard', sans-serif;
     text-align: left;
+
+    :global(html:not(.dark-mode)) & {
+      color: rgba(10, 10, 10, 0.9);
+    }
 
     @media (max-width: 768px) {
       font-size: 1.125rem;
@@ -90,6 +111,10 @@
   strong {
     color: rgba(255, 255, 255, 0.9);
     font-weight: 600;
+
+    :global(html:not(.dark-mode)) & {
+      color: rgba(10, 10, 10, 0.9);
+    }
   }
 
   @media (max-width: 768px) {

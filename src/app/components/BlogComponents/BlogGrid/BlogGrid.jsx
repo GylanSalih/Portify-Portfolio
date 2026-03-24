@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState, useRef, useMemo, useCallback } from 'react';
-import { ChevronDown, Sparkles } from 'lucide-react';
+import { ChevronDown, Sparkles, Search } from 'lucide-react';
 import { useAllBlogStats, useBlogSearch } from '../../../hooks/useBlogStats';
 import {
   formatNumber,
@@ -184,9 +184,6 @@ const BlogGrid = () => {
       ref={sectionRef}
       className={`${styles.wrapper} ${isVisible ? styles.visible : ''}`}
     >
-      {/* Background Elements - Reduced for performance */}
-      <div className={styles.backgroundGrid}></div>
-
       {/* Hero Header */}
       <div className={styles.heroSection}>
         <div className={styles.heroContent}>
@@ -210,31 +207,46 @@ const BlogGrid = () => {
           ref={filterRef}
           className={styles.filtersCard}
         >
-          {/* Removed glow div for better performance */}
+          <div className={styles.filtersBody}>
+            {/* Left: search + topic buttons */}
+            <div className={styles.filterLeft}>
+              <span className={styles.filterLabel}>Search</span>
+              <div className={styles.inputGroup}>
+                <Search size={14} className={styles.searchIcon} />
+                <input
+                  type="text"
+                  placeholder="Search articles, topics..."
+                  value={searchQuery}
+                  onChange={e => setSearchQuery(e.target.value)}
+                  className={styles.searchInput}
+                />
+              </div>
 
-          <div className={styles.filtersHeader}>
-            <h3 className={styles.filtersTitle}>Find Your Content</h3>
-            <p className={styles.filtersSubtitle}>
-              Filter and search through our articles
-            </p>
-          </div>
-
-          <div className={styles.filtersTopRow} suppressHydrationWarning>
-            <div className={styles.inputGroup}>
-              <input
-                type="text"
-                placeholder="Search articles, topics, or keywords..."
-                value={searchQuery}
-                onChange={e => setSearchQuery(e.target.value)}
-                className={styles.searchInput}
-              />
-              {isSearching && (
-                <div className={styles.searchLoading}>
-                  <div className={styles.loadingSpinner}></div>
-                </div>
-              )}
+              <span className={styles.filterLabel} style={{ marginTop: '1.25rem' }}>Topics</span>
+              <div className={styles.topicButtons} suppressHydrationWarning>
+                <button
+                  type="button"
+                  onClick={() => setSelectedTag('')}
+                  className={`${styles.topicBtn} ${!selectedTag ? styles.topicBtnActive : ''}`}
+                >
+                  All
+                </button>
+                {uniqueTags.map(tag => (
+                  <button
+                    key={tag}
+                    type="button"
+                    onClick={() => setSelectedTag(tag)}
+                    className={`${styles.topicBtn} ${selectedTag.toLowerCase() === tag.toLowerCase() ? styles.topicBtnActive : ''}`}
+                  >
+                    {tag}
+                  </button>
+                ))}
+              </div>
             </div>
-            <div className={styles.selectGroup}>
+
+            {/* Right: sort */}
+            <div className={styles.filterRight}>
+              <span className={styles.filterLabel}>Sort by</span>
               <div className={styles.sortDropdown} data-dropdown="sort">
                 <button
                   type="button"
@@ -245,7 +257,7 @@ const BlogGrid = () => {
                     {getSelectedSort().label}
                   </span>
                   <ChevronDown
-                    size={14}
+                    size={13}
                     className={`${styles.chevron} ${isSortDropdownOpen ? styles.rotated : ''}`}
                   />
                 </button>
@@ -265,32 +277,6 @@ const BlogGrid = () => {
                   </div>
                 )}
               </div>
-            </div>
-          </div>
-
-          <div className={styles.tagSection}>
-            <div className={styles.tagHeader}>
-              <span className={styles.tagLabel}>Filter by topic:</span>
-              {selectedTag && (
-                <button
-                  onClick={() => setSelectedTag('')}
-                  className={styles.clearFilter}
-                >
-                  Clear Filter ✕
-                </button>
-              )}
-            </div>
-
-            <div className={styles.tagFilter}>
-              {uniqueTags.map(tag => (
-                <button
-                  key={tag}
-                  onClick={() => setSelectedTag(tag)}
-                  className={`${styles.tagButton} ${selectedTag.toLowerCase() === tag.toLowerCase() ? styles.active : ''}`}
-                >
-                  {tag}
-                </button>
-              ))}
             </div>
           </div>
         </div>

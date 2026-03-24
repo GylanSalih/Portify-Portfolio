@@ -4,12 +4,37 @@
 
 /* ── Shell: gibt dem outer card Luft auf allen Seiten ── */
 .shell {
-  background-color: var(--dark-mode);
   padding: 1.25rem;
+  position: relative;
+  overflow: hidden;
 
   @media (max-width: 768px) {
     padding: 0.75rem;
   }
+}
+
+/* dot pattern fills the padding area around .outer */
+.shell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.18) 1px,
+    transparent 1px
+  );
+  background-size: 24px 24px;
+  opacity: 0.55;
+  z-index: 0;
+  pointer-events: none;
+}
+
+:global(html:not(.dark-mode)) .shell::before {
+  background-image: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0.18) 1px,
+    transparent 1px
+  );
 }
 
 /* ── Outer card ── */
@@ -89,6 +114,7 @@
   font-weight: 700;
   color: #fff;
   line-height: 1;
+  font-family: 'Wotfard', sans-serif;
 }
 
 .statLabel {
@@ -97,6 +123,7 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
   white-space: nowrap;
+  font-family: 'Wotfard', sans-serif;
 
   @media (max-width: 400px) {
     font-size: 0.58rem;
@@ -140,19 +167,31 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: #f0ede8;
-  color: #0a0a0a;
-  font-size: 0.9rem;
-  font-weight: 600;
-  padding: 0.8rem 1.6rem;
-  border-radius: 100px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.625rem 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
   text-decoration: none;
   white-space: nowrap;
-  transition: opacity 0.15s ease, transform 0.15s ease;
+  font-family: 'Wotfard', sans-serif;
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+
+  svg {
+    transition: transform 0.2s ease;
+  }
 
   &:hover {
-    opacity: 0.9;
-    transform: translateY(-1px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+
+    svg {
+      transform: rotate(45deg);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.05s;
+    }
   }
 }
 
@@ -165,7 +204,9 @@
 
 /* ── Inner card ── */
 .inner {
-  background: #0a0a0a;
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-radius: 1.35rem;
   padding: 1.25rem 1.5rem;
   display: flex;
@@ -173,6 +214,11 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
+
+  :global(html:not(.dark-mode)) & {
+    background: rgba(248, 248, 248, 0.6);
+    border: 1px solid rgba(10, 10, 10, 0.08);
+  }
 
   @media (max-width: 768px) {
     flex-direction: column;

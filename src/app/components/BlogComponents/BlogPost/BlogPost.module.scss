@@ -870,32 +870,33 @@
 }
 
 .tag {
-  background: rgba(255, 255, 255, 0.07);
-  color: rgba(255, 255, 255, 0.7);
-  padding: 0.35rem 0.75rem;
-  border-radius: 6px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.85);
+  padding: 0.3rem 0.65rem;
+  border-radius: 8px;
+  font-size: 0.7875rem;
+  font-weight: 400;
+  font-family: 'Wotfard', sans-serif;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.2s ease;
   cursor: pointer;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.11);
-    border-color: rgba(255, 255, 255, 0.2);
-    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.16);
+    color: rgba(255, 255, 255, 0.95);
     transform: translateY(-1px);
   }
 
   /* Light mode support */
   :global(html:not(.dark-mode)) & {
-    background: rgba(10, 10, 10, 0.06);
-    color: rgba(10, 10, 10, 0.7);
-    border-color: rgba(10, 10, 10, 0.12);
+    background: rgba(10, 10, 10, 0.05);
+    color: rgba(10, 10, 10, 0.85);
+    border-color: rgba(10, 10, 10, 0.1);
 
     &:hover {
-      background: rgba(10, 10, 10, 0.1);
-      color: rgba(10, 10, 10, 0.9);
+      background: rgba(10, 10, 10, 0.08);
+      color: rgba(10, 10, 10, 0.95);
       border-color: rgba(10, 10, 10, 0.18);
     }
   }

@@ -1,0 +1,246 @@
+<svg viewBox="0 0 700 450" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Performance Illustration" style="width:100%;max-width:700px;background:#0a0a0a;border-radius:20px;">
+  <defs>
+    <radialGradient id="bgGlowP" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#0a0a0a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="barGrad1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.78)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0.28)"/>
+    </linearGradient>
+    <linearGradient id="barGrad2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.58)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0.18)"/>
+    </linearGradient>
+    <linearGradient id="barGradR" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.78)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0.28)"/>
+    </linearGradient>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!--
+      LAYOUT PLAN:
+      Score ring center: cx=350 cy=220  r=70 (track + arc same radius)
+      Circumference = 2π×70 = 439.82 ≈ 440
+      Full circle (100%) → dashoffset=0, ring closes completely (no gap)
+      We animate dashoffset 440→0 so ring fills completely.
+      Number counts 1→98 via animateTransform trick using text + animate.
+
+      LEFT PANEL:  x=22  y=108  w=200 h=218   (pushed far left)
+      RIGHT PANEL: x=478 y=108  w=200 h=218   (pushed far right)
+      Bar tracks inside:  left panel: x=42..x=202 (w=160)
+                          right panel: x=498..x=658 (w=160) — but viewbox=700, so x=498 w=160→ends at 658, within 700 ✓
+
+      Bar height=8px. Text vertically centered = bar_y + 5.5 (for font-size 6)
+
+      Sparkline: inside left panel, y range 254–278 (well below last bar at y=232)
+
+      CWV check: small r=4 circle
+    -->
+
+    <style>
+      .grid-p { animation: gridFadeP 4s ease-in-out infinite; }
+      @keyframes gridFadeP { 0%,100%{opacity:0.04} 50%{opacity:0.09} }
+
+      /*
+        Score ring: full circle closes (dashoffset 440→0).
+        No stroke-linecap:round so the ends meet cleanly.
+        Loops: fill, hold, reset.
+      */
+      .score-ring {
+        stroke-dasharray: 440;
+        stroke-dashoffset: 440;
+        animation: scoreAnim 4s cubic-bezier(0.4,0,0.2,1) infinite;
+      }
+      @keyframes scoreAnim {
+        0%   { stroke-dashoffset: 440; }
+        70%  { stroke-dashoffset: 0; }
+        90%  { stroke-dashoffset: 0; }
+        100% { stroke-dashoffset: 440; }
+      }
+
+      /* Left bars — track w=160px, loop */
+      .bar-p { animation: barP 3.2s ease-in-out infinite; }
+      .bar-s { animation: barS 3.2s ease-in-out infinite 0.28s; }
+      .bar-a { animation: barA 3.2s ease-in-out infinite 0.56s; }
+      .bar-b { animation: barB 3.2s ease-in-out infinite 0.84s; }
+      /* 98%=157px 94%=150px 100%=160px 96%=154px */
+      @keyframes barP { 0%,4%{width:0} 62%,94%{width:157px} 100%{width:157px} }
+      @keyframes barS { 0%,4%{width:0} 62%,94%{width:150px} 100%{width:150px} }
+      @keyframes barA { 0%,4%{width:0} 62%,94%{width:160px} 100%{width:160px} }
+      @keyframes barB { 0%,4%{width:0} 62%,94%{width:154px} 100%{width:154px} }
+
+      /* Right bars — track w=160px, loop */
+      .lbar-1 { animation: lb1 3.2s ease-in-out infinite 0.3s; }
+      .lbar-2 { animation: lb2 3.2s ease-in-out infinite 0.58s; }
+      .lbar-3 { animation: lb3 3.2s ease-in-out infinite 0.86s; }
+      .lbar-4 { animation: lb4 3.2s ease-in-out infinite 1.14s; }
+      /* FCP~25%=40px LCP~50%=80px CLS tiny=6px TBT tiny=12px */
+      @keyframes lb1 { 0%,4%{width:0} 62%,94%{width:40px}  100%{width:40px} }
+      @keyframes lb2 { 0%,4%{width:0} 62%,94%{width:80px}  100%{width:80px} }
+      @keyframes lb3 { 0%,4%{width:0} 62%,94%{width:6px}   100%{width:6px} }
+      @keyframes lb4 { 0%,4%{width:0} 62%,94%{width:12px}  100%{width:12px} }
+
+      /* CWV small check — dezent */
+      .cwv-bar-fill { animation: cwvBar 3.2s ease-in-out infinite; }
+      @keyframes cwvBar { 0%,4%{width:0} 62%,94%{width:160px} 100%{width:160px} }
+      .cwv-check {
+        stroke-dasharray: 16;
+        stroke-dashoffset: 16;
+        animation: cwvCheck 3.2s ease-in-out infinite 0.8s;
+      }
+      @keyframes cwvCheck {
+        0%,18%  { stroke-dashoffset:16; opacity:0; }
+        50%,90% { stroke-dashoffset:0;  opacity:1; }
+        100%    { stroke-dashoffset:0;  opacity:1; }
+      }
+      .cwv-ring {
+        stroke-dasharray: 25;
+        stroke-dashoffset: 25;
+        animation: cwvRing 3.2s ease-in-out infinite 0.6s;
+      }
+      @keyframes cwvRing {
+        0%,14%  { stroke-dashoffset:25; }
+        46%,90% { stroke-dashoffset:0; }
+        100%    { stroke-dashoffset:0; }
+      }
+
+      .metric-card   { animation: cardFloat 5s ease-in-out infinite; }
+      .metric-card-b { animation: cardFloat 5.5s ease-in-out infinite 0.8s; }
+      @keyframes cardFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+
+      /* Sparkline draw loop */
+      .sparkline {
+        stroke-dasharray: 220;
+        stroke-dashoffset: 220;
+        animation: sparkDraw 3.2s ease-out infinite 0.4s;
+      }
+      @keyframes sparkDraw { 0%,4%{stroke-dashoffset:220} 70%,100%{stroke-dashoffset:0} }
+    </style>
+  </defs>
+
+  <ellipse cx="350" cy="225" rx="300" ry="200" fill="url(#bgGlowP)"/>
+  <line class="grid-p" x1="175" y1="40" x2="175" y2="310" stroke="white" stroke-width="0.5"/>
+  <line class="grid-p" x1="525" y1="40" x2="525" y2="310" stroke="white" stroke-width="0.5"/>
+  <line class="grid-p" x1="80"  y1="220" x2="620" y2="220" stroke="white" stroke-width="0.5"/>
+
+  <!-- ── CENTER SCORE RING ── cx=350 cy=220 -->
+  <g transform="translate(350,220)">
+    <!-- Outer soft ring -->
+    <circle cx="0" cy="0" r="76" stroke="rgba(255,255,255,0.03)" stroke-width="1.5" fill="none"/>
+    <!-- Track -->
+    <circle cx="0" cy="0" r="70" stroke="rgba(255,255,255,0.07)" stroke-width="8" fill="rgba(255,255,255,0.015)"/>
+    <!-- Score arc — closes fully (no linecap round → ends meet) -->
+    <circle class="score-ring" cx="0" cy="0" r="70"
+      stroke="rgba(255,255,255,0.82)" stroke-width="8" fill="none"
+      transform="rotate(-90)"/>
+    <!-- Tick marks -->
+    <line x1="0"   y1="-74" x2="0"   y2="-80" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
+    <line x1="74"  y1="0"   x2="80"  y2="0"   stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
+    <line x1="0"   y1="74"  x2="0"   y2="80"  stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
+    <line x1="-74" y1="0"   x2="-80" y2="0"   stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
+    <!-- Static score label -->
+    <text x="0" y="5" font-family="monospace" font-size="28"
+      fill="rgba(255,255,255,0.88)" text-anchor="middle" font-weight="bold">99%</text>
+    <!-- "Our Goal" label -->
+    <text x="0" y="17" font-family="monospace" font-size="7" fill="rgba(255,255,255,0.3)" text-anchor="middle" letter-spacing="1">Our Goal</text>
+  </g>
+  <!-- NO center dot -->
+
+  <!-- ── LEFT PANEL: METRIKEN ── x=22 y=108 w=200 h=218 -->
+  <!--
+    Inner padding: x=42, bar track x=42 w=160, ends at x=202
+    Rows: label y, bar y (label+4), score text at bar_y+5.5
+    Row 1: label y=134, bar y=138
+    Row 2: label y=158, bar y=162
+    Row 3: label y=182, bar y=186
+    Row 4: label y=206, bar y=210
+    Sparkline: y=240 to y=268 (comfortably inside h=218 → bottom=326)
+    Bottom label: y=294
+  -->
+  <g class="metric-card">
+    <rect x="22" y="108" width="200" height="218" rx="14" fill="#111" stroke="rgba(255,255,255,0.09)" stroke-width="1"/>
+    <text x="42" y="130" font-family="monospace" font-size="7.5" fill="rgba(255,255,255,0.35)" letter-spacing="1">METRIKEN</text>
+
+    <!-- Performance -->
+    <text x="42" y="148" font-family="monospace" font-size="6.5" fill="rgba(255,255,255,0.3)">Performance</text>
+    <rect x="42" y="152" width="160" height="8" rx="4" fill="rgba(255,255,255,0.05)"/>
+    <rect x="42" y="152" width="0"   height="8" rx="4" fill="url(#barGrad1)" class="bar-p"/>
+    <!-- Score text: vertically centered in bar = y+5.5 = 157.5 → use 157 -->
+    <text x="196" y="157" font-family="monospace" font-size="5.5" fill="rgba(255,255,255,0.6)" text-anchor="end" dominant-baseline="middle">98</text>
+
+    <!-- SEO -->
+    <text x="42" y="172" font-family="monospace" font-size="6.5" fill="rgba(255,255,255,0.3)">SEO</text>
+    <rect x="42" y="176" width="160" height="8" rx="4" fill="rgba(255,255,255,0.05)"/>
+    <rect x="42" y="176" width="0"   height="8" rx="4" fill="url(#barGrad1)" class="bar-s"/>
+    <text x="196" y="180" font-family="monospace" font-size="5.5" fill="rgba(255,255,255,0.6)" text-anchor="end" dominant-baseline="middle">94</text>
+
+    <!-- Accessibility -->
+    <text x="42" y="196" font-family="monospace" font-size="6.5" fill="rgba(255,255,255,0.3)">Accessibility</text>
+    <rect x="42" y="200" width="160" height="8" rx="4" fill="rgba(255,255,255,0.05)"/>
+    <rect x="42" y="200" width="0"   height="8" rx="4" fill="url(#barGrad1)" class="bar-a"/>
+    <text x="196" y="204" font-family="monospace" font-size="5.5" fill="rgba(255,255,255,0.6)" text-anchor="end" dominant-baseline="middle">100</text>
+
+    <!-- Best Practices -->
+    <text x="42" y="220" font-family="monospace" font-size="6.5" fill="rgba(255,255,255,0.3)">Best Practices</text>
+    <rect x="42" y="224" width="160" height="8" rx="4" fill="rgba(255,255,255,0.05)"/>
+    <rect x="42" y="224" width="0"   height="8" rx="4" fill="url(#barGrad2)" class="bar-b"/>
+    <text x="196" y="228" font-family="monospace" font-size="5.5" fill="rgba(255,255,255,0.6)" text-anchor="end" dominant-baseline="middle">96</text>
+
+    <!-- Sparkline: y=248..274, clipped inside panel -->
+    <clipPath id="sparkClip">
+      <rect x="42" y="246" width="160" height="30"/>
+    </clipPath>
+    <polyline class="sparkline"
+      points="42,274 58,266 74,270 90,258 106,263 122,252 138,256 154,248 170,250 186,247 202,244"
+      stroke="rgba(255,255,255,0.32)" stroke-width="1.5" fill="none"
+      stroke-linecap="round" stroke-linejoin="round"
+      clip-path="url(#sparkClip)"/>
+    <circle cx="196" cy="246" r="2.5" fill="white" fill-opacity="0.6" filter="url(#glowP)"/>
+    <text x="42" y="302" font-family="monospace" font-size="6" fill="rgba(255,255,255,0.18)">Ladezeit ↓ 0.8s</text>
+  </g>
+
+  <!-- ── RIGHT PANEL: LADEZEITEN ── x=478 y=108 w=200 h=218 -->
+  <!--
+    Inner: x=498, bar track x=498 w=160, ends at x=658
+    Same row structure as left panel.
+    CWV at bottom: y=256 label, y=262 track, small check r=4 at x=664 cy=266
+  -->
+  <g class="metric-card-b">
+    <rect x="478" y="108" width="200" height="218" rx="14" fill="#111" stroke="rgba(255,255,255,0.09)" stroke-width="1"/>
+    <text x="498" y="130" font-family="monospace" font-size="7.5" fill="rgba(255,255,255,0.35)" letter-spacing="1">LADEZEITEN</text>
+
+    <!-- FCP -->
+    <text x="498" y="148" font-family="monospace" font-size="6.5" fill="rgba(255,255,255,0.3)">FCP</text>
+    <rect x="498" y="152" width="160" height="8" rx="4" fill="rgba(255,255,255,0.05)"/>
+    <rect x="498" y="152" width="0"   height="8" rx="4" fill="url(#barGradR)" class="lbar-1"/>
+    <text x="652" y="157" font-family="monospace" font-size="5.5" fill="rgba(255,255,255,0.6)" text-anchor="end" dominant-baseline="middle">0.6s</text>
+
+    <!-- LCP -->
+    <text x="498" y="172" font-family="monospace" font-size="6.5" fill="rgba(255,255,255,0.3)">LCP</text>
+    <rect x="498" y="176" width="160" height="8" rx="4" fill="rgba(255,255,255,0.05)"/>
+    <rect x="498" y="176" width="0"   height="8" rx="4" fill="url(#barGradR)" class="lbar-2"/>
+    <text x="652" y="180" font-family="monospace" font-size="5.5" fill="rgba(255,255,255,0.6)" text-anchor="end" dominant-baseline="middle">1.2s</text>
+
+    <!-- CLS -->
+    <text x="498" y="196" font-family="monospace" font-size="6.5" fill="rgba(255,255,255,0.3)">CLS</text>
+    <rect x="498" y="200" width="160" height="8" rx="4" fill="rgba(255,255,255,0.05)"/>
+    <rect x="498" y="200" width="0"   height="8" rx="4" fill="url(#barGradR)" class="lbar-3"/>
+    <text x="652" y="204" font-family="monospace" font-size="5.5" fill="rgba(255,255,255,0.6)" text-anchor="end" dominant-baseline="middle">0.01</text>
+
+    <!-- TBT -->
+    <text x="498" y="220" font-family="monospace" font-size="6.5" fill="rgba(255,255,255,0.3)">TBT</text>
+    <rect x="498" y="224" width="160" height="8" rx="4" fill="rgba(255,255,255,0.05)"/>
+    <rect x="498" y="224" width="0"   height="8" rx="4" fill="url(#barGradR)" class="lbar-4"/>
+    <text x="652" y="228" font-family="monospace" font-size="5.5" fill="rgba(255,255,255,0.6)" text-anchor="end" dominant-baseline="middle">12ms</text>
+
+    <!-- Core Web Vitals bar + small dezent check -->
+    <text x="498" y="250" font-family="monospace" font-size="6.5" fill="rgba(255,255,255,0.22)">Core Web Vitals</text>
+    <rect x="498" y="254" width="160" height="5" rx="2.5" fill="rgba(255,255,255,0.06)"/>
+    <rect x="498" y="254" width="0"   height="5" rx="2.5" fill="url(#barGradR)" class="cwv-bar-fill"/>
+
+  </g>
+
+</svg>

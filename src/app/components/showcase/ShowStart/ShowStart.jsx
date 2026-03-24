@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import styles from './ShowStart.module.scss';
 
 const ShowStart = ({ data = [], onClose = null }) => {
@@ -39,7 +39,7 @@ const ShowStart = ({ data = [], onClose = null }) => {
           </p>
           <button className={styles.exploreButton} onClick={handleExploreClick}>
             <span>EXPLORE</span>
-            <ArrowRight size={20} />
+            <ArrowUpRight size={18} />
           </button>
         </div>
       </motion.div>

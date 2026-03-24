@@ -18,6 +18,10 @@
   letter-spacing: -0.01em;
   text-align: center;
 
+  :global(html:not(.dark-mode)) & {
+    color: #0a0a0a;
+  }
+
   @media (max-width: 768px) {
     font-size: 1.625rem;
     margin-bottom: 1.25rem;
@@ -49,6 +53,11 @@
   justify-content: center;
   backdrop-filter: blur(10px);
 
+  :global(html:not(.dark-mode)) & {
+    background: rgba(10, 10, 10, 0.03);
+    border-color: rgba(10, 10, 10, 0.1);
+  }
+
   &:hover {
     transform: translateY(-2px);
     border-color: rgba(59, 130, 246, 0.3);
@@ -61,6 +70,10 @@
     color: rgba(255, 255, 255, 0.85);
     margin: 0;
     font-family: 'Wotfard', sans-serif;
+
+    :global(html:not(.dark-mode)) & {
+      color: rgba(10, 10, 10, 0.85);
+    }
 
     @media (max-width: 768px) {
       font-size: 0.875rem;

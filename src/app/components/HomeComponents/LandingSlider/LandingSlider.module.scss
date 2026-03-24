@@ -359,49 +359,44 @@
 .navDots {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.6rem;
 
   @media (max-width: 480px) {
-    gap: 0.5rem;
+    gap: 0.4rem;
   }
 }
 
 .navDot {
   position: relative;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
+  width: 30px;
+  height: 2px;
+  border-radius: 2px;
   background: rgba(255, 255, 255, 0.3);
-  border: 2px solid rgba(255, 255, 255, 0.5);
+  border: none;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   overflow: hidden;
-  will-change: transform, background-color, width;
-  transform: translateZ(0);
+  will-change: background-color, width;
 
   &:hover {
     background: rgba(255, 255, 255, 0.5);
-    transform: scale(1.2) translateZ(0);
   }
 
   @media (max-width: 480px) {
-    width: 10px;
-    height: 10px;
+    width: 22px;
   }
 }
 
 .navDotActive {
   width: 80px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.25);
 
   @media (max-width: 1024px) {
     width: 60px;
   }
 
   @media (max-width: 480px) {
-    width: 50px;
+    width: 48px;
   }
 }
 
@@ -423,8 +418,8 @@
   align-items: center;
   color: rgba(255, 255, 255, 0.8);
   font-size: 0.875rem;
-  font-weight: 600;
-  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+  font-weight: 500;
+  font-family: 'Wotfard', sans-serif;
 }
 
 .counterCurrent {

@@ -7,6 +7,10 @@
   padding-top: 4rem;
   position: relative;
 
+  :global(html:not(.dark-mode)) & {
+    border-top-color: rgba(10, 10, 10, 0.08);
+  }
+
   @media (max-width: 768px) {
     margin-top: 4rem;
     padding-top: 3rem;
@@ -40,6 +44,10 @@
   text-align: left;
   font-family: 'Wotfard', sans-serif;
   line-height: 1.1;
+
+  :global(html:not(.dark-mode)) & {
+    color: #0a0a0a;
+  }
 
   :global(html.dark-mode) & {
     color: #fff;

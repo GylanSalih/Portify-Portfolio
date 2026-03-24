@@ -362,12 +362,15 @@
   color: #fff;
   opacity: 0.8;
   will-change: transform, opacity;
-  transition: all 0.3s ease;
 
-  &:hover {
-    opacity: 1;
-    transform: scale(1.1);
+  svg {
+    transition: transform 0.2s ease;
   }
+}
+
+.wrapper:hover .linkIcon svg {
+  transform: rotate(45deg);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
 }
 
 /* Tags */

@@ -5,6 +5,9 @@
 
 .container {
   width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Two-column grid — same split as the scroll card width */
@@ -12,7 +15,7 @@
   display: grid;
   grid-template-columns: 1fr 1.5fr;
   gap: 2.5rem;
-  align-items: flex-start;
+  align-items: center;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;

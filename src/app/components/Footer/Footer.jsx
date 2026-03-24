@@ -2,7 +2,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Github, Linkedin, Dribbble, Mail } from 'lucide-react';
+import { Github, Linkedin, Dribbble, Mail, ArrowUpRight } from 'lucide-react';
 import styles from './Footer.module.scss';
 
 const Footer = () => {
@@ -44,7 +44,7 @@ const Footer = () => {
               Let's build something<br />great together.
             </h2>
             <a href="/about" className={styles.cta}>
-              Get in touch <span aria-hidden="true">→</span>
+              Get in touch <ArrowUpRight size={16} />
             </a>
           </div>
 

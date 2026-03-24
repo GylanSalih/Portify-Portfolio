@@ -165,16 +165,15 @@ Blog Retro Tags
   position: relative;
   padding: 0 0;
   color: #1a1a1a;
+  max-width: 1280px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 :global(.dark-mode) .section {
-  position: relative;
-  padding: 0 0;
-  background-color: #0a0a0a;
   color: #ffffff;
 }
-
-
 
 /* Header Section */
 .headerWrapper {
@@ -219,13 +218,12 @@ Timeline // Work, Achievements
 
 /* Full-width timeline section below contentGrid */
 .timelineSection {
-  margin-top: 60px;
-  padding-top: 40px;
-  border-top: 1px solid #e0e0e0;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 :global(.dark-mode) .timelineSection {
-  border-top-color: rgba(255, 255, 255, 0.1);
+  border-top: none;
 }
 
 .timelineSection h5 {
@@ -349,8 +347,34 @@ Timeline // Work, Achievements
   border: 1px solid #e0e0e0;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   cursor: default;
-  overflow: hidden;
+  overflow: visible; /* war: hidden — verhinderte das Label außerhalb */
+  position: relative;
 }
+
+.timelineCardLabel {
+  position: absolute;
+  top: -0.75rem;
+  left: 1.25rem;
+  z-index: 4;
+  background: #1a1a1a;
+  color: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  padding: 0.15rem 0.7rem;
+  font-family: 'Wotfard', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+:global(.dark-mode) .timelineCardLabel {
+  background: #111;
+  color: rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
 
 :global(.dark-mode) .timelineCard {
   background: rgba(255, 255, 255, 0.03);
@@ -383,8 +407,99 @@ Timeline // Work, Achievements
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 0; /* war: 15px */
   }
+}
+
+/* Dot list styles for timeline cards */
+/* Wrapper: label floats on the top border of the box */
+.dotWrapper {
+  position: relative;
+  margin-top: 0.85rem;
+}
+
+.cardLabel {
+  position: absolute;
+  top: -0.65rem;
+  left: 1rem;
+  z-index: 1;
+  background: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 0.1rem 0.6rem;
+  font-family: 'Wotfard', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #555;
+  white-space: nowrap;
+}
+
+:global(.dark-mode) .dotWrapper .cardLabel {
+  background: #111;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.dotList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+:global(.dark-mode) .dotList {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dotItem {
+  display: grid;
+  grid-template-columns: 110px 1fr; /* feste Breite für Keyword-Spalte */
+  align-items: start;
+  padding: 0.55rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  gap: 0.5rem;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+:global(.dark-mode) .dotItem {
+  border-bottom-color: rgba(255, 255, 255, 0.05);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.dotKeyword {
+  font-family: 'Wotfard', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  white-space: nowrap; /* verhindert Umbruch im Label */
+}
+
+:global(.dark-mode) .dotKeyword {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.dotText {
+  font-family: 'Wotfard', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.5);
+  line-height: 1.5;
+}
+
+:global(.dark-mode) .dotText {
+  color: rgba(255, 255, 255, 0.4);
 }
 
 /* Timeline Info übernimmt Profil-Item Styles */
@@ -517,11 +632,11 @@ Timeline // Work, Achievements
 }
 
 .timelineSvgWrap {
-  margin: 0; /* entfernt negative margin */
+  margin: 0;
   line-height: 0;
   border-radius: 0 0 14px 14px;
-  overflow: hidden;
-  width: 100%;       /* volle Breite */
+  overflow: hidden; /* hierhin verschoben */
+  width: 100%;
 }
 
 .timelineSvg {

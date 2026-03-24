@@ -11,6 +11,11 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   width: 100%;
 
+  :global(html:not(.dark-mode)) & {
+    border-top-color: rgba(10, 10, 10, 0.1);
+    border-bottom-color: rgba(10, 10, 10, 0.1);
+  }
+
   @media (max-width: 640px) {
     flex-direction: column;
     border-bottom: none;
@@ -21,6 +26,10 @@
   flex: 1;
   padding: 1.5rem 1.75rem;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
+
+  :global(html:not(.dark-mode)) & {
+    border-right-color: rgba(10, 10, 10, 0.1);
+  }
 
   &:last-child {
     border-right: none;
@@ -34,6 +43,10 @@
     color: rgba(255, 255, 255, 0.4);
     margin: 0 0 0.5rem 0;
     font-family: 'Wotfard', sans-serif;
+
+    :global(html:not(.dark-mode)) & {
+      color: rgba(10, 10, 10, 0.45);
+    }
   }
 
   p {
@@ -43,12 +56,20 @@
     margin: 0;
     line-height: 1.4;
     font-family: 'Wotfard', sans-serif;
+
+    :global(html:not(.dark-mode)) & {
+      color: rgba(10, 10, 10, 0.85);
+    }
   }
 
   @media (max-width: 640px) {
     border-right: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding: 1.25rem 0;
+
+    :global(html:not(.dark-mode)) & {
+      border-bottom-color: rgba(10, 10, 10, 0.1);
+    }
   }
 }
 

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Volume2, VolumeX } from 'lucide-react';
+import { Volume, VolumeX } from 'lucide-react';
 import styles from './styles.module.scss';
 
 const AudioIndicator = ({ isPlaying, onClick, className = '' }) => {
@@ -13,7 +13,7 @@ const AudioIndicator = ({ isPlaying, onClick, className = '' }) => {
     >
       <div className={styles.audioIcon}>
         {isPlaying ? (
-          <Volume2 size={20} className={`${styles.icon} ${styles.volumeOn}`} />
+          <Volume size={20} className={`${styles.icon} ${styles.volumeOn}`} />
         ) : (
           <VolumeX size={20} className={`${styles.icon} ${styles.volumeOff}`} />
         )}
