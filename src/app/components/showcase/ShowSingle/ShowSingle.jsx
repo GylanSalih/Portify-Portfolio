@@ -233,7 +233,7 @@ const ShowSingle = () => {
               </button>
               <div className={styles.navIndicator}>
                 <span className={styles.navIndicatorText}>
-                  {currentIndex + 1} / {showcaseData.length}
+                  {currentIndex + 1} / {showcaseData.length}
                 </span>
               </div>
               <button

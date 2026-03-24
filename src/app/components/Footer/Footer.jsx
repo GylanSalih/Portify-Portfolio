@@ -41,7 +41,7 @@ const Footer = () => {
               </div>
             </div>
             <h2 className={styles.headline}>
-              Let's build something<br />great together.
+              Let&apos;s build something<br />great together.
             </h2>
             <a href="/about" className={styles.cta}>
               Get in touch <ArrowUpRight size={16} />

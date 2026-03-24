@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import styles from './AutoImgScroll.module.scss';
 
@@ -40,7 +41,7 @@ const AutoImgScroll = () => {
     <div className={styles.autoImgScroll}>
       <div className={styles.viewAllLink}>
         <div className={styles.header}>
-          <a href="/portfolio" className={styles.titleLink}>
+          <Link href="/portfolio" className={styles.titleLink}>
             <h2 className={styles.title}>View all projects</h2>
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
@@ -54,7 +55,7 @@ const AutoImgScroll = () => {
                 clipRule="evenodd"
               />
             </svg>
-          </a>
+          </Link>
           <p className={styles.subtitle}>Browse the full collection of my portfolio work</p>
         </div>
       </div>

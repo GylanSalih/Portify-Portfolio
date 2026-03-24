@@ -16,7 +16,7 @@ const AboutMe = () => {
       const rect = timelineRef.current.getBoundingClientRect();
       const windowH = window.innerHeight;
       const viewportTrigger = windowH * 0.6;
-      let progress = (viewportTrigger - rect.top) / rect.height;
+      const progress = (viewportTrigger - rect.top) / rect.height;
       setTimelineProgress(Math.max(0, Math.min(1, progress)));
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
