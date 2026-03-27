@@ -8,7 +8,7 @@ export const usePortfolioStats = slug => {
 
   // Lade Statistiken aus localStorage
   useEffect(() => {
-    if (!slug) return;
+    if (!slug || typeof window === 'undefined') return;
 
     const savedStats = localStorage.getItem(`portfolio_stats_${slug}`);
     if (savedStats) {
@@ -23,7 +23,7 @@ export const usePortfolioStats = slug => {
 
   // Funktion zum Erhöhen der Views
   const incrementViews = useCallback(() => {
-    if (!slug) return Promise.resolve();
+    if (!slug || typeof window === 'undefined') return Promise.resolve();
 
     setStats(prev => {
       const newStats = { ...prev, views: (prev.views || 0) + 1 };
@@ -36,7 +36,7 @@ export const usePortfolioStats = slug => {
 
   // Funktion zum Erhöhen der Likes
   const incrementLikes = useCallback(() => {
-    if (!slug) return Promise.resolve();
+    if (!slug || typeof window === 'undefined') return Promise.resolve();
 
     setStats(prev => {
       const newStats = { ...prev, likes: (prev.likes || 0) + 1 };
