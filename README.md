@@ -124,41 +124,6 @@ I'll be adding more in the near future. Potential updates include:
   </a>
 </p>
 
-<!--------------- GALLERY --------------->
-
-<h2 id="gallery">Gallery</h2>
-
-<table align="center" border="0">
-  <tr>
-    <td align="center" width="33%">
-      <a href="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/23.08.25_Home.png">
-        <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/23.08.25_Home.png" width="280" alt="Showcase Home"/>
-      </a>
-      <br/><sub><b>Home</b></sub>
-    </td>
-    <td align="center" width="33%">
-      <a href="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/23.08.25_Blog.png">
-        <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/23.08.25_Blog.png" width="280" alt="Showcase Blog"/>
-      </a>
-      <br/><sub><b>Blog</b></sub>
-    </td>
-    <td align="center" width="33%">
-      <a href="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/23.08.25_360Carousel.png">
-        <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/23.08.25_360Carousel.png" width="280" alt="Showcase 360 Carousel"/>
-      </a>
-      <br/><sub><b>360° Carousel</b></sub>
-    </td>
-  </tr>
-</table>
-
-<br />
-
-<p align="right">
-  <a href="#readme-top">
-    <img src="https://custom-icon-badges.demolab.com/badge/-Back%20to%20top-000000?style=for-the-badge&logo=upptime&logoColor=ffffff&labelColor=FF0000" alt="Back to top">
-  </a>
-</p>
-
 <!--------------- BUILT WITH --------------->
 
 <h2 id="built-with">Built With</h2>
