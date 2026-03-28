@@ -28,7 +28,7 @@ const AboutMe = () => {
     <section className={styles.section} id="about">
       <div className={styles.container}>
         <div className={styles.timelineSection}>
-          <h5>My Journey</h5>
+          <h5>Mein Prozess</h5>
 
           <div className={styles.timelineGrid} ref={timelineRef} style={{ '--timeline-progress': `${timelineProgress * 100}%` }}>
 

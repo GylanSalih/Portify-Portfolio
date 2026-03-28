@@ -648,7 +648,17 @@ Timeline // Work, Achievements
 
 /* Mobile: single column */
 @media (max-width: 768px) {
+  .timelineSection h5 {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
   .timelineGrid::before {
+    left: 18px;
+    transform: none;
+  }
+
+  .timelineGrid::after {
     left: 18px;
     transform: none;
   }
@@ -669,6 +679,39 @@ Timeline // Work, Achievements
     grid-column: unset;
     margin-left: 0;
     margin-right: 0;
+  }
+
+  .timelineCard {
+    border-radius: 12px;
+  }
+
+  .timelineCardLabel {
+    font-size: 0.65rem;
+    top: -0.7rem;
+    left: 1rem;
+  }
+
+  .timelineInfo {
+    padding: 1.25rem 1rem 1rem;
+  }
+
+  .dotItem {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+    padding: 0.6rem 0.85rem;
+  }
+
+  .dotKeyword {
+    font-size: 0.78rem;
+    white-space: normal;
+  }
+
+  .dotText {
+    font-size: 0.76rem;
+  }
+
+  .timelineSvgWrap {
+    border-radius: 0 0 10px 10px;
   }
 }
 

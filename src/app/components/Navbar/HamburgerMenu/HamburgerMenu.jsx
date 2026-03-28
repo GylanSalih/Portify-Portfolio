@@ -61,16 +61,16 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
       description: 'Welcome to my digital space',
     },
     {
+      href: '/blog',
+      label: 'Blog',
+      icon: PenTool,
+      description: 'Thoughts & insights',
+    },
+    {
       href: '/showcase',
       label: 'Showcase',
       icon: Image,
       description: 'Visual gallery of my work',
-    },
-    {
-      href: '/about',
-      label: 'About',
-      icon: User,
-      description: 'Learn more about me',
     },
     {
       href: '/portfolio',
@@ -79,10 +79,10 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
       description: 'Explore my work',
     },
     {
-      href: '/blog',
-      label: 'Blog',
-      icon: PenTool,
-      description: 'Thoughts & insights',
+      href: '/about',
+      label: 'About',
+      icon: User,
+      description: 'Learn more about me',
     },
   ];
 

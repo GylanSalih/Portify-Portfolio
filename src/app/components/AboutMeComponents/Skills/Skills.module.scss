@@ -177,7 +177,7 @@
 
 @media (max-width: 768px) {
   .grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .item {
@@ -187,6 +187,19 @@
   .icon {
     height: 70px;
     width: 70px;
+  }
+
+  .tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start;
+    padding-bottom: 0.25rem;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }
 

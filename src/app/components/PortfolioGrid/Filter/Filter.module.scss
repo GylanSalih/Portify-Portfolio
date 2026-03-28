@@ -249,8 +249,20 @@
   }
 
   @media (max-width: 768px) {
-    flex-direction: column;
-    gap: 1.5rem;
+    flex-direction: row;
+    gap: 1rem;
+
+    .group:nth-child(1) {
+      flex: 1 1 0;
+      min-width: 0;
+      max-width: none;
+    }
+
+    .group:nth-child(2) {
+      flex: 1 1 0;
+      min-width: 0;
+      max-width: none;
+    }
   }
 }
 

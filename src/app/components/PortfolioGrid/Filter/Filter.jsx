@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Grid3X3,
   Grid2X2,
@@ -34,6 +34,9 @@ const Filter = ({
   const [isTagsDropdownOpen, setIsTagsDropdownOpen] = useState(false);
   const [isShuffled, setIsShuffled] = useState(false);
 
+  const sortDropdownRef = useRef(null);
+  const tagsDropdownRef = useRef(null);
+
   useEffect(() => {
     onCategoryChange(selectedCategory);
   }, [selectedCategory, onCategoryChange]);
@@ -48,19 +51,22 @@ const Filter = ({
     }
   }, [selectedTags, onTagsChange]);
 
-  // Close dropdown when clicking outside
+  // Close dropdown when clicking or touching outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (!event.target.closest('.sort-dropdown') && 
-          !event.target.closest('.tags-dropdown')) {
+      const insideSort = sortDropdownRef.current && sortDropdownRef.current.contains(event.target);
+      const insideTags = tagsDropdownRef.current && tagsDropdownRef.current.contains(event.target);
+      if (!insideSort && !insideTags) {
         setIsSortDropdownOpen(false);
         setIsTagsDropdownOpen(false);
       }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
     };
   }, []);
 
@@ -292,7 +298,7 @@ const Filter = ({
                 {/* Tags Dropdown */}
                 <div className={styles.group}>
                   <label className={styles.label}>Filter by Tags:</label>
-                  <div className={styles.tagsDropdown}>
+                  <div ref={tagsDropdownRef} className={styles.tagsDropdown}>
                     <button
                       type="button"
                       className={`${styles.tagsTrigger} ${isTagsDropdownOpen ? styles.open : ''}`}
@@ -340,7 +346,7 @@ const Filter = ({
                 {/* Sort Dropdown */}
                 <div className={styles.group}>
                   <label className={styles.label}>Sort by:</label>
-                  <div className={styles.sortDropdown}>
+                  <div ref={sortDropdownRef} className={styles.sortDropdown}>
                     <button
                       type="button"
                       className={`${styles.sortTrigger} ${isSortDropdownOpen ? styles.open : ''}`}
