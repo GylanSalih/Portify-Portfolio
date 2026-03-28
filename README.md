@@ -24,9 +24,8 @@
 [issues-url]: https://github.com/GylanSalih/NextJS-Portify/issues
 [license-url]: https://github.com/GylanSalih/NextJS-Portify/blob/main/LICENSE
 
----
+<!--------------- PROJECT LOGO --------------->
 
-<!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/GylanSalih/NextJS-Portify/">
@@ -51,9 +50,8 @@
 </p>
 </div>
 
----
+<!--------------- TABLE OF CONTENTS --------------->
 
-<!-- TABLE OF CONTENTS -->
 <details>
   <summary><img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Pushpin.png" alt="Pushpin" width="25" height="25" /> Table of Contents</summary>
   <ol>
@@ -69,9 +67,8 @@
   </ol>
 </details>
 
----
+<!--------------- ABOUT THE PROJECT --------------->
 
-<!-- <------- ABOUT THE PROJECT --------> -->
 <h2 id="about-the-project">
   <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Pushpin.png" alt="Pushpin" width="25" height="25" /> About The Project
 </h2>
@@ -118,29 +115,39 @@ I'll be adding more in the near future. Potential updates include:
   </a>
 </p>
 
----
+<!--------------- GALLERY --------------->
 
-<!-- <------- GALLERY --------> -->
 <h2 id="gallery">
   <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Pushpin.png" alt="Pushpin" width="25" height="25" /> Gallery
 </h2>
 
 <p align="center">Here are some images showcasing the project:</p>
 
-<div align="center">
-  <table>
-    <tr>
-      <th>Showcase 1</th>
-      <th>Showcase 2</th>
-      <th>Showcase 3</th>
-    </tr>
-    <tr>
-      <td valign="top"><img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/23.08.25_Home.png" alt="Showcase 1" width="300" /></td>
-      <td valign="top"><img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/23.08.25_Blog.png" alt="Showcase 2" width="300" /></td>
-      <td valign="top"><img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/23.08.25_360Carousel.png" alt="Showcase 3" width="300" /></td>
-    </tr>
-  </table>
-</div>
+<table align="center" border="0">
+  <tr>
+    <td align="center" width="33%">
+      <a href="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/23.08.25_Home.png">
+        <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/23.08.25_Home.png" width="100%" alt="Showcase Home"/>
+      </a>
+      <br/>
+      <sub><b>Home</b></sub>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/23.08.25_Blog.png">
+        <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/23.08.25_Blog.png" width="100%" alt="Showcase Blog"/>
+      </a>
+      <br/>
+      <sub><b>Blog</b></sub>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/23.08.25_360Carousel.png">
+        <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/23.08.25_360Carousel.png" width="100%" alt="Showcase 360 Carousel"/>
+      </a>
+      <br/>
+      <sub><b>360° Carousel</b></sub>
+    </td>
+  </tr>
+</table>
 
 <p align="right">
   <a href="#readme-top">
@@ -148,9 +155,8 @@ I'll be adding more in the near future. Potential updates include:
   </a>
 </p>
 
----
+<!--------------- BUILT WITH --------------->
 
-<!-- <------- BUILT WITH --------> -->
 <h2 id="built-with">
   <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Pushpin.png" alt="Pushpin" width="25" height="25" /> Built With
 </h2>
@@ -170,9 +176,8 @@ Here are the key technologies, languages, and tools used in this project:
   </a>
 </p>
 
----
+<!--------------- GETTING STARTED --------------->
 
-<!-- <------- GETTING STARTED --------> -->
 <h2 id="getting-started-with-the-installation">
   <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Pushpin.png" alt="Pushpin" width="25" height="25" /> Getting Started with the Installation
 </h2>
@@ -207,9 +212,8 @@ Here are the key technologies, languages, and tools used in this project:
   </a>
 </p>
 
----
+<!--------------- CHANGELOG & ROADMAP --------------->
 
-<!-- <------- CHANGELOG & ROADMAP --------> -->
 <h2 id="changelogmd--roadmap">
   <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Pushpin.png" alt="Pushpin" width="25" height="25" /> Changelog.md & Roadmap
 </h2>
@@ -224,9 +228,8 @@ For a comprehensive list of changes and updates, please refer to the [CHANGELOG.
   </a>
 </p>
 
----
+<!--------------- CONTRIBUTING --------------->
 
-<!-- <------- CONTRIBUTING --------> -->
 <h2 id="contributing">
   <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Pushpin.png" alt="Pushpin" width="25" height="25" /> Contributing
 </h2>
@@ -289,9 +292,8 @@ We welcome contributions to **NextJS-Portify**! 🎉 Whether it's fixing bugs, i
   </a>
 </p>
 
----
+<!--------------- LICENSE --------------->
 
-<!-- <------- LICENSE --------> -->
 <h2 id="license">
   <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Pushpin.png" alt="Pushpin" width="25" height="25" /> License
 </h2>
@@ -304,9 +306,8 @@ Distributed under the MIT license. See LICENSE.txt for more information.
   </a>
 </p>
 
----
+<!--------------- ACKNOWLEDGMENTS --------------->
 
-<!-- <------- ACKNOWLEDGMENTS --------> -->
 <h2 id="acknowledgments">
   <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Pushpin.png" alt="Pushpin" width="25" height="25" /> Acknowledgments
 </h2>
@@ -322,9 +323,8 @@ I would like to acknowledge and give credit to the following resources that have
   </a>
 </p>
 
----
+<!--------------- CONTACT & SUPPORT --------------->
 
-<!-- <------- CONTACT & SUPPORT --------> -->
 <h2 id="contact--support">
   <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Pushpin.png" alt="Pushpin" width="25" height="25" /> Contact & Support
 </h2>
