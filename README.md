@@ -35,7 +35,7 @@
   <h3 align="center">Portify Portfolio Made with Love</h3>
 
   <p align="center">
-    Welcome! I would appreciate if you Star my Repository — your support is greatly appreciated!
+    Welcome! I would appreciate if you Star my Repository, your support is greatly appreciated!
     <br /><br />
     <a href="https://next-js-portify.vercel.app/">View Demo</a>
     ·
@@ -56,40 +56,37 @@
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#built-with">Built With</a></li>
     <li><a href="#getting-started-contributing">Getting Started & Contributing</a></li>
-    <li><a href="#contact--support">Contact & Support</a></li>
   </ol>
 </details>
 
 <!--------------- ABOUT THE PROJECT --------------->
 
-<h2 id="about-the-project">
-  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Pushpin.png" alt="Pushpin" width="25" height="25" /> About The Project
-</h2>
+<h2 id="about-the-project">About The Project</h2>
 
-Mission: Award-Winning Responsive Portfolio. My self-coded and crafted website, made with passion for the #OpenSource community. Free to use and customize. It's still under development — Don't miss out — updates are made daily!
+Portify is an open source, self-built portfolio template actively developed for over a year. It ships with everything a modern developer portfolio needs: a **Blog** powered by Markdown files, a **Portfolio** page to showcase your projects, a visual **Gallery & Showcase**, a dedicated **About** page, and a **Tools** section featuring utilities like a Gradient Generator, Shadow Generator, Operator Lookup, code Snippets, and more.
+
+Pages and features at a glance: **Home · Blog · Portfolio · Showcase · About · Tools**
+
+Built with a strong focus on UI/UX, every detail has been considered. Layouts come with rich filtering options, tag systems, and multiple display variants. Components like testimonials, sliders, hover effects, and animations are included out of the box. The design hits the right balance between modern, compact, and user-friendly without ever feeling cluttered or outdated.
+
+Still actively developed. Bug reports, questions, and setup help are always welcome.
 
 ### Key Features
 
-- **Innovative Card Designs**
-  Showcases your work with visually striking card designs, each offering a unique perspective and style.
-- **Dynamic Header & Navigation Menu**
-  Features an animated header and menu for a modern, engaging user experience.
-- **Integrated Gallery & Lightbox**
-  Seamless viewing experience with an elegant, responsive gallery.
-- **Dark/Light Mode**
-  Optimized for both bright and dim environments to enhance usability.
-- **Holographic Card Design**
-  Utilizes holographic effects for a futuristic and visually appealing look.
-- **Responsive Design**
-  Fully optimized for various devices, including mobile, tablet, and PC, ensuring consistent performance across platforms like Windows, macOS, and Linux.
+- **Blog** — Markdown-based blog with full post rendering, ready to write and publish.
+- **Portfolio** — Project showcase page with filtering, tags, and multiple layout options.
+- **Gallery & Showcase** — Visual image showcase with lightbox support.
+- **Tools & Snippets** — Built-in tools (Gradient Generator, Shadow Generator, Operator Lookup) and a Snippets viewer to display your own code files.
+- **Holographic Card Design** — Unique holographic card effect for a distinctive, modern look.
+- **Dark / Light Mode** — Fully themed for both environments with smooth switching.
+- **Responsive** — Optimized across mobile, tablet, and desktop on Windows, macOS, and Linux.
+- **Rich Components** — Testimonials, sliders, hover effects, animations, filters, and more included.
 
 ### Future Plans
 
-I'll be adding more in the near future. Potential updates include:
-
-- Advanced animations and effects.
-- More customization options.
-- Additional themes for better personalization.
+- Advanced animations and extended motion design.
+- More customization options and theme variants.
+- Additional component templates for faster setup.
 
 <p align="right">
   <a href="#readme-top">
@@ -99,9 +96,7 @@ I'll be adding more in the near future. Potential updates include:
 
 <!--------------- GALLERY --------------->
 
-<h2 id="gallery">
-  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Pushpin.png" alt="Pushpin" width="25" height="25" /> Gallery
-</h2>
+<h2 id="gallery">Gallery</h2>
 
 <table align="center" border="0">
   <tr>
@@ -136,9 +131,7 @@ I'll be adding more in the near future. Potential updates include:
 
 <!--------------- BUILT WITH --------------->
 
-<h2 id="built-with">
-  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Pushpin.png" alt="Pushpin" width="25" height="25" /> Built With
-</h2>
+<h2 id="built-with">Built With</h2>
 
 <ul>
   <li><img alt="React Badge" title="React" src="https://custom-icon-badges.demolab.com/badge/-React%20CSS-000000?style=for-the-badge&logo=react&logoColor=ffffff&labelColor=FF0000"></li>
@@ -155,9 +148,7 @@ I'll be adding more in the near future. Potential updates include:
 
 <!--------------- GETTING STARTED & CONTRIBUTING --------------->
 
-<h2 id="getting-started-contributing">
-  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Pushpin.png" alt="Pushpin" width="25" height="25" /> Getting Started & Contributing
-</h2>
+<h2 id="getting-started-contributing">Getting Started & Contributing</h2>
 
 <details>
   <summary>Installation</summary>
@@ -231,18 +222,9 @@ I'll be adding more in the near future. Potential updates include:
   </a>
 </p>
 
-<!--------------- CONTACT & SUPPORT --------------->
+<!--------------- FOOTER --------------->
 
-<h2 id="contact--support">
-  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Pushpin.png" alt="Pushpin" width="25" height="25" /> Contact & Support
-</h2>
-
+<br />
 <div align="center">
   <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/logo.png" alt="Logo">
 </div>
-
-<p align="right">
-  <a href="#readme-top">
-    <img src="https://custom-icon-badges.demolab.com/badge/-Back%20to%20top-000000?style=for-the-badge&logo=upptime&logoColor=ffffff&labelColor=FF0000" alt="Back to top">
-  </a>
-</p>
