@@ -1,10 +1,5 @@
----
+P O R T I F Y
 
--                     *
-- P O R T I F Y \*
--                     *
-
----
 
 # Changelog & Documentation
 
