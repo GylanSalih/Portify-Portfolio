@@ -565,6 +565,23 @@
   }
 }
 
+/* Responsive layout button labels */
+.desktopLabel {
+  display: inline;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.mobileLabel {
+  display: none;
+
+  @media (max-width: 768px) {
+    display: inline;
+  }
+}
+
 // aA Button
 .aaButton {
   position: relative;

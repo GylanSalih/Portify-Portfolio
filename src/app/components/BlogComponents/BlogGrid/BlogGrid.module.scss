@@ -542,6 +542,7 @@
   font-size: 0.7rem;
   font-weight: 400;
   cursor: pointer;
+  text-align: left;
   transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
 
   &:hover {
@@ -572,6 +573,23 @@
   }
 }
 
+/* Responsive layout button labels */
+.desktopLabel {
+  display: inline;
+
+  @media (max-width: 640px) {
+    display: none;
+  }
+}
+
+.mobileLabel {
+  display: none;
+
+  @media (max-width: 640px) {
+    display: inline;
+  }
+}
+
 /* ✅ PERFORMANCE OPTIMIZED Blog Grid */
 .grid {
   display: grid;
@@ -581,9 +599,7 @@
   opacity: 1;
   visibility: visible;
   justify-content: start;
-  will-change: contents;
   transform: translateZ(0);
-  contain: layout style;
 }
 
 /* Grid layout variants */
@@ -595,7 +611,7 @@
   }
 
   @media (max-width: 640px) {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr;  /* Mobile: 1-Col */
   }
 }
 
@@ -611,13 +627,18 @@
   }
 
   @media (max-width: 640px) {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);  /* Mobile: 2-Col */
+    gap: 0.875rem;
   }
 }
 
 .list {
   grid-template-columns: 1fr;
   gap: 1rem;
+
+  @media (max-width: 640px) {
+    gap: 0.75rem;
+  }
 }
 
 /* Loading Skeletons - Grid specific */

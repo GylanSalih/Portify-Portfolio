@@ -23,18 +23,18 @@ const LandingSlider = memo(() => {
   // ✅ MEMORY LEAK FIX: Slides als useMemo um Re-renders zu vermeiden
   const slides = useMemo(() => [
     {
-      id: 1,
+      id: 2,
       type: 'video',
-      src: '/assets/videos/Kenshin.mp4',
+      src: '/assets/videos/sea.mp4',
       title: '',
       subtitle: '',
       description: '',
       cta: null,
     },
     {
-      id: 2,
+      id: 1,
       type: 'video',
-      src: '/assets/videos/sea.mp4',
+      src: '/assets/videos/Kenshin.mp4',
       title: '',
       subtitle: '',
       description: '',

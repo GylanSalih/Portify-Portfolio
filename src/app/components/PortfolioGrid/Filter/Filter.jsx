@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
 import {
-  Grid3X3,
+  List,
   Grid2X2,
   LayoutGrid,
   ChevronDown,
@@ -19,6 +19,7 @@ const Filter = ({
   onLayoutChange,
   onShowAllInfoChange,
   onShuffleChange,
+  onSortChange,
   showAllInfo = false,
   hasContent = true,
   isLoading = false,
@@ -113,9 +114,9 @@ const Filter = ({
   };
 
   const layoutOptions = [
-    { id: 1, icon: LayoutGrid, label: 'Grid' },
-    { id: 2, icon: Grid2X2, label: 'Cards' },
-    { id: 3, icon: Grid3X3, label: 'List' },
+    { id: 1, icon: LayoutGrid, label: 'Grid', mobileLabel: '1-Col' },
+    { id: 2, icon: Grid2X2, label: 'Cards', mobileLabel: '2-Col' },
+    { id: 3, icon: List, label: 'List', mobileLabel: 'List' },
   ];
 
   const sortOptions = [
@@ -133,6 +134,7 @@ const Filter = ({
   const handleSortSelect = (sort) => {
     setSortBy(sort.value);
     setIsSortDropdownOpen(false);
+    onSortChange?.(sort.value);
   };
 
 
@@ -249,7 +251,8 @@ const Filter = ({
                           onClick={() => setActiveLayout(layout.id)}
                         >
                           <IconComponent size={18} />
-                          <span>{layout.label}</span>
+                          <span className={styles.desktopLabel}>{layout.label}</span>
+                          <span className={styles.mobileLabel}>{layout.mobileLabel}</span>
                         </button>
                       );
                     })}

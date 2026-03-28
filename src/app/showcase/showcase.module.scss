@@ -2,6 +2,31 @@
 .showcaseMain {
   min-height: 100vh;
   padding: 0 10px;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.18) 1px,
+      transparent 1px
+    );
+    background-size: 24px 24px;
+    opacity: 0.45;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  :global(html:not(.dark-mode)) &::before {
+    background-image: radial-gradient(
+      circle,
+      rgba(0, 0, 0, 0.12) 1px,
+      transparent 1px
+    );
+    opacity: 0.55;
+  }
 
   @media (min-width: 1024px) {
     padding: 0 10px; 

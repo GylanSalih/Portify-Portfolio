@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDarkMode } from '../../contexts/DarkModeContext';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -16,6 +16,35 @@ const Navbar = () => {
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [isToolsOpen, setIsToolsOpen] = useState(false);
   const toolsRef = React.useRef(null);
+  const audioRef = useRef(null);
+
+  // Initialize audio element once on mount
+  useEffect(() => {
+    const audio = new Audio('/assets/audio/BackgroundMusic.mp3');
+    audio.loop = true;
+    audio.volume = 0.4;
+    audioRef.current = audio;
+
+    return () => {
+      audio.pause();
+      audio.src = '';
+    };
+  }, []);
+
+  // Sync play/pause state
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (isAudioPlaying) {
+      audio.play().catch(() => {
+        // Auto-play blocked — silently reset state
+        setIsAudioPlaying(false);
+      });
+    } else {
+      audio.pause();
+    }
+  }, [isAudioPlaying]);
 
   // Close Tools dropdown on outside click
   useEffect(() => {

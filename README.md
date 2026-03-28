@@ -112,11 +112,25 @@ I'll be adding more in the near future. Potential updates include:
 
 <p align="center">Here are some images showcasing the project:</p>
 
+| Home | Home Mobile | About Me |
+| --- | --- | --- |
+| <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Home.png" alt="Home" width="300" /> | <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Home%20Mobile.png" alt="Home Mobile" width="300" /> | <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/About%20Me.png" alt="About Me" width="300" /> |
 
+| Blog | Blog 2 | Blog Single Page |
+| --- | --- | --- |
+| <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Blog.png" alt="Blog" width="300" /> | <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Blog%202.png" alt="Blog 2" width="300" /> | <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Blog%20Single%20Page.png" alt="Blog Single Page" width="300" /> |
 
-| Showcase 1      | Showcase 2      | Showcase 3      |
-| --------------- | --------------- | --------------- |
-| <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/23.08.25_Home.png" alt="Showcase 1" width="300" height="750" /> | <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/23.08.25_Blog.png" alt="Showcase 2" width="300" height="750" /> | <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/23.08.25_360Carousel.png" alt="Showcase 3" width="300" height="500" /> |
+| Portfolio | Portfolio 2 | Portfolio Mobile |
+| --- | --- | --- |
+| <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Portfolio.png" alt="Portfolio" width="300" /> | <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Portfolio%202.png" alt="Portfolio 2" width="300" /> | <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Portfolio%20Mobile.png" alt="Portfolio Mobile" width="300" /> |
+
+| Portfolio Single Page | Showcase | Showcase Click |
+| --- | --- | --- |
+| <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Portfolio%20Single%20Page.png" alt="Portfolio Single Page" width="300" /> | <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Showcase.png" alt="Showcase" width="300" /> | <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Showcase%20Click.png" alt="Showcase Click" width="300" /> |
+
+| Showcase Single Page View | Hamburger Menu | Light Mode |
+| --- | --- | --- |
+| <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Showcase%20Single%20Page%20View.png" alt="Showcase Single Page View" width="300" /> | <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Hamburger%20Menu.png" alt="Hamburger Menu" width="300" /> | <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Light%20Mode.png" alt="Light Mode" width="300" /> |
 
 
 

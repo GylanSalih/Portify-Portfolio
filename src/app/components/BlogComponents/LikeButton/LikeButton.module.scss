@@ -75,9 +75,10 @@
 /* ── floating count ── */
 .counter {
   position: absolute;
-  bottom: calc(100% + 0.25rem);
-  left: 50%;
-  transform: translateX(-50%);
+  left: calc(100% + 0.4rem);
+  top: 50%;
+  transform: translateY(-50%);
+  bottom: auto;
   pointer-events: none;
   white-space: nowrap;
 
@@ -88,8 +89,8 @@
   font-weight: 900;
   color: #171717;
 
-  mask-image: linear-gradient(rgba(0,0,0,0.97) 0%, rgba(0,0,0,0) 110%);
-  -webkit-mask-image: linear-gradient(rgba(0,0,0,0.97) 0%, rgba(0,0,0,0) 110%);
+  mask-image: linear-gradient(to right, rgba(0,0,0,0.97) 0%, rgba(0,0,0,0) 110%);
+  -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0.97) 0%, rgba(0,0,0,0) 110%);
 
   text-shadow:
     -0.3px 0 rgba(82,82,82,0.8),

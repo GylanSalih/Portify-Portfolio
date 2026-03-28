@@ -45,6 +45,7 @@
   padding: 0.2rem 0;
   transition: color 0.15s ease;
   word-break: break-word;
+  text-align: left;
 
   &:hover {
     color: rgba(255, 255, 255, 0.75);
@@ -68,11 +69,9 @@
   }
 }
 
-/* Indentation by heading level */
+/* Only 2 levels: main sections and one sub-level */
 .level1 { padding-left: 0; }
-.level2 { padding-left: 0; }
-.level3 { padding-left: 0.85rem; }
-.level4 { padding-left: 1.6rem; }
+.level2 { padding-left: 0.85rem; }
 
 @media (max-width: 1200px) {
   .toc {

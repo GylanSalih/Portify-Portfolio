@@ -1,9 +1,8 @@
 /** @type {import('next').NextConfig} */
-import bundleAnalyzer from '@next/bundle-analyzer';
-
-const withBundleAnalyzer = bundleAnalyzer({
-  enabled: process.env.ANALYZE === 'true',
-});
+const bundleAnalyzerModule = await import('@next/bundle-analyzer').catch(() => null);
+const withBundleAnalyzer = bundleAnalyzerModule?.default
+  ? bundleAnalyzerModule.default({ enabled: process.env.ANALYZE === 'true' })
+  : (config) => config;
 
 const nextConfig = {
   // ESLint configuration for build
@@ -33,19 +32,6 @@ const nextConfig = {
         fs: false,
       };
     }
-    
-    // Bundle splitting for heavy libraries
-    config.optimization.splitChunks = {
-      chunks: 'all',
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all',
-          priority: 10,
-        },
-      },
-    };
     
     return config;
   },

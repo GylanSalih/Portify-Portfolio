@@ -178,7 +178,8 @@ const BlogPost = ({ data = null, mdxContent = null }) => {
         )}
         <div className={styles.heroContainer}>
           <h1 className={styles.heroTitle}>{post.title}</h1>
-          <div className={styles.heroMeta}>
+        </div>
+        <div className={styles.heroMeta}>
             {post.date && (
               <div className={styles.metaItem}>
                 <Calendar className={styles.metaIcon} />
@@ -204,7 +205,6 @@ const BlogPost = ({ data = null, mdxContent = null }) => {
               </span>
             </div>
           </div>
-        </div>
       </header>
 
       {/* Main Content + TOC Row */}

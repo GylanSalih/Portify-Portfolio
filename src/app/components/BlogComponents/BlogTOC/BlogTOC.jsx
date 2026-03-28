@@ -20,7 +20,17 @@ const parseHeadings = (markdown) => {
     const text = match[2].trim();
     headings.push({ level, text, id: slugify(text) });
   }
-  return headings;
+
+  // Normalize: first h1 or h2 becomes "main" (displayLevel 1),
+  // everything else becomes "sub" (displayLevel 2, max 1 child level)
+  let firstMainLevel = null;
+  const normalized = headings.map((h) => {
+    if (firstMainLevel === null) firstMainLevel = h.level;
+    const displayLevel = h.level === firstMainLevel ? 1 : 2;
+    return { ...h, displayLevel };
+  });
+
+  return normalized;
 };
 
 const BlogTOC = ({ mdxContent }) => {
@@ -73,8 +83,8 @@ const BlogTOC = ({ mdxContent }) => {
   return (
     <nav className={styles.toc} aria-label="Table of contents">
       <ul className={styles.tocList}>
-        {headings.map(({ id, text, level }) => (
-          <li key={id} className={`${styles.tocItem} ${styles[`level${level}`]}`}>
+        {headings.map(({ id, text, displayLevel }) => (
+          <li key={id} className={`${styles.tocItem} ${styles[`level${displayLevel}`]}`}>
             <a
               href={`#${id}`}
               onClick={(e) => handleClick(e, id)}

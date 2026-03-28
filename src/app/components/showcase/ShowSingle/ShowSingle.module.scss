@@ -8,6 +8,21 @@
   background: #000;
   color: #fff;
   overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.14) 1px,
+      transparent 1px
+    );
+    background-size: 24px 24px;
+    opacity: 0.4;
+    z-index: 0;
+    pointer-events: none;
+  }
 }
 
 /* ── Sidebar: fixed to left edge, always full viewport height ── */
@@ -176,10 +191,8 @@
 
 .topBarNav {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   gap: 0;
-  border-radius: 9999px;
-  overflow: hidden;
 
   @media (max-width: 768px) {
     display: none;
@@ -191,13 +204,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 1rem;
+  padding: 0.5rem 1rem;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   min-width: 60px;
   background: rgb(10, 10, 10);
-  height: 100%;
-  align-self: stretch;
 }
 
 .topBarIndicatorText {
@@ -208,6 +219,8 @@
   font-family: 'Wotfard', monospace;
   line-height: 1;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
 }
 
 .navButton {
@@ -402,7 +415,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 1rem;
+  padding: 0.5rem 1rem;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   min-width: 68px;
@@ -416,6 +429,8 @@
   letter-spacing: 0.08em;
   font-family: 'Wotfard', monospace;
   line-height: 1;
+  display: flex;
+  align-items: center;
 }
 
 // Fullscreen Image Viewer

@@ -13,6 +13,7 @@ export default function PortfolioPage() {
   const [layoutMode, setLayoutMode] = useState(1);
   const [category, setCategory] = useState('all');
   const [selectedTags, setSelectedTags] = useState([]);
+  const [sortBy, setSortBy] = useState('newest');
   const [mounted, setMounted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [showAllInfo, setShowAllInfo] = useState(false);
@@ -49,13 +50,43 @@ export default function PortfolioPage() {
 
   // Calculate filtered items with useMemo
   const filteredItems = useMemo(() => {
-    const filtered = allItems.filter(item => {
+    let filtered = allItems.filter(item => {
       const matchesCategory = category === 'all' || item.category === category;
       const matchesTags = selectedTags.length === 0 || 
         selectedTags.some(tag => item.tags.includes(tag));
       return matchesCategory && matchesTags;
     });
-    
+
+    // Apply sort (skip when shuffle is active)
+    if (!isShuffled) {
+      const parsePortfolioDate = (dateStr) => {
+        if (!dateStr) return new Date(0);
+        const parts = dateStr.split('.');
+        if (parts.length === 3) return new Date(`${parts[2]}-${parts[1]}-${parts[0]}`);
+        return new Date(0);
+      };
+      switch (sortBy) {
+        case 'newest':
+          filtered = [...filtered].sort((a, b) =>
+            parsePortfolioDate(b.postData?.projectDetails?.date) -
+            parsePortfolioDate(a.postData?.projectDetails?.date));
+          break;
+        case 'oldest':
+          filtered = [...filtered].sort((a, b) =>
+            parsePortfolioDate(a.postData?.projectDetails?.date) -
+            parsePortfolioDate(b.postData?.projectDetails?.date));
+          break;
+        case 'name-asc':
+          filtered = [...filtered].sort((a, b) => a.title.localeCompare(b.title));
+          break;
+        case 'name-desc':
+          filtered = [...filtered].sort((a, b) => b.title.localeCompare(a.title));
+          break;
+        default:
+          break;
+      }
+    }
+
     // Return shuffled items if shuffle is active, otherwise return filtered items
     if (isShuffled && shuffledItems.length > 0) {
       // Filter shuffled items to match current filters
@@ -68,7 +99,7 @@ export default function PortfolioPage() {
     }
     
     return filtered;
-  }, [allItems, category, selectedTags, isShuffled, shuffledItems]);
+  }, [allItems, category, selectedTags, isShuffled, shuffledItems, sortBy]);
 
   // Update total items when filtered items change
   useEffect(() => {
@@ -102,6 +133,10 @@ export default function PortfolioPage() {
   const handleItemsPerPageChange = useCallback((newItemsPerPage) => {
     setItemsPerPage(newItemsPerPage);
     setCurrentPage(1);
+  }, []);
+
+  const handleSortChange = useCallback((sort) => {
+    setSortBy(sort);
   }, []);
 
   const handleShowAllInfoChange = useCallback((show) => {
@@ -149,6 +184,7 @@ export default function PortfolioPage() {
         onLayoutChange={handleLayoutChange}
         onShowAllInfoChange={handleShowAllInfoChange}
         onShuffleChange={handleShuffleChange}
+        onSortChange={handleSortChange}
         showAllInfo={showAllInfo}
         hasContent={true}
         isLoading={false}

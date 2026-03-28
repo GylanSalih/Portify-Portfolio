@@ -175,17 +175,29 @@
   }
 
   @media (max-width: 768px) {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);  /* Mobile: 2-Col */
+    gap: 10px;
+    justify-items: stretch; /* prevent cells from overflowing screen */
+
+    .item {
+      height: 200px; /* control row height via item, not card */
+    }
 
     .card {
-      height: auto;
-      min-height: 280px;
+      height: 100%;
+      min-height: 0;   /* override base .card min-height: 300px */
+      max-width: none; /* override base .card max-width: 550px */
+    }
+
+    .figure {
+      height: 100%;
+      aspect-ratio: unset; /* override base figure aspect-ratio */
     }
   }
 
   @media (max-width: 480px) {
-    .card {
-      min-height: 240px;
+    .item {
+      height: 220px;
     }
   }
 }
@@ -196,6 +208,10 @@
   flex-direction: column;
   gap: 20px;
   grid-template-columns: none;
+
+  @media (max-width: 768px) {
+    gap: 8px;
+  }
 
   .item {
     width: 100%;
@@ -218,9 +234,9 @@
     }
 
     @media (max-width: 768px) {
-      flex-direction: column;
-      height: auto;
-      min-height: auto;
+      flex-direction: row;
+      height: 90px;
+      min-height: 0;
     }
   }
 
@@ -242,10 +258,10 @@
     }
 
     @media (max-width: 768px) {
-      flex-direction: column;
+      flex-direction: row;
 
       a {
-        flex-direction: column;
+        flex-direction: row;
       }
     }
   }
@@ -261,12 +277,13 @@
     }
 
     @media (max-width: 768px) {
-      width: 100%;
-      height: 250px;
+      width: 110px;
+      height: 100%;
+      flex-shrink: 0;
     }
 
     @media (max-width: 480px) {
-      height: 200px;
+      width: 90px;
     }
   }
 
@@ -291,11 +308,9 @@
       font-size: 1.5rem;
 
       @media (max-width: 768px) {
-        font-size: 1.2rem;
-      }
-
-      @media (max-width: 480px) {
-        font-size: 1.1rem;
+        font-size: 0.875rem;
+        line-height: 1.25;
+        margin: 0;
       }
     }
 
@@ -304,17 +319,28 @@
       margin-top: 0.5rem;
 
       @media (max-width: 768px) {
-        font-size: 0.9rem;
+        font-size: 0.72rem;
+        margin-top: 0.2rem;
       }
     }
 
     @media (max-width: 768px) {
       position: relative;
-      padding: 1.5rem;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 0.75rem 0.875rem;
+      gap: 0;
+      background: rgba(0, 0, 0, 0.8);
+
+      /* hide tags and arrow icon on compact mobile list */
+      .tags, [class*="tags"], .linkIcon {
+        display: none;
+      }
     }
 
     @media (max-width: 480px) {
-      padding: 1.25rem;
+      padding: 0.625rem 0.75rem;
     }
   }
 }

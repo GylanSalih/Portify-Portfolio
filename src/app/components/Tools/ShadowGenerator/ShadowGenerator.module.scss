@@ -1,0 +1,442 @@
+/* ShadowGenerator — dedicated styles */
+.tool {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 6rem 1.5rem 6rem;
+  font-family: 'Wotfard', sans-serif;
+}
+
+.title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin: 0 0 0.5rem 0;
+  :global(html:not(.dark-mode)) & { color: #0a0a0a; }
+}
+
+.desc {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0 0 2.5rem 0;
+  :global(html:not(.dark-mode)) & { color: rgba(10, 10, 10, 0.45); }
+}
+
+/* ---- Preview board (3 example shapes) ---- */
+.previewBoard {
+  width: 100%;
+  min-height: 260px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  margin-bottom: 2.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 2.5rem 1.5rem;
+  transition: background-color 0.3s ease;
+  flex-wrap: wrap;
+  :global(html:not(.dark-mode)) & { border-color: rgba(10, 10, 10, 0.07); }
+}
+
+.exampleSquare {
+  width: 80px;
+  height: 80px;
+  border-radius: 14px;
+  background: #fff;
+}
+
+.exampleRect {
+  width: 140px;
+  height: 72px;
+  border-radius: 14px;
+  background: #fff;
+}
+
+.exampleCircle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+/* ---- Controls layout ---- */
+.controlsLayout {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2.5rem;
+  align-items: start;
+  margin-bottom: 2rem;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- Light source pad ---- */
+.lightSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.sectionLabel {
+  font-size: 0.675rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  :global(html:not(.dark-mode)) & { color: rgba(10, 10, 10, 0.4); }
+}
+
+.lightPad {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  border-radius: 14px;
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: crosshair;
+  overflow: hidden;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+
+  :global(html:not(.dark-mode)) & {
+    background-color: rgba(10, 10, 10, 0.025);
+    border-color: rgba(10, 10, 10, 0.1);
+    background-image:
+      linear-gradient(rgba(10, 10, 10, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(10, 10, 10, 0.06) 1px, transparent 1px);
+  }
+}
+
+.lightDot {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: box-shadow 0.1s ease;
+  :global(html:not(.dark-mode)) & {
+    background: #111;
+    border-color: rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.padCrosshair {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    :global(html:not(.dark-mode)) & { background: rgba(10, 10, 10, 0.1); }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    :global(html:not(.dark-mode)) & { background: rgba(10, 10, 10, 0.1); }
+  }
+}
+
+.lightHint {
+  font-size: 0.64rem;
+  color: rgba(255, 255, 255, 0.22);
+  margin: 0;
+  max-width: 160px;
+  line-height: 1.4;
+  :global(html:not(.dark-mode)) & { color: rgba(10, 10, 10, 0.28); }
+}
+
+/* ---- Sliders section ---- */
+.slidersSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.sliderControl {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.sliderHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.sliderLabel {
+  font-size: 0.675rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  :global(html:not(.dark-mode)) & { color: rgba(10, 10, 10, 0.4); }
+}
+
+.sliderValue {
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, 0.5);
+  :global(html:not(.dark-mode)) & { color: rgba(10, 10, 10, 0.5); }
+}
+
+.slider {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  height: 3px;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.55) var(--pct, 50%),
+    rgba(255, 255, 255, 0.1) var(--pct, 50%)
+  );
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  &::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  :global(html:not(.dark-mode)) & {
+    background: linear-gradient(
+      to right,
+      rgba(10, 10, 10, 0.55) var(--pct, 50%),
+      rgba(10, 10, 10, 0.1) var(--pct, 50%)
+    );
+
+    &::-webkit-slider-thumb { background: #111; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+    &::-moz-range-thumb { background: #111; }
+  }
+}
+
+/* ---- Options row (bg color + tint toggle) ---- */
+.optionsRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.25rem;
+  align-items: end;
+  margin-top: 0.15rem;
+  flex-wrap: wrap;
+}
+
+.optionField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.colorRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.colorPicker {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 2px;
+  cursor: pointer;
+  background: transparent;
+  :global(html:not(.dark-mode)) & { border-color: rgba(10, 10, 10, 0.12); }
+}
+
+.colorInput {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: 'Consolas', monospace;
+  font-size: 0.8125rem;
+  outline: none;
+  max-width: 100px;
+  :global(html:not(.dark-mode)) & {
+    background: rgba(10, 10, 10, 0.04);
+    border-color: rgba(10, 10, 10, 0.1);
+    color: rgba(10, 10, 10, 0.8);
+  }
+}
+
+/* ---- Toggle switch ---- */
+.toggleLabel {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.toggleInput {
+  /* visually hidden but accessible */
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggleSlider {
+  display: block;
+  width: 40px;
+  height: 22px;
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  position: relative;
+  transition: background 0.2s ease, border-color 0.2s ease;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    top: 2px;
+    left: 2px;
+    transition: left 0.2s ease, background 0.2s ease;
+  }
+
+  :global(html:not(.dark-mode)) & {
+    background: rgba(10, 10, 10, 0.08);
+    border-color: rgba(10, 10, 10, 0.14);
+    &::after { background: rgba(10, 10, 10, 0.3); }
+  }
+}
+
+/* When the hidden checkbox is :checked, the adjacent .toggleSlider gets activated */
+.toggleInput:checked + .toggleSlider {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+
+  &::after {
+    left: 20px;
+    background: #fff;
+  }
+
+  :global(html:not(.dark-mode)) & {
+    background: rgba(10, 10, 10, 0.2);
+    border-color: rgba(10, 10, 10, 0.35);
+    &::after { background: #111; }
+  }
+}
+
+/* ---- Output area ---- */
+.output {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  overflow: hidden;
+  :global(html:not(.dark-mode)) & {
+    background: rgba(10, 10, 10, 0.02);
+    border-color: rgba(10, 10, 10, 0.08);
+  }
+}
+
+.outputLabel {
+  padding: 0.65rem 1.25rem;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.28);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  margin: 0;
+  :global(html:not(.dark-mode)) & {
+    color: rgba(10, 10, 10, 0.3);
+    border-bottom-color: rgba(10, 10, 10, 0.06);
+  }
+}
+
+.code {
+  display: block;
+  padding: 1rem 1.25rem;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.75);
+  word-break: break-all;
+  white-space: pre-wrap;
+  background: rgba(0, 0, 0, 0.18);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  :global(html:not(.dark-mode)) & {
+    color: rgba(10, 10, 10, 0.75);
+    background: rgba(0, 0, 0, 0.04);
+    border-bottom-color: rgba(10, 10, 10, 0.06);
+  }
+}
+
+.outputActions {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  justify-content: flex-end;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.875rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.75);
+  font-family: 'Wotfard', sans-serif;
+  font-size: 0.775rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.95);
+  }
+
+  :global(html:not(.dark-mode)) & {
+    background: rgba(10, 10, 10, 0.06);
+    border-color: rgba(10, 10, 10, 0.1);
+    color: rgba(10, 10, 10, 0.7);
+    &:hover { background: rgba(10, 10, 10, 0.1); color: rgba(10, 10, 10, 0.9); }
+  }
+}

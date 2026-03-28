@@ -1,4 +1,283 @@
-/* Shared tool page wrapper styles — imported by each tool */
+/* ================================================================
+   GradientGenerator – shared tool styles + gradient-specific UI
+   ================================================================ */
+
+/* ---- Color stops section ---- */
+.stopsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.stopsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sectionLabel {
+  font-size: 0.675rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  :global(html:not(.dark-mode)) & { color: rgba(10, 10, 10, 0.4); }
+}
+
+.addStopBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  transition: background 0.15s ease;
+  &:hover { background: rgba(255, 255, 255, 0.14); }
+  :global(html:not(.dark-mode)) & {
+    background: rgba(10, 10, 10, 0.05);
+    border-color: rgba(10, 10, 10, 0.12);
+    color: rgba(10, 10, 10, 0.45);
+    &:hover { background: rgba(10, 10, 10, 0.09); }
+  }
+}
+
+.gradientBar {
+  position: relative;
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: visible;
+  margin-bottom: 0.25rem;
+  :global(html:not(.dark-mode)) & { border-color: rgba(10, 10, 10, 0.1); }
+}
+
+.stopMarker {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2.5px solid rgba(255, 255, 255, 0.85);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+  transition: transform 0.12s ease;
+  &:hover { transform: translate(-50%, -50%) scale(1.2); }
+  :global(html:not(.dark-mode)) & { border-color: rgba(0, 0, 0, 0.5); }
+}
+
+.stopMarkerActive {
+  border-color: #fff !important;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4), 0 2px 8px rgba(0, 0, 0, 0.5);
+  :global(html:not(.dark-mode)) & { box-shadow: 0 0 0 2px rgba(0,0,0,0.25); }
+}
+
+.stopsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.stopRow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  :global(html:not(.dark-mode)) & {
+    background: rgba(10, 10, 10, 0.025);
+    border-color: rgba(10, 10, 10, 0.07);
+  }
+}
+
+.stopSwatch {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  cursor: pointer;
+  transition: transform 0.12s ease;
+  &:hover { transform: scale(1.12); }
+  :global(html:not(.dark-mode)) & { border-color: rgba(10, 10, 10, 0.18); }
+}
+
+.stopColorValue {
+  font-size: 0.71rem;
+  font-family: 'Consolas', monospace;
+  color: rgba(255, 255, 255, 0.5);
+  min-width: 68px;
+  :global(html:not(.dark-mode)) & { color: rgba(10, 10, 10, 0.5); }
+}
+
+.stopPosWrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.stopPosSlider {
+  flex: 1;
+  accent-color: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  height: 3px;
+  :global(html:not(.dark-mode)) & { accent-color: rgba(10, 10, 10, 0.55); }
+}
+
+.stopPosValue {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.38);
+  min-width: 30px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  :global(html:not(.dark-mode)) & { color: rgba(10, 10, 10, 0.38); }
+}
+
+.removeStopBtn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.28);
+  cursor: pointer;
+  &:hover { color: rgba(255, 80, 80, 0.85); }
+  :global(html:not(.dark-mode)) & { color: rgba(10, 10, 10, 0.28); }
+}
+
+.stopPickerPopover {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 200;
+  background: rgba(18, 18, 22, 0.97);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 0.875rem;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55);
+  :global(html:not(.dark-mode)) & {
+    background: rgba(252, 252, 253, 0.98);
+    border-color: rgba(10, 10, 10, 0.11);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.14);
+  }
+}
+
+/* ---- Angle dial + Easing row ---- */
+.angleEasingRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.angleSection,
+.easingSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.angleDial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.angleDialSvg {
+  width: 88px;
+  height: 88px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.dialTrack {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.09);
+  stroke-width: 2;
+  :global(html:not(.dark-mode)) & { stroke: rgba(10, 10, 10, 0.1); }
+}
+
+.dialLine {
+  stroke: rgba(255, 255, 255, 0.35);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  :global(html:not(.dark-mode)) & { stroke: rgba(10, 10, 10, 0.35); }
+}
+
+.dialHandle {
+  fill: #fff;
+  filter: drop-shadow(0 0 3px rgba(255,255,255,0.4));
+  :global(html:not(.dark-mode)) & { fill: #111; filter: drop-shadow(0 0 3px rgba(0,0,0,0.2)); }
+}
+
+.dialCenter {
+  fill: rgba(255, 255, 255, 0.4);
+  :global(html:not(.dark-mode)) & { fill: rgba(10, 10, 10, 0.4); }
+}
+
+.angleValue {
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.55);
+  :global(html:not(.dark-mode)) & { color: rgba(10, 10, 10, 0.55); }
+}
+
+.easingBtns {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.easingBtn {
+  padding: 0.5rem 0.6rem;
+  font-size: 0.775rem;
+  font-family: 'Wotfard', sans-serif;
+  text-align: left;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  transition: background 0.14s ease, border-color 0.14s ease, color 0.14s ease;
+  &:hover { background: rgba(255, 255, 255, 0.07); color: rgba(255, 255, 255, 0.7); }
+  :global(html:not(.dark-mode)) & {
+    border-color: rgba(10, 10, 10, 0.09);
+    background: rgba(10, 10, 10, 0.025);
+    color: rgba(10, 10, 10, 0.45);
+    &:hover { background: rgba(10, 10, 10, 0.06); color: rgba(10, 10, 10, 0.75); }
+  }
+}
+
+.easingBtnActive {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+  color: rgba(255, 255, 255, 0.92) !important;
+  :global(html:not(.dark-mode)) & {
+    background: rgba(10, 10, 10, 0.08) !important;
+    border-color: rgba(10, 10, 10, 0.28) !important;
+    color: rgba(10, 10, 10, 0.92) !important;
+  }
+}
+
+/* ================================================================
+   Shared tool page wrapper styles
+   ================================================================ */
 .tool {
   max-width: 900px;
   margin: 0 auto;

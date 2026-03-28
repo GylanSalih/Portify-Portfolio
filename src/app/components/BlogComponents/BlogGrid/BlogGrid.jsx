@@ -250,19 +250,21 @@ const BlogGrid = () => {
                   type="button"
                   onClick={() => setLayoutMode('grid3')}
                   className={`${styles.layoutBtn} ${layoutMode === 'grid3' ? styles.layoutBtnActive : ''}`}
-                  title="3 columns"
+                  title="1 / 3 columns"
                 >
                   <LayoutGrid size={14} />
-                  <span>3-Col</span>
+                  <span className={styles.desktopLabel}>3-Col</span>
+                  <span className={styles.mobileLabel}>1-Col</span>
                 </button>
                 <button
                   type="button"
                   onClick={() => setLayoutMode('grid4')}
                   className={`${styles.layoutBtn} ${layoutMode === 'grid4' ? styles.layoutBtnActive : ''}`}
-                  title="4 columns"
+                  title="2 / 4 columns"
                 >
                   <Grid2X2 size={14} />
-                  <span>4-Col</span>
+                  <span className={styles.desktopLabel}>4-Col</span>
+                  <span className={styles.mobileLabel}>2-Col</span>
                 </button>
                 <button
                   type="button"
