@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import styles from './ColorPicker.module.scss';
+import styles from './Colorpicker.module.scss';
 
 const PRESETS = [
   '#FF6B6B','#FF9F43','#FECA57','#48DBFB','#1DD1A1',
