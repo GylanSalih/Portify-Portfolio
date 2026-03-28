@@ -8,11 +8,11 @@
 
   /* Dark mode support */
   :global(html:not(.dark-mode)) & {
-    background: #f8f8f8;
+    background: transparent;
   }
 
   :global(html.dark-mode) & {
-    background: #0a0a0a;
+    background: transparent;
   }
 
   @media (max-width: 1024px) {

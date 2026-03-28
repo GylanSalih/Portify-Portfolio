@@ -238,6 +238,81 @@
   }
 }
 
+.menuLinkArrow {
+  color: #666666;
+  opacity: 0.5;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translate(0, 0) rotate(0deg);
+
+  .hamburgerMenuPanel.dark & {
+    color: #999999;
+  }
+}
+
+/* Tools sub-section - removed, handled by sub-menu now */
+
+/* Button variant of menuLink (for Tools entry and Back button) */
+.menuLinkButton {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.02);
+
+    .menuLinkArrow {
+      transform: rotate(0deg);
+      opacity: 1;
+    }
+  }
+
+  .hamburgerMenuPanel.dark & {
+    border-bottom-color: rgba(255, 255, 255, 0.05);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 1.25rem 1.5rem;
+  }
+}
+
+/* Back button in sub-menu */
+.menuBackBtn {
+  .menuLinkArrow {
+    opacity: 0.5;
+  }
+}
+
+.menuBackLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  font-weight: 400;
+  color: rgba(26, 26, 26, 0.55);
+  letter-spacing: -0.01em;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  .hamburgerMenuPanel.dark & {
+    color: rgba(255, 255, 255, 0.45);
+  }
+}
+
+/* Always visible items (not animation-gated) */
+.menuItemVisible {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+}
+
 /* Menu Footer */
 .menuFooter {
   margin-top: 3rem;

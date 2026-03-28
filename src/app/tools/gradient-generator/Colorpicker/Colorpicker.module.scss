@@ -1,0 +1,301 @@
+.wrap {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.card {
+  background: #fff;
+  border: 0.5px solid rgba(0, 0, 0, 0.12);
+  border-radius: 20px;
+  padding: 20px;
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  @media (prefers-color-scheme: dark) {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: #1c1c1e;
+  }
+
+  :global(html.dark-mode) & {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: #1c1c1e;
+  }
+}
+
+/* ── hex row ── */
+.hexRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.swatch {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  border: 0.5px solid rgba(0, 0, 0, 0.1);
+  transition: background 0.08s ease;
+
+  @media (prefers-color-scheme: dark) {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.hexInput {
+  flex: 1;
+  height: 32px;
+  border: 0.5px solid rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  padding: 0 10px;
+  font-size: 13px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  background: rgba(0, 0, 0, 0.04);
+  color: #111;
+  outline: none;
+  letter-spacing: 0.04em;
+  transition: border-color 0.15s;
+
+  &:focus {
+    border-color: rgba(0, 0, 0, 0.35);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    background: rgba(255, 255, 255, 0.06);
+    color: #f0f0f0;
+    border-color: rgba(255, 255, 255, 0.1);
+    &:focus { border-color: rgba(255,255,255,0.35); }
+  }
+
+  :global(html.dark-mode) & {
+    background: rgba(255, 255, 255, 0.06);
+    color: #f0f0f0;
+    border-color: rgba(255, 255, 255, 0.1);
+    &:focus { border-color: rgba(255,255,255,0.35); }
+  }
+}
+
+.copyBtn {
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 0.5px solid rgba(0, 0, 0, 0.18);
+  background: transparent;
+  color: #666;
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: #111;
+  }
+
+  &.copied {
+    color: #1d9e75;
+    border-color: #1d9e75;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    border-color: rgba(255,255,255,0.15);
+    color: #aaa;
+    &:hover { background: rgba(255,255,255,0.06); color: #f0f0f0; }
+    &.copied { color: #4CFFB4; border-color: #4CFFB4; }
+  }
+}
+
+/* ── gradient picker ── */
+.gradBox {
+  width: 100%;
+  height: 220px;
+  border-radius: 12px;
+  position: relative;
+  cursor: crosshair;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 0.5px solid rgba(0, 0, 0, 0.08);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.gradCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 12px;
+}
+
+.gradCursor {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+/* ── hue slider ── */
+.hueTrack {
+  width: 100%;
+  height: 20px;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  border: 0.5px solid rgba(0, 0, 0, 0.08);
+  overflow: visible;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.hueCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 10px;
+}
+
+.hueThumb {
+  position: absolute;
+  top: 50%;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2), 0 2px 6px rgba(0, 0, 0, 0.15);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* ── alpha slider ── */
+.alphaTrack {
+  width: 100%;
+  height: 20px;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  overflow: visible;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.alphaBg {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  position: absolute;
+  inset: 0;
+  background-image: repeating-conic-gradient(#ccc 0% 25%, #fff 0% 50%);
+  background-size: 10px 10px;
+  border: 0.5px solid rgba(0, 0, 0, 0.08);
+}
+
+.alphaCanvasWrap {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  overflow: hidden;
+
+  canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+}
+
+.alphaThumb {
+  position: absolute;
+  top: 50%;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2), 0 2px 6px rgba(0, 0, 0, 0.15);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* ── rgba inputs ── */
+.values {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 0.8fr;
+  gap: 6px;
+}
+
+.valGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.valLabel {
+  font-size: 10px;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: center;
+
+  @media (prefers-color-scheme: dark) {
+    color: #666;
+  }
+}
+
+.valInput {
+  height: 28px;
+  border: 0.5px solid rgba(0, 0, 0, 0.12);
+  border-radius: 6px;
+  padding: 0 6px;
+  font-size: 12px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  background: rgba(0, 0, 0, 0.04);
+  color: #111;
+  outline: none;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.15s;
+
+  &:focus { border-color: rgba(0,0,0,0.35); }
+
+  /* hide number spinners */
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+
+  @media (prefers-color-scheme: dark) {
+    background: rgba(255,255,255,0.06);
+    color: #f0f0f0;
+    border-color: rgba(255,255,255,0.1);
+    &:focus { border-color: rgba(255,255,255,0.35); }
+  }
+}
+
+/* ── preset swatches ── */
+.presets {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.preset {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 0.5px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1);
+  outline: none;
+
+  &:hover { transform: scale(1.18); }
+  &:active { transform: scale(0.95); }
+
+  @media (prefers-color-scheme: dark) {
+    border-color: rgba(255,255,255,0.08);
+  }
+}

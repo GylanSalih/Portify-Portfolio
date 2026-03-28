@@ -472,7 +472,22 @@
   align-items: center;
   text-align: center;
   padding: 0 1.25rem;
-  border-right: 1px solid rgba(255, 255, 255, 0.06); /* vertikale Trenner bleiben */
+  position: relative;
+
+  &:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 65%;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  :global(html:not(.dark-mode)) &:not(:last-child)::after {
+    background: rgba(10, 10, 10, 0.08);
+  }
 
   &:first-child {
     padding-left: 0;
@@ -480,11 +495,6 @@
 
   &:last-child {
     padding-right: 0;
-    border-right: none;
-  }
-
-  :global(html:not(.dark-mode)) & {
-    border-right-color: rgba(10, 10, 10, 0.06);
   }
 }
 
@@ -513,6 +523,55 @@
   }
 }
 
+/* Layout toggle buttons */
+.layoutButtons {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.layoutBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 0.375rem 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: 'Wotfard', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  &.layoutBtnActive {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.9);
+    margin: -1px;
+  }
+
+  :global(html:not(.dark-mode)) & {
+    color: rgba(10, 10, 10, 0.45);
+
+    &:hover {
+      color: rgba(10, 10, 10, 0.8);
+      background: rgba(10, 10, 10, 0.04);
+    }
+
+    &.layoutBtnActive {
+      background: rgba(10, 10, 10, 0.06);
+      border-color: rgba(10, 10, 10, 0.12);
+      color: rgba(10, 10, 10, 0.9);
+    }
+  }
+}
+
 /* ✅ PERFORMANCE OPTIMIZED Blog Grid */
 .grid {
   display: grid;
@@ -525,6 +584,40 @@
   will-change: contents;
   transform: translateZ(0);
   contain: layout style;
+}
+
+/* Grid layout variants */
+.grid3 {
+  grid-template-columns: repeat(3, 1fr);
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.grid4 {
+  grid-template-columns: repeat(4, 1fr);
+
+  @media (max-width: 1280px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.list {
+  grid-template-columns: 1fr;
+  gap: 1rem;
 }
 
 /* Loading Skeletons - Grid specific */

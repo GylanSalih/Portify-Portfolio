@@ -26,6 +26,7 @@ const BlogCard = ({
   truncateTitle = false,
   truncateExcerpt = false,
   formatNumbers = false,
+  layout = 'grid', // 'grid' | 'list'
   className = '',
   ...props
 }) => {
@@ -54,18 +55,19 @@ const BlogCard = ({
 
   // CSS-Klassen basierend auf Variant
   const isRelated = variant === 'related';
+  const isListView = layout === 'list' && !isRelated;
 
   return (
     <article
-      className={`${styles.card} ${className}`}
+      className={`${styles.card} ${isListView ? styles.cardList : ''} ${className}`}
       style={{ '--animation-delay': `${index * 0.1}s` }}
       {...props}
     >
       <Link
         href={`/blog/${slug}`}
-        className={isRelated ? styles.relatedLink : styles.link}
+        className={isRelated ? styles.relatedLink : isListView ? styles.linkList : styles.link}
       >
-        <div className={isRelated ? styles.relatedImageContainer : styles.imageContainer}>
+        <div className={isRelated ? styles.relatedImageContainer : isListView ? styles.imageContainerList : styles.imageContainer}>
           <Image
             src={image}
             alt={title}

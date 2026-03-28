@@ -165,6 +165,11 @@ const ShowSingle = () => {
               >
                 <ChevronLeft size={20} />
               </button>
+              <div className={styles.topBarIndicator}>
+                <span className={styles.topBarIndicatorText}>
+                  {currentIndex + 1} / {showcaseData.length}
+                </span>
+              </div>
               <button
                 className={styles.navButton}
                 onClick={() => nextItem && navigateTo(nextItem.slug)}

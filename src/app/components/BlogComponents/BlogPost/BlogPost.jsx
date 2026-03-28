@@ -17,6 +17,7 @@ import rehypeRaw from 'rehype-raw';
 import { MDXComponents } from '../../MDXComponents/MDXComponents';
 import styles from './BlogPost.module.scss';
 import '../../MDXComponents/mdx-styles.scss';
+import BlogTOC from '../BlogTOC/BlogTOC';
 
 const BlogPost = ({ data = null, mdxContent = null }) => {
   const { slug } = useParams();
@@ -161,8 +162,22 @@ const BlogPost = ({ data = null, mdxContent = null }) => {
   return (
     <div className={styles.container}>
       {/* Hero Section */}
-      <header className={styles.hero}>
+      <header className={post.image ? styles.hero : styles.heroNoImage}>
+        {/* Full-width image + gradient overlay */}
+        {post.image && (
+          <div className={styles.heroImageWrap}>
+            <Image
+              src={post.image}
+              alt={post.title}
+              fill
+              priority
+              className={styles.heroImage}
+            />
+            <div className={styles.heroImageGradient} />
+          </div>
+        )}
         <div className={styles.heroContainer}>
+          <h1 className={styles.heroTitle}>{post.title}</h1>
           <div className={styles.heroMeta}>
             {post.date && (
               <div className={styles.metaItem}>
@@ -189,12 +204,12 @@ const BlogPost = ({ data = null, mdxContent = null }) => {
               </span>
             </div>
           </div>
-          <h1 className={styles.heroTitle}>{post.title}</h1>
         </div>
       </header>
 
-      {/* Main Content */}
-      <div className={styles.content}>
+      {/* Main Content + TOC Row */}
+      <div className={styles.contentRow}>
+        <div className={styles.content}>
         <main className={styles.articleMain}>
           <article className={styles.articleContent}>
             {mdxContent ? (
@@ -270,6 +285,14 @@ const BlogPost = ({ data = null, mdxContent = null }) => {
             </div>
           </footer>
         </main>
+        </div>
+
+        {/* TOC Sidebar (desktop only, MDX posts only) */}
+        {mdxContent && (
+          <div className={styles.tocOuter}>
+            <BlogTOC mdxContent={mdxContent} />
+          </div>
+        )}
       </div>
 
       {/* Related Posts */}

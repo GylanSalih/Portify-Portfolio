@@ -14,6 +14,19 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+  const [isToolsOpen, setIsToolsOpen] = useState(false);
+  const toolsRef = React.useRef(null);
+
+  // Close Tools dropdown on outside click
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (toolsRef.current && !toolsRef.current.contains(e.target)) {
+        setIsToolsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   // Scroll effect
   useEffect(() => {
@@ -27,6 +40,13 @@ const Navbar = () => {
   const toggleAudioIndicator = () => {
     setIsAudioPlaying(prev => !prev);
   };
+
+  const toolsItems = [
+    { href: '/tools/gradient-generator', label: 'Gradient Generator' },
+    { href: '/tools/shadow-generator', label: 'Shadow Generator' },
+    { href: '/tools/operator-lookup', label: 'Operator Lookup' },
+    { href: '/tools/snippets', label: 'Snippets' },
+  ];
 
   const navItems = [
     { href: '/', label: 'Home' },
@@ -78,6 +98,37 @@ const Navbar = () => {
                   </Link>
                 </div>
               ))}
+              {/* Tools dropdown */}
+              <div
+                ref={toolsRef}
+                className={styles.navItem}
+                onMouseEnter={() => setIsToolsOpen(true)}
+                onMouseLeave={() => setIsToolsOpen(false)}
+              >
+                <button
+                  className={`${styles.navLink} ${styles.navLinkTools} ${
+                    isDarkMode ? styles.navLinkDark : styles.navLinkLight
+                  }`}
+                  onClick={() => setIsToolsOpen(!isToolsOpen)}
+                  aria-expanded={isToolsOpen}
+                >
+                  Tools
+                </button>
+                {isToolsOpen && (
+                  <div className={`${styles.toolsDropdown} ${isDarkMode ? styles.dropdownDark : styles.dropdownLight}`}>
+                    {toolsItems.map(tool => (
+                      <Link
+                        key={tool.href}
+                        href={tool.href}
+                        className={styles.toolsDropdownItem}
+                        onClick={() => setIsToolsOpen(false)}
+                      >
+                        {tool.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             </nav>
 
             {/* Right Side Controls */}

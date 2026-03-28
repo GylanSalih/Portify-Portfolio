@@ -12,6 +12,9 @@ import {
   Moon,
   ArrowUpRight,
   Image,
+  Wrench,
+  ChevronRight,
+  ChevronLeft,
 } from 'lucide-react';
 import Link from 'next/link';
 import styles from './styles.module.scss';
@@ -20,6 +23,7 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const menuRef = useRef(null);
   const overlayRef = useRef(null);
+  const [subMenu, setSubMenu] = useState(null); // null = main, 'tools' = tools sub
 
   // Three-phase animation:
   //   Open:  isVisible→true → 2 rAFs → panelOpen→true (panel slides in, 600ms) → itemsVisible→true
@@ -86,6 +90,13 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
     },
   ];
 
+  const toolsItems = [
+    { href: '/tools/gradient-generator', label: 'Gradient Generator' },
+    { href: '/tools/shadow-generator', label: 'Shadow Generator' },
+    { href: '/tools/operator-lookup', label: 'Operator Lookup' },
+    { href: '/tools/snippets', label: 'Snippets' },
+  ];
+
 
   // Close menu on escape key
   useEffect(() => {
@@ -117,6 +128,10 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
     };
   }, [isOpen, onClose]);
 
+  // Reset sub-menu when main menu closes
+  useEffect(() => {
+    if (!isOpen) setSubMenu(null);
+  }, [isOpen]);
 
   const handleLinkClick = () => {
     onClose();
@@ -140,7 +155,9 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
           >
             {/* Top bar: Menu title + dark mode toggle + close */}
             <div className={styles.menuTopBar}>
-              <h1 className={styles.menuTitle}>Menu</h1>
+              <h1 className={styles.menuTitle}>
+                {subMenu === 'tools' ? 'Tools' : 'Menu'}
+              </h1>
               <div className={styles.menuTopActions}>
                 <button
                   className={styles.darkModeToggle}
@@ -161,8 +178,10 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
 
             {/* Navigation Links */}
             <nav className={styles.menuNav}>
-              <ul className={styles.menuList}>
-                {menuItems.map((item, index) => (
+              {subMenu === null ? (
+                /* ── Main menu ── */
+                <ul className={styles.menuList}>
+                  {menuItems.map((item, index) => (
                     <li
                       key={item.href}
                       className={styles.menuItem}
@@ -174,15 +193,67 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
                         onClick={handleLinkClick}
                       >
                         <div className={styles.menuLinkContent}>
-                          <span className={styles.menuLinkLabel}>
-                            {item.label}
-                          </span>
+                          <span className={styles.menuLinkLabel}>{item.label}</span>
                           <ArrowUpRight className={styles.menuLinkArrow} size={20} />
                         </div>
                       </Link>
                     </li>
-                ))}
-              </ul>
+                  ))}
+
+                  {/* Tools entry */}
+                  <li
+                    className={styles.menuItem}
+                    style={{ '--item-index': menuItems.length }}
+                  >
+                    <button
+                      className={`${styles.menuLink} ${styles.menuLinkButton}`}
+                      onClick={() => setSubMenu('tools')}
+                    >
+                      <div className={styles.menuLinkContent}>
+                        <span className={styles.menuLinkLabel}>Tools</span>
+                        <ChevronRight className={styles.menuLinkArrow} size={20} />
+                      </div>
+                    </button>
+                  </li>
+                </ul>
+              ) : (
+                /* ── Tools sub-menu ── */
+                <ul className={styles.menuList}>
+                  {/* Back button */}
+                  <li className={`${styles.menuItem} ${styles.menuItemVisible}`}>
+                    <button
+                      className={`${styles.menuLink} ${styles.menuLinkButton} ${styles.menuBackBtn}`}
+                      onClick={() => setSubMenu(null)}
+                    >
+                      <div className={styles.menuLinkContent}>
+                        <span className={styles.menuBackLabel}>
+                          <ChevronLeft size={18} />
+                          Back
+                        </span>
+                      </div>
+                    </button>
+                  </li>
+
+                  {toolsItems.map((tool, index) => (
+                    <li
+                      key={tool.href}
+                      className={`${styles.menuItem} ${styles.menuItemVisible}`}
+                      style={{ '--item-index': index }}
+                    >
+                      <Link
+                        href={tool.href}
+                        className={styles.menuLink}
+                        onClick={handleLinkClick}
+                      >
+                        <div className={styles.menuLinkContent}>
+                          <span className={styles.menuLinkLabel}>{tool.label}</span>
+                          <ArrowUpRight className={styles.menuLinkArrow} size={20} />
+                        </div>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </nav>
 
           </div>

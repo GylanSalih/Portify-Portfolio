@@ -354,15 +354,18 @@
   @media (max-width: 480px) {
     padding: 0;
   }
-
-  &:hover {
-    opacity: 0.6;
-  }
 }
 
 .header {
   text-align: left;
   margin-left: 64px;
+  cursor: pointer;
+
+  &:hover .title,
+  &:hover .subtitle,
+  &:hover .arrow {
+    opacity: 0.65;
+  }
 
   @media (max-width: 768px) {
     margin-left: 48px;
@@ -380,10 +383,6 @@
   text-decoration: none;
   color: var(--color-foreground);
   margin-bottom: 0.5rem;
-
-  &:hover {
-    opacity: 0.7;
-  }
 }
 
 .title {

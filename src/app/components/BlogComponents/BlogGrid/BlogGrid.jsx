@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState, useRef, useMemo, useCallback } from 'react';
-import { ChevronDown, Sparkles, Search } from 'lucide-react';
+import { ChevronDown, Sparkles, Search, LayoutGrid, Grid2X2, List } from 'lucide-react';
 import { useAllBlogStats, useBlogSearch } from '../../../hooks/useBlogStats';
 import {
   formatNumber,
@@ -24,6 +24,7 @@ const BlogGrid = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false);
   const [itemsPerPage, setItemsPerPage] = useState(6);
+  const [layoutMode, setLayoutMode] = useState('grid3');
 
   // Sorted posts derived from rawPosts — no re-fetch on sort change
   const blogPosts = useMemo(() => sortBlogPosts(rawPosts, sortOrder), [rawPosts, sortOrder]);
@@ -242,6 +243,37 @@ const BlogGrid = () => {
                   </button>
                 ))}
               </div>
+
+              <span className={styles.filterLabel} style={{ marginTop: '1.25rem' }}>Layout</span>
+              <div className={styles.layoutButtons}>
+                <button
+                  type="button"
+                  onClick={() => setLayoutMode('grid3')}
+                  className={`${styles.layoutBtn} ${layoutMode === 'grid3' ? styles.layoutBtnActive : ''}`}
+                  title="3 columns"
+                >
+                  <LayoutGrid size={14} />
+                  <span>3-Col</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setLayoutMode('grid4')}
+                  className={`${styles.layoutBtn} ${layoutMode === 'grid4' ? styles.layoutBtnActive : ''}`}
+                  title="4 columns"
+                >
+                  <Grid2X2 size={14} />
+                  <span>4-Col</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setLayoutMode('list')}
+                  className={`${styles.layoutBtn} ${layoutMode === 'list' ? styles.layoutBtnActive : ''}`}
+                  title="List view"
+                >
+                  <List size={14} />
+                  <span>List</span>
+                </button>
+              </div>
             </div>
 
             {/* Right: sort */}
@@ -310,7 +342,7 @@ const BlogGrid = () => {
         )}
 
         {/* Blog Grid */}
-        <div className={styles.grid}>
+        <div className={`${styles.grid} ${styles[layoutMode]}`}>
           {isLoading
             ? Array.from({ length: 4 }).map((_, index) => (
                 <div key={index} className={styles.skeletonCard}>
@@ -344,6 +376,7 @@ const BlogGrid = () => {
                     post={postData}
                     index={index}
                     variant="default"
+                    layout={layoutMode === 'list' ? 'list' : 'grid'}
                     showRelevanceScore={false}
                     truncateTitle={true}
                     truncateExcerpt={true}

@@ -1,0 +1,612 @@
+/* Shared tool page wrapper styles — imported by each tool */
+.tool {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 6rem 1.5rem 6rem;
+  font-family: 'Wotfard', sans-serif;
+}
+
+.title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin: 0 0 0.5rem 0;
+
+  :global(html:not(.dark-mode)) & { color: #0a0a0a; }
+}
+
+.desc {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0 0 2.5rem 0;
+
+  :global(html:not(.dark-mode)) & { color: rgba(10, 10, 10, 0.45); }
+}
+
+/* ---- Preview ---- */
+.preview {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  :global(html:not(.dark-mode)) & { border-color: rgba(10, 10, 10, 0.08); }
+}
+
+/* ---- Two-column generator layout ---- */
+.generatorLayout {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 2.5rem;
+  align-items: start;
+
+  @media (max-width: 740px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.generatorLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.generatorRight {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+/* Col layout for pickers */
+.pickersCol {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ---- Controls ---- */
+.controls {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 140px;
+
+  > span {
+    font-size: 0.675rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.35);
+
+    :global(html:not(.dark-mode)) & { color: rgba(10, 10, 10, 0.4); }
+  }
+}
+
+.colorRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.colorPicker {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 2px;
+  cursor: pointer;
+  background: transparent;
+
+  :global(html:not(.dark-mode)) & { border-color: rgba(10, 10, 10, 0.12); }
+}
+
+.colorInput,
+.select,
+.numberInput {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: 'Wotfard', monospace, sans-serif;
+  font-size: 0.8125rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+
+  &:focus {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  :global(html:not(.dark-mode)) & {
+    background: rgba(10, 10, 10, 0.04);
+    border-color: rgba(10, 10, 10, 0.1);
+    color: rgba(10, 10, 10, 0.8);
+
+    &:focus { border-color: rgba(10, 10, 10, 0.2); }
+  }
+}
+
+.select {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* ---- Slider ---- */
+.sliderControl {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+
+  > span {
+    font-size: 0.675rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.35);
+
+    :global(html:not(.dark-mode)) & { color: rgba(10, 10, 10, 0.4); }
+  }
+}
+
+.sliderRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.slider {
+  flex: 1;
+  accent-color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+
+  :global(html:not(.dark-mode)) & { accent-color: rgba(10, 10, 10, 0.6); }
+}
+
+.sliderValue {
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.5);
+  min-width: 42px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+
+  :global(html:not(.dark-mode)) & { color: rgba(10, 10, 10, 0.5); }
+}
+
+/* ---- Color Picker row (legacy, kept for fallback) ---- */
+.pickersRow {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.pickerWrapper {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pickerLabel {
+  font-size: 0.675rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+
+  :global(html:not(.dark-mode)) & { color: rgba(10, 10, 10, 0.4); }
+}
+
+/* ---- Presets ---- */
+.presets {
+  /* No margin-bottom needed — flex gap handles spacing */
+}
+
+.presetsLabel {
+  font-size: 0.675rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  margin: 0 0 0.6rem 0;
+
+  :global(html:not(.dark-mode)) & { color: rgba(10, 10, 10, 0.4); }
+}
+
+.presetGrid {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.presetBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+
+  &:hover {
+    transform: scale(1.1);
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+
+  :global(html:not(.dark-mode)) & { border-color: rgba(10, 10, 10, 0.1); }
+}
+
+/* ---- Shadow preview area ---- */
+.shadowPreview {
+  width: 100%;
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  margin-bottom: 2.5rem;
+
+  :global(html:not(.dark-mode)) & {
+    background: rgba(10, 10, 10, 0.025);
+    border-color: rgba(10, 10, 10, 0.07);
+  }
+}
+
+.shadowBox {
+  width: 120px;
+  height: 120px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.07);
+
+  :global(html:not(.dark-mode)) & {
+    background: #fff;
+  }
+}
+
+/* ---- Output area ---- */
+.output {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  overflow: hidden;
+
+  :global(html:not(.dark-mode)) & {
+    background: rgba(10, 10, 10, 0.02);
+    border-color: rgba(10, 10, 10, 0.08);
+  }
+}
+
+.outputLabel {
+  padding: 0.65rem 1.25rem;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.28);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  margin: 0;
+
+  :global(html:not(.dark-mode)) & {
+    color: rgba(10, 10, 10, 0.32);
+    border-bottom-color: rgba(10, 10, 10, 0.06);
+  }
+}
+
+.code {
+  display: block;
+  padding: 1rem 1.25rem;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.75);
+  word-break: break-all;
+  white-space: pre-wrap;
+  background: rgba(0, 0, 0, 0.18);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+  :global(html:not(.dark-mode)) & {
+    color: rgba(10, 10, 10, 0.75);
+    background: rgba(0, 0, 0, 0.04);
+    border-bottom-color: rgba(10, 10, 10, 0.06);
+  }
+}
+
+.outputActions {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  justify-content: flex-end;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.875rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.75);
+  font-family: 'Wotfard', sans-serif;
+  font-size: 0.775rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.95);
+  }
+
+  :global(html:not(.dark-mode)) & {
+    background: rgba(10, 10, 10, 0.06);
+    border-color: rgba(10, 10, 10, 0.1);
+    color: rgba(10, 10, 10, 0.7);
+
+    &:hover { background: rgba(10, 10, 10, 0.1); color: rgba(10, 10, 10, 0.9); }
+  }
+}
+
+/* ---- Operator Lookup ---- */
+.searchBar {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 0.8rem 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: 'Wotfard', sans-serif;
+  font-size: 0.9375rem;
+  outline: none;
+  margin-bottom: 1.5rem;
+  transition: border-color 0.2s ease, background 0.2s ease;
+
+  &:focus {
+    border-color: rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.06);
+  }
+  &::placeholder { color: rgba(255, 255, 255, 0.22); }
+
+  :global(html:not(.dark-mode)) & {
+    background: rgba(10, 10, 10, 0.04);
+    border-color: rgba(10, 10, 10, 0.1);
+    color: rgba(10, 10, 10, 0.85);
+
+    &::placeholder { color: rgba(10, 10, 10, 0.28); }
+    &:focus { border-color: rgba(10, 10, 10, 0.22); background: #fff; }
+  }
+}
+
+.operatorGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.operatorCard {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  padding: 1.25rem 1.25rem 1rem;
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.04);
+    transform: translateY(-1px);
+  }
+
+  :global(html:not(.dark-mode)) & {
+    background: #fff;
+    border-color: rgba(10, 10, 10, 0.08);
+    box-shadow: 0 1px 3px rgba(10, 10, 10, 0.05);
+
+    &:hover {
+      border-color: rgba(10, 10, 10, 0.15);
+      box-shadow: 0 4px 12px rgba(10, 10, 10, 0.08);
+      transform: translateY(-1px);
+    }
+  }
+}
+
+.opSymbol {
+  font-family: 'Consolas', 'JetBrains Mono', monospace;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1;
+
+  :global(html:not(.dark-mode)) & { color: rgba(10, 10, 10, 0.9); }
+}
+
+.opName {
+  font-size: 0.775rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 0.15rem;
+
+  :global(html:not(.dark-mode)) & { color: rgba(10, 10, 10, 0.45); }
+}
+
+.opDesc {
+  font-size: 0.775rem;
+  color: rgba(255, 255, 255, 0.32);
+  line-height: 1.55;
+
+  :global(html:not(.dark-mode)) & { color: rgba(10, 10, 10, 0.38); }
+}
+
+/* ---- Snippets ---- */
+.snippetsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.snippetCard {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+
+  &:hover { border-color: rgba(255, 255, 255, 0.12); }
+
+  :global(html:not(.dark-mode)) & {
+    background: #fff;
+    border-color: rgba(10, 10, 10, 0.08);
+    box-shadow: 0 1px 3px rgba(10, 10, 10, 0.05);
+  }
+}
+
+.snippetHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+  :global(html:not(.dark-mode)) & { border-bottom-color: rgba(10, 10, 10, 0.07); }
+}
+
+.snippetTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+
+  :global(html:not(.dark-mode)) & { color: rgba(10, 10, 10, 0.85); }
+}
+
+.snippetTag {
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  padding: 0.25rem 0.6rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 100px;
+
+  :global(html:not(.dark-mode)) & {
+    color: rgba(10, 10, 10, 0.38);
+    background: rgba(10, 10, 10, 0.04);
+    border-color: rgba(10, 10, 10, 0.08);
+  }
+}
+
+.snippetBody {
+  padding: 0;
+  position: relative;
+}
+
+.snippetCode {
+  display: block;
+  padding: 1.1rem 1.25rem;
+  font-family: 'Consolas', 'JetBrains Mono', 'Monaco', monospace;
+  font-size: 0.8125rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.7);
+  overflow-x: auto;
+  white-space: pre;
+  background: rgba(0, 0, 0, 0.25);
+  scrollbar-width: thin;
+
+  :global(html:not(.dark-mode)) & {
+    background: rgba(0, 0, 0, 0.032);
+    color: rgba(10, 10, 10, 0.7);
+  }
+}
+
+.snippetCopy {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.32rem 0.65rem;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.68rem;
+  font-family: 'Wotfard', sans-serif;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  :global(html:not(.dark-mode)) & {
+    background: rgba(10, 10, 10, 0.05);
+    border-color: rgba(10, 10, 10, 0.1);
+    color: rgba(10, 10, 10, 0.5);
+  }
+}
+
+/* ---- Filter tabs ---- */
+.filterTabs {
+  display: flex;
+  gap: 0.35rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.filterTab {
+  padding: 0.35rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  font-family: 'Wotfard', sans-serif;
+  font-size: 0.775rem;
+  color: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &:hover { color: rgba(255, 255, 255, 0.75); background: rgba(255, 255, 255, 0.04); }
+
+  &.filterTabActive {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  :global(html:not(.dark-mode)) & {
+    color: rgba(10, 10, 10, 0.45);
+
+    &:hover { color: rgba(10, 10, 10, 0.75); background: rgba(10, 10, 10, 0.04); }
+
+    &.filterTabActive {
+      background: rgba(10, 10, 10, 0.06);
+      border-color: rgba(10, 10, 10, 0.1);
+      color: rgba(10, 10, 10, 0.9);
+    }
+  }
+}
+
+/* ---- No results ---- */
+.empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.9rem;
+
+  :global(html:not(.dark-mode)) & { color: rgba(10, 10, 10, 0.35); }
+}

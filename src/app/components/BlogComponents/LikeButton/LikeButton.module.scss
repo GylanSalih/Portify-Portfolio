@@ -1,0 +1,120 @@
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+
+  &:focus-visible .ring {
+    box-shadow: 0 0 0 3px rgba(76, 255, 180, 0.5);
+  }
+}
+
+/* ── gradient border ring ── */
+.ring {
+  position: relative;
+  isolation: isolate;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(to bottom right, rgba(23,23,23,0.7) 0%, #525252 62%, rgba(23,23,23,0.7) 100%)
+    padding-box,
+    linear-gradient(to bottom right, #171717, #525252 62%, #171717)
+    border-box;
+  transition: background 0.35s ease, transform 0.15s ease;
+
+  .button:active & {
+    transform: scale(0.92);
+  }
+}
+
+/* ── idle heart (dark/outline) ── */
+.heartIdle {
+  position: absolute;
+  transition: opacity 0.25s ease, filter 0.25s ease, transform 0.25s ease;
+  opacity: 1;
+  filter: blur(0px);
+  transform: translateY(0%) translateZ(0);
+
+  .button.liked & {
+    opacity: 0;
+    filter: blur(3px);
+    transform: translateY(-30%) scale(0.8) translateZ(0);
+  }
+}
+
+/* ── active heart (green filled) ── */
+.heartActive {
+  position: absolute;
+  transition: opacity 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              filter 0.3s ease,
+              transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  opacity: 0;
+  filter: blur(2px);
+  transform: translateX(0) translateY(120%) rotate(-10deg) translateZ(0);
+
+  .button.liked & {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateX(0) translateY(0%) rotate(0deg) translateZ(0);
+  }
+}
+
+/* ── floating count ── */
+.counter {
+  position: absolute;
+  bottom: calc(100% + 0.25rem);
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  white-space: nowrap;
+
+  display: flex;
+  align-items: center;
+  font-family: 'Rethink Sans', 'DM Sans', sans-serif;
+  font-size: 5.5rem;
+  font-weight: 900;
+  color: #171717;
+
+  mask-image: linear-gradient(rgba(0,0,0,0.97) 0%, rgba(0,0,0,0) 110%);
+  -webkit-mask-image: linear-gradient(rgba(0,0,0,0.97) 0%, rgba(0,0,0,0) 110%);
+
+  text-shadow:
+    -0.3px 0 rgba(82,82,82,0.8),
+     0  0.3px rgba(82,82,82,0.8),
+     0.3px 0 rgba(82,82,82,0.8),
+     0 -0.3px rgba(82,82,82,0.8);
+}
+
+.digit {
+  display: inline-block;
+  transition: opacity 0.2s ease;
+  opacity: 1;
+}
+
+/* ── pop ripple on click ──*/
+@keyframes ripple {
+  0%   { transform: scale(0.8); opacity: 0.6; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+.ripple {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgba(76, 255, 180, 0.5);
+  animation: ripple 0.55s ease-out forwards;
+  pointer-events: none;
+}

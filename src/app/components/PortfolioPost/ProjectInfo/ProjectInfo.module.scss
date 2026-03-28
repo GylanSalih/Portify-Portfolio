@@ -1,19 +1,21 @@
 .info {
-  margin-bottom: 4rem;
-  margin-top: 4rem;
+  margin-bottom: 3rem;
+  margin-top: 3rem;
   position: relative;
   width: 100%;
 }
 
 .row {
   display: flex;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   width: 100%;
 
   :global(html:not(.dark-mode)) & {
-    border-top-color: rgba(10, 10, 10, 0.1);
-    border-bottom-color: rgba(10, 10, 10, 0.1);
+    border-top-color: rgba(10, 10, 10, 0.08);
+    border-bottom-color: rgba(10, 10, 10, 0.08);
   }
 
   @media (max-width: 640px) {
@@ -24,89 +26,78 @@
 
 .cell {
   flex: 1;
-  padding: 1.5rem 1.75rem;
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1rem 1.25rem;
+  position: relative;
 
-  :global(html:not(.dark-mode)) & {
-    border-right-color: rgba(10, 10, 10, 0.1);
+  &:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 65%;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  :global(html:not(.dark-mode)) &:not(:last-child)::after {
+    background: rgba(10, 10, 10, 0.08);
+  }
+
+  &:first-child {
+    padding-left: 0;
   }
 
   &:last-child {
-    border-right: none;
-  }
-
-  h3 {
-    font-size: 0.7rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: rgba(255, 255, 255, 0.4);
-    margin: 0 0 0.5rem 0;
-    font-family: 'Wotfard', sans-serif;
-
-    :global(html:not(.dark-mode)) & {
-      color: rgba(10, 10, 10, 0.45);
-    }
-  }
-
-  p {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.85);
-    margin: 0;
-    line-height: 1.4;
-    font-family: 'Wotfard', sans-serif;
-
-    :global(html:not(.dark-mode)) & {
-      color: rgba(10, 10, 10, 0.85);
-    }
+    padding-right: 0;
   }
 
   @media (max-width: 640px) {
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 1.25rem 0;
+    align-items: flex-start;
+    text-align: left;
+    padding: 0.875rem 0;
 
-    :global(html:not(.dark-mode)) & {
-      border-bottom-color: rgba(10, 10, 10, 0.1);
+    &:not(:last-child)::after {
+      display: none;
+    }
+
+    &:not(:last-child) {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    :global(html:not(.dark-mode)) &:not(:last-child) {
+      border-bottom-color: rgba(10, 10, 10, 0.06);
     }
   }
 }
 
-.statusValue {
-  display: inline-block;
-  padding: 0.2rem 0.6rem;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  text-transform: capitalize;
-  letter-spacing: 0.025em;
+.cellLabel {
   font-family: 'Wotfard', sans-serif;
-  width: fit-content;
-  margin: 0;
+  font-size: 0.675rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  margin-bottom: 0.3rem;
+  display: block;
 
-  &.live {
-    background: rgba(34, 197, 94, 0.08);
-    color: #22c55e;
-    border: 1px solid rgba(34, 197, 94, 0.2);
+  :global(html:not(.dark-mode)) & {
+    color: rgba(10, 10, 10, 0.35);
   }
+}
 
-  &.development {
-    background: rgba(59, 130, 246, 0.08);
-    color: #3b82f6;
-    border: 1px solid rgba(59, 130, 246, 0.2);
-  }
+.cellValue {
+  font-family: 'Wotfard', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
 
-  &.planning {
-    background: rgba(245, 158, 11, 0.08);
-    color: #f59e0b;
-    border: 1px solid rgba(245, 158, 11, 0.2);
-  }
-
-  &.completed {
-    background: rgba(34, 197, 94, 0.08);
-    color: #22c55e;
-    border: 1px solid rgba(34, 197, 94, 0.2);
+  :global(html:not(.dark-mode)) & {
+    color: rgba(10, 10, 10, 0.65);
   }
 }
 

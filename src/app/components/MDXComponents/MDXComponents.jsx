@@ -261,12 +261,24 @@ const Audio = ({ src, title, ...props }) => (
 // ===========================
 export const MDXComponents = {
   // Headings
-  h1: ({ node, ...props }) => <h1 className="mdx-h1" {...props} />,
-  h2: ({ node, ...props }) => <h2 className="mdx-h2" {...props} />,
-  h3: ({ node, ...props }) => <h3 className="mdx-h3" {...props} />,
-  h4: ({ node, ...props }) => <h4 className="mdx-h4" {...props} />,
-  h5: ({ node, ...props }) => <h5 className="mdx-h5" {...props} />,
-  h6: ({ node, ...props }) => <h6 className="mdx-h6" {...props} />,
+  h1: ({ node, children, ...props }) => {
+    const id = children?.toString().toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').trim();
+    return <h1 id={id} className="mdx-h1" {...props}>{children}</h1>;
+  },
+  h2: ({ node, children, ...props }) => {
+    const id = children?.toString().toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').trim();
+    return <h2 id={id} className="mdx-h2" {...props}>{children}</h2>;
+  },
+  h3: ({ node, children, ...props }) => {
+    const id = children?.toString().toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').trim();
+    return <h3 id={id} className="mdx-h3" {...props}>{children}</h3>;
+  },
+  h4: ({ node, children, ...props }) => {
+    const id = children?.toString().toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').trim();
+    return <h4 id={id} className="mdx-h4" {...props}>{children}</h4>;
+  },
+  h5: ({ node, children, ...props }) => <h5 className="mdx-h5" {...props}>{children}</h5>,
+  h6: ({ node, children, ...props }) => <h6 className="mdx-h6" {...props}>{children}</h6>,
 
   // Text Elements
   p: ({ node, ...props }) => <p className="mdx-paragraph" {...props} />,

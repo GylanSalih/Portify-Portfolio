@@ -16,18 +16,10 @@
 }
 
 .section {
-  padding: 2rem;
-
-  & + & {
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-
-    :global(html:not(.dark-mode)) & {
-      border-top-color: rgba(10, 10, 10, 0.08);
-    }
-  }
+  padding: 1rem 2rem;
 
   @media (max-width: 768px) {
-    padding: 1.5rem;
+    padding: 0.75rem 1.5rem;
   }
 }
 
