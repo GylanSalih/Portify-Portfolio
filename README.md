@@ -32,22 +32,20 @@
     <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/PortfolioGithubShowcase.png" alt="Logo">
   </a>
 
-<h3 align="center">
-  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Smiling%20Cat%20with%20Heart-Eyes.png" alt="Smiling Cat with Heart-Eyes" width="25" height="25" /> Portify Portfolio Made with Love
-</h3>
+  <h3 align="center">Portify Portfolio Made with Love</h3>
 
-<p align="center">
-  Welcome! I would appreciate if you Star my Repository <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Smiling%20Cat%20with%20Heart-Eyes.png" alt="Smiling Cat with Heart-Eyes" width="25" height="25" />
-  <br />
-  <br />
-  <a href="https://next-js-portify.vercel.app/">View Demo</a>
-  ·
-  <a href="https://github.com/GylanSalih/NextJS-Portify/blob/main/CHANGELOG.md">Changelog.md & Roadmap</a>
-  ·
-  <a href="https://github.com/GylanSalih/NextJS-Portify/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
-  ·
-  <a href="https://github.com/GylanSalih/NextJS-Portify/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
-</p>
+  <p align="center">
+    Welcome! I would appreciate if you Star my Repository
+    <br />
+    <br />
+    <a href="https://next-js-portify.vercel.app/">View Demo</a>
+    ·
+    <a href="https://github.com/GylanSalih/NextJS-Portify/blob/main/CHANGELOG.md">Changelog.md & Roadmap</a>
+    ·
+    <a href="https://github.com/GylanSalih/NextJS-Portify/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    ·
+    <a href="https://github.com/GylanSalih/NextJS-Portify/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+  </p>
 </div>
 
 <!--------------- TABLE OF CONTENTS --------------->
@@ -59,10 +57,8 @@
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#built-with">Built With</a></li>
     <li><a href="#getting-started-with-the-installation">Getting Started with the Installation</a></li>
-    <li><a href="#changelogmd--roadmap">Changelog.md & Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
     <li><a href="#contact--support">Contact & Support</a></li>
   </ol>
 </details>
@@ -73,8 +69,6 @@
   <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Pushpin.png" alt="Pushpin" width="25" height="25" /> About The Project
 </h2>
 
-<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Robot.png" alt="Robot" width="25" height="25" />
-<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Red%20Heart.png" alt="Red Heart" width="25" height="25" />
 Mission: Award-Winning Responsive Portfolio. My self-coded and crafted website, made with passion for the #OpenSource community. Free to use and customize. It's still under development — Don't miss out — updates are made daily!
 
 &nbsp;
@@ -98,8 +92,6 @@ Mission: Award-Winning Responsive Portfolio. My self-coded and crafted website, 
 
 - **Responsive Design**
   Fully optimized for various devices, including mobile, tablet, and PC, ensuring consistent performance across platforms like Windows, macOS, and Linux.
-
-&nbsp;
 
 ### Future Plans
 
@@ -127,21 +119,21 @@ I'll be adding more in the near future. Potential updates include:
   <tr>
     <td align="center" width="33%">
       <a href="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/23.08.25_Home.png">
-        <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/23.08.25_Home.png" width="100%" alt="Showcase Home"/>
+        <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/23.08.25_Home.png" width="100%" height="200px" style="object-fit:cover;" alt="Showcase Home"/>
       </a>
       <br/>
       <sub><b>Home</b></sub>
     </td>
     <td align="center" width="33%">
       <a href="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/23.08.25_Blog.png">
-        <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/23.08.25_Blog.png" width="100%" alt="Showcase Blog"/>
+        <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/23.08.25_Blog.png" width="100%" height="200px" style="object-fit:cover;" alt="Showcase Blog"/>
       </a>
       <br/>
       <sub><b>Blog</b></sub>
     </td>
     <td align="center" width="33%">
       <a href="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/23.08.25_360Carousel.png">
-        <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/23.08.25_360Carousel.png" width="100%" alt="Showcase 360 Carousel"/>
+        <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/23.08.25_360Carousel.png" width="100%" height="200px" style="object-fit:cover;" alt="Showcase 360 Carousel"/>
       </a>
       <br/>
       <sub><b>360° Carousel</b></sub>
@@ -160,8 +152,6 @@ I'll be adding more in the near future. Potential updates include:
 <h2 id="built-with">
   <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Pushpin.png" alt="Pushpin" width="25" height="25" /> Built With
 </h2>
-
-Here are the key technologies, languages, and tools used in this project:
 
 <ul>
   <li><img alt="React Badge" title="React" src="https://custom-icon-badges.demolab.com/badge/-React%20CSS-000000?style=for-the-badge&logo=react&logoColor=ffffff&labelColor=FF0000"></li>
@@ -182,45 +172,21 @@ Here are the key technologies, languages, and tools used in this project:
   <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Pushpin.png" alt="Pushpin" width="25" height="25" /> Getting Started with the Installation
 </h2>
 
-<p>To clone and run this application, you'll need <a href="https://git-scm.com">Git</a> and <a href="https://nodejs.org/en/download/">Node.js</a> (which includes <a href="http://npmjs.com">npm</a>) installed on your computer. Follow these steps:</p>
+You'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) installed. Then run:
 
-<ol>
-  <li><strong>Clone the repository:</strong>
-    <pre><code>git clone https://github.com/GylanSalih/NextJS-Portify/</code></pre>
-  </li>
-  <li><strong>Navigate into the repository:</strong>
-    <pre><code>cd NextJS-Portify</code></pre>
-  </li>
-  <li><strong>Install dependencies:</strong>
-    <pre><code>npm install</code></pre>
-    <p>or</p>
-    <pre><code>yarn install</code></pre>
-  </li>
-  <li><strong>Run the website:</strong>
-    <pre><code>npm start</code></pre>
-    <p>or</p>
-    <pre><code>yarn start</code></pre>
-  </li>
-</ol>
+```bash
+# 1. Clone the repository
+git clone https://github.com/GylanSalih/NextJS-Portify/
 
-> **Note**
-> If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use node from the command prompt.
+# 2. Navigate into the folder
+cd NextJS-Portify
 
-<p align="right">
-  <a href="#readme-top">
-    <img src="https://custom-icon-badges.demolab.com/badge/-Back%20to%20top-000000?style=for-the-badge&logo=upptime&logoColor=ffffff&labelColor=FF0000" alt="Back to top">
-  </a>
-</p>
+# 3. Install dependencies
+npm install
 
-<!--------------- CHANGELOG & ROADMAP --------------->
-
-<h2 id="changelogmd--roadmap">
-  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Pushpin.png" alt="Pushpin" width="25" height="25" /> Changelog.md & Roadmap
-</h2>
-
-See the [open issues](https://github.com/GylanSalih/Website-Portfolio/issues) for a full list of proposed features (and known issues).
-
-For a comprehensive list of changes and updates, please refer to the [CHANGELOG.md](https://github.com/GylanSalih/Website-Portfolio/blob/main/CHANGELOG.md) file.
+# 4. Start the dev server
+npm start
+```
 
 <p align="right">
   <a href="#readme-top">
@@ -234,40 +200,26 @@ For a comprehensive list of changes and updates, please refer to the [CHANGELOG.
   <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Pushpin.png" alt="Pushpin" width="25" height="25" /> Contributing
 </h2>
 
-We welcome contributions to **NextJS-Portify**! 🎉 Whether it's fixing bugs, improving documentation, or adding new features, your help is always appreciated.
+<details>
+  <summary>How to Contribute</summary>
 
-### How to Contribute
+```bash
+# 1. Fork & clone your fork
+git clone https://github.com/<your-username>/NextJS-Portify.git
+cd NextJS-Portify
 
-1. **Fork the Repository**
-   Click on the `Fork` button at the top-right corner of this repository to create your copy.
+# 2. Create a branch
+git checkout -b feature/your-feature-name
 
-2. **Clone Your Fork**
-   ```bash
-   git clone https://github.com/<your-username>/NextJS-Portify.git
-   cd NextJS-Portify
-   ```
+# 3. Commit your changes
+git add .
+git commit -m "Add: Description of the changes"
 
-3. **Create a Branch**
-   Create a new branch for your feature or bug fix.
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
+# 4. Push & open a Pull Request
+git push origin feature/your-feature-name
+```
 
-4. **Make Changes**
-   Implement your changes and commit them with a descriptive message.
-   ```bash
-   git add .
-   git commit -m "Add: Description of the changes"
-   ```
-
-5. **Push Changes**
-   Push your changes to your forked repository.
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-
-6. **Open a Pull Request**
-   Go to the original repository and click on `New Pull Request`. Ensure your pull request has a detailed description of your changes.
+</details>
 
 <details>
   <summary>Contribution Guidelines</summary>
@@ -275,14 +227,14 @@ We welcome contributions to **NextJS-Portify**! 🎉 Whether it's fixing bugs, i
 - **Follow the Code Style:** Ensure your code follows the repository's style guide.
 - **Write Clear Commit Messages:** Use concise and descriptive commit messages.
 - **Test Your Changes:** Verify that your changes work as expected.
-- **Be Respectful:** When reviewing or discussing code, always be respectful and considerate of others.
+- **Be Respectful:** Always be respectful and considerate of others.
 
 </details>
 
 <details>
   <summary>Need Help?</summary>
 
-  If you're stuck or need guidance, feel free to [open an issue](https://github.com/GylanSalih/NextJS-Portify/issues/new) or start a discussion in the repository. We're here to help! 💬
+  If you're stuck or need guidance, feel free to [open an issue](https://github.com/GylanSalih/NextJS-Portify/issues/new) or start a discussion in the repository. We're here to help!
 
 </details>
 
@@ -306,23 +258,6 @@ Distributed under the MIT license. See LICENSE.txt for more information.
   </a>
 </p>
 
-<!--------------- ACKNOWLEDGMENTS --------------->
-
-<h2 id="acknowledgments">
-  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Pushpin.png" alt="Pushpin" width="25" height="25" /> Acknowledgments
-</h2>
-
-I would like to acknowledge and give credit to the following resources that have been instrumental in the development of this project. Special thanks to the creators of these tools and libraries:
-
-- [Simeydotme Pokemon Card CSS](https://github.com/simeydotme/pokemon-cards-css)
-- [CodeGrid Youtube Channel](https://www.youtube.com/@codegrid)
-
-<p align="right">
-  <a href="#readme-top">
-    <img src="https://custom-icon-badges.demolab.com/badge/-Back%20to%20top-000000?style=for-the-badge&logo=upptime&logoColor=ffffff&labelColor=FF0000" alt="Back to top">
-  </a>
-</p>
-
 <!--------------- CONTACT & SUPPORT --------------->
 
 <h2 id="contact--support">
@@ -339,13 +274,8 @@ I would like to acknowledge and give credit to the following resources that have
   <br><br>
   <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/logo.png" alt="Logo">
   <br><br>
+  <p>If you like this project, please consider starring it on GitHub! Your support is greatly appreciated!</p>
 </div>
-
-<p>
-  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Grinning%20Cat.png" alt="Grinning Cat" width="25" height="25" />
-  If you like this project, please consider starring it on GitHub! Your support is greatly appreciated!
-  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Grinning%20Cat%20with%20Smiling%20Eyes.png" alt="Grinning Cat with Smiling Eyes" width="25" height="25" />
-</p>
 
 <p align="right">
   <a href="#readme-top">
