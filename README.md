@@ -91,29 +91,77 @@ I'll be adding more in the near future. Potential updates include:
 - Additional themes for better personalization.
 
 &nbsp;
+
+<!--------------- GALLERY --------------->
+
 <h2 id="Gallery"><span style="display: inline-flex; align-items: center;"><img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Pushpin.png" alt="Pushpin" width="25" height="25" /> Gallery</span></h2>
+
 <p align="center">Here are some images showcasing the project:</p>
 
-| Home | Home Mobile | About Me |
-| --- | --- | --- |
-| <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Home.png" alt="Home" width="300" /> | <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Home%20Mobile.png" alt="Home Mobile" width="78" /> | <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/About%20Me.png" alt="About Me" width="300" /> |
+<table width="100%">
+  <tr>
+    <td width="33%" align="center"><b>Home</b></td>
+    <td width="33%" align="center"><b>Home Mobile</b></td>
+    <td width="34%" align="center"><b>About Me</b></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Home.png" alt="Home" width="300" /></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Home%20Mobile.png" alt="Home Mobile" width="78" /></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/About%20Me.png" alt="About Me" width="300" /></td>
+  </tr>
+</table>
 
-| Blog | Blog 2 | Blog Single Page |
-| --- | --- | --- |
-| <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Blog.png" alt="Blog" width="300" /> | <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Blog%202.png" alt="Blog 2" width="300" /> | <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Blog%20Single%20Page.png" alt="Blog Single Page" width="300" /> |
+<table width="100%">
+  <tr>
+    <td width="33%" align="center"><b>Blog</b></td>
+    <td width="33%" align="center"><b>Blog 2</b></td>
+    <td width="34%" align="center"><b>Blog Single Page</b></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Blog.png" alt="Blog" width="300" /></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Blog%202.png" alt="Blog 2" width="300" /></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Blog%20Single%20Page.png" alt="Blog Single Page" width="300" /></td>
+  </tr>
+</table>
 
-| Portfolio | Portfolio 2 | Portfolio Mobile |
-| --- | --- | --- |
-| <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Portfolio.png" alt="Portfolio" width="300" /> | <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Portfolio%202.png" alt="Portfolio 2" width="300" /> | <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Portfolio%20Mobile.png" alt="Portfolio Mobile" width="78" /> |
+<table width="100%">
+  <tr>
+    <td width="33%" align="center"><b>Portfolio</b></td>
+    <td width="33%" align="center"><b>Portfolio 2</b></td>
+    <td width="34%" align="center"><b>Portfolio Mobile</b></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Portfolio.png" alt="Portfolio" width="300" /></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Portfolio%202.png" alt="Portfolio 2" width="300" /></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Portfolio%20Mobile.png" alt="Portfolio Mobile" width="78" /></td>
+  </tr>
+</table>
 
-| Portfolio Single Page | Showcase | Showcase Click |
-| --- | --- | --- |
-| <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Portfolio%20Single%20Page.png" alt="Portfolio Single Page" width="300" /> | <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Showcase.png" alt="Showcase" width="300" /> | <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Showcase%20Click.png" alt="Showcase Click" width="300" /> |
+<table width="100%">
+  <tr>
+    <td width="33%" align="center"><b>Portfolio Single Page</b></td>
+    <td width="33%" align="center"><b>Showcase</b></td>
+    <td width="34%" align="center"><b>Showcase Click</b></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Portfolio%20Single%20Page.png" alt="Portfolio Single Page" width="300" /></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Showcase.png" alt="Showcase" width="300" /></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Showcase%20Click.png" alt="Showcase Click" width="300" /></td>
+  </tr>
+</table>
 
-| Showcase Single Page View | Hamburger Menu | Light Mode |
-| --- | --- | --- |
-| <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Showcase%20Single%20Page%20View.png" alt="Showcase Single Page View" width="300" /> | <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Hamburger%20Menu.png" alt="Hamburger Menu" width="300" /> | <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Light%20Mode.png" alt="Light Mode" width="300" /> |
-
+<table width="100%">
+  <tr>
+    <td width="33%" align="center"><b>Showcase Single Page View</b></td>
+    <td width="33%" align="center"><b>Hamburger Menu</b></td>
+    <td width="34%" align="center"><b>Light Mode</b></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Showcase%20Single%20Page%20View.png" alt="Showcase Single Page View" width="300" /></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Hamburger%20Menu.png" alt="Hamburger Menu" width="300" /></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/showcase/Light%20Mode.png" alt="Light Mode" width="300" /></td>
+  </tr>
+</table>
 
 <p align="right">
   <a href="#readme-top">
@@ -146,7 +194,8 @@ I'll be adding more in the near future. Potential updates include:
   <summary>Installation</summary>
 
   You'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) installed. Then run:
-```bash
+
+  ```bash
   # 1. Clone the repository
   git clone https://github.com/GylanSalih/NextJS-Portify/
 
@@ -158,13 +207,14 @@ I'll be adding more in the near future. Potential updates include:
 
   # 4. Start the dev server
   npm start
-```
+  ```
 
 </details>
 
 <details>
   <summary>How to Contribute</summary>
-```bash
+
+  ```bash
   # 1. Fork & clone your fork
   git clone https://github.com/<your-username>/NextJS-Portify.git
   cd NextJS-Portify
@@ -178,7 +228,7 @@ I'll be adding more in the near future. Potential updates include:
 
   # 4. Push & open a Pull Request
   git push origin feature/your-feature-name
-```
+  ```
 
 </details>
 
