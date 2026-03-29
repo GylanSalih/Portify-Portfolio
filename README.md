@@ -137,7 +137,7 @@ I'll be adding more in the near future. Potential updates include:
     <img src="https://custom-icon-badges.demolab.com/badge/-Back%20to%20top-000000?style=for-the-badge&logo=upptime&logoColor=ffffff&labelColor=FF0000" alt="Back to top">
   </a>
 </p>
-```
+
 <!--------------- GETTING STARTED & CONTRIBUTING --------------->
 
 <h2 id="getting-started-contributing">Getting Started & Contributing</h2>
@@ -220,4 +220,3 @@ Distributed under the MIT license. See LICENSE.txt for more information.
 <div align="center">
   <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/logo.png" alt="Logo">
 </div>
-```
