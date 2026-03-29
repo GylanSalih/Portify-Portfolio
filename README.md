@@ -137,72 +137,74 @@ I'll be adding more in the near future. Potential updates include:
     <img src="https://custom-icon-badges.demolab.com/badge/-Back%20to%20top-000000?style=for-the-badge&logo=upptime&logoColor=ffffff&labelColor=FF0000" alt="Back to top">
   </a>
 </p>
-
+```
 <!--------------- GETTING STARTED & CONTRIBUTING --------------->
 
 <h2 id="getting-started-contributing">Getting Started & Contributing</h2>
 
 <details>
-  <summary>Installation</summary>
+<summary>Installation</summary>
 
-  You'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) installed. Then run:
+You'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) installed. Then run:
+
 ```bash
-  # 1. Clone the repository
-  git clone https://github.com/GylanSalih/NextJS-Portify/
+# 1. Clone the repository
+git clone https://github.com/GylanSalih/NextJS-Portify/
 
-  # 2. Navigate into the folder
-  cd NextJS-Portify
+# 2. Navigate into the folder
+cd NextJS-Portify
 
-  # 3. Install dependencies
-  npm install
+# 3. Install dependencies
+npm install
 
-  # 4. Start the dev server
-  npm start
+# 4. Start the dev server
+npm start
 ```
 
 </details>
 
 <details>
-  <summary>How to Contribute</summary>
+<summary>How to Contribute</summary>
+
 ```bash
-  # 1. Fork & clone your fork
-  git clone https://github.com/<your-username>/NextJS-Portify.git
-  cd NextJS-Portify
+# 1. Fork & clone your fork
+git clone https://github.com/<your-username>/NextJS-Portify.git
+cd NextJS-Portify
 
-  # 2. Create a branch
-  git checkout -b feature/your-feature-name
+# 2. Create a branch
+git checkout -b feature/your-feature-name
 
-  # 3. Commit your changes
-  git add .
-  git commit -m "Add: Description of the changes"
+# 3. Commit your changes
+git add .
+git commit -m "Add: Description of the changes"
 
-  # 4. Push & open a Pull Request
-  git push origin feature/your-feature-name
+# 4. Push & open a Pull Request
+git push origin feature/your-feature-name
 ```
 
 </details>
 
 <details>
-  <summary>Contribution Guidelines</summary>
+<summary>Contribution Guidelines</summary>
 
-  - **Follow the Code Style:** Ensure your code follows the repository's style guide.
-  - **Write Clear Commit Messages:** Use concise and descriptive commit messages.
-  - **Test Your Changes:** Verify that your changes work as expected.
-  - **Be Respectful:** Always be respectful and considerate of others.
-
-</details>
-
-<details>
-  <summary>Need Help?</summary>
-
-  If you're stuck or need guidance, feel free to [open an issue](https://github.com/GylanSalih/NextJS-Portify/issues/new) or start a discussion in the repository. We're here to help!
+- **Follow the Code Style:** Ensure your code follows the repository's style guide.
+- **Write Clear Commit Messages:** Use concise and descriptive commit messages.
+- **Test Your Changes:** Verify that your changes work as expected.
+- **Be Respectful:** Always be respectful and considerate of others.
 
 </details>
 
 <details>
-  <summary>License</summary>
+<summary>Need Help?</summary>
 
-  Distributed under the MIT license. See LICENSE.txt for more information.
+If you're stuck or need guidance, feel free to [open an issue](https://github.com/GylanSalih/NextJS-Portify/issues/new) or start a discussion in the repository. We're here to help!
+
+</details>
+
+<details>
+<summary>License</summary>
+
+Distributed under the MIT license. See LICENSE.txt for more information.
 
 </details>
 
@@ -218,3 +220,4 @@ I'll be adding more in the near future. Potential updates include:
 <div align="center">
   <img src="https://raw.githubusercontent.com/GylanSalih/NextJS-Portify/main/public/assets/images/logo.png" alt="Logo">
 </div>
+```
